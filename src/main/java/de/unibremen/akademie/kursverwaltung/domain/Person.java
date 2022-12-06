@@ -1,4 +1,4 @@
-package de.unibremen.akademie.kursverwaltung.module;
+package de.unibremen.akademie.kursverwaltung.domain;
 
 public class Person {
 
@@ -10,7 +10,7 @@ public class Person {
     private String plz;
     private String ort;
     private String email;
-    private String telNr;
+    private String telefon;
 
 
 }
