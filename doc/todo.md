@@ -34,9 +34,9 @@ Dialog für Kursliste und Kurs gemeinsam
 Kursteilnehmer und Interessenten auch in die Ansicht?
 Suchen Funktionalität?
 Buttons Personen hinzufügen und entfernen sinnvoll?
-Design zu komplex? Ist es eher ein überladenens Dashboard?
+Design zu komplex? Ist es eher ein überladenenes Dashboard?
 
-Dialog für Persionenliste und Personen gemeinsam
+Dialog für Personenliste und Personen gemeinsam
 ------------------------------------------------
 
 Eintrag für Bemerkungen, Kommentare?
@@ -47,7 +47,7 @@ Anzeige in welchen Kursen ist die Person (als TN, als Interessent)
 Anzeige der Personen als Tabelle statt Liste mit Status für z.B. alles bezahlt/offene Rechnungen.
 Detailansicht mit Informationen z.B. Rechnungen bezahlt, Zertifikat erhalten, ...
 
-Dialog für Persionenliste
+Dialog für Personenliste
 -------------------------
 
 Buttons für Anlegen, Ändern, ... (siehe Kursliste)
