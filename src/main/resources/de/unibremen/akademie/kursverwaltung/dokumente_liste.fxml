@@ -6,7 +6,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
             stylesheets="@css/style.css"
             xmlns="http://javafx.com/javafx/18"
-            fx:controller="de.unibremen.akademie.kursverwaltung.DokumenteListeController">
+            fx:controller="de.unibremen.akademie.kursverwaltung.controller.DokumenteListeController">
     <children>
         <VBox prefHeight="390.0" prefWidth="244.0" spacing="10.0" AnchorPane.bottomAnchor="5.0"
               AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="5.0">

@@ -1,4 +1,4 @@
-package de.unibremen.akademie.kursverwaltung;
+package de.unibremen.akademie.kursverwaltung.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
