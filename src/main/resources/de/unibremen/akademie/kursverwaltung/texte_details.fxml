@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<TitledPane xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@css/style.css"
+            xmlns="http://javafx.com/javafx/18"
+            fx:controller="de.unibremen.akademie.kursverwaltung.TexteDetailsController">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="522.0" prefWidth="745.0">
+            <children>
+                <BorderPane layoutX="-191.0" layoutY="-78.0" prefHeight="648.0" prefWidth="893.0"
+                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                            AnchorPane.topAnchor="0.0">
+                    <top>
+                        <Label text="Textbaustein anzeigen / ändern / neu anlegen / löschen"
+                               BorderPane.alignment="CENTER">
+                            <font>
+                                <Font size="24.0"/>
+                            </font>
+                        </Label>
+                    </top>
+                    <bottom>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0"
+                              BorderPane.alignment="BOTTOM_CENTER">
+                            <children>
+                                <Button mnemonicParsing="false" text="Drucken als PDF">
+                                    <HBox.margin>
+                                        <Insets right="10.0"/>
+                                    </HBox.margin>
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" text="Speichern">
+                                    <HBox.margin>
+                                        <Insets right="10.0"/>
+                                    </HBox.margin>
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" text="Löschen">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets right="10.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                <Button mnemonicParsing="false" text="Zurück">
+                                    <HBox.margin>
+                                        <Insets right="10.0"/>
+                                    </HBox.margin>
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <padding>
+                                <Insets right="10.0"/>
+                            </padding>
+                        </HBox>
+                    </bottom>
+                    <center>
+                        <VBox prefHeight="674.0" prefWidth="862.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label contentDisplay="RIGHT" prefWidth="150.0" text="Kategorie"
+                                               textAlignment="RIGHT">
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField text="KursAbsage">
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                        </TextField>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets right="10.0" top="10.0"/>
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label prefWidth="150.0" text="Unterkategorie">
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField text="zuwenig TN">
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                        </TextField>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="213.0" prefWidth="1046.0">
+                                    <children>
+                                        <Label prefWidth="150.0" text="Text">
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextArea prefHeight="253.0" prefWidth="607.0"
+                                                  text="Sehr geehrte &lt;Anrede&gt; &lt;Name&gt;,&#10;&#10;leider muss der &lt;Kurs&gt;-Kurs wegen geringer Anmeldungen ausfallen. &#10;&#10;Ich hoffe auf ihr Erscheinen im nächsten Semester.&#10;&#10;Mit freundlichen Grüssen&#10;&#10;&#10;">
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                        </TextArea>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="10.0"/>
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </center>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </content>
+</TitledPane>

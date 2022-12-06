@@ -143,5 +143,55 @@ Allgemein
 - Zwischenspeicher für Auswahl Massenbearbeitung?
 
 
+# Zweite Iteration
+
+## Ali Marcus Kursdetail
+
+
+-TN-Liste und Interessentenliste nicht klar
+- Manche Textfelder sollten nur Ausgabe sein, z.B. MWST( EURO), Freie Plätze.
+- Datumsberechnung was folgt aus wem?
+- Sachen die zusammen gehören sind auch zusammen (eigerahmt)!
+
+## Mohammed Tithin Personendetail
+
+Listen nehmen viel Platz ein. Besser mit nur 3 oder 2 Listen, andere Struktur?
+
+## Fatima Kursliste
+
+- Startdatum genaues Datum oder ab dem Datum?
+- Enddatum dazu?
+- Alle Auswählen (der gefilterten Ansicht!) CheckBox nötig?
+
+## Torsten Personenliste
+
+- Person anlegen Button
+- Alle auswählen als CheckBox wie Fatima?
+
+## Renate Textbaustein
+
+- TBS Einblenden nicht nötig
+- Überschrift bearbeiten
+- Buttons einheitlich (bei allen Ansichten)
+
+## Özge Textbausteinliste
+
+- Buttonnamen eindeutig
+-
+
+## Yolla Textbausteinliste und Textbausteindetail
+
+- Layout überarbeiten.
+- Nicht nur Template, sondern auch Bearbeiten für eine Person.
+- Wie geht das für mehrere Personen.
+- Welche Buttons werden gebraucht?
+- Eindeutige Beschriftung
+
+## Allgemein
+
+- Zwischenspeicher für Auswahl Massenbearbeitung?
+
+
+
 
 

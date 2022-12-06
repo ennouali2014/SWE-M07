@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      stylesheets="@css/style.css"
+      xmlns="http://javafx.com/javafx/18"
+      fx:controller="de.unibremen.akademie.kursverwaltung.PersonenDetailsController">
+    <children>
+        <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="1200.0"
+                 style="-fx-background-color: yellow;" VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Person anlegen/ändern">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="New"/>
+                        <MenuItem mnemonicParsing="false" text="Open…"/>
+                        <Menu mnemonicParsing="false" text="Open Recent"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
+                        <MenuItem mnemonicParsing="false" text="Save"/>
+                        <MenuItem mnemonicParsing="false" text="Save As…"/>
+                        <MenuItem mnemonicParsing="false" text="Revert"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Preferences…"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Quit"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
+            <children>
+                <SplitPane dividerPositions="0.4827694235588972" prefHeight="700.0" prefWidth="1200.0"
+                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                           AnchorPane.topAnchor="0.0">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1200.0">
+                            <children>
+                                <HBox prefHeight="700.0" prefWidth="575.0" AnchorPane.bottomAnchor="5.0"
+                                      AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+                                      AnchorPane.topAnchor="5.0">
+                                    <children>
+                                        <VBox prefHeight="700.0" prefWidth="300.0">
+                                            <children>
+                                                <Label prefHeight="30.0" prefWidth="45.0" text="Anrede">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" left="40.0" right="5.0" top="70.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" text="Name">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label layoutX="20.0" layoutY="56.0" prefHeight="30.0" text="Vorname">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label layoutX="20.0" layoutY="85.0" prefHeight="30.0"
+                                                       text="Geburtsdatum">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label layoutX="20.0" layoutY="115.0" prefHeight="30.0" text="E-Mail">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label layoutX="20.0" layoutY="144.0" prefHeight="30.0" text="Tel-Nr.">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label layoutX="20.0" layoutY="174.0" prefHeight="30.0" text="Strasse">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label layoutX="20.0" layoutY="204.0" prefHeight="30.0" text="PLZ">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label layoutX="20.0" layoutY="233.0" prefHeight="30.0" text="Ort">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                                                        prefWidth="80.0" text="speichern">
+                                                    <VBox.margin>
+                                                        <Insets left="100.0" top="50.0"/>
+                                                    </VBox.margin>
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="675.0" prefWidth="350.0"
+                                              style="-fx-background-color: lightgrey;">
+                                            <children>
+                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" left="15.0" right="5.0" top="70.0"/>
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <TextField layoutX="10.0" layoutY="156.0" maxWidth="250.0"
+                                                           prefHeight="30.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </TextField>
+                                                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                                                        prefWidth="80.0" text="zurück">
+                                                    <VBox.margin>
+                                                        <Insets left="100.0" top="50.0"/>
+                                                    </VBox.margin>
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="317.0">
+                            <children>
+                                <AnchorPane layoutX="-192.0" layoutY="-328.0" minHeight="0.0" minWidth="0.0"
+                                            prefHeight="160.0" prefWidth="100.0"/>
+                                <HBox layoutX="-3.0" prefHeight="699.0" prefWidth="618.0"
+                                      style="-fx-background-color: lightblue;" AnchorPane.bottomAnchor="5.0"
+                                      AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+                                      AnchorPane.topAnchor="5.0">
+                                    <children>
+                                        <VBox alignment="TOP_CENTER" prefHeight="665.0" prefWidth="300.0">
+                                            <children>
+                                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="305.0"
+                                                       text="Alle geplanten Kurse">
+                                                    <font>
+                                                        <Font size="17.0"/>
+                                                    </font>
+                                                </Label>
+                                                <ListView prefHeight="350.0" prefWidth="300.0"/>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
+                                                      spacing="30.0">
+                                                    <children>
+                                                        <Button mnemonicParsing="false" prefHeight="40.0"
+                                                                prefWidth="75.0">
+                                                            <graphic>
+                                                                <ImageView fitHeight="28.0" fitWidth="43.0"
+                                                                           pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@images/b-removebg-preview.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                        </Button>
+                                                        <Button mnemonicParsing="false" prefHeight="40.0"
+                                                                prefWidth="75.0" text="Löschen"/>
+                                                    </children>
+                                                </HBox>
+                                                <ListView prefHeight="200.0" prefWidth="200.0"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="665.0" prefWidth="307.0">
+                                            <children>
+                                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="308.0"
+                                                       text="Alle stattfindenden Kurse">
+                                                    <font>
+                                                        <Font size="17.0"/>
+                                                    </font>
+                                                </Label>
+                                                <ListView prefHeight="350.0" prefWidth="300.0"/>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
+                                                      spacing="30.0">
+                                                    <children>
+                                                        <Button mnemonicParsing="false" prefHeight="40.0"
+                                                                prefWidth="75.0">
+                                                            <graphic>
+                                                                <ImageView fitHeight="27.0" fitWidth="32.0"
+                                                                           pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@images/b-removebg-preview.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                        </Button>
+                                                        <Button mnemonicParsing="false" prefHeight="40.0"
+                                                                prefWidth="75.0" text="Löschen"/>
+                                                    </children>
+                                                </HBox>
+                                                <ListView prefHeight="200.0" prefWidth="200.0"/>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
