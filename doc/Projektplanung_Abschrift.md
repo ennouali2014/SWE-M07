@@ -33,7 +33,7 @@ Karten von der Tafel
 ### Emailanbindung mit Textbausteinen (4,0)
 
 ### Kursliste anzeigen (1,5)
-	Liste der Kurses
+	Liste der Kurse
 
 ### Interessent aus Kursliste (3,0)
 	als Teilnehmer auswählen
