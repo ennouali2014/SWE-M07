@@ -36,7 +36,9 @@ public class Person {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null && name.length() >= 2) {
+            this.name = name;
+        }
     }
 
     public String getVorname() {
@@ -44,7 +46,9 @@ public class Person {
     }
 
     public void setVorname(String vorname) {
-        this.vorname = vorname;
+        if (vorname != null && vorname.length() >= 2) {
+            this.vorname = vorname;
+        }
     }
 
     public String getStrasse() {
@@ -52,7 +56,9 @@ public class Person {
     }
 
     public void setStrasse(String strasse) {
-        this.strasse = strasse;
+        if (strasse != null && strasse.length() >= 5) {
+            this.strasse = strasse;
+        }
     }
 
     public String getPlz() {
@@ -60,7 +66,9 @@ public class Person {
     }
 
     public void setPlz(String plz) {
-        this.plz = plz;
+        if (plz != null && plz.length() >= 5) {
+            this.plz = plz;
+        }
     }
 
     public String getOrt() {
@@ -68,7 +76,9 @@ public class Person {
     }
 
     public void setOrt(String ort) {
-        this.ort = ort;
+        if (ort != null && ort.length() >= 2) {
+            this.ort = ort;
+        }
     }
 
     public String getEmail() {
@@ -76,7 +86,9 @@ public class Person {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (email != null && email.length() >= 5) {
+            this.email = email;
+        }
     }
 
     public String getTelefon() {
