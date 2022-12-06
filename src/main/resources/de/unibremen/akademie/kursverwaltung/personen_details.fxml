@@ -41,7 +41,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1"
       stylesheets="@css/style.css"
       xmlns="http://javafx.com/javafx/18"
-      fx:controller="de.unibremen.akademie.kursverwaltung.PersonenDetailsController">
+      fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenDetailsController">
     <children>
         <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="1200.0"
                  style="-fx-background-color: yellow;" VBox.vgrow="NEVER">

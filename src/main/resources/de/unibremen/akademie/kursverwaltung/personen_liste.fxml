@@ -6,7 +6,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
             stylesheets="@css/style.css"
             xmlns="http://javafx.com/javafx/18"
-            fx:controller="de.unibremen.akademie.kursverwaltung.KurseListeController">
+            fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseListeController">
     <children>
         <BorderPane AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
                     AnchorPane.topAnchor="5.0">

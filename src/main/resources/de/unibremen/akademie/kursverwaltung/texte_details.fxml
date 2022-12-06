@@ -7,7 +7,7 @@
 <TitledPane xmlns:fx="http://javafx.com/fxml/1"
             stylesheets="@css/style.css"
             xmlns="http://javafx.com/javafx/18"
-            fx:controller="de.unibremen.akademie.kursverwaltung.TexteDetailsController">
+            fx:controller="de.unibremen.akademie.kursverwaltung.controller.TexteDetailsController">
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="522.0" prefWidth="745.0">
             <children>

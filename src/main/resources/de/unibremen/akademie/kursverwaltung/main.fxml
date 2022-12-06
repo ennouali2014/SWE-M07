@@ -6,7 +6,7 @@
          minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0"
          tabClosingPolicy="UNAVAILABLE"
          xmlns="http://javafx.com/javafx/18"
-         fx:controller="de.unibremen.akademie.kursverwaltung.MainController">
+         fx:controller="de.unibremen.akademie.kursverwaltung.controller.MainController">
     <tabs>
         <Tab text="Personen-Details">
             <content>
