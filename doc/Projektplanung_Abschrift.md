@@ -1,3 +1,7 @@
+# Projektplanung (User Stories)
+
+Karten von der Tafel
+
 ### Kurs anlegen (3,5)
 	- anzeigen
 	- ändern
@@ -24,7 +28,7 @@
 	einfügen
 	einordnen
 
-====================================================
+---
 
 ### Emailanbindung mit Textbausteinen (4,0)
 
@@ -46,7 +50,7 @@
 	- erstellen
 	- überprüfen
 
-====================================================
+---
 
 ### Formatierter Text drucken (5,0)
 	Druckanbindung
