@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@css/style.css"
+            xmlns="http://javafx.com/javafx/18"
+            fx:controller="de.unibremen.akademie.kursverwaltung.KurseListeController">
+    <children>
+        <VBox prefHeight="120.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label text="KursList" textFill="#91c9a0">
+                    <font>
+                        <Font name="System Bold" size="54.0"/>
+                    </font>
+                </Label>
+                <Label text="Hier Kannst du deine Kurse verwalten" textFill="#91c9a0">
+                    <font>
+                        <Font name="System Italic" size="16.0"/>
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="10.0"/>
+                    </VBox.margin>
+                </Label>
+                <HBox prefHeight="47.0" prefWidth="1000.0" spacing="10.0">
+                    <children>
+                        <Label prefHeight="18.0" prefWidth="143.0" text="Suche nach Kursname:">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </Label>
+                        <TextField style="-fx-border-color: #91c9a0;">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </TextField>
+                        <Label prefHeight="18.0" prefWidth="82.0" text="Start_Datum:">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </Label>
+                        <DatePicker style="-fx-border-color: #91c9a0;">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </DatePicker>
+                        <Label prefHeight="18.0" prefWidth="47.0" text="Status:">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </Label>
+                        <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0"
+                                    style="-fx-border-color: #91c9a0;" text="Alle">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Aktiv"/>
+                                <MenuItem mnemonicParsing="false" text="Geplant"/>
+                                <MenuItem mnemonicParsing="false" text="Abgesagt"/>
+                            </items>
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </MenuButton>
+                        <Button mnemonicParsing="false" style="-fx-border-color: #91c9a0;" text="Suchen">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" style="-fx-border-color: #91c9a0;" text="Reset">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+                <TableView prefHeight="331.0" prefWidth="1000.0">
+                    <columns>
+                        <TableColumn prefWidth="100.79998397827148" text="Alle">
+                            <graphic>
+                                <CheckBox mnemonicParsing="false"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn prefWidth="109.60003662109375" text="Kursname"/>
+                        <TableColumn prefWidth="134.3999481201172" text="Start_Datum"/>
+                        <TableColumn prefWidth="125.60006713867188" text="End_Datum"/>
+                        <TableColumn prefWidth="179.20001220703125" text="Anzahl_Frei_plätze"/>
+                        <TableColumn prefWidth="170.39996337890625" text="Anzahl_Teilnehmer"/>
+                        <TableColumn prefWidth="144.7999267578125" text="Status"/>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+                <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1000.0">
+                    <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                style="-fx-border-color: #91c9a0;" text="Hinzufügen">
+                            <HBox.margin>
+                                <Insets left="50.0" right="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                style="-fx-border-color: #91c9a0;" text="Bearbeiten/Anzeigen">
+                            <HBox.margin>
+                                <Insets left="50.0" right="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                style="-fx-border-color: #91c9a0;" text="Entfernen">
+                            <HBox.margin>
+                                <Insets left="50.0" right="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
