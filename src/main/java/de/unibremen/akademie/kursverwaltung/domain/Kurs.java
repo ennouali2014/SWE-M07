@@ -1,4 +1,4 @@
-package de.unibremen.akademie.kursverwaltung.module;
+package de.unibremen.akademie.kursverwaltung.domain;
 
 import java.util.Date;
 
