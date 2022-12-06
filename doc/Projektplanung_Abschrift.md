@@ -24,7 +24,7 @@
 	einfügen
 	einordnen
 
-====================================================
+---
 
 ### Emailanbindung mit Textbausteinen (4,0)
 
@@ -46,7 +46,7 @@
 	- erstellen
 	- überprüfen
 
-====================================================
+---
 
 ### Formatierter Text drucken (5,0)
 	Druckanbindung
