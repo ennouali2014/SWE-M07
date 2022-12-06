@@ -36,7 +36,7 @@ Suchen Funktionalität?
 Buttons Personen hinzufügen und entfernen sinnvoll?
 Design zu komplex? Ist es eher ein überladenens Dashboard?
 
-Dialog für Persionenliste und Personen gemeinsam
+Dialog für Personenliste und Personen gemeinsam
 ------------------------------------------------
 
 Eintrag für Bemerkungen, Kommentare?
