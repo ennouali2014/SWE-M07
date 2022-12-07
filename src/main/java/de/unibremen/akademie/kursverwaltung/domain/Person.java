@@ -86,7 +86,7 @@ public class Person {
     }
 
     public void setEmail(String email) {
-        if (email != null && email.length() >= 5) {
+        if (email.equals("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b")) {
             this.email = email;
         }
     }
@@ -96,6 +96,8 @@ public class Person {
     }
 
     public void setTelefon(String telefon) {
-        this.telefon = telefon;
+        if (telefon.equals("0\\d{2,4}\\s?[\\-]?\\s?\\d{3,4}\\s?\\d{3,4}")) {
+            this.telefon = telefon;
+        }
     }
 }
