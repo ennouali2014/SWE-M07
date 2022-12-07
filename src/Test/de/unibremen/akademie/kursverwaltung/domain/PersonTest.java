@@ -7,11 +7,10 @@ class PersonTest {
 
     @Test
     void testCheckValidEmail() {
-        boolean mail = true;
         boolean val;
-        String regex = "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b";
+        String mail = "mdabour@hotmail.de";
         Person person = new Person();
-        val = person.checkValidEmail(regex);
+        val = person.checkValidEmail(mail);
         assertEquals(mail, val);
 
 
