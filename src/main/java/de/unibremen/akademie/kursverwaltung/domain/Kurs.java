@@ -23,7 +23,7 @@ public class Kurs {
     private List<Person> interessentenListe = new ArrayList<>();
     private List<Person> teilnehmerListe=new ArrayList<>();
 
-    private Kurs() {
+    public Kurs() {
     }
     public static Kurs addnewKurs(String name, int anzahlTage,int zyklus, Date startDatum,int maxTnZahl, int minTnZahl,
                                     double gebuehrBrutto,double mwstProzent,String kursBeschreibung,Person person,Person person1){
