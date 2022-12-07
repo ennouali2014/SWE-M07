@@ -14,7 +14,7 @@ public class Person {
     private String ort;
     private String email;
     private String telefon;
-    private List<Kurs> kursInteressent;
+    private List<Kurs> kursInteressiert;
     private List<Kurs> kursTeilnahme;
 
 
@@ -107,12 +107,12 @@ public class Person {
         }
     }
 
-    public List<Kurs> getKursInteressent() {
-        return kursInteressent;
+    public List<Kurs> getKursInteressiert() {
+        return kursInteressiert;
     }
 
-    public void setKursInteressent(List<Kurs> kursInteressent) {
-        this.kursInteressent = kursInteressent;
+    public void setKursInteressiert(List<Kurs> kursInteressiert) {
+        this.kursInteressiert = kursInteressiert;
     }
 
     public List<Kurs> getKursTeilnahme() {
@@ -123,11 +123,11 @@ public class Person {
         this.kursTeilnahme = kursTeilnahme;
     }
 
-    private boolean checkIsEmpty(String wert) {
+    public boolean checkIsEmpty(String wert) {
         return wert != null && wert.length() >= 2;
     }
 
-    private boolean checkValidEmail(String email) {
+    public boolean checkValidEmail(String email) {
         return email.equals("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
     }
 
