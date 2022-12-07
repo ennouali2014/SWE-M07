@@ -2,15 +2,23 @@ package de.unibremen.akademie.kursverwaltung.domain;
 
 import org.junit.jupiter.api.Test;
 
-class KursTest {
-    Person ali()
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    @Test
+
+class KursTest {
+    //Person ali=Person.addPerson(Anrede.HERR.name(), "Dr." ,"karakoese", "ali", "Stuhrestaße 2","28255", "Bremen", "ali@gmail.com", "01754848457");
+    Person ali = new Person();
+    Kurs kurs1 = new Kurs();
+        @Test
     void addnewKurs() {
     }
 
     @Test
     void setName() {
+        assertEquals(true,kurs1.setName("c"));
+        assertEquals(false,kurs1.setName(""));
+        assertEquals(false,kurs1.setName(null));
+
     }
 
     @Test
@@ -71,5 +79,8 @@ class KursTest {
 
     @Test
     void setTeilnehmerListe() {
+         kurs1.setTeilnehmerListe(ali);
+         assertEquals(1,kurs1.getTeilnehmerListe().size());
+         assertEquals(false,kurs1.setTeilnehmerListe(null));
     }
 }
