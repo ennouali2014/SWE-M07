@@ -1,5 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Person {
@@ -13,6 +14,9 @@ public class Person {
     private String ort;
     private String email;
     private String telefon;
+    private List<Kurs> kursInteressiert;
+    private List<Kurs> kursTeilnahme;
+
 
     public Person() {
     }
@@ -38,7 +42,7 @@ public class Person {
     }
 
     public void setName(String name) {
-        if (name != null && name.length() >= 2) {
+        if (checkIsEmpty(name)) {
             this.name = name;
         }
     }
@@ -48,7 +52,7 @@ public class Person {
     }
 
     public void setVorname(String vorname) {
-        if (vorname != null && vorname.length() >= 2) {
+        if (checkIsEmpty(vorname)) {
             this.vorname = vorname;
         }
     }
@@ -58,7 +62,7 @@ public class Person {
     }
 
     public void setStrasse(String strasse) {
-        if (strasse != null && strasse.length() >= 5) {
+        if (checkIsEmpty(strasse)) {
             this.strasse = strasse;
         }
     }
@@ -68,7 +72,7 @@ public class Person {
     }
 
     public void setPlz(String plz) {
-        if (plz != null && plz.length() >= 5) {
+        if (checkIsEmpty(plz)) {
             this.plz = plz;
         }
     }
@@ -78,7 +82,7 @@ public class Person {
     }
 
     public void setOrt(String ort) {
-        if (ort != null && ort.length() >= 2) {
+        if (checkIsEmpty(ort)) {
             this.ort = ort;
         }
     }
@@ -88,8 +92,10 @@ public class Person {
     }
 
     public void setEmail(String email) {
-        if (email.equals("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b")) {
+        if (checkValidEmail(email)) {
             this.email = email;
+        } else {
+            System.out.println("Email ist falsch!");
         }
     }
 
@@ -98,9 +104,33 @@ public class Person {
     }
 
     public void setTelefon(String telefon) {
-        if (telefon.equals("0\\d{2,4}\\s?[\\-]?\\s?\\d{3,4}\\s?\\d{3,4}")) {
+        if (checkIsEmpty(telefon)) {
             this.telefon = telefon;
         }
+    }
+
+    public List<Kurs> getKursInteressiert() {
+        return kursInteressiert;
+    }
+
+    public void setKursInteressiert(List<Kurs> kursInteressiert) {
+        this.kursInteressiert = kursInteressiert;
+    }
+
+    public List<Kurs> getKursTeilnahme() {
+        return kursTeilnahme;
+    }
+
+    public void setKursTeilnahme(List<Kurs> kursTeilnahme) {
+        this.kursTeilnahme = kursTeilnahme;
+    }
+
+    public boolean checkIsEmpty(String wert) {
+        return wert != null && wert.length() >= 2;
+    }
+
+    public boolean checkValidEmail(String email) {
+        return email.equals("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
     }
 
     @Override
