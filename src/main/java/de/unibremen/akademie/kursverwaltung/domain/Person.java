@@ -94,6 +94,8 @@ public class Person {
     public void setEmail(String email) {
         if (checkValidEmail(email)) {
             this.email = email;
+        } else {
+            System.out.println("Email ist falsch!");
         }
     }
 
@@ -123,11 +125,11 @@ public class Person {
         this.kursTeilnahme = kursTeilnahme;
     }
 
-    private boolean checkIsEmpty(String wert) {
+    public boolean checkIsEmpty(String wert) {
         return wert != null && wert.length() >= 2;
     }
 
-    private boolean checkValidEmail(String email) {
+    public boolean checkValidEmail(String email) {
         return email.equals("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
     }
 
