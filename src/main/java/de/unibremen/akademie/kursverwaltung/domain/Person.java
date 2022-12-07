@@ -74,6 +74,7 @@ public class Person {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
+
     }
 
     public String getOrt() {
