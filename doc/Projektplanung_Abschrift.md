@@ -9,7 +9,7 @@ Karten von der Tafel
 	- (suchen)
 
 ### Kunde anlegen (3,0)
-	- anzeigen
+    - anzeigen
 	- ändern
 	- löschen
 	- suchen
