@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class Person {
 
@@ -70,7 +71,9 @@ public class Person {
     }
 
     public static boolean checkValidEmail(String email) {
-        return email.equals("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
+        return Pattern.compile("\\w[a-z0-9]+@[a-z0-9.-]+\\.[a-z]{2,10}").matcher(email).matches();
+        //return Pattern.compile("\\b[A-Z0-9._%]+@[A-Z0-9.-]+\\.[A-Z]{2,10}\\b").matcher(email).matches();
+
     }
 
     public String getOrt() {
