@@ -1,5 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Person {
@@ -13,6 +14,9 @@ public class Person {
     private String ort;
     private String email;
     private String telefon;
+    private List<Kurs> kursInteressent;
+    private List<Kurs> kursTeilnahme;
+
 
     public Person() {
     }
@@ -101,6 +105,22 @@ public class Person {
         if (telefon.equals("0\\d{2,4}\\s?[\\-]?\\s?\\d{3,4}\\s?\\d{3,4}")) {
             this.telefon = telefon;
         }
+    }
+
+    public List<Kurs> getKursInteressent() {
+        return kursInteressent;
+    }
+
+    public void setKursInteressent(List<Kurs> kursInteressent) {
+        this.kursInteressent = kursInteressent;
+    }
+
+    public List<Kurs> getKursTeilnahme() {
+        return kursTeilnahme;
+    }
+
+    public void setKursTeilnahme(List<Kurs> kursTeilnahme) {
+        this.kursTeilnahme = kursTeilnahme;
     }
 
     @Override
