@@ -1,5 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import java.util.Objects;
+
 public class Person {
 
     private Anrede anrede;
@@ -99,5 +101,18 @@ public class Person {
         if (telefon.equals("0\\d{2,4}\\s?[\\-]?\\s?\\d{3,4}\\s?\\d{3,4}")) {
             this.telefon = telefon;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name) && Objects.equals(vorname, person.vorname) && Objects.equals(email, person.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, vorname, email);
     }
 }
