@@ -124,10 +124,7 @@ public class Person {
     }
 
     private boolean checkIsEmpty(String wert) {
-        if (wert != null && wert.length() >= 2) {
-            return true;
-        }
-        return false;
+        return wert != null && wert.length() >= 2;
     }
 
     @Override
