@@ -56,7 +56,7 @@ public class Kurs {
 
     public boolean setName(String name) {
 
-        if(name!=null) {
+        if(name!=null && name.length()>0) {
             this.name = name;
             return true;
         }

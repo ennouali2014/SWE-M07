@@ -15,6 +15,9 @@ class KursTest {
 
     @Test
     void setName() {
+        assertEquals(true,kurs1.setName("c"));
+        assertEquals(false,kurs1.setName(""));
+        assertEquals(false,kurs1.setName(null));
 
     }
 
