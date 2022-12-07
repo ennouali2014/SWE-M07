@@ -107,8 +107,9 @@ public class Kurs {
     }
 
     public void setEndeDatum(Date startDatum,int zyklus,int anzahlTage) {
-        long dat=startDatum.getTime()+(Math.round(anzahlTage/zyklus)*7*86400000);
+        long dat = startDatum.getTime() + ((Math.round((float) anzahlTage / zyklus)) * 7 * 86400000L);
         this.endeDatum = new Date(dat);
+
     }
 
     public int getAktuelleTnZahl() {
