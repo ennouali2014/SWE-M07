@@ -1,6 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Kurs {
 
@@ -18,6 +19,9 @@ public class Kurs {
     private double mwstEuro;
     private double mwstProzent;
     private String kursBeschreibung;
+    private List<Person> interessentenListe;
+    private List<Person> teilnehmerListe;
+
 
     public Kurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl, double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
         this.name = name;
