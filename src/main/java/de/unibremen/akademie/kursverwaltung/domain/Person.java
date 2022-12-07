@@ -61,30 +61,39 @@ public class Person {
         return strasse;
     }
 
-    public void setStrasse(String strasse) {
-        if (checkIsEmpty(strasse)) {
-            this.strasse = strasse;
-        }
+    public static boolean checkIsEmpty(String wert) {
+        return wert != null && wert.length() >= 2;
     }
 
     public String getPlz() {
         return plz;
     }
 
-    public void setPlz(String plz) {
-        if (checkIsEmpty(plz)) {
-            this.plz = plz;
-        }
+    public static boolean checkValidEmail(String email) {
+        return email.equals("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
     }
 
     public String getOrt() {
         return ort;
     }
 
-    public void setOrt(String ort) {
-        if (checkIsEmpty(ort)) {
-            this.ort = ort;
+    static public String addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+        if (checkIsEmpty(name) && checkIsEmpty(vorname) && checkValidEmail(email)) {
+            Person neuePerson = new Person();
+            neuePerson.setAnrede(anrede);
+            neuePerson.setTitel(titel);
+            neuePerson.setVorname(vorname);
+            neuePerson.setName(name);
+            neuePerson.setStrasse(strasse);
+            neuePerson.setPlz(plz);
+            neuePerson.setOrt(ort);
+            neuePerson.setEmail(email);
+            neuePerson.setTelefon(telefon);
+
+            return "Alles OK!";
         }
+
+        return "Fehler! Daten wurden nicht gespeichert!";
     }
 
     public String getEmail() {
@@ -103,10 +112,8 @@ public class Person {
         return telefon;
     }
 
-    public void setTelefon(String telefon) {
-        if (checkIsEmpty(telefon)) {
-            this.telefon = telefon;
-        }
+    public void setStrasse(String strasse) {
+        this.strasse = strasse;
     }
 
     public List<Kurs> getKursInteressiert() {
@@ -125,12 +132,16 @@ public class Person {
         this.kursTeilnahme = kursTeilnahme;
     }
 
-    public boolean checkIsEmpty(String wert) {
-        return wert != null && wert.length() >= 2;
+    public void setPlz(String plz) {
+        this.plz = plz;
     }
 
-    public boolean checkValidEmail(String email) {
-        return email.equals("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
+    public void setOrt(String ort) {
+        this.ort = ort;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
     }
 
     @Override
