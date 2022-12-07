@@ -102,7 +102,7 @@ public class Person {
     }
 
     public void setTelefon(String telefon) {
-        if (telefon.equals("0\\d{2,4}\\s?[\\-]?\\s?\\d{3,4}\\s?\\d{3,4}")) {
+        if (telefon != null && telefon.length() >= 2) {
             this.telefon = telefon;
         }
     }
@@ -121,6 +121,13 @@ public class Person {
 
     public void setKursTeilnahme(List<Kurs> kursTeilnahme) {
         this.kursTeilnahme = kursTeilnahme;
+    }
+
+    private boolean checkIsEmpty(String wert) {
+        if (wert != null && wert.length() >= 2) {
+            return true;
+        }
+        return false;
     }
 
     @Override
