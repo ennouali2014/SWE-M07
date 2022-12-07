@@ -1,5 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class Kurs {
     private List<Person> teilnehmerListe;
 
 
-    public Kurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl, double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
+    /*public Kurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl, double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
         this.name = name;
         this.anzahlTage = anzahlTage;
         this.zyklus = zyklus;
@@ -33,94 +35,137 @@ public class Kurs {
         this.gebuehrBrutto = gebuehrBrutto;
         this.mwstProzent = mwstProzent;
         this.kursBeschreibung = kursBeschreibung;
+    }*/
+
+    private Kurs() {
     }
+
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public boolean setName(String name) {
+
+        if(name!=null) {
+            this.name = name;
+            return true;
+        }
+        return false;
     }
 
     public int getAnzahlTage() {
         return anzahlTage;
     }
 
-    public void setAnzahlTage(int anzahlTage) {
-        this.anzahlTage = anzahlTage;
+    public boolean  setAnzahlTage(int anzahlTage) {
+        if(anzahlTage >0){
+            this.anzahlTage = anzahlTage;
+            return true;
+        }
+        return false;
+
     }
 
     public int getZyklus() {
         return zyklus;
     }
 
-    public void setZyklus(int zyklus) {
-        this.zyklus = zyklus;
+    public boolean setZyklus(int zyklus) {
+        if(zyklus>0 && zyklus<8) {
+            this.zyklus = zyklus;
+            return true;
+        }
+        return false;
+
     }
 
     public Date getStartDatum() {
         return startDatum;
     }
 
-    public void setStartDatum(Date startDatum) {
+    public boolean setStartDatum(Date startDatum) {
+        Date date = new Date();
+        if(startDatum.before(date)){
+            return false;
+        }
         this.startDatum = startDatum;
+        return true;
     }
 
     public Date getEndeDatum() {
         return endeDatum;
     }
 
-    public void setEndeDatum(Date endeDatum) {
-        this.endeDatum = endeDatum;
+    public void setEndeDatum(Date startDatum,int zyklus,int anzahlTage) {
+        long dat=startDatum.getTime()+(Math.round(anzahlTage/zyklus)*7*86400000);
+        this.endeDatum = new Date(dat);
     }
 
     public int getAktuelleTnZahl() {
         return aktuelleTnZahl;
     }
 
-    public void setAktuelleTnZahl(int aktuelleTnZahl) {
-        this.aktuelleTnZahl = aktuelleTnZahl;
+    public void setAktuelleTnZahl() {
+        this.aktuelleTnZahl = this.teilnehmerListe.size();
     }
 
     public int getMinTnZahl() {
         return minTnZahl;
     }
 
-    public void setMinTnZahl(int minTnZahl) {
-        this.minTnZahl = minTnZahl;
+    public boolean setMinTnZahl(int minTnZahl) {
+        if(minTnZahl>0){
+            this.minTnZahl = minTnZahl;
+            return true;
+        }
+        return false;
     }
 
     public int getMaxTnZahl() {
         return maxTnZahl;
     }
 
-    public void setMaxTnZahl(int maxTnZahl) {
-        this.maxTnZahl = maxTnZahl;
+    public boolean setMaxTnZahl(int maxTnZahl) {
+        if(maxTnZahl>0){
+            this.maxTnZahl = maxTnZahl;
+            return true;
+        }
+        return false;
+
     }
 
     public int getFreiePlaetze() {
         return freiePlaetze;
     }
 
-    public void setFreiePlaetze(int freiePlaetze) {
-        this.freiePlaetze = freiePlaetze;
+    public boolean setFreiePlaetze() {
+        if (this.maxTnZahl-this.aktuelleTnZahl>0) {
+            this.freiePlaetze = this.maxTnZahl - this.aktuelleTnZahl;
+            return true;
+        }
+        return false;
     }
 
     public double getGebuehrBrutto() {
         return gebuehrBrutto;
     }
 
-    public void setGebuehrBrutto(double gebuehrBrutto) {
-        this.gebuehrBrutto = gebuehrBrutto;
+    public boolean setGebuehrBrutto(double gebuehrBrutto) {
+        if(gebuehrBrutto>0){
+            this.gebuehrBrutto = gebuehrBrutto;
+            return true;
+        }
+        return false;
+
     }
 
     public double getGebuehrNetto() {
         return gebuehrNetto;
     }
 
-    public void setGebuehrNetto(double gebuehrNetto) {
-        this.gebuehrNetto = gebuehrNetto;
+    public void setGebuehrNetto() {
+        this.gebuehrNetto = this.gebuehrBrutto*((100-this.mwstProzent)/100);
     }
 
     public double getMwstEuro() {
@@ -128,15 +173,20 @@ public class Kurs {
     }
 
     public void setMwstEuro(double mwstEuro) {
-        this.mwstEuro = mwstEuro;
+        this.mwstEuro = this.gebuehrBrutto*(this.mwstProzent/100);
     }
 
     public double getMwstProzent() {
         return mwstProzent;
     }
 
-    public void setMwstProzent(double mwstProzent) {
-        this.mwstProzent = mwstProzent;
+    public boolean setMwstProzent(double mwstProzent) {
+        if(mwstProzent>0){
+            this.mwstProzent = mwstProzent;
+            return true;
+        }
+        return false;
+
     }
 
     public String getKursBeschreibung() {
