@@ -42,7 +42,7 @@ public class Person {
     }
 
     public void setName(String name) {
-        if (name != null && name.length() >= 2) {
+        if (checkIsEmpty(name)) {
             this.name = name;
         }
     }
@@ -52,7 +52,7 @@ public class Person {
     }
 
     public void setVorname(String vorname) {
-        if (vorname != null && vorname.length() >= 2) {
+        if (checkIsEmpty(vorname)) {
             this.vorname = vorname;
         }
     }
@@ -62,7 +62,7 @@ public class Person {
     }
 
     public void setStrasse(String strasse) {
-        if (strasse != null && strasse.length() >= 5) {
+        if (checkIsEmpty(strasse)) {
             this.strasse = strasse;
         }
     }
@@ -72,7 +72,7 @@ public class Person {
     }
 
     public void setPlz(String plz) {
-        if (plz != null && plz.length() >= 5) {
+        if (checkIsEmpty(plz)) {
             this.plz = plz;
         }
     }
@@ -82,7 +82,7 @@ public class Person {
     }
 
     public void setOrt(String ort) {
-        if (ort != null && ort.length() >= 2) {
+        if (checkIsEmpty(ort)) {
             this.ort = ort;
         }
     }
@@ -102,7 +102,7 @@ public class Person {
     }
 
     public void setTelefon(String telefon) {
-        if (telefon != null && telefon.length() >= 2) {
+        if (checkIsEmpty(telefon)) {
             this.telefon = telefon;
         }
     }
