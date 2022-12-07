@@ -1,7 +1,5 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -103,7 +101,7 @@ public class Kurs {
     }
 
     public boolean setMinTnZahl(int minTnZahl) {
-        if(minTnZahl>0){
+        if (minTnZahl > 0 && minTnZahl < this.maxTnZahl) {
             this.minTnZahl = minTnZahl;
             return true;
         }
@@ -115,7 +113,7 @@ public class Kurs {
     }
 
     public boolean setMaxTnZahl(int maxTnZahl) {
-        if(maxTnZahl>0){
+        if (maxTnZahl > 0 && maxTnZahl > this.minTnZahl) {
             this.maxTnZahl = maxTnZahl;
             return true;
         }
