@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.domain;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,21 +22,8 @@ public class Kurs {
     private double mwstEuro;
     private double mwstProzent;
     private String kursBeschreibung;
-    private List<Person> interessentenListe;
-    private List<Person> teilnehmerListe;
-
-
-    /*public Kurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl, double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
-        this.name = name;
-        this.anzahlTage = anzahlTage;
-        this.zyklus = zyklus;
-        this.startDatum = startDatum;
-        this.minTnZahl = minTnZahl;
-        this.maxTnZahl = maxTnZahl;
-        this.gebuehrBrutto = gebuehrBrutto;
-        this.mwstProzent = mwstProzent;
-        this.kursBeschreibung = kursBeschreibung;
-    }*/
+    private List<Person> interessentenListe = new ArrayList<>();
+    private List<Person> teilnehmerListe=new ArrayList<>();
 
     private Kurs() {
     }
@@ -195,5 +183,30 @@ public class Kurs {
 
     public void setKursBeschreibung(String kursBeschreibung) {
         this.kursBeschreibung = kursBeschreibung;
+    }
+
+    public List<Person> getInteressentenListe() {
+
+        return interessentenListe;
+    }
+
+    public boolean setInteressentenListe(Person interessant) {
+        if(interessant!=null){
+            this.interessentenListe.add(interessant);
+            return true;
+        }
+        return false;
+    }
+
+    public List<Person> getTeilnehmerListe() {
+        return teilnehmerListe;
+    }
+
+    public boolean setTeilnehmerListe(Person teilnehmer) {
+        if(teilnehmer!=null) {
+            this.teilnehmerListe.add(teilnehmer);
+            return true;
+        }
+        return false;
     }
 }
