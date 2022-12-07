@@ -25,7 +25,24 @@ public class Kurs {
 
     private Kurs() {
     }
+    public static Kurs addnewKurs(String name, int anzahlTage,int zyklus, Date startDatum,int maxTnZahl, int minTnZahl,
+                                    double gebuehrBrutto,double mwstProzent,String kursBeschreibung,Person person){
+        Kurs kurs = new Kurs();
+        kurs.setKursBeschreibung(kursBeschreibung);
+        kurs.setName(name);
+        kurs.setAnzahlTage(anzahlTage);
+        kurs.setZyklus(zyklus);
+        kurs.setStartDatum(startDatum);
+        kurs.setMaxTnZahl(maxTnZahl);
+        kurs.setMinTnZahl(minTnZahl);
+        kurs.setGebuehrBrutto(gebuehrBrutto);
+        kurs.setMwstProzent(mwstProzent);
+        kurs.setInteressentenListe(person);
 
+
+
+        return null;
+    }
 
     public String getName() {
         return name;
@@ -207,4 +224,5 @@ public class Kurs {
         }
         return false;
     }
+
 }
