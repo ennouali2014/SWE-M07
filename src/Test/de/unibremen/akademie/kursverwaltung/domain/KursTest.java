@@ -3,9 +3,10 @@ package de.unibremen.akademie.kursverwaltung.domain;
 import org.junit.jupiter.api.Test;
 
 class KursTest {
+    Person ali()
 
     @Test
-    void getName() {
+    void addnewKurs() {
     }
 
     @Test
@@ -13,15 +14,7 @@ class KursTest {
     }
 
     @Test
-    void getAnzahlTage() {
-    }
-
-    @Test
     void setAnzahlTage() {
-    }
-
-    @Test
-    void getZyklus() {
     }
 
     @Test
@@ -29,15 +22,7 @@ class KursTest {
     }
 
     @Test
-    void getStartDatum() {
-    }
-
-    @Test
     void setStartDatum() {
-    }
-
-    @Test
-    void getEndeDatum() {
     }
 
     @Test
@@ -45,15 +30,7 @@ class KursTest {
     }
 
     @Test
-    void getAktuelleTnZahl() {
-    }
-
-    @Test
     void setAktuelleTnZahl() {
-    }
-
-    @Test
-    void getMinTnZahl() {
     }
 
     @Test
@@ -61,15 +38,7 @@ class KursTest {
     }
 
     @Test
-    void getMaxTnZahl() {
-    }
-
-    @Test
     void setMaxTnZahl() {
-    }
-
-    @Test
-    void getFreiePlaetze() {
     }
 
     @Test
@@ -77,15 +46,7 @@ class KursTest {
     }
 
     @Test
-    void getGebuehrBrutto() {
-    }
-
-    @Test
     void setGebuehrBrutto() {
-    }
-
-    @Test
-    void getGebuehrNetto() {
     }
 
     @Test
@@ -93,15 +54,7 @@ class KursTest {
     }
 
     @Test
-    void getMwstEuro() {
-    }
-
-    @Test
     void setMwstEuro() {
-    }
-
-    @Test
-    void getMwstProzent() {
     }
 
     @Test
@@ -109,10 +62,14 @@ class KursTest {
     }
 
     @Test
-    void getKursBeschreibung() {
+    void setKursBeschreibung() {
     }
 
     @Test
-    void setKursBeschreibung() {
+    void setInteressentenListe() {
+    }
+
+    @Test
+    void setTeilnehmerListe() {
     }
 }

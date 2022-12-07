@@ -1,7 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,24 +20,34 @@ public class Kurs {
     private double mwstEuro;
     private double mwstProzent;
     private String kursBeschreibung;
-    private List<Person> interessentenListe;
-    private List<Person> teilnehmerListe;
-
-
-    /*public Kurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl, double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
-        this.name = name;
-        this.anzahlTage = anzahlTage;
-        this.zyklus = zyklus;
-        this.startDatum = startDatum;
-        this.minTnZahl = minTnZahl;
-        this.maxTnZahl = maxTnZahl;
-        this.gebuehrBrutto = gebuehrBrutto;
-        this.mwstProzent = mwstProzent;
-        this.kursBeschreibung = kursBeschreibung;
-    }*/
+    private List<Person> interessentenListe = new ArrayList<>();
+    private List<Person> teilnehmerListe=new ArrayList<>();
 
     private Kurs() {
     }
+    public static Kurs addnewKurs(String name, int anzahlTage,int zyklus, Date startDatum,int maxTnZahl, int minTnZahl,
+                                    double gebuehrBrutto,double mwstProzent,String kursBeschreibung,Person person,Person person1){
+        Kurs kurs = new Kurs();
+        kurs.setKursBeschreibung(kursBeschreibung);
+        kurs.setName(name);
+        kurs.setAnzahlTage(anzahlTage);
+        kurs.setZyklus(zyklus);
+        kurs.setStartDatum(startDatum);
+        kurs.setMaxTnZahl(maxTnZahl);
+        kurs.setMinTnZahl(minTnZahl);
+        kurs.setGebuehrBrutto(gebuehrBrutto);
+        kurs.setMwstProzent(mwstProzent);
+        kurs.setInteressentenListe(person);
+        kurs.setEndeDatum(startDatum,zyklus,anzahlTage);
+        kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
+        kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
+        kurs.setTeilnehmerListe(person);
+        kurs.setInteressentenListe(person1);
+        kurs.setAktuelleTnZahl();
+        return kurs;
+    }
+
+
 
 
     public String getName() {
@@ -115,7 +124,7 @@ public class Kurs {
     }
 
     public boolean setMinTnZahl(int minTnZahl) {
-        if(minTnZahl>0){
+        if (minTnZahl > 0 && minTnZahl < this.maxTnZahl) {
             this.minTnZahl = minTnZahl;
             return true;
         }
@@ -127,7 +136,7 @@ public class Kurs {
     }
 
     public boolean setMaxTnZahl(int maxTnZahl) {
-        if(maxTnZahl>0){
+        if (maxTnZahl > 0 && maxTnZahl > this.minTnZahl) {
             this.maxTnZahl = maxTnZahl;
             return true;
         }
@@ -164,16 +173,16 @@ public class Kurs {
         return gebuehrNetto;
     }
 
-    public void setGebuehrNetto() {
-        this.gebuehrNetto = this.gebuehrBrutto*((100-this.mwstProzent)/100);
+    public void setGebuehrNetto(double gebuehrBrutto,double mwstProzent) {
+        this.gebuehrNetto = gebuehrBrutto*((100-mwstProzent)/100);
     }
 
     public double getMwstEuro() {
         return mwstEuro;
     }
 
-    public void setMwstEuro(double mwstEuro) {
-        this.mwstEuro = this.gebuehrBrutto*(this.mwstProzent/100);
+    public void setMwstEuro(double mwstProzent,double gebuehrBrutto) {
+        this.mwstEuro = gebuehrBrutto*(mwstProzent/100);
     }
 
     public double getMwstProzent() {
@@ -196,4 +205,30 @@ public class Kurs {
     public void setKursBeschreibung(String kursBeschreibung) {
         this.kursBeschreibung = kursBeschreibung;
     }
+
+    public List<Person> getInteressentenListe() {
+
+        return interessentenListe;
+    }
+
+    public boolean setInteressentenListe(Person interessant) {
+        if(interessant!=null){
+            this.interessentenListe.add(interessant);
+            return true;
+        }
+        return false;
+    }
+
+    public List<Person> getTeilnehmerListe() {
+        return teilnehmerListe;
+    }
+
+    public boolean setTeilnehmerListe(Person teilnehmer) {
+        if(teilnehmer!=null) {
+            this.teilnehmerListe.add(teilnehmer);
+            return true;
+        }
+        return false;
+    }
+
 }
