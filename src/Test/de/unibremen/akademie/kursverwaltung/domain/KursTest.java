@@ -23,6 +23,9 @@ class KursTest {
 
     @Test
     void setAnzahlTage() {
+        assertEquals(false,kurs1.setAnzahlTage(0));
+        assertEquals(false,kurs1.setAnzahlTage(-1));
+        assertEquals(true,kurs1.setAnzahlTage(2));
     }
 
     @Test
