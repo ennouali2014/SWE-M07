@@ -15,6 +15,7 @@ class PersonTest {
         assertEquals(false, Person.checkValidEmail("@hotmail.d"));
         assertEquals(false, Person.checkValidEmail("m@.de"));
         assertEquals(true, Person.checkValidEmail("m@d.de"));
+        assertEquals(false, Person.checkValidEmail("m@d..de"));
 
 
     }
