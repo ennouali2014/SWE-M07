@@ -69,6 +69,55 @@ public class Person {
         return ort;
     }
 
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        if (checkValidEmail(email)) {
+            this.email = email;
+        } else {
+            System.out.println("Email ist falsch!");
+        }
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
+    public void setStrasse(String strasse) {
+        this.strasse = strasse;
+    }
+
+    public void setPlz(String plz) {
+        this.plz = plz;
+    }
+
+    public void setOrt(String ort) {
+        this.ort = ort;
+    }
+
+    public List<Kurs> getKursInteressiert() {
+        return kursInteressiert;
+    }
+
+    public void setKursInteressiert(List<Kurs> kursInteressiert) {
+        this.kursInteressiert = kursInteressiert;
+    }
+
+    public List<Kurs> getKursTeilnahme() {
+        return kursTeilnahme;
+    }
+
+    public void setKursTeilnahme(List<Kurs> kursTeilnahme) {
+        this.kursTeilnahme = kursTeilnahme;
+    }
+
     static public String addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
         if (checkIsEmpty(name) && checkIsEmpty(vorname) && checkValidEmail(email)) {
             Person neuePerson = new Person();
@@ -88,53 +137,6 @@ public class Person {
         return "Fehler! Daten wurden nicht gespeichert!";
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        if (checkValidEmail(email)) {
-            this.email = email;
-        } else {
-            System.out.println("Email ist falsch!");
-        }
-    }
-
-    public String getTelefon() {
-        return telefon;
-    }
-
-    public void setStrasse(String strasse) {
-        this.strasse = strasse;
-    }
-
-    public List<Kurs> getKursInteressiert() {
-        return kursInteressiert;
-    }
-
-    public void setKursInteressiert(List<Kurs> kursInteressiert) {
-        this.kursInteressiert = kursInteressiert;
-    }
-
-    public List<Kurs> getKursTeilnahme() {
-        return kursTeilnahme;
-    }
-
-    public void setKursTeilnahme(List<Kurs> kursTeilnahme) {
-        this.kursTeilnahme = kursTeilnahme;
-    }
-
-    public void setPlz(String plz) {
-        this.plz = plz;
-    }
-
-    public void setOrt(String ort) {
-        this.ort = ort;
-    }
-
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
-    }
 
     public static boolean checkIsEmpty(String wert) {
         return wert != null && wert.length() >= 2;
