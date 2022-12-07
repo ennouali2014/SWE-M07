@@ -8,7 +8,8 @@ class PersonTest {
     @Test
     void testCheckValidEmail() {
         assertEquals(true, Person.checkValidEmail("mdabour@hotmail.de"));
-        assertEquals(false, Person.checkValidEmail("mdabour@hotmail"));
+        assertEquals(false, Person.checkValidEmail("mdabour@hotmail..international"));
+        assertEquals(true, Person.checkValidEmail("mdabour@hotmail.mail.international"));
         assertEquals(false, Person.checkValidEmail("@hotmail"));
 
 
