@@ -26,7 +26,7 @@ public class Kurs {
     private Kurs() {
     }
     public static Kurs addnewKurs(String name, int anzahlTage,int zyklus, Date startDatum,int maxTnZahl, int minTnZahl,
-                                    double gebuehrBrutto,double mwstProzent,String kursBeschreibung,Person person){
+                                    double gebuehrBrutto,double mwstProzent,String kursBeschreibung,Person person,Person person1){
         Kurs kurs = new Kurs();
         kurs.setKursBeschreibung(kursBeschreibung);
         kurs.setName(name);
@@ -38,11 +38,17 @@ public class Kurs {
         kurs.setGebuehrBrutto(gebuehrBrutto);
         kurs.setMwstProzent(mwstProzent);
         kurs.setInteressentenListe(person);
-
-
-
-        return null;
+        kurs.setEndeDatum(startDatum,zyklus,anzahlTage);
+        kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
+        kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
+        kurs.setTeilnehmerListe(person);
+        kurs.setInteressentenListe(person1);
+        kurs.setAktuelleTnZahl();
+        return kurs;
     }
+
+
+
 
     public String getName() {
         return name;
@@ -167,16 +173,16 @@ public class Kurs {
         return gebuehrNetto;
     }
 
-    public void setGebuehrNetto() {
-        this.gebuehrNetto = this.gebuehrBrutto*((100-this.mwstProzent)/100);
+    public void setGebuehrNetto(double gebuehrBrutto,double mwstProzent) {
+        this.gebuehrNetto = gebuehrBrutto*((100-mwstProzent)/100);
     }
 
     public double getMwstEuro() {
         return mwstEuro;
     }
 
-    public void setMwstEuro(double mwstEuro) {
-        this.mwstEuro = this.gebuehrBrutto*(this.mwstProzent/100);
+    public void setMwstEuro(double mwstProzent,double gebuehrBrutto) {
+        this.mwstEuro = gebuehrBrutto*(mwstProzent/100);
     }
 
     public double getMwstProzent() {
