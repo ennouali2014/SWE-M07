@@ -92,7 +92,7 @@ public class Person {
     }
 
     public void setEmail(String email) {
-        if (email.equals("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b")) {
+        if (checkValidEmail(email)) {
             this.email = email;
         }
     }
@@ -125,6 +125,10 @@ public class Person {
 
     private boolean checkIsEmpty(String wert) {
         return wert != null && wert.length() >= 2;
+    }
+
+    private boolean checkValidEmail(String email) {
+        return email.equals("\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
     }
 
     @Override
