@@ -14,7 +14,7 @@ public class Person {
     private String ort;
     private String email;
     private String telefon;
-    private List<Kurs> kursInteressent;
+    private List<Kurs> kursInteressiert;
     private List<Kurs> kursTeilnahme;
 
 
@@ -109,12 +109,12 @@ public class Person {
         }
     }
 
-    public List<Kurs> getKursInteressent() {
-        return kursInteressent;
+    public List<Kurs> getKursInteressiert() {
+        return kursInteressiert;
     }
 
-    public void setKursInteressent(List<Kurs> kursInteressent) {
-        this.kursInteressent = kursInteressent;
+    public void setKursInteressiert(List<Kurs> kursInteressiert) {
+        this.kursInteressiert = kursInteressiert;
     }
 
     public List<Kurs> getKursTeilnahme() {
