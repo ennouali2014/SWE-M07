@@ -7,11 +7,9 @@ class PersonTest {
 
     @Test
     void testCheckValidEmail() {
-        boolean val;
-        String mail = "mdabour@hotmail.de";
-        Person person = new Person();
-        val = person.checkValidEmail(mail);
-        assertEquals(mail, val);
+        assertEquals(true, Person.checkValidEmail("mdabour@hotmail.de"));
+        assertEquals(false, Person.checkValidEmail("mdabour@hotmail"));
+        assertEquals(false, Person.checkValidEmail("@hotmail"));
 
 
     }
