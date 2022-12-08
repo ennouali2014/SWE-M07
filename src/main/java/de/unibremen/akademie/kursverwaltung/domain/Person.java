@@ -21,6 +21,7 @@ public class Person {
     public Person() {
     }
 
+
     public Anrede getAnrede() {
         return anrede;
     }

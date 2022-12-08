@@ -1,10 +1,11 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Kurs {
+public class Kurs implements Serializable {
 
     private String name;
     private int anzahlTage;
@@ -26,11 +27,6 @@ public class Kurs {
 
     public Kurs() {
     }
-
-
-
-
-
 
     public String getName() {
         return name;
@@ -164,12 +160,8 @@ public class Kurs {
         return mwstEuro;
     }
 
-    public boolean setMwstEuro(double mwstProzent, double gebuehrBrutto) {
-        if (mwstProzent >= 0 && gebuehrBrutto > 0) {
-            this.mwstEuro = gebuehrBrutto * (mwstProzent / 100);
-            return true;
-        }
-        return false;
+    public void setMwstEuro(double mwstProzent, double gebuehrBrutto) {
+        this.mwstEuro = gebuehrBrutto * (mwstProzent / 100);
     }
 
     public double getMwstProzent() {
@@ -189,17 +181,20 @@ public class Kurs {
         return kursBeschreibung;
     }
 
-    public void setKursBeschreibung(String kursBeschreibung) {
-        this.kursBeschreibung = kursBeschreibung;
+    public boolean setKursBeschreibung(String kursBeschreibung) {
+        if (kursBeschreibung != null) {
+            this.kursBeschreibung = kursBeschreibung;
+            return true;
+        }
+        return false;
     }
 
     public List<Person> getInteressentenListe() {
-
         return interessentenListe;
     }
 
     public boolean setInteressentenListe(Person interessant) {
-        if(interessant!=null){
+        if (interessant != null) {
             this.interessentenListe.add(interessant);
             return true;
         }

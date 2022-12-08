@@ -87,32 +87,45 @@ class KursTest {
 
     @Test
     void setFreiePlaetze() {
+        kurs1.setTeilnehmerListe(tn1);
+        kurs1.setTeilnehmerListe(tn2);
+        kurs1.setTeilnehmerListe(tn3);
+
+        kurs1.setAktuelleTnZahl();
+
+        kurs1.setMaxTnZahl(2);
+        assertEquals(false, kurs1.setFreiePlaetze());
+
+
+        kurs1.setMaxTnZahl(10);
+        kurs1.setAktuelleTnZahl();
+        kurs1.setFreiePlaetze();
+        assertEquals(7, kurs1.getFreiePlaetze());
     }
 
     @Test
     void setGebuehrBrutto() {
+        assertEquals(true, kurs1.setGebuehrBrutto(0.01));
+        assertEquals(false, kurs1.setGebuehrBrutto(0.00));
+        assertEquals(false, kurs1.setGebuehrBrutto(-0.01));
     }
 
-    @Test
-    void setGebuehrNetto() {
-    }
 
-    @Test
-    void setMwstEuro() {
-        assertEquals(true, kurs1.setMwstEuro(1.0, 1.0));
-        assertEquals(false, kurs1.setMwstEuro(-1.0, 1.0));
-        assertEquals(false, kurs1.setMwstEuro(1.0, -1.0));
-    }
+
 
     @Test
     void setMwstProzent() {
-        assertEquals(true, kurs1.setMwstProzent(1));
-        assertEquals(true, kurs1.setMwstProzent(0));
-        assertEquals(false, kurs1.setMwstProzent(-1));
+        assertEquals(true, kurs1.setMwstProzent(0.01));
+        assertEquals(true, kurs1.setMwstProzent(0.0));
+        assertEquals(false, kurs1.setMwstProzent(-0.01));
     }
 
     @Test
     void setKursBeschreibung() {
+        kurs1.setKursBeschreibung("ali");
+        assertEquals(true, kurs1.setKursBeschreibung("ali"));
+        assertEquals(false, kurs1.setKursBeschreibung(""));
+        assertEquals(false, kurs1.setKursBeschreibung(null));
     }
 
     @Test
