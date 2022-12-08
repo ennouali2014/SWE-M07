@@ -23,28 +23,33 @@ public class Kurs {
     private List<Person> interessentenListe = new ArrayList<>();
     private List<Person> teilnehmerListe=new ArrayList<>();
 
+
     public Kurs() {
     }
-    public static Kurs addnewKurs(String name, int anzahlTage,int zyklus, Date startDatum,int maxTnZahl, int minTnZahl,
-                                    double gebuehrBrutto,double mwstProzent,String kursBeschreibung,Person person,Person person1){
+
+    public static String addnewKurs(List<Kurs> kurslist, String name, int anzahlTage, int zyklus, Date startDatum, int maxTnZahl, int minTnZahl,
+                                    double gebuehrBrutto, double mwstProzent, String kursBeschreibung, Person person, Person person1) {
         Kurs kurs = new Kurs();
         kurs.setKursBeschreibung(kursBeschreibung);
         kurs.setName(name);
         kurs.setAnzahlTage(anzahlTage);
         kurs.setZyklus(zyklus);
         kurs.setStartDatum(startDatum);
-        kurs.setMaxTnZahl(maxTnZahl);
+        if (kurs.setMaxTnZahl(maxTnZahl) == false {
+            return ""
+        });
         kurs.setMinTnZahl(minTnZahl);
         kurs.setGebuehrBrutto(gebuehrBrutto);
         kurs.setMwstProzent(mwstProzent);
         kurs.setInteressentenListe(person);
-        kurs.setEndeDatum(startDatum,zyklus,anzahlTage);
+        kurs.setEndeDatum(startDatum, zyklus, anzahlTage);
         kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
         kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
         kurs.setTeilnehmerListe(person);
         kurs.setInteressentenListe(person1);
         kurs.setAktuelleTnZahl();
-        return kurs;
+        kurslist.add(kurs);
+        return null;
     }
 
 
