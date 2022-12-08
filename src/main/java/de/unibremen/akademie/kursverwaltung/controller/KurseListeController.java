@@ -60,7 +60,6 @@ public class KurseListeController {
     }
 
 
-
     @FXML
     void entfernenButtonAction(ActionEvent event) {
 
