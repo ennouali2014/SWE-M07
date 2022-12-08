@@ -74,5 +74,38 @@ public class KurseListeController {
     void s(ActionEvent event) {
 
     }
+    public void initialize() {
+        // TODO: Make the list editable to make the whole program simpler.
+        // TODO: Select item statt select items usw. benutzen?
+        System.out.println("Init");
+        itemList.itemsProperty().bind(EinkaufslistenModel.model.einkaufsliste);
+        actionButton.setText("Action");
+        actionButton.setDisable(true);
+//        ChangeListener<String> addFieldListener = new ChangeListener<String>() {
+//
+//            @Override
+//            public void changed (ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                System.out.println("TextField Text Changed (oldValue: " + oldValue + " -> newValue: " + newValue + ")");
+//                if (newValue.length() == 0) {
+//                    actionButton.setDisable(true);
+//                    actionButton.setText("Action");
+//                } else {
+//                    actionButton.setDisable(false);
+//                    actionButton.setText("Add Item");
+//                }
+//
+//            }
+//        };
+//        addField.textProperty().addListener(addFieldListener);
+        addField.textProperty().addListener( (observable,oldValue,newValue) -> {
+            if (newValue.length() == 0) {
+                actionButton.setDisable(true);
+                actionButton.setText("Action");
+            } else {
+                actionButton.setDisable(false);
+                actionButton.setText("Add Item");
+            }
+        } );
 
-}
+
+    }
