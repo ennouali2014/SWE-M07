@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.String?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18"
+            fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController">
     <children>
         <VBox layoutX="10.0" layoutY="10.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
               AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
@@ -34,7 +35,7 @@
                                 <Insets/>
                             </HBox.margin>
                         </Label>
-                        <TextField>
+                        <TextField fx:id="kursname">
                             <HBox.margin>
                                 <Insets/>
                             </HBox.margin>
@@ -69,7 +70,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField/>
+                                <TextField fx:id="anzahlTage" text="AnzahlTage"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -79,7 +80,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <ComboBox promptText="- Wochentage  -     "/>
+                                <TextField fx:id="zyklus" text="1-7"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -89,7 +90,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <DatePicker prefWidth="150.0"/>
+                                <DatePicker fx:id="startDatum" prefWidth="150.0"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -99,7 +100,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <DatePicker prefWidth="165.0"/>
+                                <DatePicker fx:id="endeDatum" prefWidth="165.0"/>
                             </children>
                         </VBox>
                     </children>
@@ -116,7 +117,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField/>
+                                <TextField fx:id="minTnZahl"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -126,7 +127,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField/>
+                                <TextField fx:id="maxTnZahl"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -136,7 +137,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField disable="true" editable="false"/>
+                                <TextField fx:id="freiePlaetze" disable="true" editable="false"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -146,7 +147,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField disable="true" editable="false"/>
+                                <TextField fx:id="aktuelleTnZahl" disable="true" editable="false"/>
                             </children>
                         </VBox>
                     </children>
@@ -163,7 +164,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField/>
+                                <TextField fx:id="gebuehrBrutto"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -173,7 +174,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField/>
+                                <TextField fx:id="mtwsEuro"/>
                             </children>
                             <opaqueInsets>
                                 <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
@@ -186,7 +187,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField/>
+                                <TextField fx:id="mtwsProzent"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -196,7 +197,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField/>
+                                <TextField fx:id="gebuehrNetto"/>
                             </children>
                         </VBox>
                     </children>
@@ -214,7 +215,7 @@
                                 <Font size="21.0"/>
                             </font>
                         </Label>
-                        <TextArea prefHeight="182.0" prefWidth="906.0">
+                        <TextArea fx:id="kursBeschreibung" prefHeight="182.0" prefWidth="906.0">
                             <VBox.margin>
                                 <Insets/>
                             </VBox.margin>
@@ -226,23 +227,26 @@
                 </VBox>
                 <HBox alignment="CENTER" spacing="50.0" style="-fx-border-color: blaclightgreyk;">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="122.0" text="Speichern">
+                        <Button onAction="#speichern" mnemonicParsing="false" prefHeight="51.0" prefWidth="122.0"
+                                text="Speichern">
                             <font>
                                 <Font size="18.0"/>
                             </font>
                         </Button>
-                        <Button cancelButton="true" mnemonicParsing="false" prefHeight="51.0" prefWidth="122.0"
+                        <Button onAction="#abbrechen" mnemonicParsing="false" prefHeight="51.0" prefWidth="122.0"
                                 text="Abbrechen">
                             <font>
                                 <Font size="18.0"/>
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="173.0" text="Teilnehmerliste">
+                        <Button onAction="#teilnehmerlist" mnemonicParsing="false" prefHeight="51.0" prefWidth="173.0"
+                                text="Teilnehmerliste">
                             <font>
                                 <Font size="18.0"/>
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="173.0" text="Interessentenlist">
+                        <Button onAction="#interessentenlist" mnemonicParsing="false" prefHeight="51.0"
+                                prefWidth="173.0" text="Interessentenlist">
                             <font>
                                 <Font size="18.0"/>
                             </font>
