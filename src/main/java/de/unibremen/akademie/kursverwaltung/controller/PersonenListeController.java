@@ -120,7 +120,9 @@ public class PersonenListeController implements Initializable {
         //vorname.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
         //table.setItems(list);
 
+
     }
+
 }
 
 
