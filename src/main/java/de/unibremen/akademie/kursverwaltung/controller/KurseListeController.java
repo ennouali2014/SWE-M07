@@ -14,6 +14,7 @@ public class KurseListeController {
     @FXML
     private DatePicker abDatumDatePicker;
 
+
     @FXML
     private MenuButton alleMenuButton;
 
@@ -38,6 +39,7 @@ public class KurseListeController {
     @FXML
     private Label lblAbDatum;
 
+
     @FXML
     private Label lblBisDatum;
 
@@ -46,6 +48,8 @@ public class KurseListeController {
 
     @FXML
     void abDatselectDate(ActionEvent event) {
+
+        lblBisDatum.setText(datePicker1.getValue().toString());
 
     }
 
