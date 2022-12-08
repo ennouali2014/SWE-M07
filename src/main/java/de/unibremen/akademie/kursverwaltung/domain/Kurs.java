@@ -1,10 +1,11 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Kurs {
+public class Kurs implements Serializable {
 
     private String name;
     private int anzahlTage;
@@ -26,11 +27,6 @@ public class Kurs {
 
     public Kurs() {
     }
-
-
-
-
-
 
     public String getName() {
         return name;
