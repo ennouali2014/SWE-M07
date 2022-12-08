@@ -2,10 +2,13 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 
 import de.unibremen.akademie.kursverwaltung.domain.Person;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -81,6 +84,11 @@ public class PersonenListeController implements Initializable {
     @FXML
     void loeschButtonAction(ActionEvent event) {
 
+        ObservableList<Person> allPerson, singlePerson;
+        allPerson = table.getItems();
+        singlePerson = table.getSelectionModel().getSelectedItems();
+        singlePerson.forEach(allPerson::remove);
+
     }
 
     @FXML
@@ -100,8 +108,18 @@ public class PersonenListeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        //nicht löschen - that is an example to see if the cod works or not
         //table column methode
+
+        //ObservableList<Person> list = FXCollections.observableArrayList(
+          //      new Person("Daniel","xx"),
+        //      new Person("xx","xx"));
+
+
+        //name.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+        //vorname.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
+        //table.setItems(list);
+
     }
 }
 
