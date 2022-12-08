@@ -10,6 +10,9 @@ class PersonTest {
     @Test
     void testCheckIsEmpty() {
         assertTrue(Person.checkIsEmpty("  "));
+        assertTrue(Person.checkIsEmpty("12"));
+        assertTrue(Person.checkIsEmpty("--"));
+        assertTrue(Person.checkIsEmpty("aa"));
         assertFalse(Person.checkIsEmpty(" "));
         assertFalse(Person.checkIsEmpty(""));
         assertFalse(Person.checkIsEmpty(null));
