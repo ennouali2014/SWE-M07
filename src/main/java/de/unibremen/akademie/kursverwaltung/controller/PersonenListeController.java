@@ -19,6 +19,7 @@ public class PersonenListeController implements Initializable {
     @FXML
     private TableView<Person> table;
 
+
     @FXML
     private TableColumn<Person, String> anrede;
 
@@ -77,12 +78,12 @@ public class PersonenListeController implements Initializable {
 
 
     @FXML
-    void andernButtonAction(ActionEvent event) {
+    public void andernButtonAction(ActionEvent event) {
 
     }
 
     @FXML
-    void loeschButtonAction(ActionEvent event) {
+    public void loeschButtonAction(ActionEvent event) {
 
         ObservableList<Person> allPerson, singlePerson;
         allPerson = table.getItems();
@@ -92,7 +93,7 @@ public class PersonenListeController implements Initializable {
     }
 
     @FXML
-    void personAnlegenButtonAction(ActionEvent event) {
+    public void personAnlegenButtonAction(ActionEvent event) {
 
     }
 
@@ -102,7 +103,7 @@ public class PersonenListeController implements Initializable {
     }
 
     @FXML
-    void zurucksetzenButtonAction(ActionEvent event) {
+    public void zurucksetzenButtonAction(ActionEvent event) {
 
     }
 

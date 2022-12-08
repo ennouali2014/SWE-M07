@@ -137,4 +137,19 @@ public class KurseListeController {
 
         return kursverwaltung.getKursList();
     }
+
+    public void suchButtonAction(ActionEvent actionEvent) {
     }
+
+    public void personAnlegenButtonAction(ActionEvent actionEvent) {
+    }
+
+    public void zurucksetzenButtonAction(ActionEvent actionEvent) {
+    }
+
+    public void andernButtonAction(ActionEvent actionEvent) {
+    }
+
+    public void loeschButtonAction(ActionEvent actionEvent) {
+    }
+}
