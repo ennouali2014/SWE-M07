@@ -1,11 +1,14 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
+import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+import java.util.Date;
 
 public class KurseDetailsController {
 
@@ -54,6 +57,19 @@ public class KurseDetailsController {
 
 
     public void speichern(ActionEvent actionEvent) {
+        //do it start datum ist nur ein beispie. man muss datepicker anwenden recherchieren
+        //do it endeDatum, aktuelleTeilnehmeranzahl, freiePlätze, mwst und gebühr netto muss werden aufgeruft.
+        Kursverwaltung kursverwaltung = new Kursverwaltung();
+        String name = kursname.getText();
+        int anzahl = Integer.parseInt(anzahlTage.getText());
+        int zykls = Integer.parseInt(zyklus.getText());
+        int minTn = Integer.parseInt(minTnZahl.getText());
+        int maxTn = Integer.parseInt(maxTnZahl.getText());
+        double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
+        double mwstPro = Double.parseDouble(mtwsProzent.getText());
+        String kursBesch = kursBeschreibung.getText();
+
+        kursverwaltung.addnewKurs(name, anzahl, zykls, new Date(), minTn, maxTn, gebuhrB, mwstPro, kursBesch);
     }
 
     public void abbrechen(ActionEvent actionEvent) {
