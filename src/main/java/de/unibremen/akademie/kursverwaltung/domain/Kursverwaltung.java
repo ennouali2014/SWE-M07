@@ -12,14 +12,16 @@ public class Kursverwaltung {
                                     double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
         Kurs kurs = new Kurs();
         kurs.setKursBeschreibung(kursBeschreibung);
-        if(kurs.setName(name)==false){return "Name is Require";}
-        if(kurs.setAnzahlTage(anzahlTage)==false){return "minimum teilnahme ist falsch";}
-        if(kurs.setZyklus(zyklus)==false){return "zyklus is Require";}
-        if(kurs.setStartDatum(startDatum)==false){return " Start Date is Require";}
-        if(kurs.setMaxTnZahl(maxTnZahl)==false){return " Max anzahl darf nicht weniger als Min anzahl der Teilnehmer";};
-        if(kurs.setMinTnZahl(minTnZahl)==false){return "minimum teilnahme ist falsch";}
-        if(kurs.setGebuehrBrutto(gebuehrBrutto)==false){return "gebuhr Brutto ist falssch";}
-        if(kurs.setMwstProzent(mwstProzent)==false){return "prozent MWST is Require";}
+
+        if(!kurs.setName(name)){return "Name is Require";}
+        if(!kurs.setAnzahlTage(anzahlTage)){return "minimum teilnahme ist falsch";}
+        if(!kurs.setZyklus(zyklus)){return "zyklus is Require";}
+        if(!kurs.setStartDatum(startDatum)){return " Start Date is Require";}
+        if(!kurs.setMaxTnZahl(maxTnZahl)){return " Max anzahl darf nicht weniger als Min anzahl der Teilnehmer";};
+        if(!kurs.setMinTnZahl(minTnZahl)){return "minimum teilnahme ist falsch";}
+        if(!kurs.setGebuehrBrutto(gebuehrBrutto)){return "gebuhr Brutto ist falssch";}
+        if(!kurs.setMwstProzent(mwstProzent)){return "prozent MWST is Require";}
+
         kurs.setEndeDatum(startDatum, zyklus, anzahlTage);
         kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
         kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
