@@ -9,11 +9,11 @@ class PersonTest {
 
     @Test
     void testCheckValidEmail() {
-        assertTrue(Person.checkValidEmail("mdabour@hotmail.de"));
-        assertFalse(Person.checkValidEmail("mdabour@hotmail..international"));
-        assertTrue(Person.checkValidEmail("mdabour@hotmail.mail.international"));
+        assertTrue(Person.checkValidEmail("john-doe@hotmail.de"));
+        assertFalse(Person.checkValidEmail("jan@hotmail..international"));
+        assertTrue(Person.checkValidEmail("jane_doe@hotmail.mail.international"));
         assertFalse(Person.checkValidEmail("@hotmail"));
-        assertFalse(Person.checkValidEmail("@hotmail.de"));
+        assertFalse(Person.checkValidEmail("ö@hotmail.de"));
         assertFalse(Person.checkValidEmail("@hotmail.d"));
         assertFalse(Person.checkValidEmail("m@.de"));
         assertTrue(Person.checkValidEmail("m@d.de"));
