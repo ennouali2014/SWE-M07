@@ -1,20 +1,17 @@
 
 package de.unibremen.akademie.kursverwaltung.controller;
 
-        import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-        import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
-        import javafx.beans.property.ReadOnlyBooleanWrapper;
-        import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.scene.control.*;
-        import javafx.scene.control.cell.CheckBoxTableCell;
-        import javafx.scene.control.cell.ComboBoxTableCell;
-        import javafx.scene.control.cell.PropertyValueFactory;
-        import javafx.scene.control.cell.TextFieldTableCell;
+import de.unibremen.akademie.kursverwaltung.domain.Kurs;
+import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 
-        import java.util.ArrayList;
-        import java.util.Date;
-        import java.util.List;
+import java.util.Date;
+import java.util.List;
 
 public class KurseListeController {
 
@@ -141,10 +138,10 @@ public class KurseListeController {
     public void suchButtonAction(ActionEvent actionEvent) {
     }
 
-    public void personAnlegenButtonAction(ActionEvent actionEvent) {
+    public void zurucksetzenButtonAction(ActionEvent actionEvent) {
     }
 
-    public void zurucksetzenButtonAction(ActionEvent actionEvent) {
+    public void personAnlegenButtonAction(ActionEvent actionEvent) {
     }
 
     public void andernButtonAction(ActionEvent actionEvent) {
