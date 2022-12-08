@@ -24,6 +24,9 @@ class KursTest {
 
     @Test
     void setName() {
+        assertEquals(true,kurs1.setName("c"));
+        assertEquals(false,kurs1.setName(""));
+        assertEquals(false,kurs1.setName(null));
     }
 
     @Test
@@ -117,5 +120,8 @@ class KursTest {
 
     @Test
     void setTeilnehmerListe() {
+        kurs1.setTeilnehmerListe(ali);
+        assertEquals(1,kurs1.getTeilnehmerListe().size());
+        assertEquals(false,kurs1.setTeilnehmerListe(null));
     }
 }
