@@ -79,6 +79,10 @@ class KursTest {
 
     @Test
     void setMaxTnZahl() {
+        kurs1.setMaxTnZahl(20);
+        assertEquals(20, kurs1.getMaxTnZahl());
+        assertEquals(false, kurs1.setMaxTnZahl(-1));
+        assertEquals(true, kurs1.setMaxTnZahl(10));
     }
 
     @Test
