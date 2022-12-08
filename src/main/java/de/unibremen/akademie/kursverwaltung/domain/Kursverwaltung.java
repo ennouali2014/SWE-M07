@@ -36,7 +36,7 @@ public class Kursverwaltung {
         kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
         kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
         kurs.setAktuelleTnZahl();
-        this.kursList.add(kurs);
+        kursList.add(kurs);
         return "OK";
 
     }
