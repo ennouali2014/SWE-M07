@@ -158,7 +158,7 @@
                     <children>
                         <VBox>
                             <children>
-                                <Label text="Gebühr brutto(€) : ">
+                                <Label text="Gebühr brutto(€): ">
                                     <font>
                                         <Font size="21.0"/>
                                     </font>
