@@ -107,7 +107,7 @@ class KursTest {
     @Test
     void setMwstProzent() {
         assertEquals(true, kurs1.setMwstProzent(1));
-        assertEquals(false, kurs1.setMwstProzent(0));
+        assertEquals(true, kurs1.setMwstProzent(0));
         assertEquals(false, kurs1.setMwstProzent(-1));
     }
 

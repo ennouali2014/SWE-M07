@@ -195,7 +195,7 @@ public class Kurs {
     }
 
     public boolean setMwstProzent(double mwstProzent) {
-        if (mwstProzent > 0) {
+        if (mwstProzent >= 0) {
             this.mwstProzent = mwstProzent;
             return true;
         }
