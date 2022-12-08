@@ -18,8 +18,6 @@ class PersonTest {
         assertFalse(Person.checkValidEmail("m@.de"));
         assertTrue(Person.checkValidEmail("m@d.de"));
         assertFalse(Person.checkValidEmail("m@d..de"));
-
-
     }
 
 
