@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 public class Kursverwaltung {
-    private List<Person> personList=new ArrayList<>();
-    private List<Kurs> kursList=new ArrayList<>();
+    private static List<Person> personList = new ArrayList<>();
+    private static List<Kurs> kursList = new ArrayList<>();
 
     static Kursverwaltung model = new Kursverwaltung();
 
@@ -56,4 +56,25 @@ public class Kursverwaltung {
     public void setKursList(List<Kurs> kursList) {
         this.kursList = kursList;
     }
+
+    static public String addPerson(Anrede anrede, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+        if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
+            Person person = new Person();
+            person.setAnrede(anrede);
+            person.setVorname(vorname);
+            person.setName(name);
+            person.setStrasse(strasse);
+            person.setPlz(plz);
+            person.setOrt(ort);
+            person.setEmail(email);
+            personList.add(person);
+
+
+            return "Alles OK!";
+        }
+
+        return "Fehler! Daten wurden nicht gespeichert!";
+    }
+
+
 }
