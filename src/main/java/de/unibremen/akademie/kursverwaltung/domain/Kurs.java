@@ -107,8 +107,9 @@ public class Kurs {
     }
 
     public void setEndeDatum(Date startDatum,int zyklus,int anzahlTage) {
-        long dat=startDatum.getTime()+(Math.round(anzahlTage/zyklus)*7*86400000);
+        long dat = startDatum.getTime() + ((Math.round((float) anzahlTage / zyklus)) * 7 * 86400000L);
         this.endeDatum = new Date(dat);
+
     }
 
     public int getAktuelleTnZahl() {
@@ -173,16 +174,20 @@ public class Kurs {
         return gebuehrNetto;
     }
 
-    public void setGebuehrNetto(double gebuehrBrutto,double mwstProzent) {
-        this.gebuehrNetto = gebuehrBrutto*((100-mwstProzent)/100);
+    public void setGebuehrNetto(double gebuehrBrutto, double mwstProzent) {
+        this.gebuehrNetto = gebuehrBrutto * ((100 - mwstProzent) / 100);
     }
 
     public double getMwstEuro() {
         return mwstEuro;
     }
 
-    public void setMwstEuro(double mwstProzent,double gebuehrBrutto) {
-        this.mwstEuro = gebuehrBrutto*(mwstProzent/100);
+    public boolean setMwstEuro(double mwstProzent, double gebuehrBrutto) {
+        if (mwstProzent >= 0 && gebuehrBrutto > 0) {
+            this.mwstEuro = gebuehrBrutto * (mwstProzent / 100);
+            return true;
+        }
+        return false;
     }
 
     public double getMwstProzent() {
@@ -190,7 +195,7 @@ public class Kurs {
     }
 
     public boolean setMwstProzent(double mwstProzent) {
-        if(mwstProzent>0){
+        if (mwstProzent > 0) {
             this.mwstProzent = mwstProzent;
             return true;
         }
