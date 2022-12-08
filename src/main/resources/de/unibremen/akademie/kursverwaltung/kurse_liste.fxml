@@ -84,19 +84,19 @@
                   <DatePicker fx:id="datePicker1" layoutX="392.0" layoutY="10.0" onAction="#s" style="-fx-border-color: #91c9a0;" />
                     </children>
                 </HBox>
-                <TableView prefHeight="331.0" prefWidth="1000.0">
+                <TableView fx:id="tableView" prefHeight="331.0" prefWidth="1000.0">
                     <columns>
-                        <TableColumn prefWidth="100.79998397827148" text="Alle">
+                        <TableColumn  fx:id="columnSelect" prefWidth="100.79998397827148" text="Alle">
                             <graphic>
                                 <CheckBox mnemonicParsing="false" />
                             </graphic>
                         </TableColumn>
-                        <TableColumn prefWidth="109.60003662109375" text="Kursname" />
-                        <TableColumn prefWidth="134.3999481201172" text="Start_Datum" />
-                        <TableColumn prefWidth="125.60006713867188" text="End_Datum" />
-                        <TableColumn prefWidth="179.20001220703125" text="Anzahl_Frei_plätze" />
-                        <TableColumn prefWidth="170.39996337890625" text="Anzahl_Teilnehmer" />
-                        <TableColumn prefWidth="144.7999267578125" text="Status" />
+                        <TableColumn fx:id="columnName" prefWidth="109.60003662109375" text="Kursname" />
+                        <TableColumn fx:id="columnStartDatum" prefWidth="134.3999481201172" text="Start_Datum" />
+                        <TableColumn fx:id="columnEndDatum" prefWidth="125.60006713867188" text="End_Datum" />
+                        <TableColumn fx:id="columnAnzFreiPlz" prefWidth="179.20001220703125" text="Anzahl_Frei_plätze" />
+                        <TableColumn fx:id="columnAnzTeilnehm" prefWidth="170.39996337890625" text="Anzahl_Teilnehmer" />
+                        <TableColumn fx:id="columnStatus" prefWidth="144.7999267578125" text="Status" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
