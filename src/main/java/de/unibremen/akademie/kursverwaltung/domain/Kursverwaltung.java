@@ -1,5 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 
@@ -11,7 +12,10 @@ public class Kursverwaltung {
     private List<Person> personList=new ArrayList<>();
     private List<Kurs> kursList=new ArrayList<>();
 
+    static Kursverwaltung model = new Kursverwaltung();
+
     public Kursverwaltung() {
+        kursList = new SimpleListProperty<>(FXCollections.observableArrayList());
     }
 
     public String addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int maxTnZahl, int minTnZahl,
@@ -32,7 +36,7 @@ public class Kursverwaltung {
         kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
         kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
         kurs.setAktuelleTnZahl();
-        this.kursList.add(kurs);
+        kursList.add(kurs);
         return "OK";
 
     }

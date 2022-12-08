@@ -28,11 +28,6 @@ public class Kurs implements Serializable {
     public Kurs() {
     }
 
-
-
-
-
-
     public String getName() {
         return name;
     }
