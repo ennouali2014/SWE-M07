@@ -61,24 +61,61 @@ public class Person {
         return strasse;
     }
 
-    public static boolean checkIsEmpty(String wert) {
-        return wert != null && wert.length() >= 2;
-    }
-
     public String getPlz() {
         return plz;
     }
 
-    public static boolean checkValidEmail(String email) {
-        String pattern=("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
-
-    }
-
     public String getOrt() {
         return ort;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        if (checkValidEmail(email)) {
+            this.email = email;
+        } else {
+            System.out.println("Email ist falsch!");
+        }
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
+    public void setStrasse(String strasse) {
+        this.strasse = strasse;
+    }
+
+    public void setPlz(String plz) {
+        this.plz = plz;
+    }
+
+    public void setOrt(String ort) {
+        this.ort = ort;
+    }
+
+    public List<Kurs> getKursInteressiert() {
+        return kursInteressiert;
+    }
+
+    public void setKursInteressiert(List<Kurs> kursInteressiert) {
+        this.kursInteressiert = kursInteressiert;
+    }
+
+    public List<Kurs> getKursTeilnahme() {
+        return kursTeilnahme;
+    }
+
+    public void setKursTeilnahme(List<Kurs> kursTeilnahme) {
+        this.kursTeilnahme = kursTeilnahme;
     }
 
     static public String addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
@@ -100,52 +137,17 @@ public class Person {
         return "Fehler! Daten wurden nicht gespeichert!";
     }
 
-    public String getEmail() {
-        return email;
+
+    public static boolean checkIsEmpty(String wert) {
+        return wert != null && wert.length() >= 2;
     }
 
-    public void setEmail(String email) {
-        if (checkValidEmail(email)) {
-            this.email = email;
-        } else {
-            System.out.println("Email ist falsch!");
-        }
-    }
+    public static boolean checkValidEmail(String email) {
+        String pattern = ("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
 
-    public String getTelefon() {
-        return telefon;
-    }
-
-    public void setStrasse(String strasse) {
-        this.strasse = strasse;
-    }
-
-    public List<Kurs> getKursInteressiert() {
-        return kursInteressiert;
-    }
-
-    public void setKursInteressiert(List<Kurs> kursInteressiert) {
-        this.kursInteressiert = kursInteressiert;
-    }
-
-    public List<Kurs> getKursTeilnahme() {
-        return kursTeilnahme;
-    }
-
-    public void setKursTeilnahme(List<Kurs> kursTeilnahme) {
-        this.kursTeilnahme = kursTeilnahme;
-    }
-
-    public void setPlz(String plz) {
-        this.plz = plz;
-    }
-
-    public void setOrt(String ort) {
-        this.ort = ort;
-    }
-
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
     }
 
     @Override

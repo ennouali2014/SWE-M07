@@ -23,29 +23,11 @@ public class Kurs {
     private List<Person> interessentenListe = new ArrayList<>();
     private List<Person> teilnehmerListe=new ArrayList<>();
 
-    private Kurs() {
+
+    public Kurs() {
     }
-    public static Kurs addnewKurs(String name, int anzahlTage,int zyklus, Date startDatum,int maxTnZahl, int minTnZahl,
-                                    double gebuehrBrutto,double mwstProzent,String kursBeschreibung,Person person,Person person1){
-        Kurs kurs = new Kurs();
-        kurs.setKursBeschreibung(kursBeschreibung);
-        kurs.setName(name);
-        kurs.setAnzahlTage(anzahlTage);
-        kurs.setZyklus(zyklus);
-        kurs.setStartDatum(startDatum);
-        kurs.setMaxTnZahl(maxTnZahl);
-        kurs.setMinTnZahl(minTnZahl);
-        kurs.setGebuehrBrutto(gebuehrBrutto);
-        kurs.setMwstProzent(mwstProzent);
-        kurs.setInteressentenListe(person);
-        kurs.setEndeDatum(startDatum,zyklus,anzahlTage);
-        kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
-        kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
-        kurs.setTeilnehmerListe(person);
-        kurs.setInteressentenListe(person1);
-        kurs.setAktuelleTnZahl();
-        return kurs;
-    }
+
+
 
 
 
@@ -56,7 +38,7 @@ public class Kurs {
 
     public boolean setName(String name) {
 
-        if(name!=null) {
+        if(name!=null && name.length()>0) {
             this.name = name;
             return true;
         }
@@ -107,8 +89,9 @@ public class Kurs {
     }
 
     public void setEndeDatum(Date startDatum,int zyklus,int anzahlTage) {
-        long dat=startDatum.getTime()+(Math.round(anzahlTage/zyklus)*7*86400000);
+        long dat = startDatum.getTime() + ((Math.round((float) anzahlTage / zyklus)) * 7 * 86400000L);
         this.endeDatum = new Date(dat);
+
     }
 
     public int getAktuelleTnZahl() {
@@ -173,16 +156,16 @@ public class Kurs {
         return gebuehrNetto;
     }
 
-    public void setGebuehrNetto(double gebuehrBrutto,double mwstProzent) {
-        this.gebuehrNetto = gebuehrBrutto*((100-mwstProzent)/100);
+    public void setGebuehrNetto(double gebuehrBrutto, double mwstProzent) {
+        this.gebuehrNetto = gebuehrBrutto * ((100 - mwstProzent) / 100);
     }
 
     public double getMwstEuro() {
         return mwstEuro;
     }
 
-    public void setMwstEuro(double mwstProzent,double gebuehrBrutto) {
-        this.mwstEuro = gebuehrBrutto*(mwstProzent/100);
+    public void setMwstEuro(double mwstProzent, double gebuehrBrutto) {
+        this.mwstEuro = gebuehrBrutto * (mwstProzent / 100);
     }
 
     public double getMwstProzent() {
@@ -190,7 +173,7 @@ public class Kurs {
     }
 
     public boolean setMwstProzent(double mwstProzent) {
-        if(mwstProzent>0){
+        if (mwstProzent >= 0) {
             this.mwstProzent = mwstProzent;
             return true;
         }
@@ -202,17 +185,20 @@ public class Kurs {
         return kursBeschreibung;
     }
 
-    public void setKursBeschreibung(String kursBeschreibung) {
-        this.kursBeschreibung = kursBeschreibung;
+    public boolean setKursBeschreibung(String kursBeschreibung) {
+        if (kursBeschreibung != null) {
+            this.kursBeschreibung = kursBeschreibung;
+            return true;
+        }
+        return false;
     }
 
     public List<Person> getInteressentenListe() {
-
         return interessentenListe;
     }
 
     public boolean setInteressentenListe(Person interessant) {
-        if(interessant!=null){
+        if (interessant != null) {
             this.interessentenListe.add(interessant);
             return true;
         }
