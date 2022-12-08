@@ -118,24 +118,7 @@ public class Person {
         this.kursTeilnahme = kursTeilnahme;
     }
 
-    static public String addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
-        if (checkIsEmpty(name) && checkIsEmpty(vorname) && checkValidEmail(email)) {
-            Person neuePerson = new Person();
-            neuePerson.setAnrede(anrede);
-            neuePerson.setTitel(titel);
-            neuePerson.setVorname(vorname);
-            neuePerson.setName(name);
-            neuePerson.setStrasse(strasse);
-            neuePerson.setPlz(plz);
-            neuePerson.setOrt(ort);
-            neuePerson.setEmail(email);
-            neuePerson.setTelefon(telefon);
 
-            return "Alles OK!";
-        }
-
-        return "Fehler! Daten wurden nicht gespeichert!";
-    }
 
 
     public static boolean checkIsEmpty(String wert) {
