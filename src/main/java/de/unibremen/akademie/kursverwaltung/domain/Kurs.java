@@ -27,30 +27,7 @@ public class Kurs {
     public Kurs() {
     }
 
-    public static String addnewKurs(List<Kurs> kurslist, String name, int anzahlTage, int zyklus, Date startDatum, int maxTnZahl, int minTnZahl,
-                                    double gebuehrBrutto, double mwstProzent, String kursBeschreibung, Person person, Person person1) {
-        Kurs kurs = new Kurs();
-        kurs.setKursBeschreibung(kursBeschreibung);
-        kurs.setName(name);
-        kurs.setAnzahlTage(anzahlTage);
-        kurs.setZyklus(zyklus);
-        kurs.setStartDatum(startDatum);
-        if (kurs.setMaxTnZahl(maxTnZahl) == false {
-            return ""
-        });
-        kurs.setMinTnZahl(minTnZahl);
-        kurs.setGebuehrBrutto(gebuehrBrutto);
-        kurs.setMwstProzent(mwstProzent);
-        kurs.setInteressentenListe(person);
-        kurs.setEndeDatum(startDatum, zyklus, anzahlTage);
-        kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
-        kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
-        kurs.setTeilnehmerListe(person);
-        kurs.setInteressentenListe(person1);
-        kurs.setAktuelleTnZahl();
-        kurslist.add(kurs);
-        return null;
-    }
+
 
 
 
