@@ -129,9 +129,9 @@ public class KurseListeController {
         // parse and construct User datamodel list by looping your ResultSet rs
         // and return the list
         Kursverwaltung kursverwaltung= new Kursverwaltung();
-        kursverwaltung.addnewKurs("php",12,3,new Date(1672963200000L),12,2,150,19,"php backend");
-        kursverwaltung.addnewKurs("java",12,3,new Date(1672963200000L),12,2,150,19,"php backend");
-        kursverwaltung.addnewKurs("arduino",10,3,new Date(2569852800000L),12,2,150,19,"php backend");
+        kursverwaltung.addnewKurs("php",12,3,new Date(1672963200000L),2,12,150,19,"php backend");
+        kursverwaltung.addnewKurs("java",12,3,new Date(1672963200000L),2,22,150,19,"php backend");
+        kursverwaltung.addnewKurs("arduino",10,3,new Date(2569852800000L),3,22,150,19,"php backend");
 
         return kursverwaltung.getKursList();
     }

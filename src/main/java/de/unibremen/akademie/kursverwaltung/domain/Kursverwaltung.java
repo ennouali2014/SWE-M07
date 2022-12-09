@@ -14,7 +14,7 @@ public class Kursverwaltung {
 
     }
 
-    public Kurs addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int maxTnZahl, int minTnZahl,
+    public Kurs addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum,  int minTnZahl,int maxTnZahl,
                              double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
         Kurs kurs = new Kurs();
         if(!kurs.setName(name)){throw new IllegalArgumentException("Name ist Falsch");}
