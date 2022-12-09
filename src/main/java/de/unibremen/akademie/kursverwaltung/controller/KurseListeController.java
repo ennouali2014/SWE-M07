@@ -3,9 +3,11 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
+import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -23,6 +25,7 @@ public class KurseListeController {
     public TableColumn<Kurs,String> columnStatus;
     public TableColumn<Kurs,String> columnName;
     public TableView<Kurs> tableView;
+    public TableColumn columnSelect;
 
 
     @FXML
@@ -89,10 +92,13 @@ public class KurseListeController {
     }
 
     public void initialize() {
-        tableView.setEditable(true);
+        tableView.setEditable(false);
 
         tableView.setPlaceholder(
                 new Label("No rows to display"));
+        columnSelect.setGraphic(new CheckBox());
+        //columnSelect.setCellValueFactory(cellData -> new ReadOnlyBooleanWrapper(cellData.getValue().getSelect()));
+        columnSelect.setCellFactory(CheckBoxTableCell.<Kurs>forTableColumn(columnSelect));
 
         columnName.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         columnName.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());

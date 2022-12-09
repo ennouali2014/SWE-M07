@@ -87,6 +87,7 @@
                 <TableView fx:id="tableView" prefHeight="331.0" prefWidth="1000.0">
                     <columns>
                         <TableColumn  fx:id="columnSelect" prefWidth="100.79998397827148" text="Alle">
+
                             <graphic>
                                 <CheckBox mnemonicParsing="false" />
                             </graphic>
