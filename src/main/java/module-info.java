@@ -7,4 +7,6 @@ module de.unibremen.akademie.kursverwaltung {
     exports de.unibremen.akademie.kursverwaltung;
     exports de.unibremen.akademie.kursverwaltung.controller;
     opens de.unibremen.akademie.kursverwaltung.controller to javafx.fxml;
+    exports de.unibremen.akademie.kursverwaltung.domain;
+    opens de.unibremen.akademie.kursverwaltung.domain to javafx.fxml;
 }

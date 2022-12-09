@@ -88,16 +88,11 @@ public class KurseListeController {
 
     }
 
-    @FXML
-    void s(ActionEvent event) {
-
-    }
     public void initialize() {
-        //tableView.setEditable(true);
+        tableView.setEditable(true);
 
-        //tableView.setPlaceholder(
-                //new Label("No rows to display"));
-
+        tableView.setPlaceholder(
+                new Label("No rows to display"));
 
         columnName.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         columnName.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
@@ -105,19 +100,20 @@ public class KurseListeController {
         columnStatus.setCellValueFactory(new PropertyValueFactory<Kurs, String>("status"));
         columnStatus.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
-        columnAnzFreiPlz.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("anzFreiPlz"));
-        columnAnzFreiPlz.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
+        //columnAnzFreiPlz.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("freiePlaetze"));
+        //columnAnzFreiPlz.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
 
-        columnAnzTeilnehm.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("anzTeilnehm"));
-        columnAnzTeilnehm.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
+        //columnAnzTeilnehm.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("anzTeilnehm"));
+        //columnAnzTeilnehm.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
 
-        columnStartDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("startDatum"));
-        columnStartDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
+        //columnStartDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("startDatum"));
+        //columnStartDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
 
-        columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("endDatum"));
-        columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
+        //columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("endDatum"));
+        //columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
 
         tableView.getItems().setAll(parseKursList());
+
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableView.getSelectionModel();
         selectionModel.setSelectionMode(
@@ -129,8 +125,7 @@ public class KurseListeController {
         Kursverwaltung kursverwaltung= new Kursverwaltung();
         kursverwaltung.addnewKurs("php",12,3,new Date(1672963200000L),12,2,150,19,"php backend");
         kursverwaltung.addnewKurs("java",12,3,new Date(1672963200000L),12,2,150,19,"php backend");
-
-        kursverwaltung.addnewKurs("arduino",12,3,new Date(1672963200000L),12,2,150,19,"php backend");
+        kursverwaltung.addnewKurs("arduino",10,3,new Date(1569852800000L),12,2,150,19,"php backend");
 
         return kursverwaltung.getKursList();
     }

@@ -1,53 +1,64 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import de.unibremen.akademie.kursverwaltung.domain.Person;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Kurs implements Serializable {
 
-    private String name;
-    private int anzahlTage;
-    private int zyklus;
+    private SimpleStringProperty name;
+    private SimpleIntegerProperty anzahlTage;
+    private SimpleIntegerProperty zyklus;
     private Date startDatum;
     private Date endeDatum;
-    private int aktuelleTnZahl;
-    private int minTnZahl;
-    private int maxTnZahl;
-    private int freiePlaetze;
-    private double gebuehrBrutto;
-    private double gebuehrNetto;
-    private double mwstEuro;
-    private double mwstProzent;
-    private String kursBeschreibung;
+    private SimpleIntegerProperty aktuelleTnZahl;
+    private SimpleIntegerProperty minTnZahl;
+    private SimpleIntegerProperty maxTnZahl;
+    private SimpleIntegerProperty freiePlaetze;
+    private SimpleDoubleProperty gebuehrBrutto;
+    private SimpleDoubleProperty gebuehrNetto;
+    private SimpleDoubleProperty mwstEuro;
+    private SimpleDoubleProperty mwstProzent;
+    private SimpleStringProperty kursBeschreibung;
+    private SimpleStringProperty status;
     private List<Person> interessentenListe = new ArrayList<>();
     private List<Person> teilnehmerListe=new ArrayList<>();
 
 
     public Kurs() {
+        this.name=new SimpleStringProperty();
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public boolean setName(String name) {
-
         if(name!=null && name.length()>0) {
-            this.name = name;
+            if(this.name==null){
+                this.name = new SimpleStringProperty(name);
+            }else {this.name.set(name);}
             return true;
         }
         return false;
     }
 
     public int getAnzahlTage() {
-        return anzahlTage;
+        return anzahlTage.get();
     }
 
     public boolean  setAnzahlTage(int anzahlTage) {
         if(anzahlTage >0){
-            this.anzahlTage = anzahlTage;
+            if(this.anzahlTage==null){
+                this.anzahlTage = new SimpleIntegerProperty(anzahlTage);
+            }else {this.anzahlTage.set(anzahlTage);}
             return true;
         }
         return false;
@@ -55,12 +66,15 @@ public class Kurs implements Serializable {
     }
 
     public int getZyklus() {
-        return zyklus;
+        return zyklus.get();
     }
 
     public boolean setZyklus(int zyklus) {
         if(zyklus>0 && zyklus<8) {
-            this.zyklus = zyklus;
+            if(this.zyklus==null){
+                this.zyklus = new SimpleIntegerProperty(zyklus);
+            }else {this.zyklus.set(zyklus);}
+
             return true;
         }
         return false;
@@ -91,57 +105,70 @@ public class Kurs implements Serializable {
     }
 
     public int getAktuelleTnZahl() {
-        return aktuelleTnZahl;
+        return aktuelleTnZahl.get();
     }
 
     public void setAktuelleTnZahl() {
-        this.aktuelleTnZahl = this.teilnehmerListe.size();
+        if(this.aktuelleTnZahl==null){
+            this.aktuelleTnZahl = new SimpleIntegerProperty(this.teilnehmerListe.size());
+        }else {this.aktuelleTnZahl.set(this.teilnehmerListe.size());}
+
     }
 
     public int getMinTnZahl() {
-        return minTnZahl;
+        return minTnZahl.get();
     }
 
     public boolean setMinTnZahl(int minTnZahl) {
-        if (minTnZahl > 0 && minTnZahl < this.maxTnZahl) {
-            this.minTnZahl = minTnZahl;
+        if (minTnZahl > 0) {
+            if(this.minTnZahl==null){
+                this.minTnZahl = new SimpleIntegerProperty(minTnZahl);
+            }else {this.minTnZahl.set(minTnZahl);}
+
             return true;
         }
         return false;
     }
 
     public int getMaxTnZahl() {
-        return maxTnZahl;
+        return maxTnZahl.get();
     }
 
     public boolean setMaxTnZahl(int maxTnZahl) {
-        if (maxTnZahl > 0 && maxTnZahl > this.minTnZahl) {
-            this.maxTnZahl = maxTnZahl;
+        if (maxTnZahl > 0 && maxTnZahl > this.minTnZahl.get()) {
+            if(this.maxTnZahl==null){
+                this.maxTnZahl = new SimpleIntegerProperty(maxTnZahl);
+            }else {this.maxTnZahl.set(maxTnZahl);}
             return true;
         }
         return false;
-
     }
 
     public int getFreiePlaetze() {
-        return freiePlaetze;
+        return freiePlaetze.get();
     }
 
     public boolean setFreiePlaetze() {
-        if (this.maxTnZahl-this.aktuelleTnZahl>0) {
-            this.freiePlaetze = this.maxTnZahl - this.aktuelleTnZahl;
+        if (this.maxTnZahl.get()-this.aktuelleTnZahl.get()>0) {
+            if(this.freiePlaetze==null){
+                this.freiePlaetze = new SimpleIntegerProperty(this.maxTnZahl.get() - this.aktuelleTnZahl.get());
+            }else {this.freiePlaetze.set(this.maxTnZahl.get() - this.aktuelleTnZahl.get());}
+
             return true;
         }
         return false;
     }
 
     public double getGebuehrBrutto() {
-        return gebuehrBrutto;
+        return gebuehrBrutto.get();
     }
 
     public boolean setGebuehrBrutto(double gebuehrBrutto) {
         if(gebuehrBrutto>0){
-            this.gebuehrBrutto = gebuehrBrutto;
+            if(this.gebuehrBrutto==null){
+                this.gebuehrBrutto = new SimpleDoubleProperty(gebuehrBrutto);
+            }else {this.gebuehrBrutto.set(gebuehrBrutto);}
+
             return true;
         }
         return false;
@@ -149,28 +176,37 @@ public class Kurs implements Serializable {
     }
 
     public double getGebuehrNetto() {
-        return gebuehrNetto;
+        return gebuehrNetto.get();
     }
 
     public void setGebuehrNetto(double gebuehrBrutto, double mwstProzent) {
-        this.gebuehrNetto = gebuehrBrutto * ((100 - mwstProzent) / 100);
+        if(this.gebuehrNetto==null){
+            this.gebuehrNetto = new SimpleDoubleProperty(gebuehrBrutto * ((100 - mwstProzent) / 100));
+        }else {this.gebuehrNetto.set(gebuehrBrutto * ((100 - mwstProzent) / 100));}
+
     }
 
     public double getMwstEuro() {
-        return mwstEuro;
+        return mwstEuro.get();
     }
 
     public void setMwstEuro(double mwstProzent, double gebuehrBrutto) {
-        this.mwstEuro = gebuehrBrutto * (mwstProzent / 100);
+        if(this.mwstEuro==null){
+            this.mwstEuro = new SimpleDoubleProperty(gebuehrBrutto * (mwstProzent / 100));
+        }else {this.mwstEuro.set(gebuehrBrutto * (mwstProzent / 100));}
+
     }
 
     public double getMwstProzent() {
-        return mwstProzent;
+        return mwstProzent.get();
     }
 
     public boolean setMwstProzent(double mwstProzent) {
         if (mwstProzent >= 0) {
-            this.mwstProzent = mwstProzent;
+            if(this.mwstProzent==null){
+                this.mwstProzent = new SimpleDoubleProperty(mwstProzent);
+            }else {this.mwstProzent.set(mwstProzent);}
+
             return true;
         }
         return false;
@@ -178,12 +214,14 @@ public class Kurs implements Serializable {
     }
 
     public String getKursBeschreibung() {
-        return kursBeschreibung;
+        return kursBeschreibung.get();
     }
 
     public boolean setKursBeschreibung(String kursBeschreibung) {
         if (kursBeschreibung != null) {
-            this.kursBeschreibung = kursBeschreibung;
+            if(this.kursBeschreibung==null){
+                this.kursBeschreibung = new SimpleStringProperty(kursBeschreibung);
+            }else {this.kursBeschreibung.set(kursBeschreibung);}
             return true;
         }
         return false;
@@ -212,5 +250,22 @@ public class Kurs implements Serializable {
         }
         return false;
     }
+
+    public String getStatus() {
+        return status.get();
+    }
+
+    public void setStatus() {
+        if(this.endeDatum.before(new Date())){
+            if(this.status==null){
+                this.status = new SimpleStringProperty("geendet");
+            }else {this.kursBeschreibung.set("Aktiv");}
+        }else {
+            if(this.status==null){
+                this.status = new SimpleStringProperty("Aktiv");
+            }else {this.kursBeschreibung.set("geendet");}
+        }
+    }
+
 
 }
