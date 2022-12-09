@@ -8,7 +8,7 @@ public class Kursverwaltung {
     private static List<Person> personList = new ArrayList<>();
     private static List<Kurs> kursList = new ArrayList<>();
 
-    static Kursverwaltung model = new Kursverwaltung();
+    static public Kursverwaltung model = new Kursverwaltung();
 
     public Kursverwaltung() {
 
