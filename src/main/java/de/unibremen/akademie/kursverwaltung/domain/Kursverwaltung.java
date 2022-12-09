@@ -31,7 +31,7 @@ public class Kursverwaltung {
         kurs.setEndeDatum(startDatum, zyklus, anzahlTage);
         kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
         kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
-        kurs.setAktuelleTnZahl();
+        kurs.setAktuelleTnZahl();if(!kurs.setFreiePlaetze()){throw new IllegalArgumentException( "Alles Voll");}
         kurs.setStatus();
         kursList.add(kurs);
         return kurs;
