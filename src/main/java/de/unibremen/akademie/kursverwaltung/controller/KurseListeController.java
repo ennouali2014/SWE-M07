@@ -25,6 +25,7 @@ public class KurseListeController {
     public TableColumn<Kurs,String> columnName;
     public TableView<Kurs> tableView;
     public TableColumn columnSelect;
+    public Tab ContentKurseListe;
 
 
     @FXML
@@ -88,6 +89,8 @@ public class KurseListeController {
     @FXML
     void hinzufugenButtonAction(ActionEvent event) {
 
+        TabPane tabPaneKursAnlegen=ContentKurseListe.getTabPane();
+        (tabPaneKursAnlegen.getTabs().get(2)).getTabPane().getSelectionModel().select(tabPaneKursAnlegen.getTabs().get(2));
     }
 
     public void initialize() {
@@ -118,7 +121,7 @@ public class KurseListeController {
         columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
 
         tableView.getItems().setAll(parseKursList());
-        System.out.println(parseKursList().get(2).getStartDatum());
+        //System.out.println(parseKursList().get(2).getStartDatum());
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableView.getSelectionModel();
         selectionModel.setSelectionMode(
@@ -127,12 +130,14 @@ public class KurseListeController {
     private List<Kurs> parseKursList(){
         // parse and construct User datamodel list by looping your ResultSet rs
         // and return the list
-        Kursverwaltung kursverwaltung = Kursverwaltung.model; // new Kursverwaltung();
+        /*Kursverwaltung kursverwaltung = Kursverwaltung.model.; // new Kursverwaltung();
         kursverwaltung.addnewKurs("php",12,3,new Date(1672963200000L),2,12,150,19,"php backend");
         kursverwaltung.addnewKurs("java",12,3,new Date(1672963200000L),2,22,150,19,"php backend");
-        kursverwaltung.addnewKurs("arduino",10,3,new Date(2569852800000L),3,22,150,19,"php backend");
+        kursverwaltung.addnewKurs("arduino",10,3,new Date(2569852800000L),3,22,150,19,"php backend");*
 
-        return kursverwaltung.getKursList();
+        return kursverwaltung.getKursList();*/
+        System.out.println(Kursverwaltung.model.getKursList().size());
+        return Kursverwaltung.model.getKursList();
     }
 
     public void suchButtonAction(ActionEvent actionEvent) {

@@ -6,8 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.String?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18"
-            fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController">
+<Tab text="Kurse-Details" fx:id="ContentKurseDetails" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController">
+    <content>
+<AnchorPane>
     <children>
         <VBox layoutX="10.0" layoutY="10.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
               AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
@@ -261,3 +262,5 @@
         </VBox>
     </children>
 </AnchorPane>
+    </content>
+</Tab>
