@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.List;
@@ -130,10 +129,10 @@ public class PersonenListeController implements Initializable {
 
     private List<Person> parsePersonList() {
         Kursverwaltung kursverwaltung = new Kursverwaltung();
-        kursverwaltung.addPerson("Daniela", "Sally", "Louis str.", "28355", "Bremen", "oz.t@mail.com", "0144441154");
-        kursverwaltung.addPerson("Daniel", "John", "Lili str.", "28000", "Bremen", "dan@mail.com", "04511121");
-        kursverwaltung.addPerson("Georgia", "Cindy", " Mimosa str.", "28355", "Bremen", "mim.t@mail.com", "0144441154");
-        kursverwaltung.addPerson("Ludwig", "Johan", "Moon str.", "28000", "Bremen", "johan@mail.com", "04511121");
+        kursverwaltung.addPerson(Anrede.HERR, "Daniela", "Sally", "Louis str.", "28355", "Bremen", "oz.t@mail.com", "0144441154");
+        kursverwaltung.addPerson(Anrede.HERR, "Daniel", "John", "Lili str.", "28000", "Bremen", "dan@mail.com", "04511121");
+        kursverwaltung.addPerson(Anrede.HERR, "Georgia", "Cindy", " Mimosa str.", "28355", "Bremen", "mim.t@mail.com", "0144441154");
+        kursverwaltung.addPerson(Anrede.HERR, "Ludwig", "Johan", "Moon str.", "28000", "Bremen", "johan@mail.com", "04511121");
 
 
         return kursverwaltung.getPersonList();

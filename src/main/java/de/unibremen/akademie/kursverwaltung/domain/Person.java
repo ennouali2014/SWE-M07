@@ -151,6 +151,7 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
+                "anrede='" + anrede + '\'' +
                 "name='" + name + '\'' +
                 ", vorname='" + vorname + '\'' +
                 ", strasse='" + strasse + '\'' +

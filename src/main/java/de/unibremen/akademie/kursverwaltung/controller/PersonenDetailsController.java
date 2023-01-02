@@ -1,5 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
+import de.unibremen.akademie.kursverwaltung.domain.Anrede;
 import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -18,25 +19,27 @@ public class PersonenDetailsController {
     public TextField email;
     public TextField telefon;
     public TextField ort;
-    public ChoiceBox Anrede;
+    public ChoiceBox anrede;
     public Button save;
     public String nameS;
 
     public void initialize() {
-        Anrede.setItems(FXCollections.observableArrayList(de.unibremen.akademie.kursverwaltung.domain.Anrede.values()));
+        anrede.setItems(FXCollections.observableArrayList(de.unibremen.akademie.kursverwaltung.domain.Anrede.values()));
+
 
     }
 
     @FXML
     public void onsaveclick() {
 
-        Kursverwaltung.addPerson(name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+        Kursverwaltung.addPerson((Anrede) anrede.getValue(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
         name.clear();
         vorname.clear();
         strasse.clear();
         plz.clear();
         ort.clear();
         email.clear();
+        telefon.clear();
         System.out.println(Kursverwaltung.personList);
 
 
