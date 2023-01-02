@@ -44,9 +44,9 @@ public class Person {
         return name;
     }
 
-    public void setName(SimpleStringProperty name) {
+    public void setName(String name) {
         if (checkIsEmpty(name)) {
-            this.name = name;
+            this.name = new SimpleStringProperty(name);
         }
     }
 
@@ -54,9 +54,9 @@ public class Person {
         return vorname;
     }
 
-    public void setVorname(SimpleStringProperty vorname) {
+    public void setVorname(String vorname) {
         if (checkIsEmpty(vorname)) {
-            this.vorname = vorname;
+            this.vorname = new SimpleStringProperty(vorname);
         }
     }
 
@@ -64,33 +64,33 @@ public class Person {
         return strasse;
     }
 
-    public void setStrasse(SimpleStringProperty strasse) {
-        this.strasse = strasse;
+    public void setStrasse(String strasse) {
+        this.strasse = new SimpleStringProperty(strasse);
     }
 
     public SimpleStringProperty getPlz() {
         return plz;
     }
 
-    public void setPlz(SimpleStringProperty plz) {
-        this.plz = plz;
+    public void setPlz(String plz) {
+        this.plz = new SimpleStringProperty(plz);
     }
 
     public SimpleStringProperty getOrt() {
         return ort;
     }
 
-    public void setOrt(SimpleStringProperty ort) {
-        this.ort = ort;
+    public void setOrt(String ort) {
+        this.ort = new SimpleStringProperty(ort);
     }
 
     public SimpleStringProperty getEmail() {
         return email;
     }
 
-    public void setEmail(SimpleStringProperty email) {
+    public void setEmail(String email) {
         if (checkValidEmail(email)) {
-            this.email = email;
+            this.email = new SimpleStringProperty(email);
         } else {
             System.out.println("Email ist falsch!");
         }
