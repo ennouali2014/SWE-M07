@@ -1,11 +1,14 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Kursverwaltung {
-    private static List<Person> personList = new ArrayList<>();
+    public static List<Person> personList = new ArrayList<>();
     private static List<Kurs> kursList = new ArrayList<>();
 
     static public Kursverwaltung model = new Kursverwaltung();
@@ -54,10 +57,10 @@ public class Kursverwaltung {
         this.kursList = kursList;
     }
 
-    static public String addPerson(Anrede anrede, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+    static public String addPerson(String name, String vorname, String strasse, String plz, String ort, String email) {
         if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
             Person person = new Person();
-            person.setAnrede(anrede);
+            //person.setAnrede(anrede);
             person.setVorname(vorname);
             person.setName(name);
             person.setStrasse(strasse);
