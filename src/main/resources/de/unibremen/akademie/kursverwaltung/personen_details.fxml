@@ -162,7 +162,7 @@
                                         <VBox prefHeight="675.0" prefWidth="350.0"
                                               style="-fx-background-color: lightgrey;">
                                             <children>
-                                                <ChoiceBox fx:id="Anrede" maxWidth="250.0" prefWidth="150.0">
+                                                <ChoiceBox fx:id="anrede" maxWidth="250.0" prefWidth="150.0">
                                                     <VBox.margin>
                                                         <Insets bottom="10.0" left="15.0" right="5.0" top="70.0"/>
                                                     </VBox.margin>
