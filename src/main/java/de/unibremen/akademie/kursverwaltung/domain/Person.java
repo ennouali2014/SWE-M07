@@ -146,4 +146,16 @@ public class Person {
     public int hashCode() {
         return Objects.hash(name, vorname, email);
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", vorname='" + vorname + '\'' +
+                ", strasse='" + strasse + '\'' +
+                ", plz='" + plz + '\'' +
+                ", ort='" + ort + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

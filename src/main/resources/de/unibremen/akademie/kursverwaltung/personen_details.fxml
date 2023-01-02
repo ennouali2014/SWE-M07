@@ -86,6 +86,15 @@
                                                         <Insets bottom="5.0" left="40.0" right="5.0" top="70.0"/>
                                                     </VBox.margin>
                                                 </Label>
+                                                <Label layoutX="20.0" layoutY="85.0" prefHeight="30.0"
+                                                       text="Titel">
+                                                    <font>
+                                                        <Font size="14.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
                                                 <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" text="Name">
                                                     <font>
                                                         <Font size="14.0"/>
@@ -102,15 +111,7 @@
                                                         <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label layoutX="20.0" layoutY="85.0" prefHeight="30.0"
-                                                       text="Geburtsdatum">
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
+
                                                 <Label layoutX="20.0" layoutY="115.0" prefHeight="30.0" text="E-Mail">
                                                     <font>
                                                         <Font size="14.0"/>
@@ -151,7 +152,8 @@
                                                         <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
                                                     </VBox.margin>
                                                 </Label>
-                                                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                                                <Button fx:id="save" onAction="#onsaveclick" alignment="CENTER"
+                                                        mnemonicParsing="false" prefHeight="30.0"
                                                         prefWidth="80.0" text="speichern">
                                                     <VBox.margin>
                                                         <Insets left="100.0" top="50.0"/>
@@ -165,48 +167,49 @@
                                         <VBox prefHeight="675.0" prefWidth="350.0"
                                               style="-fx-background-color: lightgrey;">
                                             <children>
-                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                <TextField fx:id="anrede" maxWidth="250.0" prefHeight="30.0">
                                                     <VBox.margin>
                                                         <Insets bottom="5.0" left="15.0" right="5.0" top="70.0"/>
                                                     </VBox.margin>
                                                 </TextField>
-                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                <TextField fx:id="titel" maxWidth="250.0" prefHeight="30.0">
                                                     <VBox.margin>
                                                         <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
                                                     </VBox.margin>
                                                 </TextField>
-                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                <TextField fx:id="name" maxWidth="250.0" prefHeight="30.0">
                                                     <VBox.margin>
                                                         <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
                                                     </VBox.margin>
                                                 </TextField>
-                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                <TextField fx:id="vorname" maxWidth="250.0" prefHeight="30.0">
                                                     <VBox.margin>
                                                         <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
                                                     </VBox.margin>
                                                 </TextField>
-                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                <TextField fx:id="email" maxWidth="250.0" prefHeight="30.0">
                                                     <VBox.margin>
                                                         <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
                                                     </VBox.margin>
                                                 </TextField>
-                                                <TextField layoutX="10.0" layoutY="156.0" maxWidth="250.0"
+                                                <TextField fx:id="telefon" layoutX="10.0" layoutY="156.0"
+                                                           maxWidth="250.0"
                                                            prefHeight="30.0">
                                                     <VBox.margin>
                                                         <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
                                                     </VBox.margin>
                                                 </TextField>
-                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                <TextField fx:id="strasse" maxWidth="250.0" prefHeight="30.0">
                                                     <VBox.margin>
                                                         <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
                                                     </VBox.margin>
                                                 </TextField>
-                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                <TextField fx:id="plz" maxWidth="250.0" prefHeight="30.0">
                                                     <VBox.margin>
                                                         <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
                                                     </VBox.margin>
                                                 </TextField>
-                                                <TextField maxWidth="250.0" prefHeight="30.0">
+                                                <TextField fx:id="ort" maxWidth="250.0" prefHeight="30.0">
                                                     <VBox.margin>
                                                         <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
                                                     </VBox.margin>
