@@ -21,13 +21,13 @@ public class MainApplication extends Application {
         // Daten speichern
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Kursverwaltung model = new Kursverwaltung();
         //model aus Datei laden
-
+        //model.load();
         //Application (GUI) starten
         launch();
         //model beim Beenden in Datei speichern
-
+        model.save();
     }
 }

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Kursverwaltung {
-    private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/kursverwaltung.objekt";
+public class Kursverwaltung implements Serializable {
+    private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
     public static List<Person> personList = new ArrayList<>();
     private static List<Kurs> kursList = new ArrayList<>();
 
@@ -16,15 +16,15 @@ public class Kursverwaltung {
 
     }
 
-    /*public void load() throws IOException, ClassNotFoundException {
+    public void load() throws IOException, ClassNotFoundException {
         ObjectInputStream loadKursverwaltung = new ObjectInputStream(new BufferedInputStream(new FileInputStream(VERWALTUNGSDATEI)));
-        //EinkaufsMap.einkaufsMap = (TreeMap<String, TreeMap<String, Integer>>) loadEinkaufsdaten.readObject();
-    }*/ //Klassenvariable (Attribut)
+        model = (Kursverwaltung) loadKursverwaltung.readObject();
+    }
 
-    /*public void save() throws IOException {
+    public void save() throws IOException {
         ObjectOutputStream saveKursverwaltung = new ObjectOutputStream(new FileOutputStream(VERWALTUNGSDATEI));
-        //saveEinkaufsdaten.writeObject(EinkaufsMap.einkaufsMap);
-    }*/
+        saveKursverwaltung.writeObject(model);
+    }
 
     public Kurs addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
                            double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
@@ -48,14 +48,21 @@ public class Kursverwaltung {
             throw new IllegalArgumentException(" Max anzahl darf nicht weniger als Min anzahl der Teilnehmer");
         }
 
-        if(!kurs.setGebuehrBrutto(gebuehrBrutto)){throw new IllegalArgumentException("gebuhr Brutto ist falsch");}
-        if(!kurs.setMwstProzent(mwstProzent)){throw new IllegalArgumentException( "prozent MWST is Require");}
+        if (!kurs.setGebuehrBrutto(gebuehrBrutto)) {
+            throw new IllegalArgumentException("gebuhr Brutto ist falsch");
+        }
+        if (!kurs.setMwstProzent(mwstProzent)) {
+            throw new IllegalArgumentException("prozent MWST is Require");
+        }
 
         kurs.setKursBeschreibung(kursBeschreibung);
         kurs.setEndeDatum(startDatum, zyklus, anzahlTage);
         kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
         kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
-        kurs.setAktuelleTnZahl();if(!kurs.setFreiePlaetze()){throw new IllegalArgumentException( "Alles Voll");}
+        kurs.setAktuelleTnZahl();
+        if (!kurs.setFreiePlaetze()) {
+            throw new IllegalArgumentException("Alles Voll");
+        }
         kurs.setStatus();
         kursList.add(kurs);
         return kurs;
@@ -90,8 +97,6 @@ public class Kursverwaltung {
             person.setEmail(email);
             person.setTelefon(telefon);
             personList.add(person);
-
-
             return "Alles OK!";
         }
 

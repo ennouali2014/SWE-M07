@@ -76,7 +76,6 @@ public class KurseDetailsController {
 
         Kurs kurs = Kursverwaltung.model.addnewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
 
-
         LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
         endeDatum.setValue(datetolocal);
         aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
