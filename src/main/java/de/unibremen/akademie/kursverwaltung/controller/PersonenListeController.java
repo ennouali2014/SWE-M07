@@ -1,8 +1,9 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 
+import de.unibremen.akademie.kursverwaltung.domain.Anrede;
+import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -21,7 +23,7 @@ public class PersonenListeController implements Initializable {
 
 
     @FXML
-    private TableColumn<Person, String> anrede;
+    private TableColumn<Anrede, Enum> anrede;
 
     @FXML
     private TableColumn<Person, String> vorname;
@@ -44,7 +46,7 @@ public class PersonenListeController implements Initializable {
     private TableColumn<Person, String> interessent;
 
     @FXML
-    private TableColumn<Person,Boolean> alleCheckBox;
+    private TableColumn<Person, Boolean> alleCheckBox;
 
     @FXML
     private Button andernButton;
@@ -113,17 +115,29 @@ public class PersonenListeController implements Initializable {
         //table column methode
 
         //ObservableList<Person> list = FXCollections.observableArrayList(
-          //      new Person("Daniel","xx"),
+        //      new Person("Daniel","xx"),
         //      new Person("xx","xx"));
 
 
-        //name.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
-        //vorname.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
+      /*  anrede.setCellValueFactory(new PropertyValueFactory<Anrede, Enum >("anrede"));
+        name.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+        vorname.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
+
         //table.setItems(list);
 
-
+*/
     }
 
+    private List<Person> parsePersonList() {
+        Kursverwaltung kursverwaltung = new Kursverwaltung();
+        kursverwaltung.addPerson(Anrede.FRAU, "Daniela", "Sally", "Louis str.", "28355", "Bremen", "oz.t@mail.com", "0144441154");
+        kursverwaltung.addPerson(Anrede.HERR, "Daniel", "John", "Lili str.", "28000", "Bremen", "dan@mail.com", "04511121");
+        kursverwaltung.addPerson(Anrede.FRAU, "Georgia", "Cindy", " Mimosa str.", "28355", "Bremen", "mim.t@mail.com", "0144441154");
+        kursverwaltung.addPerson(Anrede.HERR, "Ludwig", "Johan", "Moon str.", "28000", "Bremen", "johan@mail.com", "04511121");
+
+
+        return kursverwaltung.getPersonList();
+    }
 }
 
 

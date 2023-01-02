@@ -9,6 +9,7 @@ public class Person {
     private String titel;
     private String name;
     private String vorname;
+
     private String strasse;
     private String plz;
     private String ort;
