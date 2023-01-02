@@ -78,7 +78,7 @@ public class Kursverwaltung {
         this.kursList = kursList;
     }
 
-    static public String addPerson(String name, String vorname, String strasse, String plz, String ort, String email) {
+    static public String addPerson(String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
         if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
             Person person = new Person();
             //person.setAnrede(anrede);
@@ -88,6 +88,7 @@ public class Kursverwaltung {
             person.setPlz(plz);
             person.setOrt(ort);
             person.setEmail(email);
+            person.setTelefon(telefon);
             personList.add(person);
 
 
