@@ -92,7 +92,7 @@ public class KurseDetailsController {
 
     }
 
-    /*public void abbrechen(ActionEvent actionEvent) {
+    public void abbrechen(ActionEvent actionEvent) {
 
         kursname.clear();
         kursname.clear();
@@ -105,7 +105,7 @@ public class KurseDetailsController {
         mtwsProzent.clear();
         kursBeschreibung.clear();
 
-    }*/
+    }
 
 
 
