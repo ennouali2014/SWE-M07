@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Kursverwaltung implements Serializable {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
-    public static List<Person> personList = new ArrayList<>();
-    private static List<Kurs> kursList = new ArrayList<>();
+    private final List<Person> personList = new ArrayList<>();
+    private final List<Kurs> kursList = new ArrayList<>();
 
     static public Kursverwaltung model = new Kursverwaltung();
 
@@ -73,16 +73,8 @@ public class Kursverwaltung implements Serializable {
         return personList;
     }
 
-    public void setPersonList(List<Person> personList) {
-        this.personList = personList;
-    }
-
     public List<Kurs> getKursList() {
         return kursList;
-    }
-
-    public void setKursList(List<Kurs> kursList) {
-        this.kursList = kursList;
     }
 
     static public String addPerson(Anrede anrede, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
@@ -96,7 +88,7 @@ public class Kursverwaltung implements Serializable {
             person.setOrt(ort);
             person.setEmail(email);
             person.setTelefon(telefon);
-            personList.add(person);
+            model.personList.add(person);
             return "Alles OK!";
         }
 
