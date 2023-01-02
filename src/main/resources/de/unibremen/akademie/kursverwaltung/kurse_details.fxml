@@ -70,7 +70,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="anzahlTage" text="AnzahlTage"/>
+                                <TextField fx:id="anzahlTage" promptText="AnzahlTage"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -80,7 +80,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="zyklus" text="1-7"/>
+                                <TextField fx:id="zyklus" promptText="1-7"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -90,7 +90,8 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <DatePicker fx:id="startDatum" prefWidth="150.0"/>
+                                <DatePicker fx:id="startDatum" onAction="#onDatePickerAction" prefWidth="150.0"
+                                            promptText="dd.MM.yyyy"/>
                             </children>
                         </VBox>
                         <VBox>
@@ -100,7 +101,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <DatePicker fx:id="endeDatum" prefWidth="165.0"/>
+                                <DatePicker fx:id="endeDatum" prefWidth="165.0" disable="true" editable="false"/>
                             </children>
                         </VBox>
                     </children>
@@ -174,7 +175,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="mtwsEuro"/>
+                                <TextField fx:id="mtwsEuro" disable="true" editable="false"/>
                             </children>
                             <opaqueInsets>
                                 <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
@@ -197,7 +198,7 @@
                                         <Font size="21.0"/>
                                     </font>
                                 </Label>
-                                <TextField fx:id="gebuehrNetto"/>
+                                <TextField fx:id="gebuehrNetto" disable="true" editable="false"/>
                             </children>
                         </VBox>
                     </children>
@@ -227,8 +228,8 @@
                 </VBox>
                 <HBox alignment="CENTER" spacing="50.0" style="-fx-border-color: blaclightgreyk;">
                     <children>
-                        <Button onAction="#speichern" mnemonicParsing="false" prefHeight="51.0" prefWidth="122.0"
-                                text="Speichern">
+                        <Button onAction="#apply" mnemonicParsing="false" prefHeight="51.0" prefWidth="122.0"
+                                text="Apply">
                             <font>
                                 <Font size="18.0"/>
                             </font>

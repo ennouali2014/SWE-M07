@@ -81,12 +81,13 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Button>
-                  <DatePicker fx:id="datePicker1" layoutX="392.0" layoutY="10.0" onAction="#s" style="-fx-border-color: #91c9a0;" />
+                  <DatePicker fx:id="datePicker1" layoutX="392.0" layoutY="10.0"  style="-fx-border-color: #91c9a0;" />
                     </children>
                 </HBox>
                 <TableView fx:id="tableView" prefHeight="331.0" prefWidth="1000.0">
                     <columns>
                         <TableColumn  fx:id="columnSelect" prefWidth="100.79998397827148" text="Alle">
+
                             <graphic>
                                 <CheckBox mnemonicParsing="false" />
                             </graphic>

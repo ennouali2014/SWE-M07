@@ -3,9 +3,11 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
+import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -23,6 +25,7 @@ public class KurseListeController {
     public TableColumn<Kurs,String> columnStatus;
     public TableColumn<Kurs,String> columnName;
     public TableView<Kurs> tableView;
+    public TableColumn columnSelect;
 
 
     @FXML
@@ -88,16 +91,14 @@ public class KurseListeController {
 
     }
 
-    @FXML
-    void s(ActionEvent event) {
-
-    }
     public void initialize() {
-        //tableView.setEditable(true);
+        tableView.setEditable(false);
 
-        //tableView.setPlaceholder(
-                //new Label("No rows to display"));
-
+        tableView.setPlaceholder(
+                new Label("No rows to display"));
+        columnSelect.setGraphic(new CheckBox());
+        //columnSelect.setCellValueFactory(cellData -> new ReadOnlyBooleanWrapper(cellData.getValue().getSelect()));
+        columnSelect.setCellFactory(CheckBoxTableCell.<Kurs>forTableColumn(columnSelect));
 
         columnName.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         columnName.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
@@ -105,19 +106,20 @@ public class KurseListeController {
         columnStatus.setCellValueFactory(new PropertyValueFactory<Kurs, String>("status"));
         columnStatus.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
-        columnAnzFreiPlz.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("anzFreiPlz"));
+        columnAnzFreiPlz.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("freiePlaetze"));
         columnAnzFreiPlz.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
 
-        columnAnzTeilnehm.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("anzTeilnehm"));
+        columnAnzTeilnehm.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("aktuelleTnZahl"));
         columnAnzTeilnehm.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
 
         columnStartDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("startDatum"));
         columnStartDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
 
-        columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("endDatum"));
+        columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("endeDatum"));
         columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
 
         tableView.getItems().setAll(parseKursList());
+        System.out.println(parseKursList().get(2).getStartDatum());
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableView.getSelectionModel();
         selectionModel.setSelectionMode(
@@ -127,10 +129,9 @@ public class KurseListeController {
         // parse and construct User datamodel list by looping your ResultSet rs
         // and return the list
         Kursverwaltung kursverwaltung= new Kursverwaltung();
-        kursverwaltung.addnewKurs("php",12,3,new Date(1672963200000L),12,2,150,19,"php backend");
-        kursverwaltung.addnewKurs("java",12,3,new Date(1672963200000L),12,2,150,19,"php backend");
-
-        kursverwaltung.addnewKurs("arduino",12,3,new Date(1672963200000L),12,2,150,19,"php backend");
+        kursverwaltung.addnewKurs("php",12,3,new Date(1672963200000L),2,12,150,19,"php backend");
+        kursverwaltung.addnewKurs("java",12,3,new Date(1672963200000L),2,22,150,19,"php backend");
+        kursverwaltung.addnewKurs("arduino",10,3,new Date(2569852800000L),3,22,150,19,"php backend");
 
         return kursverwaltung.getKursList();
     }

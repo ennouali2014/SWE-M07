@@ -11,32 +11,33 @@ public class Kursverwaltung {
     public static List<Person> personList = new ArrayList<>();
     private static List<Kurs> kursList = new ArrayList<>();
 
-    static Kursverwaltung model = new Kursverwaltung();
+    static public Kursverwaltung model = new Kursverwaltung();
 
     public Kursverwaltung() {
-        kursList = new SimpleListProperty<>(FXCollections.observableArrayList());
+
     }
 
-    public String addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int maxTnZahl, int minTnZahl,
+    public Kurs addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum,  int minTnZahl,int maxTnZahl,
                              double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
         Kurs kurs = new Kurs();
+        if(!kurs.setName(name)){throw new IllegalArgumentException("Name ist Falsch");}
+        if(!kurs.setAnzahlTage(anzahlTage)){ throw new IllegalArgumentException("minimum teilnahme ist falsch");}
+        if(!kurs.setZyklus(zyklus)){throw new IllegalArgumentException("zyklus is Require");}
+        if(!kurs.setStartDatum(startDatum)){throw new IllegalArgumentException(" Start Date is Require");}
+        if(!kurs.setMinTnZahl(minTnZahl)){throw new IllegalArgumentException("minimum teilnahme ist falsch");}
+        if(!kurs.setMaxTnZahl(maxTnZahl)){throw new IllegalArgumentException(" Max anzahl darf nicht weniger als Min anzahl der Teilnehmer");}
+
+        if(!kurs.setGebuehrBrutto(gebuehrBrutto)){throw new IllegalArgumentException("gebuhr Brutto ist falsch");}
+        if(!kurs.setMwstProzent(mwstProzent)){throw new IllegalArgumentException( "prozent MWST is Require");}
+
         kurs.setKursBeschreibung(kursBeschreibung);
-
-        if(!kurs.setName(name)){return "Name is Require";}
-        if(!kurs.setAnzahlTage(anzahlTage)){return "minimum teilnahme ist falsch";}
-        if(!kurs.setZyklus(zyklus)){return "zyklus is Require";}
-        if(!kurs.setStartDatum(startDatum)){return " Start Date is Require";}
-        if(!kurs.setMaxTnZahl(maxTnZahl)){return " Max anzahl darf nicht weniger als Min anzahl der Teilnehmer";};
-        if(!kurs.setMinTnZahl(minTnZahl)){return "minimum teilnahme ist falsch";}
-        if(!kurs.setGebuehrBrutto(gebuehrBrutto)){return "gebuhr Brutto ist falsch";}
-        if(!kurs.setMwstProzent(mwstProzent)){return "prozent MWST is Require";}
-
         kurs.setEndeDatum(startDatum, zyklus, anzahlTage);
         kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
         kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
-        kurs.setAktuelleTnZahl();
+        kurs.setAktuelleTnZahl();if(!kurs.setFreiePlaetze()){throw new IllegalArgumentException( "Alles Voll");}
+        kurs.setStatus();
         kursList.add(kurs);
-        return "OK";
+        return kurs;
 
     }
 
