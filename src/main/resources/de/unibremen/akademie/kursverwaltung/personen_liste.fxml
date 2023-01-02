@@ -54,11 +54,11 @@
                         <TableColumn minWidth="6.399993896484375" prefWidth="62.4000244140625" text="Anrede" />
                         <TableColumn prefWidth="118.39997863769531" text="Vorname" />
                         <TableColumn prefWidth="111.199951171875" text="Name" />
-                        <TableColumn prefWidth="78.4000244140625" text="bezahlt" />
-                        <TableColumn prefWidth="103.20001220703125" text="informiert" />
-                        <TableColumn prefWidth="113.60003662109375" text="Zertifikat" />
-                        <TableColumn prefWidth="116.0" text="Teilnehmer" />
-                        <TableColumn prefWidth="128.0" text="Interessent" />
+                        <TableColumn prefWidth="78.4000244140625" text="Strasse" />
+                        <TableColumn prefWidth="103.20001220703125" text="Plz" />
+                        <TableColumn prefWidth="113.60003662109375" text="Ort" />
+                        <TableColumn prefWidth="116.0" text="Email" />
+                        <TableColumn prefWidth="128.0" text="Telefon" />
                     </columns>
                 </TableView>
             </center>

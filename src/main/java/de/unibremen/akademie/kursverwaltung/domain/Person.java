@@ -100,8 +100,8 @@ public class Person {
         return telefon;
     }
 
-    public void setTelefon(SimpleStringProperty telefon) {
-        this.telefon = telefon;
+    public void setTelefon(String telefon) {
+        this.telefon =new SimpleStringProperty(telefon);
     }
 
     public List<Kurs> getKursInteressiert() {
@@ -157,6 +157,7 @@ public class Person {
                 ", plz='" + plz + '\'' +
                 ", ort='" + ort + '\'' +
                 ", email='" + email + '\'' +
+                ", telefon='" + telefon + '\'' +
                 '}';
     }
 }

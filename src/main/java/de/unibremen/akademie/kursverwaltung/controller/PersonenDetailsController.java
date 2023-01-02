@@ -21,7 +21,7 @@ public class PersonenDetailsController {
 
     @FXML
     public void onsaveclick() {
-        Kursverwaltung.addPerson(name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText());
+        Kursverwaltung.addPerson(name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(),telefon.getText());
         name.clear();
         vorname.clear();
         strasse.clear();
