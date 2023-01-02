@@ -17,12 +17,12 @@ public class Kursverwaltung {
     }
 
     public void load() throws IOException, ClassNotFoundException {
-        ObjectInputStream loadEinkaufsdaten = new ObjectInputStream(new BufferedInputStream(new FileInputStream(VERWALTUNGSDATEI)));
+        ObjectInputStream loadKursverwaltung = new ObjectInputStream(new BufferedInputStream(new FileInputStream(VERWALTUNGSDATEI)));
         //EinkaufsMap.einkaufsMap = (TreeMap<String, TreeMap<String, Integer>>) loadEinkaufsdaten.readObject();
     } //Klassenvariable (Attribut)
 
     public void save() throws IOException {
-        ObjectOutputStream saveEinkaufsdaten = new ObjectOutputStream(new FileOutputStream(VERWALTUNGSDATEI));
+        ObjectOutputStream saveKursverwaltung = new ObjectOutputStream(new FileOutputStream(VERWALTUNGSDATEI));
         //saveEinkaufsdaten.writeObject(EinkaufsMap.einkaufsMap);
     }
 

@@ -24,18 +24,10 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
         Kursverwaltung model = new Kursverwaltung();
         //model aus Datei laden
-        try {
-            model.load();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+
         //Application (GUI) starten
         launch();
         //model beim Beenden in Datei speichern
-        try {
-            model.save();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 }
