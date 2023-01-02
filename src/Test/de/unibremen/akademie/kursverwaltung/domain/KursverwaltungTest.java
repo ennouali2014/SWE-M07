@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class KursverwaltungTest {
-    Kursverwaltung kursverwaltung = new Kursverwaltung();
+    Kursverwaltung kursverwaltung = Kursverwaltung.model;// new Kursverwaltung();
     @Test
     void addnewKursTest() {
         kursverwaltung.addnewKurs("php",12,3,new Date(1672963200000L),12,2,150,19,"php backend");

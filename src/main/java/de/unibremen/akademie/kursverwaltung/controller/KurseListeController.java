@@ -3,7 +3,6 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
-import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -128,7 +127,7 @@ public class KurseListeController {
     private List<Kurs> parseKursList(){
         // parse and construct User datamodel list by looping your ResultSet rs
         // and return the list
-        Kursverwaltung kursverwaltung= new Kursverwaltung();
+        Kursverwaltung kursverwaltung = Kursverwaltung.model; // new Kursverwaltung();
         kursverwaltung.addnewKurs("php",12,3,new Date(1672963200000L),2,12,150,19,"php backend");
         kursverwaltung.addnewKurs("java",12,3,new Date(1672963200000L),2,22,150,19,"php backend");
         kursverwaltung.addnewKurs("arduino",10,3,new Date(2569852800000L),3,22,150,19,"php backend");

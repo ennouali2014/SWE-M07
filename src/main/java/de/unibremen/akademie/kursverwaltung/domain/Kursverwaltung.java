@@ -10,7 +10,7 @@ public class Kursverwaltung {
 
     static public Kursverwaltung model = new Kursverwaltung();
 
-    public Kursverwaltung() {
+    private Kursverwaltung() {
 
     }
 
