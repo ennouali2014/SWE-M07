@@ -34,6 +34,8 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/16"
@@ -295,12 +297,27 @@
                                                 <HBox alignment="CENTER" prefHeight="51.0" prefWidth="230.0"
                                                       spacing="20.0">
                                                     <children>
-                                                        <Button mnemonicParsing="false" text="nach oben">
+                                                        <Button mnemonicParsing="false">
                                                             <HBox.margin>
                                                                 <Insets/>
                                                             </HBox.margin>
+                                                            <graphic>
+                                                                <ImageView fitHeight="20.0" fitWidth="18.0">
+                                                                    <image>
+                                                                        <Image url="@images/pfeil-oben.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
                                                         </Button>
-                                                        <Button mnemonicParsing="false" text="nach unten"/>
+                                                        <Button mnemonicParsing="false">
+                                                            <graphic>
+                                                                <ImageView fitHeight="20.0" fitWidth="18.0">
+                                                                    <image>
+                                                                        <Image url="@images/pfeil-unten.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                        </Button>
                                                     </children>
                                                 </HBox>
                                                 <Label alignment="CENTER" contentDisplay="CENTER"
