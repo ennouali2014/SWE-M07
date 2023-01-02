@@ -7,6 +7,8 @@ import java.util.Objects;
 
 public class Person {
 
+    public List<Person> getPersonList;
+    public List<Person> personList;
     private Anrede anrede;
     private SimpleStringProperty titel;
     private SimpleStringProperty name;
@@ -20,7 +22,19 @@ public class Person {
     private List<Kurs> kursTeilnahme;
 
 
-    public Person() {
+
+
+   /* public Person(String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+    this.name = new SimpleStringProperty(name);
+    this.vorname = new SimpleStringProperty(vorname);
+    this.strasse = new SimpleStringProperty(strasse);
+    this.plz = new SimpleStringProperty(plz);
+    this.ort = new SimpleStringProperty(ort);
+    this.email = new SimpleStringProperty(email);
+    this.telefon = new SimpleStringProperty(telefon);
+    }*/
+    public  Person(){
+
     }
 
 
@@ -40,8 +54,8 @@ public class Person {
         this.titel = titel;
     }
 
-    public SimpleStringProperty getName() {
-        return name;
+    public String getName() {
+        return name.get();
     }
 
     public void setName(String name) {
@@ -50,8 +64,8 @@ public class Person {
         }
     }
 
-    public SimpleStringProperty getVorname() {
-        return vorname;
+    public String getVorname() {
+        return vorname.get();
     }
 
     public void setVorname(String vorname) {
@@ -60,32 +74,32 @@ public class Person {
         }
     }
 
-    public SimpleStringProperty getStrasse() {
-        return strasse;
+    public String getStrasse() {
+        return strasse.get();
     }
 
     public void setStrasse(String strasse) {
         this.strasse = new SimpleStringProperty(strasse);
     }
 
-    public SimpleStringProperty getPlz() {
-        return plz;
+    public String getPlz() {
+        return plz.get();
     }
 
     public void setPlz(String plz) {
         this.plz = new SimpleStringProperty(plz);
     }
 
-    public SimpleStringProperty getOrt() {
-        return ort;
+    public String getOrt() {
+        return ort.get();
     }
 
     public void setOrt(String ort) {
         this.ort = new SimpleStringProperty(ort);
     }
 
-    public SimpleStringProperty getEmail() {
-        return email;
+    public String getEmail() {
+        return email.get();
     }
 
     public void setEmail(String email) {
@@ -96,8 +110,8 @@ public class Person {
         }
     }
 
-    public SimpleStringProperty getTelefon() {
-        return telefon;
+    public String getTelefon() {
+        return telefon.get();
     }
 
     public void setTelefon(String telefon) {
@@ -159,5 +173,8 @@ public class Person {
                 ", email='" + email + '\'' +
                 ", telefon='" + telefon + '\'' +
                 '}';
+    }
+
+    public void addPerson(String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
     }
 }

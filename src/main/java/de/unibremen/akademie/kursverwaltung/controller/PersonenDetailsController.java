@@ -28,6 +28,7 @@ public class PersonenDetailsController {
         plz.clear();
         ort.clear();
         email.clear();
+        telefon.clear();
         System.out.println(Kursverwaltung.personList);
 
 
