@@ -40,7 +40,7 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
-        System.out.println(Kursverwaltung.personList);
+        System.out.println(Kursverwaltung.model.getPersonList());
 
 
     }

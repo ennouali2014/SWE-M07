@@ -82,6 +82,7 @@ public class KurseDetailsController {
         freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
         mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
         gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+
         for(Tab tabPaneKursListe :ContentKurseDetails.getTabPane().getTabs()){
             if(tabPaneKursListe.getText().equals("Kurse-Liste")){
                 tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
@@ -91,9 +92,22 @@ public class KurseDetailsController {
 
     }
 
-
     public void abbrechen(ActionEvent actionEvent) {
+
+        kursname.clear();
+        kursname.clear();
+        anzahlTage.clear();
+        zyklus.clear();
+        startDatum.setValue(null);
+        minTnZahl.clear();
+        maxTnZahl.clear();
+        gebuehrBrutto.clear();
+        mtwsProzent.clear();
+        kursBeschreibung.clear();
+
     }
+
+
 
     public void teilnehmerlist(ActionEvent actionEvent) {
     }

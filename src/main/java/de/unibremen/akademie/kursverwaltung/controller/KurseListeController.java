@@ -73,7 +73,13 @@ public class KurseListeController {
     @FXML
     void bearbeitenButtonAction(ActionEvent event) {
 
+        for (Tab tabPaneKursAnlegen : ContentKurseListe.getTabPane().getTabs()) {
+            if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
+                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+            }
+        }
     }
+
 
     @FXML
     void bisDatSelectDate(ActionEvent event) {
