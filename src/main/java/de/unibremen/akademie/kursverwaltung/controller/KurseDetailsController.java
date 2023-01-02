@@ -83,9 +83,12 @@ public class KurseDetailsController {
         freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
         mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
         gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
-        TabPane tabPaneKursListe=ContentKurseDetails.getTabPane();
-        (tabPaneKursListe.getTabs().get(3)).getTabPane().getSelectionModel().select(tabPaneKursListe.getTabs().get(3));
-        //System.out.println(Kursverwaltung.model.getKursList().size());
+        for(Tab tabPaneKursListe :ContentKurseDetails.getTabPane().getTabs()){
+            if(tabPaneKursListe.getText().equals("Kurse-Liste")){
+                tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
+            }
+
+        }
 
     }
 

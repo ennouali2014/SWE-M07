@@ -89,8 +89,12 @@ public class KurseListeController {
     @FXML
     void hinzufugenButtonAction(ActionEvent event) {
 
-        TabPane tabPaneKursAnlegen=ContentKurseListe.getTabPane();
-        (tabPaneKursAnlegen.getTabs().get(2)).getTabPane().getSelectionModel().select(tabPaneKursAnlegen.getTabs().get(2));
+        for(Tab tabPaneKursAnlegen :ContentKurseListe.getTabPane().getTabs()){
+            if(tabPaneKursAnlegen.getText().equals("Kurse-Details")){
+                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+            }
+
+    }
     }
 
     public void initialize() {
