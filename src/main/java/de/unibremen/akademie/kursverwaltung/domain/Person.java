@@ -1,20 +1,21 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.List;
 import java.util.Objects;
 
 public class Person {
 
     private Anrede anrede;
-    private String titel;
-    private String name;
-    private String vorname;
-
-    private String strasse;
-    private String plz;
-    private String ort;
-    private String email;
-    private String telefon;
+    private SimpleStringProperty titel;
+    private SimpleStringProperty name;
+    private SimpleStringProperty vorname;
+    private SimpleStringProperty strasse;
+    private SimpleStringProperty plz;
+    private SimpleStringProperty ort;
+    private SimpleStringProperty email;
+    private SimpleStringProperty telefon;
     private List<Kurs> kursInteressiert;
     private List<Kurs> kursTeilnahme;
 
@@ -31,77 +32,76 @@ public class Person {
         this.anrede = anrede;
     }
 
-    public String getTitel() {
+    public SimpleStringProperty getTitel() {
         return titel;
     }
 
-    public void setTitel(String titel) {
+    public void setTitel(SimpleStringProperty titel) {
         this.titel = titel;
     }
 
-    public String getName() {
+    public SimpleStringProperty getName() {
         return name;
     }
 
     public void setName(String name) {
         if (checkIsEmpty(name)) {
-            this.name = name;
+            this.name = new SimpleStringProperty(name);
         }
     }
 
-    public String getVorname() {
+    public SimpleStringProperty getVorname() {
         return vorname;
     }
 
     public void setVorname(String vorname) {
         if (checkIsEmpty(vorname)) {
-            this.vorname = vorname;
+            this.vorname = new SimpleStringProperty(vorname);
         }
     }
 
-    public String getStrasse() {
+    public SimpleStringProperty getStrasse() {
         return strasse;
     }
 
-    public String getPlz() {
+    public void setStrasse(String strasse) {
+        this.strasse = new SimpleStringProperty(strasse);
+    }
+
+    public SimpleStringProperty getPlz() {
         return plz;
     }
 
-    public String getOrt() {
+    public void setPlz(String plz) {
+        this.plz = new SimpleStringProperty(plz);
+    }
+
+    public SimpleStringProperty getOrt() {
         return ort;
     }
 
+    public void setOrt(String ort) {
+        this.ort = new SimpleStringProperty(ort);
+    }
 
-    public String getEmail() {
+    public SimpleStringProperty getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         if (checkValidEmail(email)) {
-            this.email = email;
+            this.email = new SimpleStringProperty(email);
         } else {
             System.out.println("Email ist falsch!");
         }
     }
 
-    public String getTelefon() {
+    public SimpleStringProperty getTelefon() {
         return telefon;
     }
 
-    public void setTelefon(String telefon) {
+    public void setTelefon(SimpleStringProperty telefon) {
         this.telefon = telefon;
-    }
-
-    public void setStrasse(String strasse) {
-        this.strasse = strasse;
-    }
-
-    public void setPlz(String plz) {
-        this.plz = plz;
-    }
-
-    public void setOrt(String ort) {
-        this.ort = ort;
     }
 
     public List<Kurs> getKursInteressiert() {
@@ -146,5 +146,17 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(name, vorname, email);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", vorname='" + vorname + '\'' +
+                ", strasse='" + strasse + '\'' +
+                ", plz='" + plz + '\'' +
+                ", ort='" + ort + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

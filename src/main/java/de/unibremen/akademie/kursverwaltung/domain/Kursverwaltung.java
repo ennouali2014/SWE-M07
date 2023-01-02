@@ -1,11 +1,13 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Kursverwaltung {
-    private static List<Person> personList = new ArrayList<>();
+    private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/kursverwaltung.objekt";
+    public static List<Person> personList = new ArrayList<>();
     private static List<Kurs> kursList = new ArrayList<>();
 
     static public Kursverwaltung model = new Kursverwaltung();
@@ -14,15 +16,37 @@ public class Kursverwaltung {
 
     }
 
-    public Kurs addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum,  int minTnZahl,int maxTnZahl,
-                             double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
+    public void load() throws IOException, ClassNotFoundException {
+        ObjectInputStream loadKursverwaltung = new ObjectInputStream(new BufferedInputStream(new FileInputStream(VERWALTUNGSDATEI)));
+        //EinkaufsMap.einkaufsMap = (TreeMap<String, TreeMap<String, Integer>>) loadEinkaufsdaten.readObject();
+    } //Klassenvariable (Attribut)
+
+    public void save() throws IOException {
+        ObjectOutputStream saveKursverwaltung = new ObjectOutputStream(new FileOutputStream(VERWALTUNGSDATEI));
+        //saveEinkaufsdaten.writeObject(EinkaufsMap.einkaufsMap);
+    }
+
+    public Kurs addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
+                           double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
         Kurs kurs = new Kurs();
-        if(!kurs.setName(name)){throw new IllegalArgumentException("Name ist Falsch");}
-        if(!kurs.setAnzahlTage(anzahlTage)){ throw new IllegalArgumentException("minimum teilnahme ist falsch");}
-        if(!kurs.setZyklus(zyklus)){throw new IllegalArgumentException("zyklus is Require");}
-        if(!kurs.setStartDatum(startDatum)){throw new IllegalArgumentException(" Start Date is Require");}
-        if(!kurs.setMinTnZahl(minTnZahl)){throw new IllegalArgumentException("minimum teilnahme ist falsch");}
-        if(!kurs.setMaxTnZahl(maxTnZahl)){throw new IllegalArgumentException(" Max anzahl darf nicht weniger als Min anzahl der Teilnehmer");}
+        if (!kurs.setName(name)) {
+            throw new IllegalArgumentException("Name ist Falsch");
+        }
+        if (!kurs.setAnzahlTage(anzahlTage)) {
+            throw new IllegalArgumentException("minimum teilnahme ist falsch");
+        }
+        if (!kurs.setZyklus(zyklus)) {
+            throw new IllegalArgumentException("zyklus is Require");
+        }
+        if (!kurs.setStartDatum(startDatum)) {
+            throw new IllegalArgumentException(" Start Date is Require");
+        }
+        if (!kurs.setMinTnZahl(minTnZahl)) {
+            throw new IllegalArgumentException("minimum teilnahme ist falsch");
+        }
+        if (!kurs.setMaxTnZahl(maxTnZahl)) {
+            throw new IllegalArgumentException(" Max anzahl darf nicht weniger als Min anzahl der Teilnehmer");
+        }
 
         if(!kurs.setGebuehrBrutto(gebuehrBrutto)){throw new IllegalArgumentException("gebuhr Brutto ist falsch");}
         if(!kurs.setMwstProzent(mwstProzent)){throw new IllegalArgumentException( "prozent MWST is Require");}
@@ -54,10 +78,10 @@ public class Kursverwaltung {
         this.kursList = kursList;
     }
 
-    static public String addPerson(Anrede anrede, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+    static public String addPerson(String name, String vorname, String strasse, String plz, String ort, String email) {
         if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
             Person person = new Person();
-            person.setAnrede(anrede);
+            //person.setAnrede(anrede);
             person.setVorname(vorname);
             person.setName(name);
             person.setStrasse(strasse);
