@@ -16,15 +16,15 @@ public class Kursverwaltung {
 
     }
 
-    public void load() throws IOException, ClassNotFoundException {
+    /*public void load() throws IOException, ClassNotFoundException {
         ObjectInputStream loadKursverwaltung = new ObjectInputStream(new BufferedInputStream(new FileInputStream(VERWALTUNGSDATEI)));
         //EinkaufsMap.einkaufsMap = (TreeMap<String, TreeMap<String, Integer>>) loadEinkaufsdaten.readObject();
-    } //Klassenvariable (Attribut)
+    }*/ //Klassenvariable (Attribut)
 
-    public void save() throws IOException {
+    /*public void save() throws IOException {
         ObjectOutputStream saveKursverwaltung = new ObjectOutputStream(new FileOutputStream(VERWALTUNGSDATEI));
         //saveEinkaufsdaten.writeObject(EinkaufsMap.einkaufsMap);
-    }
+    }*/
 
     public Kurs addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
                            double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
