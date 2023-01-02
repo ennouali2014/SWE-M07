@@ -92,19 +92,20 @@ public class KurseDetailsController {
 
     }
 
-    public void abbrechen(ActionEvent actionEvent) {
+    /*public void abbrechen(ActionEvent actionEvent) {
 
-        kursname.setText(null);
-        anzahlTage.setText(null);
-        zyklus.setText(null);
+        kursname.clear();
+        kursname.clear();
+        anzahlTage.clear();
+        zyklus.clear();
         startDatum.setValue(null);
-        minTnZahl.setText(null);
-        maxTnZahl.setText(null);
-        gebuehrBrutto.setText(null);
-        mtwsProzent.setText(null);
-        kursBeschreibung.setText(null);
+        minTnZahl.clear();
+        maxTnZahl.clear();
+        gebuehrBrutto.clear();
+        mtwsProzent.clear();
+        kursBeschreibung.clear();
 
-    }
+    }*/
 
 
 
