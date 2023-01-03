@@ -1,5 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.io.Externalizable;
@@ -41,8 +42,8 @@ public class Person implements Externalizable {
         return titel.get();
     }
 
-    public void setTitel(SimpleStringProperty titel) {
-        this.titel = titel;
+    public void setTitel(String titel) {
+        this.titel = new ReadOnlyStringWrapper(titel);
     }
 
     public String getName() {
@@ -157,6 +158,7 @@ public class Person implements Externalizable {
     public String toString() {
         return "Person{" +
                 "anrede='" + anrede + '\'' +
+                "titel='" + titel + '\'' +
                 "name='" + name + '\'' +
                 ", vorname='" + vorname + '\'' +
                 ", strasse='" + strasse + '\'' +
