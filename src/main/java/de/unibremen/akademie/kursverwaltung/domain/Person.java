@@ -1,5 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.List;
@@ -36,8 +37,8 @@ public class Person {
         return titel;
     }
 
-    public void setTitel(SimpleStringProperty titel) {
-        this.titel = titel;
+    public void setTitel(String titel) {
+        this.titel = new ReadOnlyStringWrapper(titel);
     }
 
     public SimpleStringProperty getName() {
@@ -152,6 +153,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "anrede='" + anrede + '\'' +
+                "titel='" + titel + '\'' +
                 "name='" + name + '\'' +
                 ", vorname='" + vorname + '\'' +
                 ", strasse='" + strasse + '\'' +

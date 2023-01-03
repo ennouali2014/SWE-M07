@@ -31,8 +31,15 @@ public class PersonenDetailsController {
 
     @FXML
     public void onsaveclick() {
+        int count = 0;
 
         Kursverwaltung.addPerson((Anrede) anrede.getValue(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+        count = Kursverwaltung.model.getPersonList().size();
+        if (titel.getText() != null) {
+            Kursverwaltung.model.getPersonList().get(count - 1).setTitel(titel.getText());
+
+        }
+
         name.clear();
         vorname.clear();
         strasse.clear();

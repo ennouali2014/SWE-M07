@@ -284,7 +284,7 @@
                                               spacing="20.0">
                                             <children>
                                                 <Label alignment="CENTER" contentDisplay="CENTER"
-                                                       text="Teilnehmerliste">
+                                                       text="KursTeilnahme">
                                                     <font>
                                                         <Font size="20.0"/>
                                                     </font>
@@ -321,7 +321,7 @@
                                                     </children>
                                                 </HBox>
                                                 <Label alignment="CENTER" contentDisplay="CENTER"
-                                                       text="Interesantenliste">
+                                                       text="KursInteressiert">
                                                     <font>
                                                         <Font size="20.0"/>
                                                     </font>
