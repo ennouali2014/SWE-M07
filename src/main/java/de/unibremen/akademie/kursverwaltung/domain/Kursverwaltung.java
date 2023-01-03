@@ -32,13 +32,13 @@ public class Kursverwaltung {
             kursList.addAll((ArrayList<Kurs>) input.readObject());
             input.close();
         } catch (FileNotFoundException e) {
-            System.err.print("Cannot find data file for reading: ");
+            System.err.print("Die Datei zum Lesen der Daten kann nicht gefunden werden! Fehlermeldung: ");
             System.err.println(e.getMessage());
         } catch (IOException e) {
-            System.err.print("Cannot read from data file: ");
+            System.err.print("Die Daten können nicht aus der Datei gelesen werden!  Fehlermeldung: ");
             System.err.println(e.getMessage());
         } catch (ClassNotFoundException e) {
-            System.err.print("Wrong class in data file: ");
+            System.err.print("Falsche Klasse in der Datei! Fehlermeldung: ");
             System.err.println(e.getMessage());
         }
     }
@@ -52,11 +52,11 @@ public class Kursverwaltung {
             output.writeObject(new ArrayList<Kurs>(kursList));
             output.close();
         } catch (FileNotFoundException e) {
-            System.err.print("Cannot create data file for writing:");
+            System.err.print("Die Datei zum Schreiben der Daten kann nicht erstellt werden! Fehlermeldung: ");
             System.err.println(e.getMessage());
 
         } catch (IOException e) {
-            System.err.print("Cannot write data to data file:");
+            System.err.print("Die Daten können nicht in die Datei gespeichert werden!  Fehlermeldung: ");
             System.err.println(e.getMessage());
         }
     }
