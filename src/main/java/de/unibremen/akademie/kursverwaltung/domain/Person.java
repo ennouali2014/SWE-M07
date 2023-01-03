@@ -7,8 +7,6 @@ import java.util.Objects;
 
 public class Person {
 
-    public List<Person> getPersonList;
-    public List<Person> personList;
     private Anrede anrede;
     private SimpleStringProperty titel;
     private SimpleStringProperty name;
@@ -22,17 +20,6 @@ public class Person {
     private List<Kurs> kursTeilnahme;
 
 
-
-
-   /* public Person(String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
-    this.name = new SimpleStringProperty(name);
-    this.vorname = new SimpleStringProperty(vorname);
-    this.strasse = new SimpleStringProperty(strasse);
-    this.plz = new SimpleStringProperty(plz);
-    this.ort = new SimpleStringProperty(ort);
-    this.email = new SimpleStringProperty(email);
-    this.telefon = new SimpleStringProperty(telefon);
-    }*/
     public  Person(){
 
     }
@@ -46,8 +33,8 @@ public class Person {
         this.anrede = anrede;
     }
 
-    public SimpleStringProperty getTitel() {
-        return titel;
+    public String getTitel() {
+        return titel.get();
     }
 
     public void setTitel(SimpleStringProperty titel) {
@@ -175,6 +162,5 @@ public class Person {
                 '}';
     }
 
-    public void addPerson(String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
-    }
+
 }
