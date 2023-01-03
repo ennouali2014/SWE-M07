@@ -1,5 +1,8 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,7 +11,7 @@ import java.util.List;
 public class Kursverwaltung implements Serializable {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
     private final List<Person> personList = new ArrayList<>();
-    private final List<Kurs> kursList = new ArrayList<>();
+    private final ObservableList<Kurs> kursList = FXCollections.observableArrayList();
 
     static public Kursverwaltung model = new Kursverwaltung();
 

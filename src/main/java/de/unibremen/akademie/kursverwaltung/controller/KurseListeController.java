@@ -3,6 +3,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -130,12 +131,14 @@ public class KurseListeController {
         columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("endeDatum"));
         columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
 
-        tableView.getItems().setAll(parseKursList());
+        tableView.setItems((ObservableList<Kurs>) Kursverwaltung.model.getKursList());
         //System.out.println(parseKursList().get(2).getStartDatum());
-        TableView.TableViewSelectionModel<Kurs> selectionModel =
-                tableView.getSelectionModel();
-        selectionModel.setSelectionMode(
-                SelectionMode.MULTIPLE);
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                int number = tableView.getSelectionModel().getSelectedItems().size();
+            }
+        });
+
     }
     private List<Kurs> parseKursList(){
         // parse and construct User datamodel list by looping your ResultSet rs
