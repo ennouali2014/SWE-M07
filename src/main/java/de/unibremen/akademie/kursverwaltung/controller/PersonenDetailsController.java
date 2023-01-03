@@ -32,7 +32,7 @@ public class PersonenDetailsController {
     @FXML
     public void onsaveclick() {
 
-        Kursverwaltung.addPerson((Anrede) anrede.getValue(), titel.getText(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+        Kursverwaltung.model.addPerson((Anrede) anrede.getValue(), titel.getText(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
         titel.clear();
         name.clear();
         vorname.clear();

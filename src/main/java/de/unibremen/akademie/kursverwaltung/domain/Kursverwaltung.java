@@ -112,9 +112,10 @@ public class Kursverwaltung {
         return kursList;
     }
 
-    public static String addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+    public Person addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+        Person person = new Person();
         if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
-            Person person = new Person();
+
             person.setAnrede(anrede);
             if (titel == null) {
                 titel = "";
@@ -128,10 +129,9 @@ public class Kursverwaltung {
             person.setEmail(email);
             person.setTelefon(telefon);
             model.personList.add(person);
-            return "Alles OK!";
+            return person;
         }
-
-        return "Fehler! Daten wurden nicht gespeichert!";
+        return person;
     }
 
 }
