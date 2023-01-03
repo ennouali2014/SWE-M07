@@ -2,10 +2,14 @@ package de.unibremen.akademie.kursverwaltung.domain;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.List;
 import java.util.Objects;
 
-public class Person {
+public class Person implements Externalizable {
 
     private Anrede anrede;
     private SimpleStringProperty titel;
@@ -164,4 +168,28 @@ public class Person {
     }
 
 
+    @Override
+    public void writeExternal(ObjectOutput stream) throws IOException {
+        stream.writeUTF(getName());
+        stream.writeUTF(getVorname());
+        stream.writeUTF(getStrasse());
+        stream.writeUTF(getPlz());
+        stream.writeUTF(getOrt());
+        stream.writeUTF(getEmail());
+        stream.writeUTF(getTelefon());
+        System.out.println(this);
+
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        setName(in.readUTF());
+        setVorname(in.readUTF());
+        setStrasse(in.readUTF());
+        setPlz(in.readUTF());
+        setOrt(in.readUTF());
+        setEmail(in.readUTF());
+        setTelefon(in.readUTF());
+
+    }
 }

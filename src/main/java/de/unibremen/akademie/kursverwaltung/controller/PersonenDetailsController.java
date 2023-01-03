@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 
 public class PersonenDetailsController {
     @FXML
-    public TextField anrede;
+    //public TextField anrede;
     public TextField titel;
     public TextField name;
     public TextField vorname;
