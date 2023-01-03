@@ -112,10 +112,14 @@ public class Kursverwaltung {
         return kursList;
     }
 
-    static public String addPerson(Anrede anrede, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+    public static String addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
         if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
             Person person = new Person();
             person.setAnrede(anrede);
+            if (titel == null) {
+                titel = "";
+            }
+            person.setTitel(titel);
             person.setVorname(vorname);
             person.setName(name);
             person.setStrasse(strasse);
