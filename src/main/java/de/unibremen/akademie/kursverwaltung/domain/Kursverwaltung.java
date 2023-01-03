@@ -4,10 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Kursverwaltung implements Serializable {
+public class Kursverwaltung {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
 
     static final ObservableList<Person> personList =
@@ -23,13 +24,41 @@ public class Kursverwaltung implements Serializable {
     }
 
     public void load() throws IOException, ClassNotFoundException {
-        ObjectInputStream loadKursverwaltung = new ObjectInputStream(new BufferedInputStream(new FileInputStream(VERWALTUNGSDATEI)));
-        model = (Kursverwaltung) loadKursverwaltung.readObject();
+        try {
+            FileInputStream infile = new FileInputStream(VERWALTUNGSDATEI);
+            ObjectInputStream input = new ObjectInputStream(infile);
+            // ObservableList is not Serializable. We have to work around
+            personList.addAll((ArrayList<Person>) input.readObject());
+            kursList.addAll((ArrayList<Kurs>) input.readObject());
+            input.close();
+        } catch (FileNotFoundException e) {
+            System.err.print("Cannot find data file for reading: ");
+            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.print("Cannot read from data file: ");
+            System.err.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.err.print("Wrong class in data file: ");
+            System.err.println(e.getMessage());
+        }
     }
 
     public void save() throws IOException {
-        ObjectOutputStream saveKursverwaltung = new ObjectOutputStream(new FileOutputStream(VERWALTUNGSDATEI));
-        saveKursverwaltung.writeObject(model);
+        try {
+            FileOutputStream outfile = new FileOutputStream(VERWALTUNGSDATEI);
+            ObjectOutputStream output = new ObjectOutputStream(outfile);
+            // ObservableList is not Serializable. We have to work around
+            output.writeObject(new ArrayList<Person>(personList));
+            output.writeObject(new ArrayList<Kurs>(kursList));
+            output.close();
+        } catch (FileNotFoundException e) {
+            System.err.print("Cannot create data file for writing:");
+            System.err.println(e.getMessage());
+
+        } catch (IOException e) {
+            System.err.print("Cannot write data to data file:");
+            System.err.println(e.getMessage());
+        }
     }
 
     public Kurs addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
@@ -100,6 +129,5 @@ public class Kursverwaltung implements Serializable {
 
         return "Fehler! Daten wurden nicht gespeichert!";
     }
-
 
 }
