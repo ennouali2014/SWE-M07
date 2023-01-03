@@ -1,11 +1,16 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.List;
 import java.util.Objects;
 
-public class Person {
+public class Person implements Externalizable {
 
     private Anrede anrede;
     private SimpleStringProperty titel;
@@ -20,7 +25,8 @@ public class Person {
     private List<Kurs> kursTeilnahme;
 
 
-    public Person() {
+    public  Person(){
+
     }
 
 
@@ -32,16 +38,16 @@ public class Person {
         this.anrede = anrede;
     }
 
-    public SimpleStringProperty getTitel() {
-        return titel;
+    public String getTitel() {
+        return titel.get();
     }
 
-    public void setTitel(SimpleStringProperty titel) {
-        this.titel = titel;
+    public void setTitel(String titel) {
+        this.titel = new ReadOnlyStringWrapper(titel);
     }
 
-    public SimpleStringProperty getName() {
-        return name;
+    public String getName() {
+        return name.get();
     }
 
     public void setName(String name) {
@@ -50,8 +56,8 @@ public class Person {
         }
     }
 
-    public SimpleStringProperty getVorname() {
-        return vorname;
+    public String getVorname() {
+        return vorname.get();
     }
 
     public void setVorname(String vorname) {
@@ -60,32 +66,32 @@ public class Person {
         }
     }
 
-    public SimpleStringProperty getStrasse() {
-        return strasse;
+    public String getStrasse() {
+        return strasse.get();
     }
 
     public void setStrasse(String strasse) {
         this.strasse = new SimpleStringProperty(strasse);
     }
 
-    public SimpleStringProperty getPlz() {
-        return plz;
+    public String getPlz() {
+        return plz.get();
     }
 
     public void setPlz(String plz) {
         this.plz = new SimpleStringProperty(plz);
     }
 
-    public SimpleStringProperty getOrt() {
-        return ort;
+    public String getOrt() {
+        return ort.get();
     }
 
     public void setOrt(String ort) {
         this.ort = new SimpleStringProperty(ort);
     }
 
-    public SimpleStringProperty getEmail() {
-        return email;
+    public String getEmail() {
+        return email.get();
     }
 
     public void setEmail(String email) {
@@ -96,8 +102,8 @@ public class Person {
         }
     }
 
-    public SimpleStringProperty getTelefon() {
-        return telefon;
+    public String getTelefon() {
+        return telefon.get();
     }
 
     public void setTelefon(String telefon) {
@@ -152,6 +158,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "anrede='" + anrede + '\'' +
+                "titel='" + titel + '\'' +
                 "name='" + name + '\'' +
                 ", vorname='" + vorname + '\'' +
                 ", strasse='" + strasse + '\'' +
@@ -160,5 +167,31 @@ public class Person {
                 ", email='" + email + '\'' +
                 ", telefon='" + telefon + '\'' +
                 '}';
+    }
+
+
+    @Override
+    public void writeExternal(ObjectOutput stream) throws IOException {
+        stream.writeUTF(getName());
+        stream.writeUTF(getVorname());
+        stream.writeUTF(getStrasse());
+        stream.writeUTF(getPlz());
+        stream.writeUTF(getOrt());
+        stream.writeUTF(getEmail());
+        stream.writeUTF(getTelefon());
+        System.out.println(this);
+
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        setName(in.readUTF());
+        setVorname(in.readUTF());
+        setStrasse(in.readUTF());
+        setPlz(in.readUTF());
+        setOrt(in.readUTF());
+        setEmail(in.readUTF());
+        setTelefon(in.readUTF());
+
     }
 }

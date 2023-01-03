@@ -4,12 +4,12 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Kurs implements Serializable {
+public class Kurs implements Externalizable {
 
     private SimpleStringProperty name;
     private SimpleIntegerProperty anzahlTage;
@@ -286,16 +286,73 @@ public class Kurs implements Serializable {
             if (this.status == null) {
                 this.status = new SimpleStringProperty("geendet");
             } else {
-                this.kursBeschreibung.set("Aktiv");
+                this.status.set("Aktiv");
             }
         } else {
             if (this.status == null) {
                 this.status = new SimpleStringProperty("Aktiv");
             } else {
-                this.kursBeschreibung.set("geendet");
+                this.status.set("geendet");
             }
         }
     }
 
 
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeUTF(getName());
+        out.writeUTF(getKursBeschreibung());
+        out.writeUTF(getStatus());
+        out.writeDouble(getGebuehrNetto());
+        out.writeDouble(getGebuehrBrutto());
+        out.writeDouble(getMwstEuro());
+        out.writeDouble(getMwstProzent());
+        out.writeInt(getFreiePlaetze());
+        out.writeInt(getAktuelleTnZahl());
+        out.writeInt(getZyklus());
+        out.writeInt(getAnzahlTage());
+        out.writeInt(getMaxTnZahl());
+        out.writeInt(getMinTnZahl());
+        System.out.println(this);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        //set(stream.readBoolean());
+        setName(in.readUTF());
+        setKursBeschreibung(in.readUTF());
+        setMwstEuro(in.readDouble(),in.readDouble());
+        setMwstProzent(in.readDouble());
+        setMinTnZahl(in.readInt());
+        setMaxTnZahl(in.readInt());
+        setGebuehrBrutto(in.readDouble());
+        setZyklus(in.readInt());
+        setAnzahlTage(in.readInt());
+        setStartDatum((Date) in.readObject());
+        setEndeDatum((Date) in.readObject(),in.readInt(),in.readInt());
+        setGebuehrNetto(in.readDouble(),in.readDouble());
+    }
+
+    @Override
+    public String toString() {
+        return "Kurs{" +
+                "name=" + name.get() +
+                ", anzahlTage=" + anzahlTage.get() +
+                ", zyklus=" + zyklus.get() +
+                ", startDatum=" + startDatum.getTime() +
+                ", endeDatum=" + endeDatum.getTime() +
+                ", aktuelleTnZahl=" + aktuelleTnZahl.get() +
+                ", minTnZahl=" + minTnZahl.get() +
+                ", maxTnZahl=" + maxTnZahl.get() +
+                ", freiePlaetze=" + freiePlaetze.get() +
+                ", gebuehrBrutto=" + gebuehrBrutto.get() +
+                ", gebuehrNetto=" + gebuehrNetto.get() +
+                ", mwstEuro=" + mwstEuro.get() +
+                ", mwstProzent=" + mwstProzent.get() +
+                ", kursBeschreibung=" + kursBeschreibung.get() +
+                ", status=" + status.get() +
+                ", interessentenListe=" + interessentenListe +
+                ", teilnehmerListe=" + teilnehmerListe +
+                '}';
+    }
 }
