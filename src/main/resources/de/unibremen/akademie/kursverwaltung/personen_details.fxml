@@ -34,6 +34,8 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/16"
@@ -162,7 +164,7 @@
                                         <VBox prefHeight="675.0" prefWidth="350.0"
                                               style="-fx-background-color: lightgrey;">
                                             <children>
-                                                <ChoiceBox maxWidth="250.0" prefWidth="150.0">
+                                                <ChoiceBox fx:id="anrede" maxWidth="250.0" prefWidth="150.0">
                                                     <VBox.margin>
                                                         <Insets bottom="10.0" left="15.0" right="5.0" top="70.0"/>
                                                     </VBox.margin>
@@ -295,12 +297,27 @@
                                                 <HBox alignment="CENTER" prefHeight="51.0" prefWidth="230.0"
                                                       spacing="20.0">
                                                     <children>
-                                                        <Button mnemonicParsing="false" text="nach oben">
+                                                        <Button mnemonicParsing="false">
                                                             <HBox.margin>
                                                                 <Insets/>
                                                             </HBox.margin>
+                                                            <graphic>
+                                                                <ImageView fitHeight="20.0" fitWidth="18.0">
+                                                                    <image>
+                                                                        <Image url="@images/pfeil-oben.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
                                                         </Button>
-                                                        <Button mnemonicParsing="false" text="nach unten"/>
+                                                        <Button mnemonicParsing="false">
+                                                            <graphic>
+                                                                <ImageView fitHeight="20.0" fitWidth="18.0">
+                                                                    <image>
+                                                                        <Image url="@images/pfeil-unten.png"/>
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                        </Button>
                                                     </children>
                                                 </HBox>
                                                 <Label alignment="CENTER" contentDisplay="CENTER"

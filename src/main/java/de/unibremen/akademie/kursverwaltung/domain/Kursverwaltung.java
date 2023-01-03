@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Kursverwaltung {
-    private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/kursverwaltung.objekt";
-    public static List<Person> personList = new ArrayList<>();
-    private static List<Kurs> kursList = new ArrayList<>();
+public class Kursverwaltung implements Serializable {
+    private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
+    private final List<Person> personList = new ArrayList<>();
+    private final List<Kurs> kursList = new ArrayList<>();
 
     static public Kursverwaltung model = new Kursverwaltung();
 
@@ -18,12 +18,12 @@ public class Kursverwaltung {
 
     public void load() throws IOException, ClassNotFoundException {
         ObjectInputStream loadKursverwaltung = new ObjectInputStream(new BufferedInputStream(new FileInputStream(VERWALTUNGSDATEI)));
-        //EinkaufsMap.einkaufsMap = (TreeMap<String, TreeMap<String, Integer>>) loadEinkaufsdaten.readObject();
-    } //Klassenvariable (Attribut)
+        model = (Kursverwaltung) loadKursverwaltung.readObject();
+    }
 
     public void save() throws IOException {
         ObjectOutputStream saveKursverwaltung = new ObjectOutputStream(new FileOutputStream(VERWALTUNGSDATEI));
-        //saveEinkaufsdaten.writeObject(EinkaufsMap.einkaufsMap);
+        saveKursverwaltung.writeObject(model);
     }
 
     public Kurs addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
@@ -48,14 +48,21 @@ public class Kursverwaltung {
             throw new IllegalArgumentException(" Max anzahl darf nicht weniger als Min anzahl der Teilnehmer");
         }
 
-        if(!kurs.setGebuehrBrutto(gebuehrBrutto)){throw new IllegalArgumentException("gebuhr Brutto ist falsch");}
-        if(!kurs.setMwstProzent(mwstProzent)){throw new IllegalArgumentException( "prozent MWST is Require");}
+        if (!kurs.setGebuehrBrutto(gebuehrBrutto)) {
+            throw new IllegalArgumentException("gebuhr Brutto ist falsch");
+        }
+        if (!kurs.setMwstProzent(mwstProzent)) {
+            throw new IllegalArgumentException("prozent MWST is Require");
+        }
 
         kurs.setKursBeschreibung(kursBeschreibung);
         kurs.setEndeDatum(startDatum, zyklus, anzahlTage);
         kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
         kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
-        kurs.setAktuelleTnZahl();if(!kurs.setFreiePlaetze()){throw new IllegalArgumentException( "Alles Voll");}
+        kurs.setAktuelleTnZahl();
+        if (!kurs.setFreiePlaetze()) {
+            throw new IllegalArgumentException("Alles Voll");
+        }
         kurs.setStatus();
         kursList.add(kurs);
         return kurs;
@@ -66,22 +73,14 @@ public class Kursverwaltung {
         return personList;
     }
 
-    public void setPersonList(List<Person> personList) {
-        this.personList = personList;
-    }
-
     public List<Kurs> getKursList() {
         return kursList;
     }
 
-    public void setKursList(List<Kurs> kursList) {
-        this.kursList = kursList;
-    }
-
-    static public String addPerson(String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+    static public String addPerson(Anrede anrede, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
         if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
             Person person = new Person();
-            //person.setAnrede(anrede);
+            person.setAnrede(anrede);
             person.setVorname(vorname);
             person.setName(name);
             person.setStrasse(strasse);
@@ -89,9 +88,7 @@ public class Kursverwaltung {
             person.setOrt(ort);
             person.setEmail(email);
             person.setTelefon(telefon);
-            personList.add(person);
-
-
+            model.personList.add(person);
             return "Alles OK!";
         }
 

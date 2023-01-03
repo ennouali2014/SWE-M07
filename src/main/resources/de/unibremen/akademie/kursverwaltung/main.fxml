@@ -15,19 +15,13 @@
         </Tab>
         <Tab text="Personen-Liste">
             <content>
-                <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml"/>
+                <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml" />
             </content>
         </Tab>
-        <Tab text="Kurse-Details">
-            <content>
-                <fx:include fx:id="ContentKurseDetails" source="kurse_details.fxml"/>
-            </content>
-        </Tab>
-        <Tab text="Kurse-Liste">
-            <content>
-                <fx:include fx:id="ContentKurseListe" source="kurse_liste.fxml"/>
-            </content>
-        </Tab>
+
+        <fx:include fx:id="ContentKurseDetails" source="kurse_details.fxml"/>
+        <fx:include fx:id="ContentKurseListe" source="kurse_liste.fxml"/>
+
         <Tab text="Texte-Details">
             <content>
                 <fx:include fx:id="ContentTexteDetails" source="texte_details.fxml"/>

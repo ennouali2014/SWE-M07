@@ -4,10 +4,7 @@ import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -15,6 +12,7 @@ import java.util.Date;
 
 public class KurseDetailsController {
 
+    public Tab ContentKurseDetails;
     private Label name_lbl;
     private Label anzahlTage_lbl;
     private Label zyklus_lbl;
@@ -59,6 +57,7 @@ public class KurseDetailsController {
     private TextArea kursBeschreibung;
 
 
+
     public void apply(ActionEvent actionEvent) {
         //do it start datum ist nur ein beispie. man muss datepicker anwenden recherchieren
         //do it endeDatum, aktuelleTeilnehmeranzahl, freiePlätze, mwst und gebühr netto muss werden aufgeruft.
@@ -77,18 +76,38 @@ public class KurseDetailsController {
 
         Kurs kurs = Kursverwaltung.model.addnewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
 
-
         LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
         endeDatum.setValue(datetolocal);
         aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
         freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
         mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
         gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
-    }
 
+        for(Tab tabPaneKursListe :ContentKurseDetails.getTabPane().getTabs()){
+            if(tabPaneKursListe.getText().equals("Kurse-Liste")){
+                tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
+            }
+
+        }
+
+    }
 
     public void abbrechen(ActionEvent actionEvent) {
+
+        kursname.clear();
+        kursname.clear();
+        anzahlTage.clear();
+        zyklus.clear();
+        startDatum.setValue(null);
+        minTnZahl.clear();
+        maxTnZahl.clear();
+        gebuehrBrutto.clear();
+        mtwsProzent.clear();
+        kursBeschreibung.clear();
+
     }
+
+
 
     public void teilnehmerlist(ActionEvent actionEvent) {
     }

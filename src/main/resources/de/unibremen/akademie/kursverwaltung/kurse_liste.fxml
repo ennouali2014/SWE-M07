@@ -14,8 +14,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseListeController">
+<?import javafx.scene.control.Tab?>
+<Tab text="Kurse-Liste" fx:id="ContentKurseListe" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseListeController">
+    <content>
+<AnchorPane stylesheets="@css/style.css" >
     <children>
         <VBox prefHeight="120.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -126,6 +128,7 @@
         </VBox>
     </children>
 </AnchorPane>
-
+    </content>
+</Tab>
 
 
