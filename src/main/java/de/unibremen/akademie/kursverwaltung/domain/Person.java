@@ -21,7 +21,8 @@ public class Person {
     private List<Kurs> kursTeilnahme;
 
 
-    public Person() {
+    public  Person(){
+
     }
 
 
@@ -33,16 +34,16 @@ public class Person {
         this.anrede = anrede;
     }
 
-    public SimpleStringProperty getTitel() {
-        return titel;
+    public String getTitel() {
+        return titel.get();
     }
 
     public void setTitel(String titel) {
         this.titel = new ReadOnlyStringWrapper(titel);
     }
 
-    public SimpleStringProperty getName() {
-        return name;
+    public String getName() {
+        return name.get();
     }
 
     public void setName(String name) {
@@ -51,8 +52,8 @@ public class Person {
         }
     }
 
-    public SimpleStringProperty getVorname() {
-        return vorname;
+    public String getVorname() {
+        return vorname.get();
     }
 
     public void setVorname(String vorname) {
@@ -61,32 +62,32 @@ public class Person {
         }
     }
 
-    public SimpleStringProperty getStrasse() {
-        return strasse;
+    public String getStrasse() {
+        return strasse.get();
     }
 
     public void setStrasse(String strasse) {
         this.strasse = new SimpleStringProperty(strasse);
     }
 
-    public SimpleStringProperty getPlz() {
-        return plz;
+    public String getPlz() {
+        return plz.get();
     }
 
     public void setPlz(String plz) {
         this.plz = new SimpleStringProperty(plz);
     }
 
-    public SimpleStringProperty getOrt() {
-        return ort;
+    public String getOrt() {
+        return ort.get();
     }
 
     public void setOrt(String ort) {
         this.ort = new SimpleStringProperty(ort);
     }
 
-    public SimpleStringProperty getEmail() {
-        return email;
+    public String getEmail() {
+        return email.get();
     }
 
     public void setEmail(String email) {
@@ -97,8 +98,8 @@ public class Person {
         }
     }
 
-    public SimpleStringProperty getTelefon() {
-        return telefon;
+    public String getTelefon() {
+        return telefon.get();
     }
 
     public void setTelefon(String telefon) {
@@ -163,4 +164,6 @@ public class Person {
                 ", telefon='" + telefon + '\'' +
                 '}';
     }
+
+
 }
