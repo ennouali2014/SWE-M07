@@ -127,13 +127,13 @@ public class PersonenListeController implements Initializable {
        // table.setItems(list);
 
 */
-       // table.setEditable(false);
+        // table.setEditable(false);
 
-       // table.setPlaceholder(
-       //         new Label("No rows to display"));
-       // columnSelect.setGraphic(new CheckBox());
+        // table.setPlaceholder(
+        //         new Label("No rows to display"));
+        // columnSelect.setGraphic(new CheckBox());
         //columnSelect.setCellValueFactory(cellData -> new ReadOnlyBooleanWrapper(cellData.getValue().getSelect()));
-      //  columnSelect.setCellFactory(CheckBoxTableCell.<Person>forTableColumn(columnSelect));
+        //  columnSelect.setCellFactory(CheckBoxTableCell.<Person>forTableColumn(columnSelect));
 
         name.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
         name.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
@@ -162,7 +162,6 @@ public class PersonenListeController implements Initializable {
         selectionModel.setSelectionMode(
                 SelectionMode.MULTIPLE);
     }
-
 
 
     private List<Person> parsePersonList() {

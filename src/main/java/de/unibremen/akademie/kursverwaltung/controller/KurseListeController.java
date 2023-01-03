@@ -1,4 +1,3 @@
-
 package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
@@ -18,12 +17,12 @@ import java.util.List;
 public class KurseListeController {
 
 
-    public TableColumn<Kurs,Date> columnStartDatum;
+    public TableColumn<Kurs, Date> columnStartDatum;
     public TableColumn<Kurs, Date> columnEndDatum;
-    public TableColumn<Kurs,Integer> columnAnzFreiPlz;
-    public TableColumn<Kurs,Integer> columnAnzTeilnehm;
-    public TableColumn<Kurs,String> columnStatus;
-    public TableColumn<Kurs,String> columnName;
+    public TableColumn<Kurs, Integer> columnAnzFreiPlz;
+    public TableColumn<Kurs, Integer> columnAnzTeilnehm;
+    public TableColumn<Kurs, String> columnStatus;
+    public TableColumn<Kurs, String> columnName;
     public TableView<Kurs> tableView;
     public TableColumn columnSelect;
     public Tab ContentKurseListe;
@@ -96,12 +95,12 @@ public class KurseListeController {
     @FXML
     void hinzufugenButtonAction(ActionEvent event) {
 
-        for(Tab tabPaneKursAnlegen :ContentKurseListe.getTabPane().getTabs()){
-            if(tabPaneKursAnlegen.getText().equals("Kurse-Details")){
+        for (Tab tabPaneKursAnlegen : ContentKurseListe.getTabPane().getTabs()) {
+            if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
             }
 
-    }
+        }
     }
 
     public void initialize() {
@@ -140,7 +139,8 @@ public class KurseListeController {
         });
 
     }
-    private List<Kurs> parseKursList(){
+
+    private List<Kurs> parseKursList() {
         // parse and construct User datamodel list by looping your ResultSet rs
         // and return the list
         /*Kursverwaltung kursverwaltung = Kursverwaltung.model.; // new Kursverwaltung();

@@ -15,7 +15,7 @@
         </Tab>
         <Tab text="Personen-Liste">
             <content>
-                <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml" />
+                <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml"/>
             </content>
         </Tab>
 

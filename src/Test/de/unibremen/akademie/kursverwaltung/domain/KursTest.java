@@ -24,16 +24,16 @@ class KursTest {
 
     @Test
     void setName() {
-        assertEquals(true,kurs1.setName("c"));
-        assertEquals(false,kurs1.setName(""));
-        assertEquals(false,kurs1.setName(null));
+        assertEquals(true, kurs1.setName("c"));
+        assertEquals(false, kurs1.setName(""));
+        assertEquals(false, kurs1.setName(null));
     }
 
     @Test
     void setAnzahlTage() {
-        assertEquals(false,kurs1.setAnzahlTage(0));
-        assertEquals(false,kurs1.setAnzahlTage(-1));
-        assertEquals(true,kurs1.setAnzahlTage(2));
+        assertEquals(false, kurs1.setAnzahlTage(0));
+        assertEquals(false, kurs1.setAnzahlTage(-1));
+        assertEquals(true, kurs1.setAnzahlTage(2));
     }
 
     @Test
@@ -111,8 +111,6 @@ class KursTest {
     }
 
 
-
-
     @Test
     void setMwstProzent() {
         assertEquals(true, kurs1.setMwstProzent(0.01));
@@ -138,7 +136,7 @@ class KursTest {
     @Test
     void setTeilnehmerListe() {
         kurs1.setTeilnehmerListe(ali);
-        assertEquals(1,kurs1.getTeilnehmerListe().size());
-        assertEquals(false,kurs1.setTeilnehmerListe(null));
+        assertEquals(1, kurs1.getTeilnehmerListe().size());
+        assertEquals(false, kurs1.setTeilnehmerListe(null));
     }
 }

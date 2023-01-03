@@ -10,7 +10,6 @@ Brauchen wir die kurs löschen oder machen wir das im übergeordneten Fenster?
 Erklärung ändern als Kursbeschreibung: Kursinhalt/Voraussetzungen?
 Drucken hier oder machen wir das im übergeordneten Fenster?
 
-
 -> Erweiterung: Kursdokumentation, Klassenbuch, interne Infos.
 
 
@@ -93,6 +92,7 @@ Ali Marcus Kursdetail
 ----------
 
 -TN-Liste und Interessentenliste nicht klar
+
 - Manche Textfelder sollten nur Ausgabe sein, z.B. MWST( EURO), Freie Plätze.
 - Datumsberechnung was folgt aus wem?
 - Sachen die zusammen gehören sind auch zusammen (eigerahmt)!
@@ -142,13 +142,12 @@ Allgemein
 
 - Zwischenspeicher für Auswahl Massenbearbeitung?
 
-
 # Zweite Iteration
 
 ## Ali Marcus Kursdetail
 
-
 -TN-Liste und Interessentenliste nicht klar
+
 - Manche Textfelder sollten nur Ausgabe sein, z.B. MWST( EURO), Freie Plätze.
 - Datumsberechnung was folgt aus wem?
 - Sachen die zusammen gehören sind auch zusammen (eigerahmt)!

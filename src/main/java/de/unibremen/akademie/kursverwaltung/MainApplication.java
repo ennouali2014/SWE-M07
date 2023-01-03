@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class MainApplication extends Application {
     Kursverwaltung model;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main.fxml"));

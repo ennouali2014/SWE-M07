@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenListeController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenListeController">
     <children>
-        <BorderPane AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <BorderPane AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+                    AnchorPane.topAnchor="5.0">
             <top>
                 <HBox alignment="CENTER_LEFT" spacing="20.0" BorderPane.alignment="CENTER">
                     <children>
-                        <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
-                        <Label fx:id="lblKursauswahl" text="Kursauswahl" />
-                        <CheckBox fx:id="teilnehmerChoiceBox" mnemonicParsing="false" text="Teilnehmer" />
-                        <CheckBox fx:id="interesseneChoiceBox" mnemonicParsing="false" text="Interessent" />
-                        <TextField fx:id="suchTxtField" prefWidth="300.0" text="Suchbegriff eingeben......" />
-                        <Button fx:id="suchenButton" mnemonicParsing="false" onAction="#suchButtonAction" text="suchen" />
-                        <Button fx:id="zurucksetzenButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#zurucksetzenButtonAction" text="zurücksetzen" />
+                        <ChoiceBox fx:id="choiceBox" prefWidth="150.0"/>
+                        <Label fx:id="lblKursauswahl" text="Kursauswahl"/>
+                        <CheckBox fx:id="teilnehmerChoiceBox" mnemonicParsing="false" text="Teilnehmer"/>
+                        <CheckBox fx:id="interesseneChoiceBox" mnemonicParsing="false" text="Interessent"/>
+                        <TextField fx:id="suchTxtField" prefWidth="300.0" text="Suchbegriff eingeben......"/>
+                        <Button fx:id="suchenButton" mnemonicParsing="false" onAction="#suchButtonAction"
+                                text="suchen"/>
+                        <Button fx:id="zurucksetzenButton" alignment="CENTER" contentDisplay="CENTER"
+                                mnemonicParsing="false" onAction="#zurucksetzenButtonAction" text="zurücksetzen"/>
                     </children>
                     <BorderPane.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="10.0" top="10.0"/>
                     </BorderPane.margin>
                 </HBox>
             </top>
             <bottom>
                 <HBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
                     <children>
-                  <Button fx:id="personAnlegenButton" mnemonicParsing="false" onAction="#personAnlegenButtonAction" text="Person anlegen" />
-                        <Button fx:id="andernButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#andernButtonAction" text="Ändern" />
-                        <Button fx:id="loeschButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loeschButtonAction" text="Löschen" />
+                        <Button fx:id="personAnlegenButton" mnemonicParsing="false"
+                                onAction="#personAnlegenButtonAction" text="Person anlegen"/>
+                        <Button fx:id="andernButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                onAction="#andernButtonAction" text="Ändern"/>
+                        <Button fx:id="loeschButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                onAction="#loeschButtonAction" text="Löschen"/>
                     </children>
                     <BorderPane.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="10.0" top="10.0"/>
                     </BorderPane.margin>
                 </HBox>
             </bottom>
             <center>
                 <TableView fx:id="table" BorderPane.alignment="CENTER">
                     <columns>
-                  <TableColumn fx:id="alleCheckBox" prefWidth="83.19997882843018" text="Alle">
-                     <graphic>
-                        <CheckBox mnemonicParsing="false" />
-                     </graphic>
-                  </TableColumn>
-                        <TableColumn minWidth="6.399993896484375" prefWidth="62.4000244140625" text="Anrede" />
-                        <TableColumn fx:id="vorname" prefWidth="118.39997863769531" text="Vorname" />
-                        <TableColumn fx:id="name" prefWidth="111.199951171875" text="Name" />
-                        <TableColumn fx:id="strasse" prefWidth="78.4000244140625" text="Strasse" />
-                        <TableColumn fx:id="plz" prefWidth="103.20001220703125" text="Plz" />
-                        <TableColumn fx:id="ort" prefWidth="113.60003662109375" text="Ort" />
-                        <TableColumn fx:id="email" prefWidth="116.0" text="Email" />
-                        <TableColumn fx:id="telefon" prefWidth="128.0" text="Telefon" />
+                        <TableColumn fx:id="alleCheckBox" prefWidth="83.19997882843018" text="Alle">
+                            <graphic>
+                                <CheckBox mnemonicParsing="false"/>
+                            </graphic>
+                        </TableColumn>
+                        <TableColumn minWidth="6.399993896484375" prefWidth="62.4000244140625" text="Anrede"/>
+                        <TableColumn fx:id="vorname" prefWidth="118.39997863769531" text="Vorname"/>
+                        <TableColumn fx:id="name" prefWidth="111.199951171875" text="Name"/>
+                        <TableColumn fx:id="strasse" prefWidth="78.4000244140625" text="Strasse"/>
+                        <TableColumn fx:id="plz" prefWidth="103.20001220703125" text="Plz"/>
+                        <TableColumn fx:id="ort" prefWidth="113.60003662109375" text="Ort"/>
+                        <TableColumn fx:id="email" prefWidth="116.0" text="Email"/>
+                        <TableColumn fx:id="telefon" prefWidth="128.0" text="Telefon"/>
                     </columns>
                 </TableView>
             </center>

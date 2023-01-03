@@ -25,7 +25,7 @@ public class Person implements Externalizable {
     private List<Kurs> kursTeilnahme;
 
 
-    public  Person(){
+    public Person() {
 
     }
 
@@ -107,7 +107,7 @@ public class Person implements Externalizable {
     }
 
     public void setTelefon(String telefon) {
-        this.telefon =new SimpleStringProperty(telefon);
+        this.telefon = new SimpleStringProperty(telefon);
     }
 
     public List<Kurs> getKursInteressiert() {
@@ -125,8 +125,6 @@ public class Person implements Externalizable {
     public void setKursTeilnahme(List<Kurs> kursTeilnahme) {
         this.kursTeilnahme = kursTeilnahme;
     }
-
-
 
 
     public static boolean checkIsEmpty(String wert) {
