@@ -13,20 +13,6 @@ import java.util.Date;
 public class KurseDetailsController {
 
     public Tab ContentKurseDetails;
-    private Label name_lbl;
-    private Label anzahlTage_lbl;
-    private Label zyklus_lbl;
-    private Label startDatum_lbl;
-    private Label endeDatum_lbl;
-    private Label minTnZahl_lbl;
-    private Label maxTnZahl_lbl;
-    private Label aktuelleTnZahl_lbl;
-    private Label freiePlaetze_lbl;
-    private Label gebuehrBrutto_lbl;
-    private Label gebuehrNetto_lbl;
-    private Label mtwsEuro_lbl;
-    private Label mtwsProzent_lbl;
-    private Label kursBeschreibung_lbl;
     @FXML
     private TextField kursname;
     @FXML
@@ -76,12 +62,12 @@ public class KurseDetailsController {
 
         Kurs kurs = Kursverwaltung.model.addnewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
 
-        LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
+        /*LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
         endeDatum.setValue(datetolocal);
         aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
         freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
         mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
-        gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+        gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));*/
 
         for(Tab tabPaneKursListe :ContentKurseDetails.getTabPane().getTabs()){
             if(tabPaneKursListe.getText().equals("Kurse-Liste")){
@@ -89,6 +75,8 @@ public class KurseDetailsController {
             }
 
         }
+
+
 
     }
 

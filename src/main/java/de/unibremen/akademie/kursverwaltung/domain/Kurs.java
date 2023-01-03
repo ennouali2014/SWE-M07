@@ -301,18 +301,22 @@ public class Kurs implements Externalizable {
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeUTF(getName());
-        out.writeUTF(getKursBeschreibung());
-        out.writeUTF(getStatus());
-        out.writeDouble(getGebuehrNetto());
-        out.writeDouble(getGebuehrBrutto());
-        out.writeDouble(getMwstEuro());
-        out.writeDouble(getMwstProzent());
-        out.writeInt(getFreiePlaetze());
-        out.writeInt(getAktuelleTnZahl());
-        out.writeInt(getZyklus());
         out.writeInt(getAnzahlTage());
-        out.writeInt(getMaxTnZahl());
+        out.writeInt(getZyklus());
+        out.writeObject(getStartDatum());
         out.writeInt(getMinTnZahl());
+        out.writeInt(getMaxTnZahl());
+        out.writeDouble(getGebuehrBrutto());
+        out.writeDouble(getMwstProzent());
+        out.writeUTF(getKursBeschreibung());
+
+        //out.writeUTF(getStatus());
+        //out.writeDouble(getGebuehrNetto());
+        //out.writeDouble(getMwstProzent());
+       //out.writeDouble(getMwstEuro());
+        //out.writeInt(getFreiePlaetze());
+        //out.writeInt(getAktuelleTnZahl());
+
         System.out.println(this);
     }
 
@@ -320,17 +324,28 @@ public class Kurs implements Externalizable {
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         //set(stream.readBoolean());
         setName(in.readUTF());
-        setKursBeschreibung(in.readUTF());
-        setMwstEuro(in.readDouble(),in.readDouble());
-        setMwstProzent(in.readDouble());
+        setAnzahlTage(in.readInt());
+        setZyklus(in.readInt());
+        setStartDatum((Date) in.readObject());
         setMinTnZahl(in.readInt());
         setMaxTnZahl(in.readInt());
         setGebuehrBrutto(in.readDouble());
-        setZyklus(in.readInt());
-        setAnzahlTage(in.readInt());
-        setStartDatum((Date) in.readObject());
-        setEndeDatum((Date) in.readObject(),in.readInt(),in.readInt());
-        setGebuehrNetto(in.readDouble(),in.readDouble());
+        setMwstProzent(in.readDouble());
+        setKursBeschreibung(in.readUTF());
+
+
+        //double val=in.readDouble();
+        //setMwstEuro(val,val);
+        //setMwstProzent(in.readDouble());
+
+        //setGebuehrBrutto(in.readDouble());
+
+
+
+        //setEndeDatum((Date) in.readObject(),in.readInt(),in.readInt());
+        //setGebuehrNetto(in.readDouble(),in.readDouble());
+        System.out.println(this);
+
     }
 
     @Override
@@ -340,19 +355,11 @@ public class Kurs implements Externalizable {
                 ", anzahlTage=" + anzahlTage.get() +
                 ", zyklus=" + zyklus.get() +
                 ", startDatum=" + startDatum.getTime() +
-                ", endeDatum=" + endeDatum.getTime() +
-                ", aktuelleTnZahl=" + aktuelleTnZahl.get() +
                 ", minTnZahl=" + minTnZahl.get() +
                 ", maxTnZahl=" + maxTnZahl.get() +
-                ", freiePlaetze=" + freiePlaetze.get() +
                 ", gebuehrBrutto=" + gebuehrBrutto.get() +
-                ", gebuehrNetto=" + gebuehrNetto.get() +
-                ", mwstEuro=" + mwstEuro.get() +
-                ", mwstProzent=" + mwstProzent.get() +
-                ", kursBeschreibung=" + kursBeschreibung.get() +
-                ", status=" + status.get() +
-                ", interessentenListe=" + interessentenListe +
-                ", teilnehmerListe=" + teilnehmerListe +
-                '}';
+                ", proEuro=" + mwstProzent.get() +
+                ", kursBeschreibung=" + kursBeschreibung.get()+
+                "}";
     }
 }
