@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class PersonenDetailsController {
@@ -23,24 +22,18 @@ public class PersonenDetailsController {
     public ChoiceBox anrede;
     public Button save;
     public String nameS;
-    public ListView kursliste;
 
     public void initialize() {
         anrede.setItems(FXCollections.observableArrayList(de.unibremen.akademie.kursverwaltung.domain.Anrede.values()));
 
-    }
 
+    }
 
     @FXML
     public void onsaveclick() {
-        int count = 0;
 
-        Kursverwaltung.addPerson((Anrede) anrede.getValue(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
-        count = Kursverwaltung.model.getPersonList().size();
-        if (titel.getText() != null) {
-            Kursverwaltung.model.getPersonList().get(count - 1).setTitel(titel.getText());
-
-        }
+        Kursverwaltung.addPerson((Anrede) anrede.getValue(), titel.getText(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+        titel.clear();
         name.clear();
         vorname.clear();
         strasse.clear();
@@ -50,6 +43,8 @@ public class PersonenDetailsController {
         telefon.clear();
         System.out.println(Kursverwaltung.model.getPersonList());
 
+
     }
+
 
 }
