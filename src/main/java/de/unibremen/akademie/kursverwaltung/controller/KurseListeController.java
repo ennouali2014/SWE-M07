@@ -127,14 +127,15 @@ public class KurseListeController {
 
     @FXML
     void bearbeitenButtonAction(ActionEvent event) {
-        ObservableList<Kurs> allKurse = tableView.getItems();
-        Kurs selectedKursCopy = tableView.getSelectionModel().getSelectedItem();
-        System.out.println(selectedKursCopy);
+        KvModel.aktuelleKurs = tableView.getSelectionModel().getSelectedItem();
         for (Tab tabPaneKursAnlegen : ContentKurseListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+
             }
         }
+
+
     }
 
 
