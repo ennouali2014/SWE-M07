@@ -22,7 +22,7 @@ public class MainApplication extends Application {
         // Daten speichern
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) {
         //model aus Datei laden
         KvModel.model.load();
         //Application (GUI) starten

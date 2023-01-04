@@ -110,6 +110,9 @@ public class Kurs implements Externalizable {
         this.endeDatum = new Date(dat);
 
     }
+    public void setEndeDatum(Date endeDatum){
+        this.endeDatum=endeDatum;
+    }
 
     public int getAktuelleTnZahl() {
         return aktuelleTnZahl.get();
@@ -122,6 +125,9 @@ public class Kurs implements Externalizable {
             this.aktuelleTnZahl.set(this.teilnehmerListe.size());
         }
 
+    }
+    public void setAktuelleTnZahl(int aktuelleTnZahl){
+        this.aktuelleTnZahl=new SimpleIntegerProperty(aktuelleTnZahl);
     }
 
     public int getMinTnZahl() {
@@ -177,6 +183,9 @@ public class Kurs implements Externalizable {
         }
         return false;
     }
+    public void setFreiePlaetze(int freiePlaetze){
+        this.freiePlaetze=new SimpleIntegerProperty(freiePlaetze);
+    }
 
     public double getGebuehrBrutto() {
         return gebuehrBrutto.get();
@@ -208,6 +217,9 @@ public class Kurs implements Externalizable {
         }
 
     }
+    public void setGebuehrNetto(double gebuehrNetto){
+        this.gebuehrNetto=new SimpleDoubleProperty(gebuehrNetto);
+    }
 
     public double getMwstEuro() {
         return mwstEuro.get();
@@ -220,6 +232,9 @@ public class Kurs implements Externalizable {
             this.mwstEuro.set(gebuehrBrutto * (mwstProzent / 100));
         }
 
+    }
+    public void setMwstEuro(double mwstEuro){
+        this.mwstEuro=new SimpleDoubleProperty(mwstEuro);
     }
 
     public double getMwstProzent() {
@@ -299,6 +314,9 @@ public class Kurs implements Externalizable {
             }
         }
     }
+    public void setStatus(String status){
+       this.status=new SimpleStringProperty(status);
+    }
 
 
     @Override
@@ -312,13 +330,12 @@ public class Kurs implements Externalizable {
         out.writeDouble(getGebuehrBrutto());
         out.writeDouble(getMwstProzent());
         out.writeUTF(getKursBeschreibung());
-
-        //out.writeUTF(getStatus());
-        //out.writeDouble(getGebuehrNetto());
-        //out.writeDouble(getMwstProzent());
-        //out.writeDouble(getMwstEuro());
-        //out.writeInt(getFreiePlaetze());
-        //out.writeInt(getAktuelleTnZahl());
+        out.writeObject(getEndeDatum());
+        out.writeUTF(getStatus());
+        out.writeDouble(getGebuehrNetto());
+        out.writeDouble(getMwstEuro());
+        out.writeInt(getFreiePlaetze());
+        out.writeInt(getAktuelleTnZahl());
 
         System.out.println(this);
     }
@@ -335,21 +352,15 @@ public class Kurs implements Externalizable {
         setGebuehrBrutto(in.readDouble());
         setMwstProzent(in.readDouble());
         setKursBeschreibung(in.readUTF());
-
-
-        //double val=in.readDouble();
-        //setMwstEuro(val,val);
-        //setMwstProzent(in.readDouble());
-
-        //setGebuehrBrutto(in.readDouble());
-
-
-        //setEndeDatum((Date) in.readObject(),in.readInt(),in.readInt());
-        //setGebuehrNetto(in.readDouble(),in.readDouble());
+        setEndeDatum((Date) in.readObject());
+        setStatus(in.readUTF());
+        setGebuehrNetto(in.readDouble());
+        setMwstEuro(in.readDouble());
+        setFreiePlaetze(in.readInt());
+        setAktuelleTnZahl(in.readInt());
         System.out.println(this);
 
     }
-
     @Override
     public String toString() {
         return "Kurs{" +
@@ -360,8 +371,14 @@ public class Kurs implements Externalizable {
                 ", minTnZahl=" + minTnZahl.get() +
                 ", maxTnZahl=" + maxTnZahl.get() +
                 ", gebuehrBrutto=" + gebuehrBrutto.get() +
-                ", proEuro=" + mwstProzent.get() +
+                ", mwstProzent=" + mwstProzent.get() +
                 ", kursBeschreibung=" + kursBeschreibung.get() +
-                "}";
+                ", endeDatum=" + endeDatum.getTime() +
+                ", status=" + status.get() +
+                ", gebuehrNetto=" + gebuehrNetto.get() +
+                ", mwstEuro=" + mwstEuro.get() +
+                ", freiePlaetze=" + freiePlaetze.get() +
+                ", aktuelleTnZahl=" + aktuelleTnZahl.get() +
+                '}';
     }
 }
