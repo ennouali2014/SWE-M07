@@ -4,10 +4,7 @@ import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -44,6 +41,8 @@ public class KurseDetailsController {
     private TextField mtwsProzent;
     @FXML
     private TextArea kursBeschreibung;
+    @FXML
+    private ComboBox status;
 
 
     public void apply(ActionEvent actionEvent) {
@@ -84,9 +83,10 @@ public class KurseDetailsController {
     public void abbrechen(ActionEvent actionEvent) {
 
         kursname.clear();
-        kursname.clear();
+        status.setValue(status.getPromptText());
         anzahlTage.clear();
         zyklus.clear();
+
         startDatum.setValue(null);
         minTnZahl.clear();
         maxTnZahl.clear();
