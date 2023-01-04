@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
+import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,6 +74,9 @@ public class KurseListeController {
 
     @FXML
     void bearbeitenButtonAction(ActionEvent event) {
+        ObservableList<Kurs> allKurse = tableView.getItems();
+        List<Kurs> selectedKursCopy = new ArrayList<>(tableView.getSelectionModel().getSelectedItems());
+        System.out.println(selectedKursCopy);
 
         for (Tab tabPaneKursAnlegen : ContentKurseListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
@@ -135,11 +139,16 @@ public class KurseListeController {
 
         tableView.setItems(KvModel.model.kursList);
         //System.out.println(parseKursList().get(2).getStartDatum());
-        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+       /* tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 int number = tableView.getSelectionModel().getSelectedItems().size();
             }
-        });
+        });*/
+
+        TableView.TableViewSelectionModel<Kurs> selectionModel =
+                tableView.getSelectionModel();
+        selectionModel.setSelectionMode(
+                SelectionMode.MULTIPLE);
 
     }
 

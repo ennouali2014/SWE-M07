@@ -22,9 +22,13 @@ public class KvModel {
 
     }
 
-    public void load() throws IOException, ClassNotFoundException {
+    public void load() {
+        load(VERWALTUNGSDATEI);
+    }
+
+    public void load(String speicherPfad) {
         try {
-            FileInputStream infile = new FileInputStream(VERWALTUNGSDATEI);
+            FileInputStream infile = new FileInputStream(speicherPfad);
             ObjectInputStream input = new ObjectInputStream(infile);
             // ObservableList is not Serializable. We have to work around
             personList.addAll((ArrayList<Person>) input.readObject());
@@ -42,9 +46,13 @@ public class KvModel {
         }
     }
 
-    public void save() throws IOException {
+    public void save() {
+        save(VERWALTUNGSDATEI);
+    }
+
+    public void save(String speicherPfad) {
         try {
-            FileOutputStream outfile = new FileOutputStream(VERWALTUNGSDATEI);
+            FileOutputStream outfile = new FileOutputStream(speicherPfad);
             ObjectOutputStream output = new ObjectOutputStream(outfile);
             // ObservableList is not Serializable. We have to work around
             output.writeObject(new ArrayList<Person>(personList));

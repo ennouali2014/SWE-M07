@@ -4,11 +4,9 @@ import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -16,6 +14,7 @@ import java.util.Date;
 public class KurseDetailsController {
 
     public Tab ContentKurseDetails;
+    public Button clear;
     @FXML
     private TextField kursname;
     @FXML
@@ -44,6 +43,8 @@ public class KurseDetailsController {
     private TextField mtwsProzent;
     @FXML
     private TextArea kursBeschreibung;
+    @FXML
+    private ComboBox status;
 
 
     public void apply(ActionEvent actionEvent) {
@@ -55,6 +56,7 @@ public class KurseDetailsController {
         int zykls = Integer.parseInt(zyklus.getText());
         LocalDate localDate = startDatum.getValue();
         Date startDate = Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant());
+
         int minTn = Integer.parseInt(minTnZahl.getText());
         int maxTn = Integer.parseInt(maxTnZahl.getText());
         double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
@@ -64,13 +66,13 @@ public class KurseDetailsController {
 
         Kurs kurs = KvModel.model.addnewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
 
-        /*LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
+        LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
         endeDatum.setValue(datetolocal);
         aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
         freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
         mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
-        gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));*/
-
+        gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+        clear.fireEvent(actionEvent);
         for (Tab tabPaneKursListe : ContentKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
                 tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
@@ -84,9 +86,10 @@ public class KurseDetailsController {
     public void abbrechen(ActionEvent actionEvent) {
 
         kursname.clear();
-        kursname.clear();
+        status.setValue(status.getPromptText());
         anzahlTage.clear();
         zyklus.clear();
+
         startDatum.setValue(null);
         minTnZahl.clear();
         maxTnZahl.clear();
