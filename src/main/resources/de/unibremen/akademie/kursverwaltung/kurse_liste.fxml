@@ -41,7 +41,7 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="kursNameTextField" style="-fx-border-color: #91c9a0;">
+                        <TextField fx:id="kursNameTextField" >
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -51,19 +51,19 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <DatePicker fx:id="abDatumDatePicker" onAction="#abDatselectDate" style="-fx-border-color: #91c9a0;">
+                        <DatePicker fx:id="abDatumDatePicker" onAction="#abDatselectDate">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </DatePicker>
                   <Label fx:id="lblBisDatum" layoutX="328.0" layoutY="10.0" prefHeight="18.0" prefWidth="81.0" text="Bis Datum:" />
-                  <DatePicker fx:id="bisDatumDatePicker" layoutX="460.0" layoutY="10.0" onAction="#bisDatSelectDate" style="-fx-border-color: #91c9a0;" />
+                  <DatePicker fx:id="bisDatumDatePicker" layoutX="460.0" layoutY="10.0" onAction="#bisDatSelectDate"  />
                         <Label prefHeight="18.0" prefWidth="47.0" text="Status:">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <MenuButton fx:id="alleMenuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" style="-fx-border-color: #91c9a0;" text="Alle">
+                        <MenuButton fx:id="alleMenuButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0"  text="Alle">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Aktiv" />
                                 <MenuItem mnemonicParsing="false" text="Geplant" />
@@ -73,17 +73,17 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </MenuButton>
-                        <Button mnemonicParsing="false" style="-fx-border-color: #91c9a0;" text="Suchen">
+                        <Button mnemonicParsing="false"  text="Suchen">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" style="-fx-border-color: #91c9a0;" text="Reset">
+                        <Button mnemonicParsing="false"  text="Reset">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Button>
-                  <DatePicker fx:id="datePicker1" layoutX="392.0" layoutY="10.0"  style="-fx-border-color: #91c9a0;" />
+                  <DatePicker fx:id="datePicker1" layoutX="392.0" layoutY="10.0"   />
                     </children>
                 </HBox>
                 <TableView fx:id="tableView" prefHeight="331.0" prefWidth="1000.0">
@@ -107,17 +107,17 @@
                 </TableView>
                 <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1000.0">
                     <children>
-                        <Button fx:id="hinzufugenButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#hinzufugenButtonAction" style="-fx-border-color: #91c9a0;" text="Hinzufügen">
+                        <Button fx:id="hinzufugenButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#hinzufugenButtonAction"  text="Hinzufügen">
                             <HBox.margin>
                                 <Insets left="50.0" right="10.0" />
                             </HBox.margin>
                         </Button>
-                        <Button fx:id="bearbeitenButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#bearbeitenButtonAction" style="-fx-border-color: #91c9a0;" text="Bearbeiten/Anzeigen">
+                        <Button fx:id="bearbeitenButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#bearbeitenButtonAction"  text="Bearbeiten/Anzeigen">
                             <HBox.margin>
                                 <Insets left="50.0" right="10.0" />
                             </HBox.margin>
                         </Button>
-                        <Button fx:id="entfernenButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#entfernenButtonAction" style="-fx-border-color: #91c9a0;" text="Entfernen">
+                        <Button fx:id="entfernenButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#entfernenButtonAction"  text="Entfernen">
                             <HBox.margin>
                                 <Insets left="50.0" right="10.0" />
                             </HBox.margin>
