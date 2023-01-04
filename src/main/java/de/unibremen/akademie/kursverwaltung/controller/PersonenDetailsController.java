@@ -1,5 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
+import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,9 +15,9 @@ public class PersonenDetailsController {
     @FXML
     public TextField titel;
     @FXML
-    public TextField name;
-    @FXML
     public TextField vorname;
+    @FXML
+    public TextField nachname;
     @FXML
     public TextField strasse;
     @FXML
@@ -43,16 +44,19 @@ public class PersonenDetailsController {
 
     @FXML
     public void onsaveclick() {
-        Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
-        anrede.getSelectionModel().selectFirst();
-        titel.clear();
-        name.clear();
-        vorname.clear();
-        strasse.clear();
-        plz.clear();
-        ort.clear();
-        email.clear();
-        telefon.clear();
+        int aktuelleAnzPersonen = KvModel.personList.size();
+        Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+        if (KvModel.personList.size() > aktuelleAnzPersonen) {
+            anrede.getSelectionModel().selectFirst();
+            titel.clear();
+            vorname.clear();
+            nachname.clear();
+            strasse.clear();
+            plz.clear();
+            ort.clear();
+            email.clear();
+            telefon.clear();
+        }
         //System.out.println(KvModel.personList);
     }
 }

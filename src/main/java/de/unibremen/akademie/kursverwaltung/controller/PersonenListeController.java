@@ -1,6 +1,5 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.ObservableList;
@@ -23,66 +22,48 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     private TableView<Person> table;
-
-
     @FXML
     private TableColumn<Person, String> anrede;
-
+    @FXML
+    public TableColumn columnSelect;
     @FXML
     private TableColumn<Person, String> vorname;
-
     @FXML
-    private TableColumn<Person, String> name;
-
+    private TableColumn<Person, String> titel;
     @FXML
     private TableColumn<Person, String> strasse;
-
     @FXML
     private TableColumn<Person, String> plz;
-
     @FXML
     private TableColumn<Person, String> ort;
     @FXML
     private TableColumn<Person, String> email;
-
     @FXML
     private TableColumn<Person, String> telefon;
-
     @FXML
     private TableColumn<Person, Boolean> alleCheckBox;
-
     @FXML
     private Button andernButton;
-
     @FXML
     private ChoiceBox<String> choiceBox;
-
     @FXML
     private CheckBox interesseneChoiceBox;
-
     @FXML
     private Label lblKursauswahl;
-
     @FXML
     private Button loeschButton;
-
     @FXML
     private Button personAnlegenButton;
-
     @FXML
     private TextField suchTxtField;
-
     @FXML
     private Button suchenButton;
-
     @FXML
     private CheckBox teilnehmerChoiceBox;
-
     @FXML
     private Button zurucksetzenButton;
-
-    public TableColumn columnSelect;
-
+    @FXML
+    private TableColumn<Person, String> nachname;
     @FXML
     public void andernButtonAction(ActionEvent event) {
 
@@ -93,7 +74,6 @@ public class PersonenListeController implements Initializable {
         ObservableList<Person> allPerson = table.getItems();
         List<Person> selectedPersonCopy = new ArrayList<>(table.getSelectionModel().getSelectedItems());
         selectedPersonCopy.forEach(allPerson::remove);
-
     }
 
     @FXML
@@ -113,10 +93,9 @@ public class PersonenListeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         table.setEditable(true);
         anrede.setCellValueFactory(new PropertyValueFactory<Person, String>("anrede"));
-        anrede.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn("Herr", "Frau", "Divers", " "));
+        anrede.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn("", "Herr", "Frau", "Divers"));
         anrede.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
                     @Override
@@ -128,27 +107,31 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        name.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
-        name.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        titel.setCellValueFactory(new PropertyValueFactory<Person, String>("titel"));
+        titel.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
         vorname.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
         vorname.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
+        nachname.setCellValueFactory(new PropertyValueFactory<Person, String>("nachname"));
+        nachname.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+
         strasse.setCellValueFactory(new PropertyValueFactory<Person, String>("strasse"));
-        strasse.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn());
+        strasse.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
         plz.setCellValueFactory(new PropertyValueFactory<Person, String>("plz"));
-        plz.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn());
+        plz.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
         ort.setCellValueFactory(new PropertyValueFactory<Person, String>("ort"));
-        ort.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn());
+        ort.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
         email.setCellValueFactory(new PropertyValueFactory<Person, String>("email"));
-        email.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn());
+        email.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
         telefon.setCellValueFactory(new PropertyValueFactory<Person, String>("telefon"));
-        telefon.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn());
-        table.setItems(KvModel.model.personList);
+        telefon.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+
+        table.setItems(KvModel.personList);
 
         TableView.TableViewSelectionModel<Person> selectionModel =
                 table.getSelectionModel();

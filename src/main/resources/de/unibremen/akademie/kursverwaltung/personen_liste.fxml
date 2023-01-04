@@ -49,14 +49,15 @@
                                 <CheckBox mnemonicParsing="false"/>
                             </graphic>
                         </TableColumn>
-                        <TableColumn fx:id="anrede" prefWidth="118.39997863769531" text="Anrede"/>
-                        <TableColumn fx:id="vorname" prefWidth="118.39997863769531" text="Vorname"/>
-                        <TableColumn fx:id="name" prefWidth="111.199951171875" text="Name"/>
-                        <TableColumn fx:id="strasse" prefWidth="78.4000244140625" text="Strasse"/>
-                        <TableColumn fx:id="plz" prefWidth="103.20001220703125" text="Plz"/>
-                        <TableColumn fx:id="ort" prefWidth="113.60003662109375" text="Ort"/>
-                        <TableColumn fx:id="email" prefWidth="116.0" text="Email"/>
-                        <TableColumn fx:id="telefon" prefWidth="128.0" text="Telefon"/>
+                        <TableColumn fx:id="anrede" prefWidth="70.0" text="Anrede"/>
+                        <TableColumn fx:id="titel" prefWidth="70.0" text="Titel"/>
+                        <TableColumn fx:id="vorname" prefWidth="110.0" text="Vorname"/>
+                        <TableColumn fx:id="nachname" prefWidth="110.0" text="Nachname"/>
+                        <TableColumn fx:id="strasse" prefWidth="110.0" text="Strasse"/>
+                        <TableColumn fx:id="plz" prefWidth="100.0" text="Plz"/>
+                        <TableColumn fx:id="ort" prefWidth="110.0" text="Ort"/>
+                        <TableColumn fx:id="email" prefWidth="120.0" text="Email"/>
+                        <TableColumn fx:id="telefon" prefWidth="120.0" text="Telefon"/>
                     </columns>
                 </TableView>
             </center>

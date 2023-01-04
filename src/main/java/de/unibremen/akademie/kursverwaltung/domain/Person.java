@@ -1,6 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Alert;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -13,7 +14,7 @@ public class Person implements Externalizable {
 
     private SimpleStringProperty anrede;
     private SimpleStringProperty titel;
-    private SimpleStringProperty name;
+    private SimpleStringProperty nachname;
     private SimpleStringProperty vorname;
     private SimpleStringProperty strasse;
     private SimpleStringProperty plz;
@@ -27,13 +28,25 @@ public class Person implements Externalizable {
     public Person() {
     }
 
-    public static Person addNewPerson(String anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+    public static Person addNewPerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
         Person person = new Person();
-        if (checkIsEmpty(name) && checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
+        if (!checkIsEmpty(vorname)) {
+            eingabeAlert("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
+            return person;
+        }
+        if (!checkIsEmpty(nachname)) {
+            eingabeAlert("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
+            return person;
+        }
+        if (!checkIsEmpty(email)) {
+            eingabeAlert("Die Email-Adresse ist fehlerhaft!");
+            return person;
+        }
+        if (checkIsEmpty(nachname) && checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
             person.setAnrede(anrede);
             person.setTitel(titel);
             person.setVorname(vorname);
-            person.setName(name);
+            person.setNachname(nachname);
             person.setStrasse(strasse);
             person.setPlz(plz);
             person.setOrt(ort);
@@ -61,16 +74,16 @@ public class Person implements Externalizable {
         this.titel = new SimpleStringProperty(titel);
     }
 
-    public String getName() {
-        return name.get();
+    public static void eingabeAlert(String meldung) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Fehler bei der Dateneingabe");
+        alert.setHeaderText("Eingabevalidierung");
+        alert.setContentText(meldung);
+        alert.showAndWait();
     }
 
-    public void setName(String name) {
-        if (checkIsEmpty(name)) {
-            this.name = new SimpleStringProperty(name);
-        } else {
-            System.out.println("Nachname ist leer oder zu kurz!");
-        }
+    public String getNachname() {
+        return nachname.get();
     }
 
     public String getVorname() {
@@ -157,17 +170,25 @@ public class Person implements Externalizable {
         return m.matches();
     }
 
+    public void setNachname(String nachname) {
+        if (checkIsEmpty(nachname)) {
+            this.nachname = new SimpleStringProperty(nachname);
+        } else {
+            System.out.println("Nachname ist leer oder zu kurz!");
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(name, person.name) && Objects.equals(vorname, person.vorname) && Objects.equals(email, person.email);
+        return Objects.equals(vorname, person.vorname) && Objects.equals(nachname, person.nachname) && Objects.equals(email, person.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, vorname, email);
+        return Objects.hash(vorname, nachname, email);
     }
 
     @Override
@@ -175,8 +196,8 @@ public class Person implements Externalizable {
         return "Person{" +
                 "anrede='" + anrede + '\'' +
                 "titel='" + titel + '\'' +
-                "name='" + name + '\'' +
-                ", vorname='" + vorname + '\'' +
+                "vorname='" + vorname + '\'' +
+                ", nachname='" + nachname + '\'' +
                 ", strasse='" + strasse + '\'' +
                 ", plz='" + plz + '\'' +
                 ", ort='" + ort + '\'' +
@@ -190,8 +211,8 @@ public class Person implements Externalizable {
     public void writeExternal(ObjectOutput stream) throws IOException {
         stream.writeUTF(getAnrede());
         stream.writeUTF(getTitel());
-        stream.writeUTF(getName());
         stream.writeUTF(getVorname());
+        stream.writeUTF(getNachname());
         stream.writeUTF(getStrasse());
         stream.writeUTF(getPlz());
         stream.writeUTF(getOrt());
@@ -204,8 +225,8 @@ public class Person implements Externalizable {
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         setAnrede(in.readUTF());
         setTitel(in.readUTF());
-        setName(in.readUTF());
         setVorname(in.readUTF());
+        setNachname(in.readUTF());
         setStrasse(in.readUTF());
         setPlz(in.readUTF());
         setOrt(in.readUTF());
