@@ -170,7 +170,6 @@ public class Person implements Externalizable {
 
     @Override
     public void writeExternal(ObjectOutput stream) throws IOException {
-
         stream.writeUTF(getAnrede());
         stream.writeUTF(getTitel());
         stream.writeUTF(getName());
@@ -180,8 +179,7 @@ public class Person implements Externalizable {
         stream.writeUTF(getOrt());
         stream.writeUTF(getEmail());
         stream.writeUTF(getTelefon());
-        System.out.println(this);
-
+        //System.out.println(this);
     }
 
     @Override
@@ -195,6 +193,6 @@ public class Person implements Externalizable {
         setOrt(in.readUTF());
         setEmail(in.readUTF());
         setTelefon(in.readUTF());
-
+        //System.out.println(this);
     }
 }
