@@ -1,8 +1,8 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.Anrede;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -22,17 +22,23 @@ public class PersonenDetailsController {
     public ChoiceBox anrede;
     public Button save;
     public String nameS;
-
+    public ObservableList<String> choiceList = FXCollections.observableArrayList();
     public void initialize() {
-        anrede.setItems(FXCollections.observableArrayList(de.unibremen.akademie.kursverwaltung.domain.Anrede.values()));
+
+        choiceList.add("Herr");
+        choiceList.add("Frau");
+        choiceList.add("Divers");
+        choiceList.add(" ");
 
 
+        anrede.setItems(choiceList);
     }
+
 
     @FXML
     public void onsaveclick() {
 
-        KvModel.model.addPerson((Anrede) anrede.getValue(), titel.getText(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+        KvModel.model.addPerson(anrede.getValue().toString(), titel.getText(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
         titel.clear();
         name.clear();
         vorname.clear();
