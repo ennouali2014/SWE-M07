@@ -27,7 +27,7 @@ class KvModelTest {
 
     @Test
     void saveLoadtest() {
-        model.addPerson(Anrede.HERR, "Dr. rer. nat.", "Förster", "Alexander", "Feldweg 17", "28195", "Bremen", "axf@uni-bremen.de", "+49 162 175 978 23");
+        model.addPerson("Herr", "Dr. rer. nat.", "Förster", "Alexander", "Feldweg 17", "28195", "Bremen", "axf@uni-bremen.de", "+49 162 175 978 23");
         model.addnewKurs("php", 12, 3, new Date(1672963200000L), 1, 10, 150, 19, "php backend");
         //load
        /* try {

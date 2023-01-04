@@ -105,11 +105,12 @@ public class KvModel {
 
 
 
-    public void addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+    public void addPerson(String anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
         Person person = new Person();
         if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
 
             person.setAnrede(anrede);
+
             if (titel == null) {
                 titel = "";
             }

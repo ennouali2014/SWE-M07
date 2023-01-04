@@ -1,6 +1,5 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.io.Externalizable;
@@ -12,7 +11,7 @@ import java.util.Objects;
 
 public class Person implements Externalizable {
 
-    private Anrede anrede;
+    private SimpleStringProperty anrede;
     private SimpleStringProperty titel;
     private SimpleStringProperty name;
     private SimpleStringProperty vorname;
@@ -29,21 +28,22 @@ public class Person implements Externalizable {
 
     }
 
-
-    public Anrede getAnrede() {
-        return anrede;
+    public String getAnrede() {
+        return anrede.get();
     }
 
-    public void setAnrede(Anrede anrede) {
-        this.anrede = anrede;
+    public void setAnrede(String anrede) {
+        this.anrede = new SimpleStringProperty(anrede);
+
     }
+
 
     public String getTitel() {
         return titel.get();
     }
 
     public void setTitel(String titel) {
-        this.titel = new ReadOnlyStringWrapper(titel);
+        this.titel = new SimpleStringProperty(titel);
     }
 
     public String getName() {
@@ -170,6 +170,9 @@ public class Person implements Externalizable {
 
     @Override
     public void writeExternal(ObjectOutput stream) throws IOException {
+
+        stream.writeUTF(getAnrede());
+        stream.writeUTF(getTitel());
         stream.writeUTF(getName());
         stream.writeUTF(getVorname());
         stream.writeUTF(getStrasse());
@@ -183,6 +186,8 @@ public class Person implements Externalizable {
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        setAnrede(in.readUTF());
+        setTitel(in.readUTF());
         setName(in.readUTF());
         setVorname(in.readUTF());
         setStrasse(in.readUTF());

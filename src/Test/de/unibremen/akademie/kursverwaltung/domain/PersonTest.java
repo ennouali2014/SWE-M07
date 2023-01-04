@@ -38,6 +38,6 @@ Es sind folgende Besonderheiten zu beachten:
     Von der Verwendung von Großbuchstaben wird abgeraten. Offiziell sind sie zwar erlaubt, aber ihre Benutzung ist riskant. Manche E-Mail-Provider können damit nicht umgehen und es kann Probleme mit Web-Formularen geben.
     Seit 2010 sind nichtlateinische Zeichen erlaubt, also auch Umlaute und „ß“. Obwohl die meisten Provider die deutschen Umlaute akzeptieren, wird davon abgeraten. Vielleicht ist einer der Server auf dem Transportweg noch nicht umgestellt und weist die Mail zurück.
     */
-        assertFalse(Person.checkValidEmail("ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggm@d.de"));
+        assertFalse(Person.checkValidEmail("ggggggggggggggggggggggggggggggggm@d.de"));
     }
 }
