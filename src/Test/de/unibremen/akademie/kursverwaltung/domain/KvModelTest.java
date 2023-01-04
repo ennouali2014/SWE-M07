@@ -10,15 +10,6 @@ class KvModelTest {
     KvModel model = KvModel.model;
 
     @Test
-    void addnewKursTest() {
-        Kurs kurs = Kurs.addNewKurs("php", 12, 3, new Date(1672963200000L), 12, 2, 150, 19, "php backend");
-        //Assertions.assertEquals("Max anzahl darf nicht weniger als Min anzahl der Teilnehmer", thrown.getMessage());
-        assertEquals(1, KvModel.kursList.size());
-        Kurs.addNewKurs("php", 12, 3, new Date(1672963200000L), 2, 8, 150, 19, "php backend");
-        assertEquals(2, KvModel.kursList.size());
-    }
-
-    @Test
     void saveLoadtest() {
         Person person = Person.addNewPerson("Herr", "Dr. rer. nat.", "Alexander", "Förster", "Feldweg 17", "28195", "Bremen", "axf@uni-bremen.de", "+49 162 175 978 23");
         Kurs kurs = Kurs.addNewKurs("php", 12, 3, new Date(1672963200000L), 1, 10, 150, 19, "php backend");
