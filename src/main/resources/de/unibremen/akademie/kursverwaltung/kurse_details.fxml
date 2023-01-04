@@ -240,7 +240,7 @@
                                         <Font size="18.0"/>
                                     </font>
                                 </Button>
-                                <Button fx:id="clear" onAction="#abbrechen" mnemonicParsing="false" prefHeight="51.0"
+                                <Button onAction="#abbrechen" mnemonicParsing="false" prefHeight="51.0"
                                         prefWidth="122.0"
                                         text="Abbrechen">
                                     <font>
