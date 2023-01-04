@@ -12,20 +12,15 @@ public class KvModel {
 
     static public final ObservableList<Person> personList =
             FXCollections.observableArrayList();
-
     static public final ObservableList<Kurs> kursList =
             FXCollections.observableArrayList();
-
     static public final KvModel model = new KvModel();
-
     private KvModel() {
-
     }
 
     public void load() {
         load(VERWALTUNGSDATEI);
     }
-
     public void load(String speicherPfad) {
         try {
             FileInputStream infile = new FileInputStream(speicherPfad);
@@ -49,7 +44,6 @@ public class KvModel {
     public void save() {
         save(VERWALTUNGSDATEI);
     }
-
     public void save(String speicherPfad) {
         try {
             FileOutputStream outfile = new FileOutputStream(speicherPfad);
@@ -61,7 +55,6 @@ public class KvModel {
         } catch (FileNotFoundException e) {
             System.err.print("Die Datei zum Schreiben der Daten kann nicht erstellt werden! Fehlermeldung: ");
             System.err.println(e.getMessage());
-
         } catch (IOException e) {
             System.err.print("Die Daten können nicht in die Datei gespeichert werden!  Fehlermeldung: ");
             System.err.println(e.getMessage());
@@ -89,7 +82,6 @@ public class KvModel {
         if (!kurs.setMaxTnZahl(maxTnZahl)) {
             throw new IllegalArgumentException(" Max anzahl darf nicht weniger als Min anzahl der Teilnehmer");
         }
-
         if (!kurs.setGebuehrBrutto(gebuehrBrutto)) {
             throw new IllegalArgumentException("gebuhr Brutto ist falsch");
         }
@@ -108,19 +100,12 @@ public class KvModel {
         kurs.setStatus();
         kursList.add(kurs);
         return kurs;
-
     }
 
-
-
-    public void addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+    public void addPerson(String anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
         Person person = new Person();
         if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
-
             person.setAnrede(anrede);
-            if (titel == null) {
-                titel = "";
-            }
             person.setTitel(titel);
             person.setVorname(vorname);
             person.setName(name);

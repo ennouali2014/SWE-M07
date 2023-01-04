@@ -1,11 +1,11 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 
-import de.unibremen.akademie.kursverwaltung.domain.Anrede;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -26,7 +26,7 @@ public class PersonenListeController implements Initializable {
 
 
     @FXML
-    private TableColumn<Anrede, Enum> anrede;
+    private TableColumn<Person, String> anrede;
 
     @FXML
     private TableColumn<Person, String> vorname;
@@ -114,25 +114,19 @@ public class PersonenListeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-     /*   anrede.setCellValueFactory(new PropertyValueFactory<Anrede, Enum >("anrede"));
-        name.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
-        vorname.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
-        strasse.setCellValueFactory(new PropertyValueFactory<Person, String>("strasse"));
-        plz.setCellValueFactory(new PropertyValueFactory<Person, String>("plz"));
-        ort.setCellValueFactory(new PropertyValueFactory<Person, String>("ort"));
-        email.setCellValueFactory(new PropertyValueFactory<Person, String>("email"));
-        telefon.setCellValueFactory(new PropertyValueFactory<Person, String>("telefon"));
-
-       // table.setItems(list);
-
-*/
-        // table.setEditable(false);
-
-        // table.setPlaceholder(
-        //         new Label("No rows to display"));
-        // columnSelect.setGraphic(new CheckBox());
-        //columnSelect.setCellValueFactory(cellData -> new ReadOnlyBooleanWrapper(cellData.getValue().getSelect()));
-        //  columnSelect.setCellFactory(CheckBoxTableCell.<Person>forTableColumn(columnSelect));
+        table.setEditable(true);
+        anrede.setCellValueFactory(new PropertyValueFactory<Person, String>("anrede"));
+        anrede.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn("Herr", "Frau", "Divers", " "));
+        anrede.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Person, String> t) {
+                        ((Person) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setAnrede(t.getNewValue());
+                    }
+                }
+        );
 
         name.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
         name.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
