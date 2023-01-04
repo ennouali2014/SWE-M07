@@ -42,20 +42,17 @@ public class Person implements Externalizable {
             eingabeAlert("Die Email-Adresse ist fehlerhaft!");
             return person;
         }
-        if (checkIsEmpty(nachname) && checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
-            person.setAnrede(anrede);
-            person.setTitel(titel);
-            person.setVorname(vorname);
-            person.setNachname(nachname);
-            person.setStrasse(strasse);
-            person.setPlz(plz);
-            person.setOrt(ort);
-            person.setEmail(email);
-            person.setTelefon(telefon);
-            KvModel.personList.add(person);
-            return person;
-        }
-        return null;
+        person.setAnrede(anrede);
+        person.setTitel(titel);
+        person.setVorname(vorname);
+        person.setNachname(nachname);
+        person.setStrasse(strasse);
+        person.setPlz(plz);
+        person.setOrt(ort);
+        person.setEmail(email);
+        person.setTelefon(telefon);
+        KvModel.personList.add(person);
+        return person;
     }
 
     public String getAnrede() {

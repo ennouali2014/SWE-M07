@@ -15,8 +15,6 @@ import java.util.Optional;
 
 public class MainApplication extends Application {
     //KvModel model;
-
-
     @Override
     public void start(Stage stage) throws IOException {
         // Alert-Window beim Schliessen der Anwendung

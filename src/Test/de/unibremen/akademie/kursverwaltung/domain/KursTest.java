@@ -18,7 +18,7 @@ class KursTest {
     Date date2 = new Date(1669852800000L); // 01.12.22
 
     @Test
-    void addnewKursTest() {
+    void addNewKursTest() {
         Kurs kurs = Kurs.addNewKurs("php", 12, 3, new Date(1672963200000L), 2, 8, 150, 19, "php backend");
         //Kurs.addNewKurs("php", 12, 3, new Date(1672963200000L), 12, 2, 150, 19, "php backend");
         //Assertions.assertEquals("Max anzahl darf nicht weniger als Min anzahl der Teilnehmer", thrown.getMessage());
