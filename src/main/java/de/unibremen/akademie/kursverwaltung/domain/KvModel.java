@@ -25,7 +25,6 @@ public class KvModel {
     public void load() {
         load(VERWALTUNGSDATEI);
     }
-
     public void load(String speicherPfad) {
         try {
             FileInputStream infile = new FileInputStream(speicherPfad);
@@ -49,7 +48,6 @@ public class KvModel {
     public void save() {
         save(VERWALTUNGSDATEI);
     }
-
     public void save(String speicherPfad) {
         try {
             FileOutputStream outfile = new FileOutputStream(speicherPfad);
