@@ -38,7 +38,7 @@ public class Person implements Externalizable {
             eingabeAlert("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
             return person;
         }
-        if (!checkIsEmpty(email)) {
+        if (!checkValidEmail(email)) {
             eingabeAlert("Die Email-Adresse ist fehlerhaft!");
             return person;
         }
