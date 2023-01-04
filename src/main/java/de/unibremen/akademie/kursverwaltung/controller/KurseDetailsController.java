@@ -4,7 +4,10 @@ import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -43,7 +46,6 @@ public class KurseDetailsController {
     private TextArea kursBeschreibung;
 
 
-
     public void apply(ActionEvent actionEvent) {
         //do it start datum ist nur ein beispie. man muss datepicker anwenden recherchieren
         //do it endeDatum, aktuelleTeilnehmeranzahl, freiePlätze, mwst und gebühr netto muss werden aufgeruft.
@@ -69,13 +71,12 @@ public class KurseDetailsController {
         mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
         gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));*/
 
-        for(Tab tabPaneKursListe :ContentKurseDetails.getTabPane().getTabs()){
-            if(tabPaneKursListe.getText().equals("Kurse-Liste")){
+        for (Tab tabPaneKursListe : ContentKurseDetails.getTabPane().getTabs()) {
+            if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
                 tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
             }
 
         }
-
 
 
     }
@@ -94,7 +95,6 @@ public class KurseDetailsController {
         kursBeschreibung.clear();
 
     }
-
 
 
     public void teilnehmerlist(ActionEvent actionEvent) {

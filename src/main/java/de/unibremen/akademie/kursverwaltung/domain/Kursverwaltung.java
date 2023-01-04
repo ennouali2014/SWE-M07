@@ -6,20 +6,19 @@ import javafx.collections.ObservableList;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Kursverwaltung {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
 
-    static final ObservableList<Person> personList =
+    static public final ObservableList<Person> personList =
             FXCollections.observableArrayList();
 
-    static final ObservableList<Kurs> kursList =
+    static public final ObservableList<Kurs> kursList =
             FXCollections.observableArrayList();
 
-    static public Kursverwaltung model = new Kursverwaltung();
+    static public final Kursverwaltung model = new Kursverwaltung();
 
-    public Kursverwaltung() {
+    private Kursverwaltung() {
 
     }
 
@@ -104,17 +103,12 @@ public class Kursverwaltung {
 
     }
 
-    public List<Person> getPersonList() {
-        return personList;
-    }
 
-    public List<Kurs> getKursList() {
-        return kursList;
-    }
 
-    public static String addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+    public void addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+        Person person = new Person();
         if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
-            Person person = new Person();
+
             person.setAnrede(anrede);
             if (titel == null) {
                 titel = "";
@@ -127,11 +121,8 @@ public class Kursverwaltung {
             person.setOrt(ort);
             person.setEmail(email);
             person.setTelefon(telefon);
-            model.personList.add(person);
-            return "Alles OK!";
+            personList.add(person);
         }
-
-        return "Fehler! Daten wurden nicht gespeichert!";
     }
 
 }

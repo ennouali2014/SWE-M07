@@ -4,7 +4,10 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.io.*;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -313,7 +316,7 @@ public class Kurs implements Externalizable {
         //out.writeUTF(getStatus());
         //out.writeDouble(getGebuehrNetto());
         //out.writeDouble(getMwstProzent());
-       //out.writeDouble(getMwstEuro());
+        //out.writeDouble(getMwstEuro());
         //out.writeInt(getFreiePlaetze());
         //out.writeInt(getAktuelleTnZahl());
 
@@ -341,7 +344,6 @@ public class Kurs implements Externalizable {
         //setGebuehrBrutto(in.readDouble());
 
 
-
         //setEndeDatum((Date) in.readObject(),in.readInt(),in.readInt());
         //setGebuehrNetto(in.readDouble(),in.readDouble());
         System.out.println(this);
@@ -359,7 +361,7 @@ public class Kurs implements Externalizable {
                 ", maxTnZahl=" + maxTnZahl.get() +
                 ", gebuehrBrutto=" + gebuehrBrutto.get() +
                 ", proEuro=" + mwstProzent.get() +
-                ", kursBeschreibung=" + kursBeschreibung.get()+
+                ", kursBeschreibung=" + kursBeschreibung.get() +
                 "}";
     }
 }

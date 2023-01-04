@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -89,11 +90,9 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void loeschButtonAction(ActionEvent event) {
-
-        ObservableList<Person> allPerson, singlePerson;
-        allPerson = table.getItems();
-        singlePerson = table.getSelectionModel().getSelectedItems();
-        singlePerson.forEach(allPerson::remove);
+        ObservableList<Person> allPerson = table.getItems();
+        List<Person> selectedPersonCopy = new ArrayList<>(table.getSelectionModel().getSelectedItems());
+        selectedPersonCopy.forEach(allPerson::remove);
 
     }
 
@@ -127,13 +126,13 @@ public class PersonenListeController implements Initializable {
        // table.setItems(list);
 
 */
-       // table.setEditable(false);
+        // table.setEditable(false);
 
-       // table.setPlaceholder(
-       //         new Label("No rows to display"));
-       // columnSelect.setGraphic(new CheckBox());
+        // table.setPlaceholder(
+        //         new Label("No rows to display"));
+        // columnSelect.setGraphic(new CheckBox());
         //columnSelect.setCellValueFactory(cellData -> new ReadOnlyBooleanWrapper(cellData.getValue().getSelect()));
-      //  columnSelect.setCellFactory(CheckBoxTableCell.<Person>forTableColumn(columnSelect));
+        //  columnSelect.setCellFactory(CheckBoxTableCell.<Person>forTableColumn(columnSelect));
 
         name.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
         name.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
@@ -155,27 +154,12 @@ public class PersonenListeController implements Initializable {
 
         telefon.setCellValueFactory(new PropertyValueFactory<Person, String>("telefon"));
         telefon.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn());
-        table.getItems().setAll(parsePersonList());
+        table.setItems(Kursverwaltung.model.personList);
 
         TableView.TableViewSelectionModel<Person> selectionModel =
                 table.getSelectionModel();
         selectionModel.setSelectionMode(
                 SelectionMode.MULTIPLE);
-    }
-
-
-
-    private List<Person> parsePersonList() {
-        Kursverwaltung kursverwaltung = new Kursverwaltung();
-        /*kursverwaltung.addPerson(Anrede.FRAU,"Daniela", "Sally", "Louis str.", "28355", "Bremen", "oz.t@mail.com", "0144441154");
-        kursverwaltung.addPerson(Anrede.HERR,"Daniel", "John", "Lili str.", "28000", "Bremen", "dan@mail.com", "04511121");
-        kursverwaltung.addPerson(Anrede.FRAU,"Georgia", "Cindy", "Mimosa str.", "28355", "Bremen", "mim.t@mail.com", "0144441154");
-        kursverwaltung.addPerson(Anrede.HERR,"Ludwig", "Johan", "Moon str.", "28000", "Bremen", "johan@mail.com", "04511121");
-        kursverwaltung.addPerson(Anrede.FRAU,"Lukas","Emir","Louis-Leitz-str", "28355", "Bremen", "lukas@mail.com", "01248751263");
-*/
-
-        return kursverwaltung.getPersonList();
-
     }
 }
 

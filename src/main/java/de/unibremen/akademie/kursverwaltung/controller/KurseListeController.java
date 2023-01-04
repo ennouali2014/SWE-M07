@@ -1,9 +1,7 @@
-
 package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,17 +11,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.util.Date;
-import java.util.List;
 
 public class KurseListeController {
 
 
-    public TableColumn<Kurs,Date> columnStartDatum;
+    public TableColumn<Kurs, Date> columnStartDatum;
     public TableColumn<Kurs, Date> columnEndDatum;
-    public TableColumn<Kurs,Integer> columnAnzFreiPlz;
-    public TableColumn<Kurs,Integer> columnAnzTeilnehm;
-    public TableColumn<Kurs,String> columnStatus;
-    public TableColumn<Kurs,String> columnName;
+    public TableColumn<Kurs, Integer> columnAnzFreiPlz;
+    public TableColumn<Kurs, Integer> columnAnzTeilnehm;
+    public TableColumn<Kurs, String> columnStatus;
+    public TableColumn<Kurs, String> columnName;
     public TableView<Kurs> tableView;
     public TableColumn columnSelect;
     public Tab ContentKurseListe;
@@ -96,12 +93,12 @@ public class KurseListeController {
     @FXML
     void hinzufugenButtonAction(ActionEvent event) {
 
-        for(Tab tabPaneKursAnlegen :ContentKurseListe.getTabPane().getTabs()){
-            if(tabPaneKursAnlegen.getText().equals("Kurse-Details")){
+        for (Tab tabPaneKursAnlegen : ContentKurseListe.getTabPane().getTabs()) {
+            if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
             }
 
-    }
+        }
     }
 
     public void initialize() {
@@ -131,7 +128,7 @@ public class KurseListeController {
         columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("endeDatum"));
         columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
 
-        tableView.setItems((ObservableList<Kurs>) Kursverwaltung.model.getKursList());
+        tableView.setItems(Kursverwaltung.model.kursList);
         //System.out.println(parseKursList().get(2).getStartDatum());
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -139,18 +136,6 @@ public class KurseListeController {
             }
         });
 
-    }
-    private List<Kurs> parseKursList(){
-        // parse and construct User datamodel list by looping your ResultSet rs
-        // and return the list
-        /*Kursverwaltung kursverwaltung = Kursverwaltung.model.; // new Kursverwaltung();
-        kursverwaltung.addnewKurs("php",12,3,new Date(1672963200000L),2,12,150,19,"php backend");
-        kursverwaltung.addnewKurs("java",12,3,new Date(1672963200000L),2,22,150,19,"php backend");
-        kursverwaltung.addnewKurs("arduino",10,3,new Date(2569852800000L),3,22,150,19,"php backend");*
-
-        return kursverwaltung.getKursList();*/
-        System.out.println(Kursverwaltung.model.getKursList().size());
-        return Kursverwaltung.model.getKursList();
     }
 
     public void suchButtonAction(ActionEvent actionEvent) {
