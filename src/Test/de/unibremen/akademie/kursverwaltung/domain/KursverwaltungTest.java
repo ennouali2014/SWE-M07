@@ -14,21 +14,21 @@ class KursverwaltungTest {
 
     static final ObservableList<Kurs> kursList =
             FXCollections.observableArrayList();
-    Kursverwaltung kursverwaltung = Kursverwaltung.model;// new Kursverwaltung();
+    Kursverwaltung model = Kursverwaltung.model;
     String VERWALTUNGSDATEI = "src/test/resources/storage/gespeicherteTestObjekte";
 
     @Test
     void addnewKursTest() {
-        kursverwaltung.addnewKurs("php", 12, 3, new Date(1672963200000L), 12, 2, 150, 19, "php backend");
-        assertEquals(1, kursverwaltung.getKursList().size());
-        kursverwaltung.addnewKurs("php", 12, 3, new Date(1672963200000L), 2, 8, 150, 19, "php backend");
-        assertEquals(2, kursverwaltung.getKursList().size());
+        model.addnewKurs("php", 12, 3, new Date(1672963200000L), 12, 2, 150, 19, "php backend");
+        assertEquals(1, model.kursList.size());
+        model.addnewKurs("php", 12, 3, new Date(1672963200000L), 2, 8, 150, 19, "php backend");
+        assertEquals(2, model.kursList.size());
     }
 
     @Test
     void saveLoadtest() {
-        kursverwaltung.addPerson(Anrede.HERR, "Dr. rer. nat.", "Förster", "Alexander", "Feldweg 17", "28195", "Bremen", "axf@uni-bremen.de", "+49 162 175 978 23");
-        kursverwaltung.addnewKurs("php", 12, 3, new Date(1672963200000L), 1, 10, 150, 19, "php backend");
+        model.addPerson(Anrede.HERR, "Dr. rer. nat.", "Förster", "Alexander", "Feldweg 17", "28195", "Bremen", "axf@uni-bremen.de", "+49 162 175 978 23");
+        model.addnewKurs("php", 12, 3, new Date(1672963200000L), 1, 10, 150, 19, "php backend");
         //load
        /* try {
             FileInputStream infile = new FileInputStream(VERWALTUNGSDATEI);
@@ -65,8 +65,8 @@ class KursverwaltungTest {
             System.err.println(e.getMessage());
         }*/
 
-        System.out.println(kursverwaltung.model.getPersonList());
-        System.out.println(kursverwaltung.model.getKursList());
+        System.out.println(model.personList);
+        System.out.println(model.kursList);
 
     }
 }

@@ -6,20 +6,19 @@ import javafx.collections.ObservableList;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Kursverwaltung {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
 
-    static final ObservableList<Person> personList =
+    static public final ObservableList<Person> personList =
             FXCollections.observableArrayList();
 
-    static final ObservableList<Kurs> kursList =
+    static public final ObservableList<Kurs> kursList =
             FXCollections.observableArrayList();
 
-    static public Kursverwaltung model = new Kursverwaltung();
+    static public final Kursverwaltung model = new Kursverwaltung();
 
-    public Kursverwaltung() {
+    private Kursverwaltung() {
 
     }
 
@@ -104,13 +103,7 @@ public class Kursverwaltung {
 
     }
 
-    public List<Person> getPersonList() {
-        return personList;
-    }
 
-    public List<Kurs> getKursList() {
-        return kursList;
-    }
 
     public void addPerson(Anrede anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
         Person person = new Person();
