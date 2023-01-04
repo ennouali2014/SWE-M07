@@ -98,6 +98,13 @@ public class KurseDetailsController {
 
 
     public void teilnehmerlist(ActionEvent actionEvent) {
+
+        for (Tab tabPaneKursListe : ContentKurseDetails.getTabPane().getTabs()) {
+            if (tabPaneKursListe.getText().equals("Personen-Liste")) {
+                tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
+            }
+
+        }
     }
 
     public void interessentenlist(ActionEvent actionEvent) {
