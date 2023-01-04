@@ -42,7 +42,7 @@
       fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenDetailsController">
     <children>
         <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="1200.0"
-                 style="-fx-background-color: lightgrey;" VBox.vgrow="NEVER">
+                  VBox.vgrow="NEVER">
             <menus>
                 <Menu mnemonicParsing="false" text="Person anlegen/ändern">
                     <items>
@@ -162,7 +162,7 @@
                                             </children>
                                         </VBox>
                                         <VBox prefHeight="675.0" prefWidth="350.0"
-                                              style="-fx-background-color: lightgrey;">
+                                              >
                                             <children>
                                                 <ChoiceBox fx:id="anrede" maxWidth="250.0" prefWidth="150.0">
                                                     <VBox.margin>
@@ -230,7 +230,7 @@
                                 <AnchorPane layoutX="-192.0" layoutY="-328.0" minHeight="0.0" minWidth="0.0"
                                             prefHeight="160.0" prefWidth="100.0"/>
                                 <HBox layoutX="-3.0" prefHeight="699.0" prefWidth="618.0"
-                                      style="-fx-background-color: 0;" AnchorPane.bottomAnchor="5.0"
+                                       AnchorPane.bottomAnchor="5.0"
                                       AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
                                       AnchorPane.topAnchor="5.0">
                                     <children>
