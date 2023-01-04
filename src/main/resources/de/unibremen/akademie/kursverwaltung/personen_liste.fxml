@@ -13,8 +13,8 @@
                     <children>
                         <ChoiceBox fx:id="choiceBox" prefWidth="150.0"/>
                         <Label fx:id="lblKursauswahl" text="Kursauswahl"/>
-                        <CheckBox fx:id="teilnehmerChoiceBox" mnemonicParsing="false" text="Teilnehmer"/>
-                        <CheckBox fx:id="interesseneChoiceBox" mnemonicParsing="false" text="Interessent"/>
+                        <CheckBox fx:id="teilnehmerChkBox" mnemonicParsing="false" text="Teilnehmer"/>
+                        <CheckBox fx:id="interessentChkBox" mnemonicParsing="false" text="Interessent"/>
                         <TextField fx:id="suchTxtField" prefWidth="300.0" text="Suchbegriff eingeben......"/>
                         <Button fx:id="suchenButton" mnemonicParsing="false" onAction="#suchButtonAction"
                                 text="suchen"/>

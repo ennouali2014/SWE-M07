@@ -47,7 +47,7 @@ public class PersonenListeController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBox;
     @FXML
-    private CheckBox interesseneChoiceBox;
+    private CheckBox interessentChkBox;
     @FXML
     private Label lblKursauswahl;
     @FXML
@@ -59,7 +59,7 @@ public class PersonenListeController implements Initializable {
     @FXML
     private Button suchenButton;
     @FXML
-    private CheckBox teilnehmerChoiceBox;
+    private CheckBox teilnehmerChkBox;
     @FXML
     private Button zurucksetzenButton;
     @FXML
