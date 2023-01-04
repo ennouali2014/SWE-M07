@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -62,7 +61,7 @@ public class KurseDetailsController {
         double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
         double mwstPro = Double.parseDouble(mtwsProzent.getText());
         String kursBesch = kursBeschreibung.getText();
-        Kurs kurs = KvModel.model.addnewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
+        Kurs kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
         LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
         endeDatum.setValue(datetolocal);
         aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));

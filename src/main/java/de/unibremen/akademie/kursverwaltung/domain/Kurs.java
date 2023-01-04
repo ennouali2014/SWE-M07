@@ -29,9 +29,48 @@ public class Kurs implements Externalizable {
     private SimpleDoubleProperty mwstProzent;
     private SimpleStringProperty kursBeschreibung;
     private SimpleStringProperty status;
-    private List<Person> interessentenListe = new ArrayList<>();
-    private List<Person> teilnehmerListe = new ArrayList<>();
+    private final List<Person> interessentenListe = new ArrayList<>();
+    private final List<Person> teilnehmerListe = new ArrayList<>();
 
+    public static Kurs addNewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
+                                  double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
+        Kurs kurs = new Kurs();
+        if (!kurs.setName(name)) {
+            throw new IllegalArgumentException("Name ist falsch");
+        }
+        if (!kurs.setAnzahlTage(anzahlTage)) {
+            throw new IllegalArgumentException("minimum teilnahme ist falsch");
+        }
+        if (!kurs.setZyklus(zyklus)) {
+            throw new IllegalArgumentException("zyklus is Require");
+        }
+        if (!kurs.setStartDatum(startDatum)) {
+            throw new IllegalArgumentException(" Start Date is Require");
+        }
+        if (!kurs.setMinTnZahl(minTnZahl)) {
+            throw new IllegalArgumentException("minimum teilnahme ist falsch");
+        }
+        if (!kurs.setMaxTnZahl(maxTnZahl)) {
+            throw new IllegalArgumentException(" Max anzahl darf nicht weniger als Min anzahl der Teilnehmer");
+        }
+        if (!kurs.setGebuehrBrutto(gebuehrBrutto)) {
+            throw new IllegalArgumentException("gebuhr Brutto ist falsch");
+        }
+        if (!kurs.setMwstProzent(mwstProzent)) {
+            throw new IllegalArgumentException("prozent MWST is Require");
+        }
+        kurs.setKursBeschreibung(kursBeschreibung);
+        kurs.setEndeDatum(startDatum, zyklus, anzahlTage);
+        kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
+        kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
+        kurs.setAktuelleTnZahl();
+        if (!kurs.setFreiePlaetze()) {
+            throw new IllegalArgumentException("Alles Voll");
+        }
+        kurs.setStatus();
+        KvModel.kursList.add(kurs);
+        return kurs;
+    }
 
     public Kurs() {
         this.name = new SimpleStringProperty();
@@ -67,7 +106,6 @@ public class Kurs implements Externalizable {
             return true;
         }
         return false;
-
     }
 
     public int getZyklus() {
@@ -81,11 +119,9 @@ public class Kurs implements Externalizable {
             } else {
                 this.zyklus.set(zyklus);
             }
-
             return true;
         }
         return false;
-
     }
 
     public Date getStartDatum() {
@@ -215,8 +251,8 @@ public class Kurs implements Externalizable {
         } else {
             this.gebuehrNetto.set(gebuehrBrutto * ((100 - mwstProzent) / 100));
         }
-
     }
+
     public void setGebuehrNetto(double gebuehrNetto){
         this.gebuehrNetto=new SimpleDoubleProperty(gebuehrNetto);
     }
@@ -252,7 +288,6 @@ public class Kurs implements Externalizable {
             return true;
         }
         return false;
-
     }
 
     public String getKursBeschreibung() {
@@ -317,7 +352,6 @@ public class Kurs implements Externalizable {
     public void setStatus(String status){
        this.status=new SimpleStringProperty(status);
     }
-
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {

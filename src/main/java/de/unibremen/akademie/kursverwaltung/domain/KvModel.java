@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class KvModel {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
@@ -63,62 +62,4 @@ public class KvModel {
             System.err.println(e.getMessage());
         }
     }
-
-    public Kurs addnewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
-                           double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
-        Kurs kurs = new Kurs();
-        if (!kurs.setName(name)) {
-            throw new IllegalArgumentException("Name ist Falsch");
-        }
-        if (!kurs.setAnzahlTage(anzahlTage)) {
-            throw new IllegalArgumentException("minimum teilnahme ist falsch");
-        }
-        if (!kurs.setZyklus(zyklus)) {
-            throw new IllegalArgumentException("zyklus is Require");
-        }
-        if (!kurs.setStartDatum(startDatum)) {
-            throw new IllegalArgumentException(" Start Date is Require");
-        }
-        if (!kurs.setMinTnZahl(minTnZahl)) {
-            throw new IllegalArgumentException("minimum teilnahme ist falsch");
-        }
-        if (!kurs.setMaxTnZahl(maxTnZahl)) {
-            throw new IllegalArgumentException(" Max anzahl darf nicht weniger als Min anzahl der Teilnehmer");
-        }
-        if (!kurs.setGebuehrBrutto(gebuehrBrutto)) {
-            throw new IllegalArgumentException("gebuhr Brutto ist falsch");
-        }
-        if (!kurs.setMwstProzent(mwstProzent)) {
-            throw new IllegalArgumentException("prozent MWST is Require");
-        }
-
-        kurs.setKursBeschreibung(kursBeschreibung);
-        kurs.setEndeDatum(startDatum, zyklus, anzahlTage);
-        kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
-        kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
-        kurs.setAktuelleTnZahl();
-        if (!kurs.setFreiePlaetze()) {
-            throw new IllegalArgumentException("Alles Voll");
-        }
-        kurs.setStatus();
-        kursList.add(kurs);
-        return kurs;
-    }
-
-    public void addPerson(String anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
-        Person person = new Person();
-        if (Person.checkIsEmpty(name) && Person.checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
-            person.setAnrede(anrede);
-            person.setTitel(titel);
-            person.setVorname(vorname);
-            person.setName(name);
-            person.setStrasse(strasse);
-            person.setPlz(plz);
-            person.setOrt(ort);
-            person.setEmail(email);
-            person.setTelefon(telefon);
-            personList.add(person);
-        }
-    }
-
 }

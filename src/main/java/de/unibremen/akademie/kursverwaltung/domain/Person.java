@@ -25,7 +25,24 @@ public class Person implements Externalizable {
 
 
     public Person() {
+    }
 
+    public static Person addNewPerson(String anrede, String titel, String name, String vorname, String strasse, String plz, String ort, String email, String telefon) {
+        Person person = new Person();
+        if (checkIsEmpty(name) && checkIsEmpty(vorname) && Person.checkValidEmail(email)) {
+            person.setAnrede(anrede);
+            person.setTitel(titel);
+            person.setVorname(vorname);
+            person.setName(name);
+            person.setStrasse(strasse);
+            person.setPlz(plz);
+            person.setOrt(ort);
+            person.setEmail(email);
+            person.setTelefon(telefon);
+            KvModel.personList.add(person);
+            return person;
+        }
+        return null;
     }
 
     public String getAnrede() {
@@ -34,9 +51,7 @@ public class Person implements Externalizable {
 
     public void setAnrede(String anrede) {
         this.anrede = new SimpleStringProperty(anrede);
-
     }
-
 
     public String getTitel() {
         return titel.get();
@@ -53,6 +68,8 @@ public class Person implements Externalizable {
     public void setName(String name) {
         if (checkIsEmpty(name)) {
             this.name = new SimpleStringProperty(name);
+        } else {
+            System.out.println("Nachname ist leer oder zu kurz!");
         }
     }
 
@@ -63,6 +80,8 @@ public class Person implements Externalizable {
     public void setVorname(String vorname) {
         if (checkIsEmpty(vorname)) {
             this.vorname = new SimpleStringProperty(vorname);
+        } else {
+            System.out.println("Vorname ist leer oder zu kurz!");
         }
     }
 
@@ -136,7 +155,6 @@ public class Person implements Externalizable {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
-
     }
 
     @Override

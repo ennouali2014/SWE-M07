@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainApplication extends Application {
-    KvModel model;
+    //KvModel model;
 
     @Override
     public void start(Stage stage) throws IOException {
