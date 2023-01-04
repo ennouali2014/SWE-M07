@@ -78,7 +78,7 @@ public class KurseDetailsController {
 
         }
 
-
+        abbrechen(actionEvent);
     }
 
     public void abbrechen(ActionEvent actionEvent) {
