@@ -43,6 +43,8 @@ public class KurseDetailsController {
     private TextField mtwsProzent;
     @FXML
     private TextArea kursBeschreibung;
+    @FXML
+    private ComboBox status;
 
 
     public void apply(ActionEvent actionEvent) {
@@ -84,9 +86,10 @@ public class KurseDetailsController {
     public void abbrechen(ActionEvent actionEvent) {
 
         kursname.clear();
-        kursname.clear();
+        status.setValue(status.getPromptText());
         anzahlTage.clear();
         zyklus.clear();
+
         startDatum.setValue(null);
         minTnZahl.clear();
         maxTnZahl.clear();
