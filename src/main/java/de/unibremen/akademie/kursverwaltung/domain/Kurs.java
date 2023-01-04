@@ -336,8 +336,7 @@ public class Kurs implements Externalizable {
         out.writeDouble(getMwstEuro());
         out.writeInt(getFreiePlaetze());
         out.writeInt(getAktuelleTnZahl());
-
-        System.out.println(this);
+        //System.out.println(this);
     }
 
     @Override
@@ -358,8 +357,7 @@ public class Kurs implements Externalizable {
         setMwstEuro(in.readDouble());
         setFreiePlaetze(in.readInt());
         setAktuelleTnZahl(in.readInt());
-        System.out.println(this);
-
+        //System.out.println(this);
     }
     @Override
     public String toString() {
