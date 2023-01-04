@@ -65,51 +65,6 @@ public class KurseListeController {
     @FXML
     private Label lblTextField;
 
-    @FXML
-    void abDatselectDate(ActionEvent event) {
-
-        lblBisDatum.setText(datePicker1.getValue().toString());
-
-    }
-
-    @FXML
-    void bearbeitenButtonAction(ActionEvent event) {
-        ObservableList<Kurs> allKurse = tableView.getItems();
-        List<Kurs> selectedKursCopy = new ArrayList<>(tableView.getSelectionModel().getSelectedItems());
-        System.out.println(selectedKursCopy);
-
-        for (Tab tabPaneKursAnlegen : ContentKurseListe.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
-            }
-        }
-    }
-
-
-    @FXML
-    void bisDatSelectDate(ActionEvent event) {
-
-    }
-
-
-    @FXML
-    void entfernenButtonAction(ActionEvent event) {
-        ObservableList<Kurs> kurse = tableView.getItems();
-        List<Kurs> selectedCoursesCopy = new ArrayList<>(tableView.getSelectionModel().getSelectedItems());
-        selectedCoursesCopy.forEach(kurse::remove);
-    }
-
-    @FXML
-    void hinzufugenButtonAction(ActionEvent event) {
-
-        for (Tab tabPaneKursAnlegen : ContentKurseListe.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
-            }
-
-        }
-    }
-
     public void initialize() {
         tableView.setEditable(false);
 
@@ -138,17 +93,53 @@ public class KurseListeController {
         columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
 
         tableView.setItems(KvModel.model.kursList);
-        //System.out.println(parseKursList().get(2).getStartDatum());
-       /* tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                int number = tableView.getSelectionModel().getSelectedItems().size();
-            }
-        });*/
-
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableView.getSelectionModel();
         selectionModel.setSelectionMode(
                 SelectionMode.MULTIPLE);
+
+    }
+
+    @FXML
+    void hinzufugenButtonAction(ActionEvent event) {
+
+        for (Tab tabPaneKursAnlegen : ContentKurseListe.getTabPane().getTabs()) {
+            if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
+                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+            }
+
+        }
+    }
+
+    @FXML
+    void entfernenButtonAction(ActionEvent event) {
+        ObservableList<Kurs> kurse = tableView.getItems();
+        List<Kurs> selectedCoursesCopy = new ArrayList<>(tableView.getSelectionModel().getSelectedItems());
+        selectedCoursesCopy.forEach(kurse::remove);
+    }
+
+    @FXML
+    void abDatselectDate(ActionEvent event) {
+
+        lblBisDatum.setText(datePicker1.getValue().toString());
+
+    }
+
+    @FXML
+    void bearbeitenButtonAction(ActionEvent event) {
+        ObservableList<Kurs> allKurse = tableView.getItems();
+        Kurs selectedKursCopy = tableView.getSelectionModel().getSelectedItem();
+        System.out.println(selectedKursCopy);
+        for (Tab tabPaneKursAnlegen : ContentKurseListe.getTabPane().getTabs()) {
+            if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
+                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+            }
+        }
+    }
+
+
+    @FXML
+    void bisDatSelectDate(ActionEvent event) {
 
     }
 
@@ -161,9 +152,4 @@ public class KurseListeController {
     public void personAnlegenButtonAction(ActionEvent actionEvent) {
     }
 
-    public void andernButtonAction(ActionEvent actionEvent) {
-    }
-
-    public void loeschButtonAction(ActionEvent actionEvent) {
-    }
 }
