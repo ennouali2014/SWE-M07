@@ -1,6 +1,6 @@
 package de.unibremen.akademie.kursverwaltung;
 
-import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
+import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainApplication extends Application {
-    Kursverwaltung model;
+    KvModel model;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -24,10 +24,10 @@ public class MainApplication extends Application {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         //model aus Datei laden
-        Kursverwaltung.model.load();
+        KvModel.model.load();
         //Application (GUI) starten
         launch();
         //model beim Beenden in Datei speichern
-        Kursverwaltung.model.save();
+        KvModel.model.save();
     }
 }

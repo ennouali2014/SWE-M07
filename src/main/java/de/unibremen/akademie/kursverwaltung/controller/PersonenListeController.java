@@ -2,7 +2,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 
 import de.unibremen.akademie.kursverwaltung.domain.Anrede;
-import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
+import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -154,7 +154,7 @@ public class PersonenListeController implements Initializable {
 
         telefon.setCellValueFactory(new PropertyValueFactory<Person, String>("telefon"));
         telefon.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn());
-        table.setItems(Kursverwaltung.model.personList);
+        table.setItems(KvModel.model.personList);
 
         TableView.TableViewSelectionModel<Person> selectionModel =
                 table.getSelectionModel();

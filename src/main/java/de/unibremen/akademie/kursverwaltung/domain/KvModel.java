@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Kursverwaltung {
+public class KvModel {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
 
     static public final ObservableList<Person> personList =
@@ -16,9 +16,9 @@ public class Kursverwaltung {
     static public final ObservableList<Kurs> kursList =
             FXCollections.observableArrayList();
 
-    static public final Kursverwaltung model = new Kursverwaltung();
+    static public final KvModel model = new KvModel();
 
-    private Kursverwaltung() {
+    private KvModel() {
 
     }
 

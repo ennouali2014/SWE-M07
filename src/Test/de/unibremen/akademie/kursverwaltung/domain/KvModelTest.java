@@ -8,13 +8,13 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class KursverwaltungTest {
+class KvModelTest {
     static final ObservableList<Person> personList =
             FXCollections.observableArrayList();
 
     static final ObservableList<Kurs> kursList =
             FXCollections.observableArrayList();
-    Kursverwaltung model = Kursverwaltung.model;
+    KvModel model = KvModel.model;
     String VERWALTUNGSDATEI = "src/test/resources/storage/gespeicherteTestObjekte";
 
     @Test

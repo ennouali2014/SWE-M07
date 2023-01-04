@@ -1,7 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Anrede;
-import de.unibremen.akademie.kursverwaltung.domain.Kursverwaltung;
+import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,7 +32,7 @@ public class PersonenDetailsController {
     @FXML
     public void onsaveclick() {
 
-        Kursverwaltung.model.addPerson((Anrede) anrede.getValue(), titel.getText(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+        KvModel.model.addPerson((Anrede) anrede.getValue(), titel.getText(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
         titel.clear();
         name.clear();
         vorname.clear();
@@ -41,7 +41,7 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
-        System.out.println(Kursverwaltung.model.personList);
+        System.out.println(KvModel.model.personList);
 
 
     }
