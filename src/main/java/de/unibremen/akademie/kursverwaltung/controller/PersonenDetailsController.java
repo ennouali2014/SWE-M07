@@ -41,7 +41,7 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
-        System.out.println(Kursverwaltung.model.getPersonList());
+        System.out.println(Kursverwaltung.model.personList);
 
 
     }
