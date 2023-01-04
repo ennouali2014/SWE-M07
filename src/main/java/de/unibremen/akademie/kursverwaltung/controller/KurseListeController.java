@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,7 +11,9 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class KurseListeController {
 
@@ -87,7 +90,9 @@ public class KurseListeController {
 
     @FXML
     void entfernenButtonAction(ActionEvent event) {
-
+        ObservableList<Kurs> kurse = tableView.getItems();
+        List<Kurs> selectedCoursesCopy = new ArrayList<>(tableView.getSelectionModel().getSelectedItems());
+        selectedCoursesCopy.forEach(kurse::remove);
     }
 
     @FXML
