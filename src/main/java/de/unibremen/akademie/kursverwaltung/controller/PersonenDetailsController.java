@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 
 public class PersonenDetailsController {
@@ -30,8 +31,12 @@ public class PersonenDetailsController {
     public TextField ort;
     @FXML
     public Button save;
+    static public boolean zurückwechsel;
 
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
+
+    public Tab ContentPersonenDetails;
+
 
     public void initialize() {
         choiceListAnrede.add("");
@@ -56,6 +61,15 @@ public class PersonenDetailsController {
             ort.clear();
             email.clear();
             telefon.clear();
+        }
+        if (zurückwechsel) {
+            for (Tab tabPaneKursAnlegen : ContentPersonenDetails.getTabPane().getTabs()) {
+                if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
+                    tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+
+                }
+            }
+            zurückwechsel = false;
         }
         //System.out.println(KvModel.personList);
     }

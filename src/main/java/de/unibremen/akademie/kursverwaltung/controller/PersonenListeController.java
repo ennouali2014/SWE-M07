@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,6 +19,7 @@ import java.util.ResourceBundle;
 
 
 public class PersonenListeController implements Initializable {
+
 
     public Tab ContentPersonenListe;
     @FXML
@@ -66,13 +66,10 @@ public class PersonenListeController implements Initializable {
     private Button zurucksetzenButton;
     @FXML
     private TableColumn<Person, String> nachname;
+
     @FXML
     public void andernButtonAction(ActionEvent event) {
 
-        //table.setEditable(true);
-        //ObservableList<Person> selectedPerson = table.getSelectionModel().getSelectedItems();
-        //System.out.println("Ausgewählte Person" + selectedPerson);
-        //selectedPerson = table.getItems();
     }
 
     @FXML
@@ -84,9 +81,11 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
-        for (Tab tabPanePersonAnlegen : ContentPersonenListe.getTabPane().getTabs()) {
-            if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
-                tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
+        PersonenDetailsController.zurückwechsel = true;
+        for (Tab tabPaneKursAnlegen : ContentPersonenListe.getTabPane().getTabs()) {
+            if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
+                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+
             }
         }
     }
@@ -119,27 +118,108 @@ public class PersonenListeController implements Initializable {
 
         titel.setCellValueFactory(new PropertyValueFactory<Person, String>("titel"));
         titel.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        titel.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Person, String> v) {
+                        ((Person) v.getTableView().getItems().get(
+                                v.getTablePosition().getRow())
+                        ).setTitel(v.getNewValue());
+                    }
+                }
+        );
 
         vorname.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
         vorname.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        vorname.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Person, String> v) {
+                        ((Person) v.getTableView().getItems().get(
+                                v.getTablePosition().getRow())
+                        ).setVorname(v.getNewValue());
+                    }
+                }
+        );
 
         nachname.setCellValueFactory(new PropertyValueFactory<Person, String>("nachname"));
         nachname.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        nachname.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Person, String> v) {
+                        ((Person) v.getTableView().getItems().get(
+                                v.getTablePosition().getRow())
+                        ).setNachname(v.getNewValue());
+                    }
+                }
+        );
+
 
         strasse.setCellValueFactory(new PropertyValueFactory<Person, String>("strasse"));
         strasse.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        strasse.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Person, String> v) {
+                        ((Person) v.getTableView().getItems().get(
+                                v.getTablePosition().getRow())
+                        ).setStrasse(v.getNewValue());
+                    }
+                }
+        );
 
         plz.setCellValueFactory(new PropertyValueFactory<Person, String>("plz"));
         plz.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        plz.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Person, String> v) {
+                        ((Person) v.getTableView().getItems().get(
+                                v.getTablePosition().getRow())
+                        ).setPlz(v.getNewValue());
+                    }
+                }
+        );
 
         ort.setCellValueFactory(new PropertyValueFactory<Person, String>("ort"));
         ort.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        ort.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Person, String> v) {
+                        ((Person) v.getTableView().getItems().get(
+                                v.getTablePosition().getRow())
+                        ).setOrt(v.getNewValue());
+                    }
+                }
+        );
 
         email.setCellValueFactory(new PropertyValueFactory<Person, String>("email"));
         email.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        email.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Person, String> v) {
+                        ((Person) v.getTableView().getItems().get(
+                                v.getTablePosition().getRow())
+                        ).setTelefon(v.getNewValue());
+                    }
+                }
+        );
 
         telefon.setCellValueFactory(new PropertyValueFactory<Person, String>("telefon"));
         telefon.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        telefon.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Person, String> v) {
+                        ((Person) v.getTableView().getItems().get(
+                                v.getTablePosition().getRow())
+                        ).setTelefon(v.getNewValue());
+                    }
+                }
+        );
 
         table.setItems(KvModel.personList);
 
