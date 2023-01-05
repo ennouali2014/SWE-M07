@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.TabPane?>
-<TabPane xmlns:fx="http://javafx.com/fxml/1"
+<TabPane xmlns:fx="http://javafx.com/fxml/1" fx:id="tabpane"
          stylesheets="@css/style.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
          minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0"
          tabClosingPolicy="UNAVAILABLE"
          xmlns="http://javafx.com/javafx/18"
          fx:controller="de.unibremen.akademie.kursverwaltung.controller.MainController">
-    <tabs>
-        <fx:include fx:id="ContentPersonenDetails" source="personen_details.fxml"/>
-        <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml"/>
-        <fx:include fx:id="ContentKurseDetails" source="kurse_details.fxml"/>
-        <fx:include fx:id="ContentKurseListe" source="kurse_liste.fxml"/>
-        <fx:include fx:id="ContentTexteDetails" source="texte_details.fxml"/>
-        <fx:include fx:id="ContentTexteListe" source="texte_liste.fxml"/>
-        <fx:include fx:id="ContentDokumenteDetails" source="dokumente_details.fxml"/>
-        <fx:include fx:id="ContentDokumenteListe" source="dokumente_liste.fxml"/>
-    </tabs>
+    <fx:include fx:id="ContentPersonenDetails" source="personen_details.fxml"/>
+    <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml"/>
+    <fx:include fx:id="ContentKurseDetails" source="kurse_details.fxml"/>
+    <fx:include fx:id="ContentKurseListe" source="kurse_liste.fxml"/>
+    <fx:include fx:id="ContentTexteDetails" source="texte_details.fxml"/>
+    <fx:include fx:id="ContentTexteListe" source="texte_liste.fxml"/>
+    <fx:include fx:id="ContentDokumenteDetails" source="dokumente_details.fxml"/>
+    <fx:include fx:id="ContentDokumenteListe" source="dokumente_liste.fxml"/>
 </TabPane>
