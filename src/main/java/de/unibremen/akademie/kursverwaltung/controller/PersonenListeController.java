@@ -18,15 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static de.unibremen.akademie.kursverwaltung.domain.KvModel.model;
-
 
 public class PersonenListeController implements Initializable {
 
 
     public Tab fxmlPersonenListe;
-    @FXML
-    private TableView<Person> table;
+    static public int index_of_selected_item;
     @FXML
     private TableColumn<Person, String> anrede;
     @FXML
@@ -70,19 +67,26 @@ public class PersonenListeController implements Initializable {
     @FXML
     private TableColumn<Person, String> nachname;
     ObservableList<Person> list = FXCollections.observableArrayList();
+    @FXML
+    public TableView<Person> table;
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
-        KvModel.aktuellePerson=table.getSelectionModel().getSelectedItem();
-        System.out.println(model.personList.size());
+        if (!table.getSelectionModel().isEmpty()) {
 
-        main.fxmlPersonenDetailsController.update(KvModel.aktuellePerson);
 
-        PersonenDetailsController.zurueckwechseln = true;
-        for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+            PersonenDetailsController.updateExistingPerson = true;
+            KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
+            index_of_selected_item = table.getSelectionModel().getFocusedIndex();
 
+            main.fxmlPersonenDetailsController.update(KvModel.aktuellePerson);
+
+            PersonenDetailsController.zurueckwechseln = true;
+            for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
+                if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
+                    tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+
+                }
             }
         }
     }

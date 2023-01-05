@@ -13,6 +13,7 @@ public class MainController {
     @FXML public void initialize(){
         fxmlKurseListeController.init(this);
         fxmlPersonenListeController.init(this);
+        fxmlPersonenDetailsController.init(this);
     }
 
     @FXML
