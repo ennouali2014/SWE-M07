@@ -3,75 +3,67 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@css/style.css"
-            xmlns="http://javafx.com/javafx/18"
-            fx:controller="de.unibremen.akademie.kursverwaltung.controller.DokumenteListeController">
-    <children>
-        <VBox prefHeight="390.0" prefWidth="244.0" spacing="10.0" AnchorPane.bottomAnchor="5.0"
-              AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="5.0">
+<Tab xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" text="Dokumente-Liste"
+     fx:id="ContentDokumenteListe"
+     fx:controller="de.unibremen.akademie.kursverwaltung.controller.DokumenteListeController">
+    <content>
+        <AnchorPane>
             <children>
-                <TreeView fx:id="bausteinList" minWidth="150.0" prefHeight="200.0" prefWidth="200.0">
-                    <padding>
-                        <Insets right="5.0" top="5.0"/>
-                    </padding>
-                    <VBox.margin>
-                        <Insets/>
-                    </VBox.margin>
-                </TreeView>
-                <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                <VBox prefHeight="390.0" prefWidth="244.0" spacing="10.0" AnchorPane.bottomAnchor="5.0"
+                      AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="5.0">
                     <children>
-                        <Button minWidth="70.0" mnemonicParsing="false" onAction="#displayList" text="Diplay list"/>
-                        <Button mnemonicParsing="false" text="Clear"/>
+                        <TreeView fx:id="bausteinList" minWidth="150.0" prefHeight="200.0" prefWidth="200.0">
+                            <padding>
+                                <Insets right="5.0" top="5.0"/>
+                            </padding>
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                        </TreeView>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                            <children>
+                                <Button minWidth="70.0" mnemonicParsing="false" onAction="#displayList"
+                                        text="Diplay list"/>
+                                <Button mnemonicParsing="false" text="Clear"/>
+                            </children>
+                        </HBox>
                     </children>
-                </HBox>
+                </VBox>
+                <TabPane layoutX="225.0" layoutY="50.0" prefHeight="341.0" prefWidth="261.0"
+                         tabClosingPolicy="UNAVAILABLE"
+                         AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="233.39999999999998"
+                         AnchorPane.rightAnchor="5.0"
+                         AnchorPane.topAnchor="5.0">
+                    <tabs>
+                        <Tab text="Disply">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <TextArea layoutX="31.0" layoutY="23.0" prefHeight="200.0" prefWidth="200.0"/>
+                                        <Button layoutX="179.0" layoutY="259.0" mnemonicParsing="false" text="print"/>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Edit">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <TextArea layoutX="31.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0"/>
+                                        <Button layoutX="31.0" layoutY="241.0" mnemonicParsing="false"
+                                                text="Save to file"/>
+                                        <Button layoutX="105.0" layoutY="241.0" mnemonicParsing="false" text="Save as"/>
+                                        <Button layoutX="179.0" layoutY="241.0" mnemonicParsing="false" text="cancel"/>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
             </children>
-        </VBox>
-        <TabPane layoutX="225.0" layoutY="50.0" prefHeight="341.0" prefWidth="261.0" tabClosingPolicy="UNAVAILABLE"
-                 AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="233.39999999999998" AnchorPane.rightAnchor="5.0"
-                 AnchorPane.topAnchor="5.0">
-            <tabs>
-                <Tab text="Disply">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <TextArea layoutX="31.0" layoutY="23.0" prefHeight="200.0" prefWidth="200.0"/>
-                                <Button layoutX="179.0" layoutY="259.0" mnemonicParsing="false" text="print"/>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Edit">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <TextArea layoutX="31.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0"/>
-                                <Button layoutX="31.0" layoutY="241.0" mnemonicParsing="false" text="Save to file"/>
-                                <Button layoutX="105.0" layoutY="241.0" mnemonicParsing="false" text="Save as"/>
-                                <Button layoutX="179.0" layoutY="241.0" mnemonicParsing="false" text="cancel"/>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </children>
-    <padding>
-        <Insets top="5.0"/>
-    </padding>
-</AnchorPane>
-
-
-        <!--<?xml version="1.0" encoding="UTF-8"?>
-
-        <?import javafx.scene.control.*?>
-        <?import javafx.scene.layout.*?>
-
-        <AnchorPane xmlns="http://javafx.com/javafx"
-                    xmlns:fx="http://javafx.com/fxml"
-                    fx:controller="kurs.fx.DokumenteListeController">
-            <children>
-                <Label text="Dokumente-Liste" />
-            </children>
-
-        </AnchorPane>-->
+            <padding>
+                <Insets top="5.0"/>
+            </padding>
+        </AnchorPane>
+    </content>
+</Tab>

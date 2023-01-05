@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.TabPane?>
 <TabPane xmlns:fx="http://javafx.com/fxml/1"
          stylesheets="@css/style.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
          minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0"
@@ -8,43 +8,13 @@
          xmlns="http://javafx.com/javafx/18"
          fx:controller="de.unibremen.akademie.kursverwaltung.controller.MainController">
     <tabs>
-        <!--
-        <Tab text="Personen-Details">
-            <content>
-                <fx:include fx:id="ContentPersonenDetails" source="personen_details.fxml"/>
-            </content>
-        </Tab>
-        <Tab text="Personen-Liste">
-            <content>
-                <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml"/>
-            </content>
-        </Tab>
-        -->
         <fx:include fx:id="ContentPersonenDetails" source="personen_details.fxml"/>
         <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml"/>
-
         <fx:include fx:id="ContentKurseDetails" source="kurse_details.fxml"/>
         <fx:include fx:id="ContentKurseListe" source="kurse_liste.fxml"/>
-
-        <Tab text="Texte-Details">
-            <content>
-                <fx:include fx:id="ContentTexteDetails" source="texte_details.fxml"/>
-            </content>
-        </Tab>
-        <Tab text="Texte-Liste">
-            <content>
-                <fx:include fx:id="ContentTexteListe" source="texte_liste.fxml"/>
-            </content>
-        </Tab>
-        <Tab text="Dokumente-Details">
-            <content>
-                <fx:include fx:id="ContentDokumenteDetails" source="dokumente_details.fxml"/>
-            </content>
-        </Tab>
-        <Tab text="Dokumente-Liste">
-            <content>
-                <fx:include fx:id="ContentDokumenteListe" source="dokumente_liste.fxml"/>
-            </content>
-        </Tab>
+        <fx:include fx:id="ContentTexteDetails" source="texte_details.fxml"/>
+        <fx:include fx:id="ContentTexteListe" source="texte_liste.fxml"/>
+        <fx:include fx:id="ContentDokumenteDetails" source="dokumente_details.fxml"/>
+        <fx:include fx:id="ContentDokumenteListe" source="dokumente_liste.fxml"/>
     </tabs>
 </TabPane>
