@@ -69,6 +69,7 @@ public class PersonenListeController implements Initializable {
     private Button zurucksetzenButton;
     @FXML
     private TableColumn<Person, String> nachname;
+    ObservableList<Person> list = FXCollections.observableArrayList();
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
@@ -244,6 +245,17 @@ public class PersonenListeController implements Initializable {
                 table.getSelectionModel();
         selectionModel.setSelectionMode(
                 SelectionMode.MULTIPLE);
+        table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                list = table.getSelectionModel().getSelectedItems();
+            }
+            if (list.size() > 1) {
+                andernButton.setDisable(true);
+            } else {
+                andernButton.setDisable(false);
+            }
+        });
+
     }
 
     public void init(MainController mainController) {
