@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,6 +23,7 @@ public class PersonenListeController implements Initializable {
 
 
     public Tab ContentPersonenListe;
+    public Tab fxmlPersonenListe;
     @FXML
     private TableView<Person> table;
     @FXML
@@ -66,11 +68,12 @@ public class PersonenListeController implements Initializable {
     private Button zurucksetzenButton;
     @FXML
     private TableColumn<Person, String> nachname;
+    ObservableList<Person> list = FXCollections.observableArrayList();
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
         PersonenDetailsController.zurueckwechseln = true;
-        for (Tab tabPaneKursAnlegen : ContentPersonenListe.getTabPane().getTabs()) {
+        for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
@@ -88,7 +91,7 @@ public class PersonenListeController implements Initializable {
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
         PersonenDetailsController.zurueckwechseln = true;
-        for (Tab tabPaneKursAnlegen : ContentPersonenListe.getTabPane().getTabs()) {
+        for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
@@ -233,6 +236,17 @@ public class PersonenListeController implements Initializable {
                 table.getSelectionModel();
         selectionModel.setSelectionMode(
                 SelectionMode.MULTIPLE);
+        table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                list = table.getSelectionModel().getSelectedItems();
+            }
+            if (list.size() > 1) {
+                andernButton.setDisable(true);
+            } else {
+                andernButton.setDisable(false);
+            }
+        });
+
     }
 }
 
