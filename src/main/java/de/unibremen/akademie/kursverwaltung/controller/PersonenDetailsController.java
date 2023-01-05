@@ -31,7 +31,7 @@ public class PersonenDetailsController {
     public TextField ort;
     @FXML
     public Button save;
-    static public boolean zurueckwechsel;
+    static public boolean zurueckwechseln;
 
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
 
@@ -62,14 +62,14 @@ public class PersonenDetailsController {
             email.clear();
             telefon.clear();
         }
-        if (zurueckwechsel) {
+        if (zurueckwechseln) {
             for (Tab tabPaneKursAnlegen : ContentPersonenDetails.getTabPane().getTabs()) {
                 if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
                     tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
                 }
             }
-            zurueckwechsel = false;
+            zurueckwechseln = false;
         }
         //System.out.println(KvModel.personList);
     }
