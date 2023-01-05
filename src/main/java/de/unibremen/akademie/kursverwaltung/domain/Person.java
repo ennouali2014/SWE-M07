@@ -1,7 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Alert;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -12,9 +12,9 @@ import java.util.Objects;
 
 public class Person implements Externalizable {
 
-    private Anrede anrede;
+    private SimpleStringProperty anrede;
     private SimpleStringProperty titel;
-    private SimpleStringProperty name;
+    private SimpleStringProperty nachname;
     private SimpleStringProperty vorname;
     private SimpleStringProperty strasse;
     private SimpleStringProperty plz;
@@ -26,16 +26,41 @@ public class Person implements Externalizable {
 
 
     public Person() {
-
     }
 
-
-    public Anrede getAnrede() {
-        return anrede;
+    public static Person addNewPerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
+        Person person = new Person();
+        if (!checkIsEmpty(vorname)) {
+            eingabeAlert("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
+            return person;
+        }
+        if (!checkIsEmpty(nachname)) {
+            eingabeAlert("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
+            return person;
+        }
+        if (!checkValidEmail(email)) {
+            eingabeAlert("Die Email-Adresse ist fehlerhaft!");
+            return person;
+        }
+        person.setAnrede(anrede);
+        person.setTitel(titel);
+        person.setVorname(vorname);
+        person.setNachname(nachname);
+        person.setStrasse(strasse);
+        person.setPlz(plz);
+        person.setOrt(ort);
+        person.setEmail(email);
+        person.setTelefon(telefon);
+        KvModel.personList.add(person);
+        return person;
     }
 
-    public void setAnrede(Anrede anrede) {
-        this.anrede = anrede;
+    public String getAnrede() {
+        return anrede.get();
+    }
+
+    public void setAnrede(String anrede) {
+        this.anrede = new SimpleStringProperty(anrede);
     }
 
     public String getTitel() {
@@ -43,17 +68,19 @@ public class Person implements Externalizable {
     }
 
     public void setTitel(String titel) {
-        this.titel = new ReadOnlyStringWrapper(titel);
+        this.titel = new SimpleStringProperty(titel);
     }
 
-    public String getName() {
-        return name.get();
+    public static void eingabeAlert(String meldung) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Fehler bei der Dateneingabe");
+        alert.setHeaderText("Eingabevalidierung");
+        alert.setContentText(meldung);
+        alert.showAndWait();
     }
 
-    public void setName(String name) {
-        if (checkIsEmpty(name)) {
-            this.name = new SimpleStringProperty(name);
-        }
+    public String getNachname() {
+        return nachname.get();
     }
 
     public String getVorname() {
@@ -63,6 +90,8 @@ public class Person implements Externalizable {
     public void setVorname(String vorname) {
         if (checkIsEmpty(vorname)) {
             this.vorname = new SimpleStringProperty(vorname);
+        } else {
+            System.out.println("Vorname ist leer oder zu kurz!");
         }
     }
 
@@ -136,7 +165,14 @@ public class Person implements Externalizable {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
+    }
 
+    public void setNachname(String nachname) {
+        if (checkIsEmpty(nachname)) {
+            this.nachname = new SimpleStringProperty(nachname);
+        } else {
+            System.out.println("Nachname ist leer oder zu kurz!");
+        }
     }
 
     @Override
@@ -144,12 +180,12 @@ public class Person implements Externalizable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(name, person.name) && Objects.equals(vorname, person.vorname) && Objects.equals(email, person.email);
+        return Objects.equals(vorname, person.vorname) && Objects.equals(nachname, person.nachname) && Objects.equals(email, person.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, vorname, email);
+        return Objects.hash(vorname, nachname, email);
     }
 
     @Override
@@ -157,8 +193,8 @@ public class Person implements Externalizable {
         return "Person{" +
                 "anrede='" + anrede + '\'' +
                 "titel='" + titel + '\'' +
-                "name='" + name + '\'' +
-                ", vorname='" + vorname + '\'' +
+                "vorname='" + vorname + '\'' +
+                ", nachname='" + nachname + '\'' +
                 ", strasse='" + strasse + '\'' +
                 ", plz='" + plz + '\'' +
                 ", ort='" + ort + '\'' +
@@ -170,26 +206,29 @@ public class Person implements Externalizable {
 
     @Override
     public void writeExternal(ObjectOutput stream) throws IOException {
-        stream.writeUTF(getName());
+        stream.writeUTF(getAnrede());
+        stream.writeUTF(getTitel());
         stream.writeUTF(getVorname());
+        stream.writeUTF(getNachname());
         stream.writeUTF(getStrasse());
         stream.writeUTF(getPlz());
         stream.writeUTF(getOrt());
         stream.writeUTF(getEmail());
         stream.writeUTF(getTelefon());
-        System.out.println(this);
-
+        //System.out.println(this);
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        setName(in.readUTF());
+        setAnrede(in.readUTF());
+        setTitel(in.readUTF());
         setVorname(in.readUTF());
+        setNachname(in.readUTF());
         setStrasse(in.readUTF());
         setPlz(in.readUTF());
         setOrt(in.readUTF());
         setEmail(in.readUTF());
         setTelefon(in.readUTF());
-
+        //System.out.println(this);
     }
 }

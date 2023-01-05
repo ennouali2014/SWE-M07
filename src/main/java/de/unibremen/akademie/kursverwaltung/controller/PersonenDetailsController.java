@@ -1,52 +1,62 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.Anrede;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
+import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 
 public class PersonenDetailsController {
     @FXML
-    //public TextField anrede;
-    public Tab ContentPersonenDetails;
-    public TextField titel;
-    public TextField name;
-    public TextField vorname;
-    public TextField strasse;
-    public TextField plz;
-    public TextField email;
-    public TextField telefon;
-    public TextField ort;
     public ChoiceBox anrede;
+    @FXML
+    public TextField titel;
+    @FXML
+    public TextField vorname;
+    @FXML
+    public TextField nachname;
+    @FXML
+    public TextField strasse;
+    @FXML
+    public TextField plz;
+    @FXML
+    public TextField email;
+    @FXML
+    public TextField telefon;
+    @FXML
+    public TextField ort;
+    @FXML
     public Button save;
-    public String nameS;
+
+    public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
 
     public void initialize() {
-        anrede.setItems(FXCollections.observableArrayList(de.unibremen.akademie.kursverwaltung.domain.Anrede.values()));
-
-
+        choiceListAnrede.add("");
+        choiceListAnrede.add("Herr");
+        choiceListAnrede.add("Frau");
+        choiceListAnrede.add("Divers");
+        anrede.setItems(choiceListAnrede);
+        anrede.getSelectionModel().selectFirst();
     }
 
     @FXML
     public void onsaveclick() {
-
-        KvModel.model.addPerson((Anrede) anrede.getValue(), titel.getText(), name.getText(), vorname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
-        titel.clear();
-        name.clear();
-        vorname.clear();
-        strasse.clear();
-        plz.clear();
-        ort.clear();
-        email.clear();
-        telefon.clear();
-        System.out.println(KvModel.model.personList);
-
-
+        int aktuelleAnzPersonen = KvModel.personList.size();
+        Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+        if (KvModel.personList.size() > aktuelleAnzPersonen) {
+            anrede.getSelectionModel().selectFirst();
+            titel.clear();
+            vorname.clear();
+            nachname.clear();
+            strasse.clear();
+            plz.clear();
+            ort.clear();
+            email.clear();
+            telefon.clear();
+        }
+        //System.out.println(KvModel.personList);
     }
-
-
 }
