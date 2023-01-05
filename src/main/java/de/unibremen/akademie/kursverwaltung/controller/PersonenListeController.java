@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,11 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static de.unibremen.akademie.kursverwaltung.domain.KvModel.model;
+
 
 public class PersonenListeController implements Initializable {
 
 
-    public Tab ContentPersonenListe;
+    public Tab fxmlPersonenListe;
     @FXML
     private TableView<Person> table;
     @FXML
@@ -69,8 +72,13 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
+        KvModel.aktuellePerson=table.getSelectionModel().getSelectedItem();
+        System.out.println(model.personList.size());
+
+        main.fxmlPersonenDetailsController.update(KvModel.aktuellePerson);
+
         PersonenDetailsController.zurueckwechseln = true;
-        for (Tab tabPaneKursAnlegen : ContentPersonenListe.getTabPane().getTabs()) {
+        for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
@@ -87,8 +95,9 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
+        main.fxmlPersonenDetailsController.onabbrechenclick(event);
         PersonenDetailsController.zurueckwechseln = true;
-        for (Tab tabPaneKursAnlegen : ContentPersonenListe.getTabPane().getTabs()) {
+        for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
@@ -105,6 +114,8 @@ public class PersonenListeController implements Initializable {
     public void zurucksetzenButtonAction(ActionEvent event) {
 
     }
+
+    private MainController main;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -233,6 +244,10 @@ public class PersonenListeController implements Initializable {
                 table.getSelectionModel();
         selectionModel.setSelectionMode(
                 SelectionMode.MULTIPLE);
+    }
+
+    public void init(MainController mainController) {
+        main=mainController;
     }
 }
 

@@ -15,6 +15,7 @@ public class KvModel {
             FXCollections.observableArrayList();
     static public final KvModel model = new KvModel();
     static public Kurs aktuelleKurs ;
+    static public Person aktuellePerson;
 
 
     private KvModel() {

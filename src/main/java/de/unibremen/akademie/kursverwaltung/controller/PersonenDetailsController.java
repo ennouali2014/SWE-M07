@@ -4,6 +4,7 @@ import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -75,9 +76,32 @@ public class PersonenDetailsController {
         }
         //System.out.println(KvModel.personList);
     }
+    @FXML
+    public void update(Person person){
+        String anrede=person.getAnrede();
+        String titel=person.getTitel();
+        String vorname=person.getVorname();
+        String nachname=person.getNachname();
+        String strasse=person.getStrasse();
+        String plz=person.getPlz();
+        String ort=person.getOrt();
+        String email=person.getEmail();
+        String telefon=person.getTelefon();
+
+        this.titel.setText(titel);
+        this.vorname.setText(vorname);
+        this.nachname.setText(nachname);
+        this.strasse.setText(strasse);
+        this.plz.setText(plz);
+        this.ort.setText(ort);
+        this.email.setText(email);
+        this.telefon.setText(telefon);
+
+
+    }
 
     @FXML
-    public void onabbrechenclick() {
+    public void onabbrechenclick(ActionEvent event) {
         anrede.getSelectionModel().selectFirst();
         titel.clear();
         vorname.clear();

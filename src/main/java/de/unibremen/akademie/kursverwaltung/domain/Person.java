@@ -231,4 +231,6 @@ public class Person implements Externalizable {
         setTelefon(in.readUTF());
         //System.out.println(this);
     }
+
+
 }
