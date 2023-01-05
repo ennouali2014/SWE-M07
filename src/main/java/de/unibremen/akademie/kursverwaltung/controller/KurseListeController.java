@@ -2,7 +2,6 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
-import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -122,7 +121,6 @@ public class KurseListeController {
     void abDatselectDate(ActionEvent event) {
 
         lblBisDatum.setText(datePicker1.getValue().toString());
-
     }
 
     @FXML
