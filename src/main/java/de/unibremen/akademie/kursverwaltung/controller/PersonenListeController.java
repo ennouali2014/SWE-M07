@@ -18,11 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static de.unibremen.akademie.kursverwaltung.domain.KvModel.model;
+
 
 public class PersonenListeController implements Initializable {
 
 
-    public Tab ContentPersonenListe;
     public Tab fxmlPersonenListe;
     @FXML
     private TableView<Person> table;
@@ -72,6 +73,12 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
+        KvModel.aktuellePerson=table.getSelectionModel().getSelectedItem();
+        System.out.println(model.personList.size());
+
+        main.fxmlPersonenDetailsController.update(KvModel.aktuellePerson);
+
+        PersonenDetailsController.zurueckwechseln = true;
         for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
@@ -89,6 +96,8 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
+        main.fxmlPersonenDetailsController.onabbrechenclick(event);
+        PersonenDetailsController.zurueckwechseln = true;
         for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
@@ -106,6 +115,8 @@ public class PersonenListeController implements Initializable {
     public void zurucksetzenButtonAction(ActionEvent event) {
 
     }
+
+    private MainController main;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -245,6 +256,10 @@ public class PersonenListeController implements Initializable {
             }
         });
 
+    }
+
+    public void init(MainController mainController) {
+        main=mainController;
     }
 }
 
