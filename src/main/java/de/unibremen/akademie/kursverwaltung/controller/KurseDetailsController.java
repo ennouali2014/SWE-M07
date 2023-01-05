@@ -1,5 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
+import de.unibremen.akademie.kursverwaltung.MainApplication;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.event.ActionEvent;
@@ -12,7 +13,7 @@ import java.util.Date;
 
 public class KurseDetailsController {
 
-    public Tab ContentKurseDetails;
+    private Tab fxmlKurseDetails;
 
     @FXML
     private TextField kursname;
@@ -39,12 +40,11 @@ public class KurseDetailsController {
     @FXML
     private TextField mtwsEuro;
     @FXML
-    private TextField mtwsProzent;
+    public TextField mtwsProzent;
     @FXML
     private TextArea kursBeschreibung;
     @FXML
     private ComboBox status;
-
 
     public void apply(ActionEvent actionEvent) {
         //do it start datum ist nur ein beispie. man muss datepicker anwenden recherchieren
@@ -68,7 +68,7 @@ public class KurseDetailsController {
         freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
         mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
         gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
-        for (Tab tabPaneKursListe : ContentKurseDetails.getTabPane().getTabs()) {
+        for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
                 tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
             }
@@ -99,36 +99,38 @@ public class KurseDetailsController {
 
     public void teilnehmerlist(ActionEvent actionEvent) {
 
-        for (Tab tabPaneKursListe : ContentKurseDetails.getTabPane().getTabs()) {
+        for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Personen-Liste")) {
                 tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
             }
 
         }
     }
-
+    public void update(Kurs kurs) {
+        // Kurs kurs = main.getKurs();
+        if(kurs!=null){
+            kursname.setText(kurs.getName());
+            //status.set(KvModel.aktuelleKurs.getStatus());
+            status.setValue(kurs.getStatus());
+           anzahlTage.setText(String.valueOf(kurs.getAnzahlTage()));
+            zyklus.setText(String.valueOf(kurs.getZyklus()));
+            //startDatum.setValue(kurs.getStartDatum());
+            minTnZahl.setText(String.valueOf(kurs.getMinTnZahl()));
+            maxTnZahl.setText(String.valueOf(kurs.getMaxTnZahl()));
+            gebuehrBrutto.setText(String.valueOf(kurs.getGebuehrBrutto()));
+            mtwsProzent.setText(String.valueOf(kurs.getMwstProzent()));
+            kursBeschreibung.setText(kurs.getKursBeschreibung());
+            //endeDatum.setText(KvModel.aktuelleKurs.getName());
+            freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
+            aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
+            mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
+            gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+        }
+    }
     public void interessentenlist(ActionEvent actionEvent) {
     }
 
     public void onDatePickerAction(ActionEvent actionEvent) {
     }
-    public void update(){
-        if(KvModel.aktuelleKurs!=null){
-            kursname.setText(KvModel.aktuelleKurs.getName());
-            //status.set(KvModel.aktuelleKurs.getStatus());
-            anzahlTage.setText(String.valueOf(KvModel.aktuelleKurs.getAnzahlTage()));
-            zyklus.setText(String.valueOf(KvModel.aktuelleKurs.getZyklus()));
-            //startDatum.setValue();
-            minTnZahl.setText(String.valueOf(KvModel.aktuelleKurs.getMinTnZahl()));
-            maxTnZahl.setText(String.valueOf(KvModel.aktuelleKurs.getMaxTnZahl()));
-            gebuehrBrutto.setText(String.valueOf(KvModel.aktuelleKurs.getGebuehrBrutto()));
-            mtwsProzent.setText(String.valueOf(KvModel.aktuelleKurs.getMwstProzent()));
-            kursBeschreibung.setText(KvModel.aktuelleKurs.getKursBeschreibung());
-            //endeDatum.setText(KvModel.aktuelleKurs.getName());
-            freiePlaetze.setText(String.valueOf(KvModel.aktuelleKurs.getFreiePlaetze()));
-            aktuelleTnZahl.setText(String.valueOf(KvModel.aktuelleKurs.getAktuelleTnZahl()));
-            mtwsEuro.setText(String.valueOf(KvModel.aktuelleKurs.getMwstEuro()));
-            gebuehrNetto.setText(String.valueOf(KvModel.aktuelleKurs.getGebuehrNetto()));
-        }
-    }
+
 }

@@ -1,8 +1,12 @@
 package de.unibremen.akademie.kursverwaltung;
 
+import de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController;
+import de.unibremen.akademie.kursverwaltung.controller.KurseListeController;
+import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -16,7 +20,7 @@ import java.util.Optional;
 
 public class MainApplication extends Application {
     public static Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-    //KvModel model;
+
     @Override
     public void start(Stage stage) throws IOException {
         // Alert-Window beim Schliessen der Anwendung
@@ -54,4 +58,6 @@ public class MainApplication extends Application {
         KvModel.model.save();
         KvModel.model.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + timestamp.getTime());
     }
+
+
 }
