@@ -37,7 +37,7 @@ public class PersonenDetailsController {
 
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
 
-    public Tab ContentPersonenDetails;
+    public Tab fxmlPersonenDetails;
 
 
     public void initialize() {
@@ -65,7 +65,7 @@ public class PersonenDetailsController {
             telefon.clear();
         }
         if (zurueckwechseln) {
-            for (Tab tabPaneKursAnlegen : ContentPersonenDetails.getTabPane().getTabs()) {
+            for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
                 if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
                     tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
@@ -88,7 +88,7 @@ public class PersonenDetailsController {
         email.clear();
         telefon.clear();
         if (zurueckwechseln) {
-            for (Tab tabPaneKursAnlegen : ContentPersonenDetails.getTabPane().getTabs()) {
+            for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
                 if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
                     tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
                 }
