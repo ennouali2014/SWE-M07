@@ -38,305 +38,341 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/18"
-      fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenDetailsController">
-    <children>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
+<Tab xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" text="Personen-Details"
+     fx:id="ContentPersonenDetails"
+     fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenDetailsController">
+    <content>
+        <VBox>
             <children>
-                <SplitPane dividerPositions="0.4827694235588972" prefHeight="700.0" prefWidth="1200.0"
-                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                           AnchorPane.topAnchor="0.0">
-                    <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1200.0">
-                            <children>
-                                <HBox prefHeight="700.0" prefWidth="575.0" AnchorPane.bottomAnchor="5.0"
-                                      AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
-                                      AnchorPane.topAnchor="5.0">
+                <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <SplitPane dividerPositions="0.4827694235588972" prefHeight="700.0" prefWidth="1200.0"
+                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                   AnchorPane.rightAnchor="0.0"
+                                   AnchorPane.topAnchor="0.0">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1200.0">
                                     <children>
-                                        <VBox prefHeight="700.0" prefWidth="300.0">
+                                        <HBox prefHeight="700.0" prefWidth="575.0" AnchorPane.bottomAnchor="5.0"
+                                              AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+                                              AnchorPane.topAnchor="5.0">
                                             <children>
-                                                <Label prefHeight="30.0" prefWidth="45.0" text="Anrede">
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="5.0" left="40.0" right="5.0" top="70.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label layoutX="20.0" layoutY="85.0" prefHeight="30.0" text="Titel">
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" text="Vorname">
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label layoutX="20.0" layoutY="56.0" prefHeight="30.0" text="Nachname">
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-
-                                                <Label layoutX="20.0" layoutY="115.0" prefHeight="30.0" text="E-Mail">
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label layoutX="20.0" layoutY="144.0" prefHeight="30.0" text="Tel-Nr.">
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label layoutX="20.0" layoutY="174.0" prefHeight="30.0" text="Strasse">
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label layoutX="20.0" layoutY="204.0" prefHeight="30.0" text="PLZ">
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label layoutX="20.0" layoutY="233.0" prefHeight="30.0" text="Ort">
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="40.0" right="10.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Button fx:id="save" alignment="CENTER" mnemonicParsing="false"
-                                                        onAction="#onsaveclick" prefHeight="30.0" prefWidth="80.0"
-                                                        text="speichern">
-                                                    <VBox.margin>
-                                                        <Insets left="100.0" top="50.0"/>
-                                                    </VBox.margin>
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                </Button>
-                                            </children>
-                                        </VBox>
-                                        <VBox prefHeight="675.0" prefWidth="350.0">
-                                            <children>
-                                                <ChoiceBox fx:id="anrede" maxWidth="250.0" prefWidth="150.0">
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="70.0"/>
-                                                    </VBox.margin>
-                                                    <tooltip>
-                                                        <Tooltip text="Frau, Herr, Divers oder Nix"/>
-                                                    </tooltip>
-                                                </ChoiceBox>
-                                                <TextField fx:id="titel" maxWidth="250.0" prefHeight="30.0">
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                    <tooltip>
-                                                        <Tooltip text="Dr. , Prof., Kaiserin, what ever"/>
-                                                    </tooltip>
-                                                </TextField>
-                                                <TextField fx:id="vorname" maxWidth="250.0" prefHeight="30.0">
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                    <tooltip>
-                                                        <Tooltip text="Bitte Vorname eingeben, Pflichtfeld!"/>
-                                                    </tooltip>
-                                                </TextField>
-                                                <TextField fx:id="nachname" maxWidth="250.0" prefHeight="30.0">
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                    <tooltip>
-                                                        <Tooltip text="Bitte Nachname eingeben, Pflichtfeld!"/>
-                                                    </tooltip>
-                                                </TextField>
-                                                <TextField fx:id="email" maxWidth="250.0" prefHeight="30.0">
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </TextField>
-                                                <TextField fx:id="telefon" layoutX="10.0" layoutY="156.0"
-                                                           maxWidth="250.0" prefHeight="30.0">
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </TextField>
-                                                <TextField fx:id="strasse" maxWidth="250.0" prefHeight="30.0">
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </TextField>
-                                                <TextField fx:id="plz" maxWidth="250.0" prefHeight="30.0">
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </TextField>
-                                                <TextField fx:id="ort" maxWidth="250.0" prefHeight="30.0">
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" left="15.0" right="5.0" top="10.0"/>
-                                                    </VBox.margin>
-                                                </TextField>
-                                                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
-                                                        prefWidth="80.0" text="zurück">
-                                                    <VBox.margin>
-                                                        <Insets left="100.0" top="50.0"/>
-                                                    </VBox.margin>
-                                                    <font>
-                                                        <Font size="14.0"/>
-                                                    </font>
-                                                </Button>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </HBox>
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="317.0">
-                            <children>
-                                <AnchorPane layoutX="-192.0" layoutY="-328.0" minHeight="0.0" minWidth="0.0"
-                                            prefHeight="160.0" prefWidth="100.0"/>
-                                <HBox layoutX="-3.0" prefHeight="699.0" prefWidth="618.0" AnchorPane.bottomAnchor="5.0"
-                                      AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
-                                      AnchorPane.topAnchor="5.0">
-                                    <children>
-                                        <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="252.0">
-                                            <children>
-                                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="305.0"
-                                                       text="Kursliste">
-                                                    <font>
-                                                        <Font size="20.0"/>
-                                                    </font>
-                                                </Label>
-                                                <ListView prefHeight="264.0" prefWidth="252.0">
-                                                    <VBox.margin>
-                                                        <Insets left="5.0" right="5.0"/>
-                                                    </VBox.margin>
-                                                </ListView>
-                                            </children>
-                                            <padding>
-                                                <Insets top="150.0"/>
-                                            </padding>
-                                        </VBox>
-                                        <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="104.0">
-                                            <children>
-                                                <Button alignment="CENTER" contentDisplay="CENTER"
-                                                        mnemonicParsing="false" text="---&gt;">
-                                                    <VBox.margin>
-                                                        <Insets bottom="20.0"/>
-                                                    </VBox.margin>
-                                                </Button>
-                                                <Button alignment="CENTER" contentDisplay="CENTER"
-                                                        mnemonicParsing="false" text="&lt;---">
-                                                    <VBox.margin>
-                                                        <Insets bottom="190.0"/>
-                                                    </VBox.margin>
-                                                </Button>
-                                                <Button mnemonicParsing="false" text="---&gt;">
-                                                    <VBox.margin>
-                                                        <Insets bottom="20.0"/>
-                                                    </VBox.margin>
-                                                </Button>
-                                                <Button mnemonicParsing="false" text="&lt;---"/>
-                                            </children>
-                                            <HBox.margin>
-                                                <Insets/>
-                                            </HBox.margin>
-                                            <padding>
-                                                <Insets top="130.0"/>
-                                            </padding>
-                                        </VBox>
-                                        <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="229.0"
-                                              spacing="20.0">
-                                            <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" text="KursTeilnahme">
-                                                    <font>
-                                                        <Font size="20.0"/>
-                                                    </font>
-                                                </Label>
-                                                <ListView prefHeight="200.0" prefWidth="200.0">
-                                                    <VBox.margin>
-                                                        <Insets left="5.0" right="5.0"/>
-                                                    </VBox.margin>
-                                                </ListView>
-                                                <HBox alignment="CENTER" prefHeight="51.0" prefWidth="230.0"
-                                                      spacing="20.0">
+                                                <VBox prefHeight="700.0" prefWidth="300.0">
                                                     <children>
-                                                        <Button mnemonicParsing="false">
-                                                            <HBox.margin>
-                                                                <Insets/>
-                                                            </HBox.margin>
-                                                            <graphic>
-                                                                <ImageView fitHeight="20.0" fitWidth="18.0">
-                                                                    <image>
-                                                                        <Image url="@images/pfeil-oben.png"/>
-                                                                    </image>
-                                                                </ImageView>
-                                                            </graphic>
-                                                        </Button>
-                                                        <Button mnemonicParsing="false">
-                                                            <graphic>
-                                                                <ImageView fitHeight="20.0" fitWidth="18.0">
-                                                                    <image>
-                                                                        <Image url="@images/pfeil-unten.png"/>
-                                                                    </image>
-                                                                </ImageView>
-                                                            </graphic>
+                                                        <Label prefHeight="30.0" prefWidth="45.0" text="Anrede">
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets bottom="5.0" left="40.0" right="5.0"
+                                                                        top="70.0"/>
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Label layoutX="20.0" layoutY="85.0" prefHeight="30.0"
+                                                               text="Titel">
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="40.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0"
+                                                               text="Vorname">
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="40.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Label layoutX="20.0" layoutY="56.0" prefHeight="30.0"
+                                                               text="Nachname">
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="40.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </Label>
+
+                                                        <Label layoutX="20.0" layoutY="115.0" prefHeight="30.0"
+                                                               text="E-Mail">
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="40.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Label layoutX="20.0" layoutY="144.0" prefHeight="30.0"
+                                                               text="Tel-Nr.">
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="40.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Label layoutX="20.0" layoutY="174.0" prefHeight="30.0"
+                                                               text="Strasse">
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="40.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Label layoutX="20.0" layoutY="204.0" prefHeight="30.0"
+                                                               text="PLZ">
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="40.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Label layoutX="20.0" layoutY="233.0" prefHeight="30.0"
+                                                               text="Ort">
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="40.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <Button fx:id="save" alignment="CENTER" mnemonicParsing="false"
+                                                                onAction="#onsaveclick" prefHeight="30.0"
+                                                                prefWidth="80.0"
+                                                                text="speichern">
+                                                            <VBox.margin>
+                                                                <Insets left="100.0" top="50.0"/>
+                                                            </VBox.margin>
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
                                                         </Button>
                                                     </children>
-                                                </HBox>
-                                                <Label alignment="CENTER" contentDisplay="CENTER"
-                                                       text="KursInteressiert">
-                                                    <font>
-                                                        <Font size="20.0"/>
-                                                    </font>
-                                                </Label>
-                                                <ListView prefHeight="200.0" prefWidth="200.0">
-                                                    <VBox.margin>
-                                                        <Insets left="5.0" right="5.0"/>
-                                                    </VBox.margin>
-                                                </ListView>
+                                                </VBox>
+                                                <VBox prefHeight="675.0" prefWidth="350.0">
+                                                    <children>
+                                                        <ChoiceBox fx:id="anrede" maxWidth="250.0" prefWidth="150.0">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="15.0" right="5.0"
+                                                                        top="70.0"/>
+                                                            </VBox.margin>
+                                                            <tooltip>
+                                                                <Tooltip text="Frau, Herr, Divers oder Nix"/>
+                                                            </tooltip>
+                                                        </ChoiceBox>
+                                                        <TextField fx:id="titel" maxWidth="250.0" prefHeight="30.0">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="15.0" right="5.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                            <tooltip>
+                                                                <Tooltip text="Dr. , Prof., Kaiserin, what ever"/>
+                                                            </tooltip>
+                                                        </TextField>
+                                                        <TextField fx:id="vorname" maxWidth="250.0" prefHeight="30.0">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="15.0" right="5.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                            <tooltip>
+                                                                <Tooltip text="Bitte Vorname eingeben, Pflichtfeld!"/>
+                                                            </tooltip>
+                                                        </TextField>
+                                                        <TextField fx:id="nachname" maxWidth="250.0" prefHeight="30.0">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="15.0" right="5.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                            <tooltip>
+                                                                <Tooltip text="Bitte Nachname eingeben, Pflichtfeld!"/>
+                                                            </tooltip>
+                                                        </TextField>
+                                                        <TextField fx:id="email" maxWidth="250.0" prefHeight="30.0">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="15.0" right="5.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </TextField>
+                                                        <TextField fx:id="telefon" layoutX="10.0" layoutY="156.0"
+                                                                   maxWidth="250.0" prefHeight="30.0">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="15.0" right="5.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </TextField>
+                                                        <TextField fx:id="strasse" maxWidth="250.0" prefHeight="30.0">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="15.0" right="5.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </TextField>
+                                                        <TextField fx:id="plz" maxWidth="250.0" prefHeight="30.0">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="15.0" right="5.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </TextField>
+                                                        <TextField fx:id="ort" maxWidth="250.0" prefHeight="30.0">
+                                                            <VBox.margin>
+                                                                <Insets bottom="10.0" left="15.0" right="5.0"
+                                                                        top="10.0"/>
+                                                            </VBox.margin>
+                                                        </TextField>
+                                                        <Button alignment="CENTER" mnemonicParsing="false"
+                                                                prefHeight="30.0"
+                                                                prefWidth="80.0" text="zurück">
+                                                            <VBox.margin>
+                                                                <Insets left="100.0" top="50.0"/>
+                                                            </VBox.margin>
+                                                            <font>
+                                                                <Font size="14.0"/>
+                                                            </font>
+                                                        </Button>
+                                                    </children>
+                                                </VBox>
                                             </children>
-                                            <opaqueInsets>
-                                                <Insets/>
-                                            </opaqueInsets>
-                                            <HBox.margin>
-                                                <Insets/>
-                                            </HBox.margin>
-                                            <padding>
-                                                <Insets top="10.0"/>
-                                            </padding>
-                                        </VBox>
+                                        </HBox>
                                     </children>
-                                </HBox>
-                            </children>
-                        </AnchorPane>
-                    </items>
-                </SplitPane>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="317.0">
+                                    <children>
+                                        <AnchorPane layoutX="-192.0" layoutY="-328.0" minHeight="0.0" minWidth="0.0"
+                                                    prefHeight="160.0" prefWidth="100.0"/>
+                                        <HBox layoutX="-3.0" prefHeight="699.0" prefWidth="618.0"
+                                              AnchorPane.bottomAnchor="5.0"
+                                              AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+                                              AnchorPane.topAnchor="5.0">
+                                            <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="252.0">
+                                                    <children>
+                                                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="305.0"
+                                                               text="Kursliste">
+                                                            <font>
+                                                                <Font size="20.0"/>
+                                                            </font>
+                                                        </Label>
+                                                        <ListView prefHeight="264.0" prefWidth="252.0">
+                                                            <VBox.margin>
+                                                                <Insets left="5.0" right="5.0"/>
+                                                            </VBox.margin>
+                                                        </ListView>
+                                                    </children>
+                                                    <padding>
+                                                        <Insets top="150.0"/>
+                                                    </padding>
+                                                </VBox>
+                                                <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="104.0">
+                                                    <children>
+                                                        <Button alignment="CENTER" contentDisplay="CENTER"
+                                                                mnemonicParsing="false" text="---&gt;">
+                                                            <VBox.margin>
+                                                                <Insets bottom="20.0"/>
+                                                            </VBox.margin>
+                                                        </Button>
+                                                        <Button alignment="CENTER" contentDisplay="CENTER"
+                                                                mnemonicParsing="false" text="&lt;---">
+                                                            <VBox.margin>
+                                                                <Insets bottom="190.0"/>
+                                                            </VBox.margin>
+                                                        </Button>
+                                                        <Button mnemonicParsing="false" text="---&gt;">
+                                                            <VBox.margin>
+                                                                <Insets bottom="20.0"/>
+                                                            </VBox.margin>
+                                                        </Button>
+                                                        <Button mnemonicParsing="false" text="&lt;---"/>
+                                                    </children>
+                                                    <HBox.margin>
+                                                        <Insets/>
+                                                    </HBox.margin>
+                                                    <padding>
+                                                        <Insets top="130.0"/>
+                                                    </padding>
+                                                </VBox>
+                                                <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="229.0"
+                                                      spacing="20.0">
+                                                    <children>
+                                                        <Label alignment="CENTER" contentDisplay="CENTER"
+                                                               text="KursTeilnahme">
+                                                            <font>
+                                                                <Font size="20.0"/>
+                                                            </font>
+                                                        </Label>
+                                                        <ListView prefHeight="200.0" prefWidth="200.0">
+                                                            <VBox.margin>
+                                                                <Insets left="5.0" right="5.0"/>
+                                                            </VBox.margin>
+                                                        </ListView>
+                                                        <HBox alignment="CENTER" prefHeight="51.0" prefWidth="230.0"
+                                                              spacing="20.0">
+                                                            <children>
+                                                                <Button mnemonicParsing="false">
+                                                                    <HBox.margin>
+                                                                        <Insets/>
+                                                                    </HBox.margin>
+                                                                    <graphic>
+                                                                        <ImageView fitHeight="20.0" fitWidth="18.0">
+                                                                            <image>
+                                                                                <Image url="@images/pfeil-oben.png"/>
+                                                                            </image>
+                                                                        </ImageView>
+                                                                    </graphic>
+                                                                </Button>
+                                                                <Button mnemonicParsing="false">
+                                                                    <graphic>
+                                                                        <ImageView fitHeight="20.0" fitWidth="18.0">
+                                                                            <image>
+                                                                                <Image url="@images/pfeil-unten.png"/>
+                                                                            </image>
+                                                                        </ImageView>
+                                                                    </graphic>
+                                                                </Button>
+                                                            </children>
+                                                        </HBox>
+                                                        <Label alignment="CENTER" contentDisplay="CENTER"
+                                                               text="KursInteressiert">
+                                                            <font>
+                                                                <Font size="20.0"/>
+                                                            </font>
+                                                        </Label>
+                                                        <ListView prefHeight="200.0" prefWidth="200.0">
+                                                            <VBox.margin>
+                                                                <Insets left="5.0" right="5.0"/>
+                                                            </VBox.margin>
+                                                        </ListView>
+                                                    </children>
+                                                    <opaqueInsets>
+                                                        <Insets/>
+                                                    </opaqueInsets>
+                                                    <HBox.margin>
+                                                        <Insets/>
+                                                    </HBox.margin>
+                                                    <padding>
+                                                        <Insets top="10.0"/>
+                                                    </padding>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
             </children>
-        </AnchorPane>
-    </children>
-</VBox>
+        </VBox>
+    </content>
+</Tab>

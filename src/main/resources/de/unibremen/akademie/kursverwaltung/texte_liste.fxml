@@ -3,60 +3,63 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@css/style.css"
-            xmlns="http://javafx.com/javafx/18"
-            fx:controller="de.unibremen.akademie.kursverwaltung.controller.TexteListeController">
-    <children>
-        <VBox layoutY="10.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
-              AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
+<Tab xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" text="Texte-Liste"
+     fx:id="ContentTexteListe"
+     fx:controller="de.unibremen.akademie.kursverwaltung.controller.TexteListeController">
+    <content>
+        <AnchorPane>
             <children>
-                <HBox spacing="20.0">
+                <VBox layoutY="10.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                      AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
                     <children>
-                        <Label text="Suche"/>
-                        <TextField/>
+                        <HBox spacing="20.0">
+                            <children>
+                                <Label text="Suche"/>
+                                <TextField/>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                        </HBox>
+                        <TableView prefHeight="457.0" prefWidth="810.0">
+                            <columns>
+                                <TableColumn prefWidth="150.39999103546143" text="Kategorie Name"/>
+                                <TableColumn minWidth="0.0" prefWidth="120.00001525878906" text="Kategorie"/>
+                                <TableColumn minWidth="0.0" prefWidth="120.00001525878906" text="Unterkategorie"/>
+                            </columns>
+                        </TableView>
+                        <HBox>
+                            <children>
+                                <Button mnemonicParsing="false" text="Hinzufügen neu TBS">
+                                    <HBox.margin>
+                                        <Insets bottom="20.0" right="20.0" top="20.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                <Button mnemonicParsing="false" text="Löschen">
+                                    <HBox.margin>
+                                        <Insets bottom="20.0" right="20.0" top="20.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                <Button mnemonicParsing="false" text="Drucken">
+                                    <HBox.margin>
+                                        <Insets bottom="20.0" right="20.0" top="20.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                <Button mnemonicParsing="false" text="Speichern">
+                                    <HBox.margin>
+                                        <Insets bottom="20.0" right="20.0" top="20.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                <Button layoutX="473.0" layoutY="30.0" mnemonicParsing="false" text="Auswählen">
+                                    <HBox.margin>
+                                        <Insets bottom="20.0" right="20.0" top="20.0"/>
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
                     </children>
-                    <VBox.margin>
-                        <Insets top="10.0"/>
-                    </VBox.margin>
-                </HBox>
-                <TableView prefHeight="457.0" prefWidth="810.0">
-                    <columns>
-                        <TableColumn prefWidth="150.39999103546143" text="Kategorie Name"/>
-                        <TableColumn minWidth="0.0" prefWidth="120.00001525878906" text="Kategorie"/>
-                        <TableColumn minWidth="0.0" prefWidth="120.00001525878906" text="Unterkategorie"/>
-                    </columns>
-                </TableView>
-                <HBox>
-                    <children>
-                        <Button mnemonicParsing="false" text="Hinzufügen neu TBS">
-                            <HBox.margin>
-                                <Insets bottom="20.0" right="20.0" top="20.0"/>
-                            </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" text="Löschen">
-                            <HBox.margin>
-                                <Insets bottom="20.0" right="20.0" top="20.0"/>
-                            </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" text="Drucken">
-                            <HBox.margin>
-                                <Insets bottom="20.0" right="20.0" top="20.0"/>
-                            </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" text="Speichern">
-                            <HBox.margin>
-                                <Insets bottom="20.0" right="20.0" top="20.0"/>
-                            </HBox.margin>
-                        </Button>
-                        <Button layoutX="473.0" layoutY="30.0" mnemonicParsing="false" text="Auswählen">
-                            <HBox.margin>
-                                <Insets bottom="20.0" right="20.0" top="20.0"/>
-                            </HBox.margin>
-                        </Button>
-                    </children>
-                </HBox>
+                </VBox>
             </children>
-        </VBox>
-    </children>
-</AnchorPane>
+        </AnchorPane>
+    </content>
+</Tab>
