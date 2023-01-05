@@ -1,8 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.MainApplication;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -128,10 +126,14 @@ public class KurseDetailsController {
             gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
         }
     }
+
     public void interessentenlist(ActionEvent actionEvent) {
     }
 
     public void onDatePickerAction(ActionEvent actionEvent) {
     }
 
+    public void show() {
+        fxmlKurseDetails.getTabPane().getSelectionModel().select(fxmlKurseDetails);
+    }
 }
