@@ -68,9 +68,9 @@ public class PersonenDetailsController {
             email.clear();
             telefon.clear();
 
-            for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
-                if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
-                    tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+            for (Tab tabPanePersonenAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
+                if (tabPanePersonenAnlegen.getText().equals("Personen-Liste")) {
+                    tabPanePersonenAnlegen.getTabPane().getSelectionModel().select(tabPanePersonenAnlegen);
                 }
             }
         }
