@@ -1,21 +1,15 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.MainApplication;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -134,11 +128,7 @@ public class KurseListeController {
     void bearbeitenButtonAction(ActionEvent event) throws IOException {
         KvModel.aktuelleKurs = tableView.getSelectionModel().getSelectedItem();
         main.fxmlKurseDetailsController.update(KvModel.aktuelleKurs);
-        for (Tab tabPaneKursAnlegen : fxmlKurseListe.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
-            }
-        }
+        main.fxmlKurseDetailsController.show();
     }
 
 

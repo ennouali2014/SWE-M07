@@ -1,8 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.MainApplication;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -51,6 +49,7 @@ public class KurseDetailsController {
         //do it start datum ist nur ein beispie. man muss datepicker anwenden recherchieren
         //do it endeDatum, aktuelleTeilnehmeranzahl, freiePlätze, mwst und gebühr netto muss werden aufgeruft.
         //maxTn und minZn anders
+
 
         String name = kursname.getText();
         int anzahl = Integer.parseInt(anzahlTage.getText());
@@ -113,25 +112,31 @@ public class KurseDetailsController {
             kursname.setText(kurs.getName());
             //status.set(KvModel.aktuelleKurs.getStatus());
             status.setValue(kurs.getStatus());
-           anzahlTage.setText(String.valueOf(kurs.getAnzahlTage()));
+            anzahlTage.setText(String.valueOf(kurs.getAnzahlTage()));
             zyklus.setText(String.valueOf(kurs.getZyklus()));
-            //startDatum.setValue(kurs.getStartDatum());
+            LocalDate datetolocal = LocalDate.ofInstant(kurs.getStartDatum().toInstant(), ZoneId.of("CET"));
+            startDatum.setValue(datetolocal);
             minTnZahl.setText(String.valueOf(kurs.getMinTnZahl()));
             maxTnZahl.setText(String.valueOf(kurs.getMaxTnZahl()));
             gebuehrBrutto.setText(String.valueOf(kurs.getGebuehrBrutto()));
             mtwsProzent.setText(String.valueOf(kurs.getMwstProzent()));
             kursBeschreibung.setText(kurs.getKursBeschreibung());
-            //endeDatum.setText(KvModel.aktuelleKurs.getName());
+            LocalDate datelocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
+            endeDatum.setValue(datelocal);
             freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
             aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
             mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
             gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
         }
     }
+
     public void interessentenlist(ActionEvent actionEvent) {
     }
 
     public void onDatePickerAction(ActionEvent actionEvent) {
     }
 
+    public void show() {
+        fxmlKurseDetails.getTabPane().getSelectionModel().select(fxmlKurseDetails);
+    }
 }
