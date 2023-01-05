@@ -373,6 +373,7 @@ public class Kurs implements Externalizable {
         //System.out.println(this);
     }
 
+
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         //set(stream.readBoolean());
