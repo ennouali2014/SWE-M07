@@ -96,6 +96,7 @@ public class PersonenDetailsController {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
             }
         }
+        //System.out.println(KvModel.personList);
     }
     @FXML
     public void update(Person person) {
