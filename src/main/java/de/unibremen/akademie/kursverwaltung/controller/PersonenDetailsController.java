@@ -31,7 +31,7 @@ public class PersonenDetailsController {
     public TextField ort;
     @FXML
     public Button save;
-    static public boolean zurueckwechseln;
+
     @FXML
     public Button abbrechen;
 
@@ -63,15 +63,12 @@ public class PersonenDetailsController {
             ort.clear();
             email.clear();
             telefon.clear();
-        }
-        if (zurueckwechseln) {
+
             for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
                 if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
                     tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
-
                 }
             }
-            zurueckwechseln = false;
         }
         //System.out.println(KvModel.personList);
     }
@@ -87,13 +84,12 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
-        if (zurueckwechseln) {
+        if (true) {
             for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
                 if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
                     tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
                 }
             }
-            zurueckwechseln = false;
         }
     }
 }
