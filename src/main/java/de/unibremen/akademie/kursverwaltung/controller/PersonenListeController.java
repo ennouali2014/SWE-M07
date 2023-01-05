@@ -69,7 +69,13 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
+        PersonenDetailsController.zurueckwechseln = true;
+        for (Tab tabPaneKursAnlegen : ContentPersonenListe.getTabPane().getTabs()) {
+            if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
+                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
+            }
+        }
     }
 
     @FXML
@@ -81,7 +87,7 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
-        PersonenDetailsController.zurückwechsel = true;
+        PersonenDetailsController.zurueckwechseln = true;
         for (Tab tabPaneKursAnlegen : ContentPersonenListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
