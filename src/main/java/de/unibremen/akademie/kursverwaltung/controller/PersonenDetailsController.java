@@ -15,6 +15,9 @@ public class PersonenDetailsController {
     @FXML
     public ChoiceBox anrede;
     @FXML
+
+    public static boolean zurueckwechseln;
+    @FXML
     public TextField titel;
     @FXML
     public TextField vorname;
