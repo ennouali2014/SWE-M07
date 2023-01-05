@@ -63,12 +63,10 @@ public class PersonenDetailsController {
             ort.clear();
             email.clear();
             telefon.clear();
-        }
-        if (true) {
+
             for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
                 if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
                     tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
-
                 }
             }
         }
