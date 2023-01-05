@@ -59,3 +59,6 @@ Sie müssten auf Änderungen der Registerkarten achten, um den Inhalt zu wechsel
 Laden/Entladen der Ansichten hinzufügen, die für den Inhalt der Registerkarten verwendet werden.
 Ich würde empfehlen, mit dem ersten Ansatz zu beginnen und die Umstellung auf den zweiten Ansatz vorzunehmen, wenn Sie
 Leistungsprobleme feststellen
+
+Hier ein Link mit einer Zusammenfassung verschiedener Lösungswege:
+https://itecnote.com/tecnote/javafx-8-tabpanes-and-tabs-with-separate-fxml-and-controllers-for-each-tab/
