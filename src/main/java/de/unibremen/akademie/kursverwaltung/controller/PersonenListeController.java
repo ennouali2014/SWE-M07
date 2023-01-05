@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.ResourceBundle;
 
 public class PersonenListeController implements Initializable {
 
+    public Tab ContentPersonenListe;
     @FXML
     private TableView<Person> table;
 
@@ -86,6 +88,10 @@ public class PersonenListeController implements Initializable {
     @FXML
     public void andernButtonAction(ActionEvent event) {
 
+        //table.setEditable(true);
+        //ObservableList<Person> selectedPerson = table.getSelectionModel().getSelectedItems();
+        //System.out.println("Ausgewählte Person" + selectedPerson);
+        //selectedPerson = table.getItems();
     }
 
     @FXML
@@ -98,7 +104,11 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
-
+        for (Tab tabPanePersonAnlegen : ContentPersonenListe.getTabPane().getTabs()) {
+            if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
+                tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
+            }
+        }
     }
 
     @FXML

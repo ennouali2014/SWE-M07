@@ -3,8 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenListeController">
+<Tab xmlns:fx="http://javafx.com/fxml/1" text="Personen-Liste" fx:id="ContentPersonenListe"
+     xmlns="http://javafx.com/javafx/18"
+     fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenListeController">
+    <content>
+        <AnchorPane stylesheets="@css/style.css">
+<!--AnchorPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenListeController"> -->
     <children>
         <BorderPane AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
                     AnchorPane.topAnchor="5.0">
@@ -62,5 +67,6 @@
             </center>
         </BorderPane>
     </children>
-
 </AnchorPane>
+    </content>
+</Tab>

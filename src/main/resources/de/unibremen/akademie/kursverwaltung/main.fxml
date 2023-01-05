@@ -8,6 +8,7 @@
          xmlns="http://javafx.com/javafx/18"
          fx:controller="de.unibremen.akademie.kursverwaltung.controller.MainController">
     <tabs>
+        <!--
         <Tab text="Personen-Details">
             <content>
                 <fx:include fx:id="ContentPersonenDetails" source="personen_details.fxml"/>
@@ -18,6 +19,9 @@
                 <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml"/>
             </content>
         </Tab>
+        -->
+        <fx:include fx:id="ContentPersonenDetails" source="personen_details.fxml"/>
+        <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml"/>
 
         <fx:include fx:id="ContentKurseDetails" source="kurse_details.fxml"/>
         <fx:include fx:id="ContentKurseListe" source="kurse_liste.fxml"/>

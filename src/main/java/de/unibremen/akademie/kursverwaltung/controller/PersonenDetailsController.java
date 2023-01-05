@@ -6,11 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 
 public class PersonenDetailsController {
     @FXML
     //public TextField anrede;
+    public Tab ContentPersonenDetails;
     public TextField titel;
     public TextField name;
     public TextField vorname;
