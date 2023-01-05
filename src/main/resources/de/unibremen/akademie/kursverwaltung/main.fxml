@@ -7,12 +7,12 @@
          tabClosingPolicy="UNAVAILABLE"
          xmlns="http://javafx.com/javafx/18"
          fx:controller="de.unibremen.akademie.kursverwaltung.controller.MainController">
-    <fx:include fx:id="ContentPersonenDetails" source="personen_details.fxml"/>
-    <fx:include fx:id="ContentPersonenListe" source="personen_liste.fxml"/>
-    <fx:include fx:id="ContentKurseDetails" source="kurse_details.fxml"/>
-    <fx:include fx:id="ContentKurseListe" source="kurse_liste.fxml"/>
-    <fx:include fx:id="ContentTexteDetails" source="texte_details.fxml"/>
-    <fx:include fx:id="ContentTexteListe" source="texte_liste.fxml"/>
-    <fx:include fx:id="ContentDokumenteDetails" source="dokumente_details.fxml"/>
-    <fx:include fx:id="ContentDokumenteListe" source="dokumente_liste.fxml"/>
+    <fx:include fx:id="fxmlPersonenDetails" source="personen_details.fxml"/>
+    <fx:include fx:id="fxmlPersonenListe" source="personen_liste.fxml"/>
+    <fx:include fx:id="fxmlKurseDetails" source="kurse_details.fxml"/>
+    <fx:include fx:id="fxmlKurseListe" source="kurse_liste.fxml"/>
+    <fx:include fx:id="fxmlTexteDetails" source="texte_details.fxml"/>
+    <fx:include fx:id="fxmlTexteListe" source="texte_liste.fxml"/>
+    <fx:include fx:id="fxmlDokumenteDetails" source="dokumente_details.fxml"/>
+    <fx:include fx:id="fxmlDokumenteListe" source="dokumente_liste.fxml"/>
 </TabPane>
