@@ -11,9 +11,11 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Optional;
 
 public class MainApplication extends Application {
+    public static Timestamp timestamp = new Timestamp(System.currentTimeMillis());
     //KvModel model;
     @Override
     public void start(Stage stage) throws IOException {
@@ -50,5 +52,6 @@ public class MainApplication extends Application {
         launch();
         //model beim Beenden in Datei speichern
         KvModel.model.save();
+        KvModel.model.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + timestamp.getTime());
     }
 }
