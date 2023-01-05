@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<Tab xmlns:fx="http://javafx.com/fxml/1" text="Personen-Liste" fx:id="ContentPersonenListe"
+<Tab xmlns:fx="http://javafx.com/fxml/1" text="Personen-Liste" fx:id="fxmlPersonenListe"
      xmlns="http://javafx.com/javafx/18"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenListeController">
     <content>

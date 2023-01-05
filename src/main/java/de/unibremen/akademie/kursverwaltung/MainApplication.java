@@ -50,5 +50,6 @@ public class MainApplication extends Application {
         launch();
         //model beim Beenden in Datei speichern
         KvModel.model.save();
+        KvModel.model.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + System.currentTimeMillis());
     }
 }

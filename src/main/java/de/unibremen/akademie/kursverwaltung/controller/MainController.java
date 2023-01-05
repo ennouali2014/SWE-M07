@@ -1,15 +1,17 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import javafx.scene.control.Tab;
+import javafx.fxml.FXML;
+import javafx.scene.control.TabPane;
 
 public class MainController {
+    public TabPane fxmlMain;
+    @FXML
+    KurseDetailsController fxmlKurseDetailsController;
+    @FXML
+    KurseListeController fxmlKurseListeController;
 
-    public Tab ContentPersonenDetails;
-    public Tab ContentPersonenListe;
-    public Tab ContentKurseDetails;
-    public Tab ContentKurseListe;
-    public Tab ContentTexteDetails;
-    public Tab ContentTexteListe;
-    public Tab ContentDokumenteDetails;
-    public Tab ContentDokumenteListe;
+    @FXML public void initialize(){
+        fxmlKurseListeController.init(this);
+    }
+
 }
