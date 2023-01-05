@@ -13,6 +13,7 @@ import java.util.Date;
 
 public class KurseDetailsController {
 
+    @FXML
     private Tab fxmlKurseDetails;
 
     @FXML
