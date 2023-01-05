@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.String?>
-<Tab xmlns:fx="http://javafx.com/fxml/1" text="Kurse-Details" fx:id="ContentKurseDetails"
+    <Tab xmlns:fx="http://javafx.com/fxml/1" text="Kurse-Details" fx:id="ContentKurseDetails"
      xmlns="http://javafx.com/javafx/18"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController">
     <content>

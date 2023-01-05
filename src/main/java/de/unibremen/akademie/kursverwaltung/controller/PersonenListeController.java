@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class PersonenListeController implements Initializable {
 
+
+    public Tab ContentPersonenListe;
     @FXML
     private TableView<Person> table;
     @FXML
@@ -79,7 +81,13 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
+        PersonenDetailsController.zurückwechsel = true;
+        for (Tab tabPaneKursAnlegen : ContentPersonenListe.getTabPane().getTabs()) {
+            if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
+                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
+            }
+        }
     }
 
     @FXML
