@@ -42,7 +42,7 @@ public class PersonenDetailsController {
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
 
     public Tab fxmlPersonenDetails;
-    static public boolean updateExistingPerson;
+
     static public boolean zurueckPersonenliste = false;
 
     private MainController main;
@@ -63,29 +63,20 @@ public class PersonenDetailsController {
 
     @FXML
     public void onsaveclick() {
-        int aktuelleAnzPersonen = KvModel.personList.size();
-        if (updateExistingPerson) {
-            KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(),
-                    nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+        if (KvModel.aktuellePerson != null) {
+            KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             felderLeeren();
-
         } else {
-
-            Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(),
-                    nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            int aktuelleAnzPersonen = KvModel.personList.size();
+            Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             if (KvModel.personList.size() > aktuelleAnzPersonen) {
                 felderLeeren();
             }
         }
-        updateExistingPerson = false;
-
-        System.out.println(zurueckPersonenliste);
-        for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
-            }
-        }
-
+        KvModel.aktuellePerson = null;
+        Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
+        plTab.getTabPane().getSelectionModel().select(plTab);
+        main.fxmlPersonenListeController.table.refresh();
     }
     @FXML
     public void update(Person person) {
@@ -119,12 +110,9 @@ public class PersonenDetailsController {
         felderLeeren();
 
         if (zurueckPersonenliste) {
-            System.out.println(zurueckPersonenliste);
-            for (Tab tabPanePersonAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
-                if (tabPanePersonAnlegen.getText().equals("Personen-Liste")) {
-                    tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
-                }
-            }
+            //System.out.println(zurueckPersonenliste);
+            Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
+            plTab.getTabPane().getSelectionModel().select(plTab);
             zurueckPersonenliste = false;
         }
     }

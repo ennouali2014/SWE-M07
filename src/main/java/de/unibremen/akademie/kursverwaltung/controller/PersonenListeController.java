@@ -4,6 +4,7 @@ import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 
 public class PersonenListeController implements Initializable {
@@ -59,6 +61,12 @@ public class PersonenListeController implements Initializable {
     @FXML
     private TextField suchTxtField;
     @FXML
+
+    private ObservableList<Person> masterData = FXCollections.observableArrayList();
+
+    private FilteredList<Person> filteredData;
+    ObservableList<Person> list = FXCollections.observableArrayList();
+    @FXML
     private Button suchenButton;
     @FXML
     private CheckBox teilnehmerChkBox;
@@ -66,7 +74,7 @@ public class PersonenListeController implements Initializable {
     private Button zurucksetzenButton;
     @FXML
     private TableColumn<Person, String> nachname;
-    ObservableList<Person> list = FXCollections.observableArrayList();
+
     @FXML
     public TableView<Person> table;
 
@@ -74,7 +82,6 @@ public class PersonenListeController implements Initializable {
     public void andernButtonAction(ActionEvent event) {
         if (!table.getSelectionModel().isEmpty()) {
 
-            PersonenDetailsController.updateExistingPerson = true;
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
             index_of_selected_item = table.getSelectionModel().getFocusedIndex();
 
@@ -99,8 +106,6 @@ public class PersonenListeController implements Initializable {
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
         PersonenDetailsController.zurueckPersonenliste = true;
-        main.fxmlPersonenDetailsController.onabbrechenclick(event);
-        //PersonenDetailsController.zurueckwechseln = true;
         for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
                 tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
@@ -109,9 +114,38 @@ public class PersonenListeController implements Initializable {
         }
     }
 
+    String searchpattern;
+
     @FXML
     void suchButtonAction(ActionEvent event) {
+        String such = suchTxtField.getText();
+        //System.out.println(such);
 
+      //  filteredData.addAll(list);
+
+        String newValue = suchTxtField.getText();
+
+        Predicate<Person> predicate = new Predicate<Person>() {
+
+            @Override
+            public boolean test(Person person) {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                // Compare first name and last name of every person with filter text
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (person.getVorname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches first name
+                } else if (person.getNachname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches last name
+                }
+                return false; // Does not match.
+            }
+
+        };
+
+        filteredData.setPredicate(predicate);
     }
 
     @FXML
@@ -123,6 +157,18 @@ public class PersonenListeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        filteredData = new FilteredList<>(list);
+        Predicate<Person> predicate = new Predicate<Person>() {
+            @Override
+            public boolean test(Person t) {
+                return true;
+            }
+
+        };
+        filteredData.setPredicate(predicate);
+        table.setItems(filteredData);
+
         table.setEditable(true);
         anrede.setCellValueFactory(new PropertyValueFactory<Person, String>("anrede"));
         anrede.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn("", "Herr", "Frau", "Divers"));
@@ -258,6 +304,11 @@ public class PersonenListeController implements Initializable {
                 andernButton.setDisable(false);
             }
         });
+
+    }
+
+    @FXML
+    public void handleFilter() {
 
     }
 
