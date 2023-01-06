@@ -1,6 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
+import de.unibremen.akademie.kursverwaltung.domain.Meldung;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,7 +69,11 @@ public class PersonenDetailsController {
             felderLeeren();
         } else {
             int aktuelleAnzPersonen = KvModel.personList.size();
-            Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            try {
+                Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            } catch (Exception e) {
+                Meldung.eingabeFehler(e.getMessage());
+            }
             if (KvModel.personList.size() > aktuelleAnzPersonen) {
                 felderLeeren();
             }

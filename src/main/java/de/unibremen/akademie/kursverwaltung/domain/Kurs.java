@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Kurs implements Externalizable {
-
+    //static final long serialVersionUID = -3661556037235501674L;
     private SimpleStringProperty name;
     private SimpleIntegerProperty anzahlTage;
     private SimpleIntegerProperty zyklus;
