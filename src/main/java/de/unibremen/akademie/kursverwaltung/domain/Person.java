@@ -55,30 +55,29 @@ public class Person implements Externalizable {
         return person;
     }
 
-    public static Person updateExistingPerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
-        Person person = new Person();
+    public void updatePerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
+
         if (!checkIsEmpty(vorname)) {
             eingabeAlert("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
-            return person;
+
         }
         if (!checkIsEmpty(nachname)) {
             eingabeAlert("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
-            return person;
+
         }
         if (!checkValidEmail(email)) {
             eingabeAlert("Die Email-Adresse ist fehlerhaft!");
-            return person;
+
         }
-        person.setAnrede(anrede);
-        person.setTitel(titel);
-        person.setVorname(vorname);
-        person.setNachname(nachname);
-        person.setStrasse(strasse);
-        person.setPlz(plz);
-        person.setOrt(ort);
-        person.setEmail(email);
-        person.setTelefon(telefon);
-        return person;
+        this.setAnrede(anrede);
+        this.setTitel(titel);
+        this.setVorname(vorname);
+        this.setNachname(nachname);
+        this.setStrasse(strasse);
+        this.setPlz(plz);
+        this.setOrt(ort);
+        this.setEmail(email);
+        this.setTelefon(telefon);
 
     }
 
