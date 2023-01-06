@@ -90,11 +90,8 @@ public class PersonenDetailsController {
             }
         }
         KvModel.aktuellePerson = null;
-        for (Tab tabPanePersonAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
-            if (tabPanePersonAnlegen.getText().equals("Personen-Liste")) {
-                tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
-            }
-        }
+        Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
+        plTab.getTabPane().getSelectionModel().select(plTab);
         main.fxmlPersonenListeController.table.refresh();
     }
     @FXML
@@ -132,11 +129,8 @@ public class PersonenDetailsController {
 
         if (zurueckPersonenliste) {
             //System.out.println(zurueckPersonenliste);
-            for (Tab tabPanePersonAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
-                if (tabPanePersonAnlegen.getText().equals("Personen-Liste")) {
-                    tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
-                }
-            }
+            Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
+            plTab.getTabPane().getSelectionModel().select(plTab);
             zurueckPersonenliste = false;
         }
     }
