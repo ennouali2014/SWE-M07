@@ -65,6 +65,7 @@ public class KurseListeController {
     @FXML
     private Label lblTextField;
     private MainController main;
+
     public void initialize() {
         tableView.setEditable(false);
 
@@ -102,6 +103,7 @@ public class KurseListeController {
 
     @FXML
     void hinzufugenButtonAction(ActionEvent event) {
+        KvModel.aktuelleKurs=null;
         main.fxmlKurseDetailsController.abbrechen(event);
         for (Tab tabPaneKursAnlegen : fxmlKurseListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
@@ -126,9 +128,11 @@ public class KurseListeController {
 
     @FXML
     void bearbeitenButtonAction(ActionEvent event) throws IOException {
-        KvModel.aktuelleKurs = tableView.getSelectionModel().getSelectedItem();
-        main.fxmlKurseDetailsController.update(KvModel.aktuelleKurs);
-        main.fxmlKurseDetailsController.show();
+        if (!tableView.getSelectionModel().isEmpty()) {
+            KvModel.aktuelleKurs = tableView.getSelectionModel().getSelectedItem();
+            main.fxmlKurseDetailsController.update(KvModel.aktuelleKurs);
+            main.fxmlKurseDetailsController.show();
+        }
     }
 
 
