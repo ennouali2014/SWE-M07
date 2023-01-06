@@ -1,6 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
+import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -44,37 +45,44 @@ public class KurseDetailsController {
     private TextArea kursBeschreibung;
     @FXML
     private ComboBox status;
+    private MainController main;
 
     public void apply(ActionEvent actionEvent) {
-        //do it start datum ist nur ein beispie. man muss datepicker anwenden recherchieren
-        //do it endeDatum, aktuelleTeilnehmeranzahl, freiePlätze, mwst und gebühr netto muss werden aufgeruft.
-        //maxTn und minZn anders
 
+        if(kursname.getText()!=null){
+            KvModel.aktuelleKurs.setName(kursname.getText());
+            System.out.println(KvModel.aktuelleKurs);
+            main.fxmlKurseListeController.tableView.refresh();
+        }
 
-        String name = kursname.getText();
-        int anzahl = Integer.parseInt(anzahlTage.getText());
-        int zykls = Integer.parseInt(zyklus.getText());
-        LocalDate localDate = startDatum.getValue();
-        Date startDate = Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant());
-        int minTn = Integer.parseInt(minTnZahl.getText());
-        int maxTn = Integer.parseInt(maxTnZahl.getText());
-        double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
-        double mwstPro = Double.parseDouble(mtwsProzent.getText());
-        String kursBesch = kursBeschreibung.getText();
-        Kurs kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
-        LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
-        endeDatum.setValue(datetolocal);
-        aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
-        freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
-        mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
-        gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+        else {
+            String name = kursname.getText();
+            int anzahl = Integer.parseInt(anzahlTage.getText());
+            int zykls = Integer.parseInt(zyklus.getText());
+            LocalDate localDate = startDatum.getValue();
+            Date startDate = Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant());
+            int minTn = Integer.parseInt(minTnZahl.getText());
+            int maxTn = Integer.parseInt(maxTnZahl.getText());
+            double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
+            double mwstPro = Double.parseDouble(mtwsProzent.getText());
+            String kursBesch = kursBeschreibung.getText();
+            Kurs kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
+            LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
+            endeDatum.setValue(datetolocal);
+            aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
+            freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
+            mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
+            gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+
+        }
+
         for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
                 tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
             }
-
         }
-       abbrechen(actionEvent);
+
+        abbrechen(actionEvent);
     }
 
     public void abbrechen(ActionEvent actionEvent) {
@@ -95,6 +103,7 @@ public class KurseDetailsController {
         gebuehrNetto.clear();
 
     }
+
 
 
     public void teilnehmerlist(ActionEvent actionEvent) {
@@ -134,6 +143,9 @@ public class KurseDetailsController {
     }
 
     public void onDatePickerAction(ActionEvent actionEvent) {
+    }
+    public void init(MainController mainController) {
+        main=mainController;
     }
 
     public void show() {
