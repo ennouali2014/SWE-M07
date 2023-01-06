@@ -59,6 +59,10 @@ public class PersonenListeController implements Initializable {
     @FXML
     private TextField suchTxtField;
     @FXML
+
+    private ObservableList<Person> filteredData = FXCollections.observableArrayList();
+
+    @FXML
     private Button suchenButton;
     @FXML
     private CheckBox teilnehmerChkBox;
@@ -74,16 +78,14 @@ public class PersonenListeController implements Initializable {
     public void andernButtonAction(ActionEvent event) {
         if (!table.getSelectionModel().isEmpty()) {
 
-
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
             index_of_selected_item = table.getSelectionModel().getFocusedIndex();
 
             main.fxmlPersonenDetailsController.update(KvModel.aktuellePerson);
 
-            PersonenDetailsController.zurueckwechseln = true;
-            for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
-                if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
-                    tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+            for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
+                if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
+                    tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
 
                 }
             }
@@ -99,18 +101,23 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
-        main.fxmlPersonenDetailsController.onabbrechenclick(event);
-        PersonenDetailsController.zurueckwechseln = true;
-        for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+        PersonenDetailsController.zurueckPersonenliste = true;
+        for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
+            if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
+                tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
 
             }
         }
     }
+     String searchpattern ;
 
     @FXML
     void suchButtonAction(ActionEvent event) {
+        String such = suchTxtField.getText();
+        System.out.println(such);
+
+        filteredData.addAll(list);
+
 
     }
 

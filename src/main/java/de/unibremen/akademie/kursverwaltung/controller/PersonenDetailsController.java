@@ -42,6 +42,9 @@ public class PersonenDetailsController {
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
 
     public Tab fxmlPersonenDetails;
+
+    static public boolean zurueckPersonenliste = false;
+
     private MainController main;
 
     public void init(MainController mainController) {
@@ -87,9 +90,9 @@ public class PersonenDetailsController {
             }
         }
         KvModel.aktuellePerson = null;
-        for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+        for (Tab tabPanePersonAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
+            if (tabPanePersonAnlegen.getText().equals("Personen-Liste")) {
+                tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
             }
         }
         main.fxmlPersonenListeController.table.refresh();
@@ -125,6 +128,21 @@ public class PersonenDetailsController {
 
     @FXML
     public void onabbrechenclick(ActionEvent event) {
+        felderLeeren();
+
+        if (zurueckPersonenliste) {
+            //System.out.println(zurueckPersonenliste);
+            for (Tab tabPanePersonAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
+                if (tabPanePersonAnlegen.getText().equals("Personen-Liste")) {
+                    tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
+                }
+            }
+            zurueckPersonenliste = false;
+        }
+    }
+
+
+    public void felderLeeren() {
         anrede.getSelectionModel().selectFirst();
         titel.clear();
         vorname.clear();
@@ -134,12 +152,5 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
-        if (true) {
-            for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
-                if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
-                    tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
-                }
-            }
-        }
     }
 }
