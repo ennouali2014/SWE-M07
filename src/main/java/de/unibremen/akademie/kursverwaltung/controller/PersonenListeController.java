@@ -135,6 +135,7 @@ public class PersonenListeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         filteredData = new FilteredList<>(list);
 
         Predicate<Person> predicate = new Predicate<Person>() {

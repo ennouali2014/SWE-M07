@@ -1,15 +1,15 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
+import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 public class PersonenDetailsController {
     @FXML
@@ -44,6 +44,11 @@ public class PersonenDetailsController {
     public Tab fxmlPersonenDetails;
 
     static public boolean zurueckPersonenliste = false;
+    public TableView TableViewKurse;
+    public Label kursliste;
+    public TableColumn kursname;
+    public TableColumn status;
+
 
     private MainController main;
 
@@ -59,6 +64,16 @@ public class PersonenDetailsController {
         choiceListAnrede.add("Divers");
         anrede.setItems(choiceListAnrede);
         anrede.getSelectionModel().selectFirst();
+        kursname.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
+        kursname.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+        status.setCellValueFactory(new PropertyValueFactory<Kurs, String>("status"));
+        status.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+
+        TableViewKurse.setItems(KvModel.model.kursList);
+        TableView.TableViewSelectionModel<Kurs> selectionModel =
+                TableViewKurse.getSelectionModel();
+        selectionModel.setSelectionMode(
+                SelectionMode.MULTIPLE);
     }
 
     @FXML
