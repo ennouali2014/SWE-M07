@@ -19,8 +19,8 @@
 }
 
 .headline {
+    -fx-text-fill: #73d194;
     -fx-font-weight: bold;
-    -fx-text-fill: black;
     -fx-font-size: 20px;
 }
 

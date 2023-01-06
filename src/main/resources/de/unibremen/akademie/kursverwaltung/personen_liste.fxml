@@ -14,7 +14,7 @@
                     <top>
                         <HBox alignment="CENTER_LEFT" spacing="20.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Label text="Person suchen:"/>
+                                <Label text="Person suchen:" styleClass="headline"/>
                                 <TextField fx:id="suchTxtField" prefWidth="300.0" text="Suchbegriff eingeben......">
                                     <tooltip>
                                         <Tooltip text="Bitte einen Suchbegriff eingeben......"/>
