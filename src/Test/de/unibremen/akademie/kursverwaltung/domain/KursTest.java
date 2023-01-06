@@ -58,7 +58,7 @@ class KursTest {
     @Test
     void setEndeDatum() {
         Date date3 = new Date(1677196800000L); // 24.02.23
-        kurs1.setEndeDatum(date1, 3, 20);
+        kurs1.setEndeDatum();
         assertEquals(date3, kurs1.getEndeDatum());
     }
 

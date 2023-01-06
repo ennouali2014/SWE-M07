@@ -60,9 +60,9 @@ public class Kurs implements Externalizable {
             throw new IllegalArgumentException("prozent MWST is Require");
         }
         kurs.setKursBeschreibung(kursBeschreibung);
-        kurs.setEndeDatum(startDatum, zyklus, anzahlTage);
-        kurs.setGebuehrNetto(gebuehrBrutto, mwstProzent);
-        kurs.setMwstEuro(mwstProzent, gebuehrBrutto);
+        kurs.setEndeDatum();
+        kurs.setGebuehrNetto();
+        kurs.setMwstEuro();
         kurs.setAktuelleTnZahl();
         if (!kurs.setFreiePlaetze()) {
             throw new IllegalArgumentException("Alles Voll");
@@ -141,8 +141,8 @@ public class Kurs implements Externalizable {
         return endeDatum;
     }
 
-    public void setEndeDatum(Date startDatum, int zyklus, int anzahlTage) {
-        long dat = startDatum.getTime() + ((Math.round((float) anzahlTage / zyklus)) * 7 * 86400000L);
+    public void setEndeDatum() {
+        long dat = startDatum.getTime() + ((Math.round((float) anzahlTage.get() / zyklus.get())) * 7 * 86400000L);
         this.endeDatum = new Date(dat);
 
     }
@@ -245,11 +245,11 @@ public class Kurs implements Externalizable {
         return gebuehrNetto.get();
     }
 
-    public void setGebuehrNetto(double gebuehrBrutto, double mwstProzent) {
+    public void setGebuehrNetto() {
         if (this.gebuehrNetto == null) {
-            this.gebuehrNetto = new SimpleDoubleProperty(gebuehrBrutto * ((100 - mwstProzent) / 100));
+            this.gebuehrNetto = new SimpleDoubleProperty(gebuehrBrutto.get() * ((100 - mwstProzent.get()) / 100));
         } else {
-            this.gebuehrNetto.set(gebuehrBrutto * ((100 - mwstProzent) / 100));
+            this.gebuehrNetto.set(gebuehrBrutto.get() * ((100 - mwstProzent.get()) / 100));
         }
     }
 
@@ -261,11 +261,11 @@ public class Kurs implements Externalizable {
         return mwstEuro.get();
     }
 
-    public void setMwstEuro(double mwstProzent, double gebuehrBrutto) {
+    public void setMwstEuro() {
         if (this.mwstEuro == null) {
-            this.mwstEuro = new SimpleDoubleProperty(gebuehrBrutto * (mwstProzent / 100));
+            this.mwstEuro = new SimpleDoubleProperty(gebuehrBrutto.get() * (mwstProzent.get() / 100));
         } else {
-            this.mwstEuro.set(gebuehrBrutto * (mwstProzent / 100));
+            this.mwstEuro.set(gebuehrBrutto.get() * (mwstProzent.get() / 100));
         }
 
     }
