@@ -45,21 +45,30 @@ public class KurseDetailsController {
     private TextArea kursBeschreibung;
     @FXML
     private ComboBox status;
+
     private MainController main;
 
     public void apply(ActionEvent actionEvent) {
+        if( KvModel.aktuelleKurs !=null){
+            KvModel.aktuelleKurs.setName(kursname.getText());
+            KvModel.aktuelleKurs.setAnzahlTage((Integer.parseInt(anzahlTage.getText())));
+            KvModel.aktuelleKurs.setZyklus((Integer.parseInt(zyklus.getText())));
+            LocalDate localDate = startDatum.getValue();
+            KvModel.aktuelleKurs.setStartDatum(Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant()));
+            KvModel.aktuelleKurs.setMinTnZahl((Integer.parseInt(minTnZahl.getText())));
+            KvModel.aktuelleKurs.setMaxTnZahl((Integer.parseInt(maxTnZahl.getText())));
+            KvModel.aktuelleKurs.setGebuehrBrutto((Double.parseDouble(gebuehrBrutto.getText())));
+            KvModel.aktuelleKurs.setMwstProzent((Double.parseDouble(mtwsProzent.getText())));
+            KvModel.aktuelleKurs.setKursBeschreibung(kursBeschreibung.getText());
+            KvModel.aktuelleKurs.setEndeDatum();
+            KvModel.aktuelleKurs.setGebuehrNetto();
+            KvModel.aktuelleKurs.setFreiePlaetze();
+            KvModel.aktuelleKurs.setMwstEuro();
+            KvModel.aktuelleKurs.setAktuelleTnZahl();
+            KvModel.aktuelleKurs.setStatus(status.getValue().toString());
+            main.fxmlKurseListeController.tableView.refresh();
 
-//       if(kursname.getText()!=null){
-//            KvModel.aktuelleKurs.setName(kursname.getText());
-//           /* KvModel.aktuelleKurs.setAnzahlTage(Integer.parseInt(anzahlTage.getText()));
-//            KvModel.aktuelleKurs.setZyklus(Integer.parseInt(zyklus.getText()));
-//            KvModel.aktuelleKurs.setMaxTnZahl(Integer.parseInt(minTnZahl.getText()));*/
-//
-//            main.fxmlKurseListeController.tableView.refresh();
-//        }
-
-    //    if(kursname.getText().isEmpty()) {
-            KvModel.aktuelleKurs=null;
+        }else {
             String name = kursname.getText();
             int anzahl = Integer.parseInt(anzahlTage.getText());
             int zykls = Integer.parseInt(zyklus.getText());
@@ -78,14 +87,12 @@ public class KurseDetailsController {
             mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
             gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
 
-    //    }
-
+        }
         for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
                 tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
             }
         }
-
         abbrechen(actionEvent);
     }
 
@@ -120,10 +127,8 @@ public class KurseDetailsController {
         }
     }
     public void update(Kurs kurs) {
-        // Kurs kurs = main.getKurs();
         if(kurs!=null){
             kursname.setText(kurs.getName());
-            //status.set(KvModel.aktuelleKurs.getStatus());
             status.setValue(kurs.getStatus());
             anzahlTage.setText(String.valueOf(kurs.getAnzahlTage()));
             zyklus.setText(String.valueOf(kurs.getZyklus()));
@@ -155,4 +160,5 @@ public class KurseDetailsController {
     public void show() {
         fxmlKurseDetails.getTabPane().getSelectionModel().select(fxmlKurseDetails);
     }
+
 }

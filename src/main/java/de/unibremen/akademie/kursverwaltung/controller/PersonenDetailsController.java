@@ -43,6 +43,8 @@ public class PersonenDetailsController {
 
     public Tab fxmlPersonenDetails;
     static public boolean updateExistingPerson;
+    static public boolean zurueckPersonenliste = false;
+
     private MainController main;
 
     public void init(MainController mainController) {
@@ -63,40 +65,27 @@ public class PersonenDetailsController {
     public void onsaveclick() {
         int aktuelleAnzPersonen = KvModel.personList.size();
         if (updateExistingPerson) {
-            Person person = Person.updateExistingPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
-            KvModel.personList.set(PersonenListeController.index_of_selected_item, person);
-            anrede.getSelectionModel().selectFirst();
-            titel.clear();
-            vorname.clear();
-            nachname.clear();
-            strasse.clear();
-            plz.clear();
-            ort.clear();
-            email.clear();
-            telefon.clear();
+            KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(),
+                    nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            felderLeeren();
 
         } else {
 
-            Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(),
+                    nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             if (KvModel.personList.size() > aktuelleAnzPersonen) {
-                anrede.getSelectionModel().selectFirst();
-                titel.clear();
-                vorname.clear();
-                nachname.clear();
-                strasse.clear();
-                plz.clear();
-                ort.clear();
-                email.clear();
-                telefon.clear();
+                felderLeeren();
             }
         }
         updateExistingPerson = false;
+
+        System.out.println(zurueckPersonenliste);
         for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
             }
         }
-        //System.out.println(KvModel.personList);
+
     }
     @FXML
     public void update(Person person) {
@@ -123,12 +112,25 @@ public class PersonenDetailsController {
         this.ort.setText(ort);
         this.email.setText(email);
         this.telefon.setText(telefon);
-
-
     }
 
     @FXML
     public void onabbrechenclick(ActionEvent event) {
+        felderLeeren();
+
+        if (zurueckPersonenliste) {
+            System.out.println(zurueckPersonenliste);
+            for (Tab tabPanePersonAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
+                if (tabPanePersonAnlegen.getText().equals("Personen-Liste")) {
+                    tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
+                }
+            }
+            zurueckPersonenliste = false;
+        }
+    }
+
+
+    public void felderLeeren() {
         anrede.getSelectionModel().selectFirst();
         titel.clear();
         vorname.clear();
@@ -138,12 +140,5 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
-        if (true) {
-            for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
-                if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
-                    tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
-                }
-            }
-        }
     }
 }

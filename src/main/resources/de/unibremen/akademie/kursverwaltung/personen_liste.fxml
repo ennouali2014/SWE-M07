@@ -14,11 +14,12 @@
                     <top>
                         <HBox alignment="CENTER_LEFT" spacing="20.0" BorderPane.alignment="CENTER">
                             <children>
-                                <ChoiceBox fx:id="choiceBox" prefWidth="150.0"/>
-                                <Label fx:id="lblKursauswahl" text="Kursauswahl"/>
-                                <CheckBox fx:id="teilnehmerChkBox" mnemonicParsing="false" text="Teilnehmer"/>
-                                <CheckBox fx:id="interessentChkBox" mnemonicParsing="false" text="Interessent"/>
-                                <TextField fx:id="suchTxtField" prefWidth="300.0" text="Suchbegriff eingeben......"/>
+                                <Label text="Person suchen:" styleClass="headline"/>
+                                <TextField fx:id="suchTxtField" prefWidth="300.0" text="Suchbegriff eingeben......">
+                                    <tooltip>
+                                        <Tooltip text="Bitte einen Suchbegriff eingeben......"/>
+                                    </tooltip>
+                                </TextField>
                                 <Button fx:id="suchenButton" mnemonicParsing="false" onAction="#suchButtonAction"
                                         text="suchen"/>
                                 <Button fx:id="zurucksetzenButton" alignment="CENTER" contentDisplay="CENTER"
@@ -36,11 +37,9 @@
                                 <Button fx:id="personAnlegenButton" mnemonicParsing="false"
                                         onAction="#personAnlegenButtonAction" text="Person anlegen"/>
                                 <Button fx:id="andernButton" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false"
-                                        onAction="#andernButtonAction" text="Ändern"/>
+                                        mnemonicParsing="false" onAction="#andernButtonAction" text="Ändern"/>
                                 <Button fx:id="loeschButton" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false"
-                                        onAction="#loeschButtonAction" text="Löschen"/>
+                                        mnemonicParsing="false" onAction="#loeschButtonAction" text="Löschen"/>
                             </children>
                             <BorderPane.margin>
                                 <Insets bottom="10.0" top="10.0"/>
@@ -50,7 +49,7 @@
                     <center>
                         <TableView fx:id="table" BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn fx:id="alleCheckBox" prefWidth="83.19997882843018" text="Alle">
+                                <TableColumn fx:id="alleCheckBox" prefWidth="90.0" text="Alle">
                                     <graphic>
                                         <CheckBox mnemonicParsing="false"/>
                                     </graphic>
