@@ -65,28 +65,12 @@ public class PersonenDetailsController {
     public void onsaveclick() {
         if (KvModel.aktuellePerson != null) {
             KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
-            anrede.getSelectionModel().selectFirst();
-            titel.clear();
-            vorname.clear();
-            nachname.clear();
-            strasse.clear();
-            plz.clear();
-            ort.clear();
-            email.clear();
-            telefon.clear();
+            felderLeeren();
         } else {
             int aktuelleAnzPersonen = KvModel.personList.size();
             Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             if (KvModel.personList.size() > aktuelleAnzPersonen) {
-                anrede.getSelectionModel().selectFirst();
-                titel.clear();
-                vorname.clear();
-                nachname.clear();
-                strasse.clear();
-                plz.clear();
-                ort.clear();
-                email.clear();
-                telefon.clear();
+                felderLeeren();
             }
         }
         KvModel.aktuellePerson = null;
