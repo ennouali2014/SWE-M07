@@ -18,6 +18,12 @@
     -fx-text-fill: black;
 }
 
+.headline {
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+}
+
 #tabKurs {
     -fx-background-color: #dcfae4;
 }

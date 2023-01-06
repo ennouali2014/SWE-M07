@@ -227,10 +227,7 @@
                                                 <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="252.0">
                                                     <children>
                                                         <Label alignment="CENTER" prefHeight="40.0" prefWidth="305.0"
-                                                               text="Kurse">
-                                                            <font>
-                                                                <Font size="20.0"/>
-                                                            </font>
+                                                               text="Kurse" styleClass="headline">
                                                         </Label>
                                                         <ListView prefHeight="264.0" prefWidth="252.0">
                                                             <VBox.margin>
@@ -274,10 +271,7 @@
                                                       spacing="20.0">
                                                     <children>
                                                         <Label alignment="CENTER" contentDisplay="CENTER"
-                                                               text="Teilnehmer">
-                                                            <font>
-                                                                <Font size="20.0"/>
-                                                            </font>
+                                                               text="Teilnehmer" styleClass="headline">
                                                         </Label>
                                                         <ListView prefHeight="200.0" prefWidth="200.0">
                                                             <VBox.margin>
@@ -311,10 +305,7 @@
                                                             </children>
                                                         </HBox>
                                                         <Label alignment="CENTER" contentDisplay="CENTER"
-                                                               text="Interessenten">
-                                                            <font>
-                                                                <Font size="20.0"/>
-                                                            </font>
+                                                               text="Interessenten" styleClass="headline">
                                                         </Label>
                                                         <ListView prefHeight="200.0" prefWidth="200.0">
                                                             <VBox.margin>
