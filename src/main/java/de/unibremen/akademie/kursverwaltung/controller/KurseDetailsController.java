@@ -49,13 +49,17 @@ public class KurseDetailsController {
 
     public void apply(ActionEvent actionEvent) {
 
-        if(kursname.getText()!=null){
-            KvModel.aktuelleKurs.setName(kursname.getText());
-            System.out.println(KvModel.aktuelleKurs);
-            main.fxmlKurseListeController.tableView.refresh();
-        }
+//       if(kursname.getText()!=null){
+//            KvModel.aktuelleKurs.setName(kursname.getText());
+//           /* KvModel.aktuelleKurs.setAnzahlTage(Integer.parseInt(anzahlTage.getText()));
+//            KvModel.aktuelleKurs.setZyklus(Integer.parseInt(zyklus.getText()));
+//            KvModel.aktuelleKurs.setMaxTnZahl(Integer.parseInt(minTnZahl.getText()));*/
+//
+//            main.fxmlKurseListeController.tableView.refresh();
+//        }
 
-        else {
+    //    if(kursname.getText().isEmpty()) {
+            KvModel.aktuelleKurs=null;
             String name = kursname.getText();
             int anzahl = Integer.parseInt(anzahlTage.getText());
             int zykls = Integer.parseInt(zyklus.getText());
@@ -74,7 +78,7 @@ public class KurseDetailsController {
             mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
             gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
 
-        }
+    //    }
 
         for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {

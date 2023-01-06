@@ -1,5 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController;
+import de.unibremen.akademie.kursverwaltung.controller.KurseListeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

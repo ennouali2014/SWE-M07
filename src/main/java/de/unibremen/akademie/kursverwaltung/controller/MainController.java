@@ -10,7 +10,8 @@ public class MainController {
     @FXML
     KurseListeController fxmlKurseListeController;
 
-    @FXML public void initialize(){
+    @FXML
+    public void initialize(){
         fxmlKurseListeController.init(this);
         fxmlPersonenListeController.init(this);
         fxmlPersonenDetailsController.init(this);
