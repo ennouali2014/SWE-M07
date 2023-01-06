@@ -119,7 +119,7 @@ public class PersonenDetailsController {
         felderLeeren();
 
         if (zurueckPersonenliste) {
-            System.out.println(zurueckPersonenliste);
+            //System.out.println(zurueckPersonenliste);
             for (Tab tabPanePersonAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Liste")) {
                     tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);

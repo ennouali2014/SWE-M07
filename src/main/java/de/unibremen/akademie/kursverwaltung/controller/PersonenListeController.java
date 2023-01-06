@@ -99,8 +99,6 @@ public class PersonenListeController implements Initializable {
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
         PersonenDetailsController.zurueckPersonenliste = true;
-        main.fxmlPersonenDetailsController.onabbrechenclick(event);
-        //PersonenDetailsController.zurueckwechseln = true;
         for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
                 tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
