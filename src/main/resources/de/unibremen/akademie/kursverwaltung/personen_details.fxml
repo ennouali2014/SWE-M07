@@ -227,12 +227,12 @@
                                                         <Label fx:id="kursliste" alignment="CENTER" prefHeight="40.0"
                                                                prefWidth="305.0" styleClass="headline" text="Kurse ">
                                                         </Label>
-                                                        <ListView fx:id="ListViewKurse" prefHeight="264.0"
-                                                                  prefWidth="252.0">
+                                                        <TableView fx:id="TableViewKurse" prefHeight="264.0"
+                                                                   prefWidth="252.0">
                                                             <VBox.margin>
                                                                 <Insets left="5.0" right="5.0"/>
                                                             </VBox.margin>
-                                                        </ListView>
+                                                        </TableView>
                                                     </children>
                                                     <padding>
                                                         <Insets top="150.0"/>
@@ -285,12 +285,12 @@
                                                         <Label alignment="CENTER" contentDisplay="CENTER"
                                                                styleClass="headline" text="Teilnehmer">
                                                         </Label>
-                                                        <ListView fx:id="listViewTeilnehmerZu" prefHeight="200.0"
-                                                                  prefWidth="200.0">
+                                                        <TableView fx:id="tableViewTeilnehmerZu" prefHeight="200.0"
+                                                                   prefWidth="200.0">
                                                             <VBox.margin>
                                                                 <Insets left="5.0" right="5.0"/>
                                                             </VBox.margin>
-                                                        </ListView>
+                                                        </TableView>
                                                         <HBox alignment="CENTER" prefHeight="51.0" prefWidth="230.0"
                                                               spacing="20.0">
                                                             <children>
@@ -320,12 +320,12 @@
                                                         <Label alignment="CENTER" contentDisplay="CENTER"
                                                                styleClass="headline" text="Interessenten">
                                                         </Label>
-                                                        <ListView fx:id="listViewInteressenteZu" prefHeight="200.0"
-                                                                  prefWidth="200.0">
+                                                        <TableView fx:id="tableViewInteressenteZu" prefHeight="200.0"
+                                                                   prefWidth="200.0">
                                                             <VBox.margin>
                                                                 <Insets left="5.0" right="5.0"/>
                                                             </VBox.margin>
-                                                        </ListView>
+                                                        </TableView>
                                                     </children>
                                                     <opaqueInsets>
                                                         <Insets/>
