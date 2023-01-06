@@ -76,6 +76,7 @@ public class PersonenListeController implements Initializable {
 
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
+            index_of_selected_item = table.getSelectionModel().getFocusedIndex();
 
             main.fxmlPersonenDetailsController.update(KvModel.aktuellePerson);
 

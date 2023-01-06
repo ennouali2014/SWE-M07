@@ -13,7 +13,7 @@
             <children>
                 <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1200.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <SplitPane dividerPositions="0.4827694235588972" prefHeight="700.0" prefWidth="1200.0"
+                        <SplitPane dividerPositions="0.5" prefHeight="700.0" prefWidth="1200.0"
                                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                                    AnchorPane.rightAnchor="0.0"
                                    AnchorPane.topAnchor="0.0">
@@ -46,7 +46,7 @@
                                                             </VBox.margin>
                                                         </Label>
                                                         <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0"
-                                                               text="Vorname">
+                                                               text="Vorname *">
                                                             <font>
                                                                 <Font size="14.0"/>
                                                             </font>
@@ -56,7 +56,7 @@
                                                             </VBox.margin>
                                                         </Label>
                                                         <Label layoutX="20.0" layoutY="56.0" prefHeight="30.0"
-                                                               text="Nachname">
+                                                               text="Nachname *">
                                                             <font>
                                                                 <Font size="14.0"/>
                                                             </font>
@@ -67,7 +67,7 @@
                                                         </Label>
 
                                                         <Label layoutX="20.0" layoutY="115.0" prefHeight="30.0"
-                                                               text="E-Mail">
+                                                               text="E-Mail *">
                                                             <font>
                                                                 <Font size="14.0"/>
                                                             </font>
@@ -227,10 +227,7 @@
                                                 <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="252.0">
                                                     <children>
                                                         <Label alignment="CENTER" prefHeight="40.0" prefWidth="305.0"
-                                                               text="Kursliste">
-                                                            <font>
-                                                                <Font size="20.0"/>
-                                                            </font>
+                                                               text="Kurse" styleClass="headline">
                                                         </Label>
                                                         <ListView prefHeight="264.0" prefWidth="252.0">
                                                             <VBox.margin>
@@ -274,10 +271,7 @@
                                                       spacing="20.0">
                                                     <children>
                                                         <Label alignment="CENTER" contentDisplay="CENTER"
-                                                               text="KursTeilnahme">
-                                                            <font>
-                                                                <Font size="20.0"/>
-                                                            </font>
+                                                               text="Teilnehmer" styleClass="headline">
                                                         </Label>
                                                         <ListView prefHeight="200.0" prefWidth="200.0">
                                                             <VBox.margin>
@@ -311,10 +305,7 @@
                                                             </children>
                                                         </HBox>
                                                         <Label alignment="CENTER" contentDisplay="CENTER"
-                                                               text="KursInteressiert">
-                                                            <font>
-                                                                <Font size="20.0"/>
-                                                            </font>
+                                                               text="Interessenten" styleClass="headline">
                                                         </Label>
                                                         <ListView prefHeight="200.0" prefWidth="200.0">
                                                             <VBox.margin>
