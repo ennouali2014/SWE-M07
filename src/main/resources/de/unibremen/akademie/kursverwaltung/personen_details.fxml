@@ -2,7 +2,8 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <Tab xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" text="Personen-Details"
@@ -15,8 +16,7 @@
                     <children>
                         <SplitPane dividerPositions="0.5" prefHeight="700.0" prefWidth="1200.0"
                                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                   AnchorPane.rightAnchor="0.0"
-                                   AnchorPane.topAnchor="0.0">
+                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <items>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1200.0">
                                     <children>
@@ -118,8 +118,7 @@
                                                         </Label>
                                                         <Button fx:id="save" alignment="CENTER" mnemonicParsing="false"
                                                                 onAction="#onsaveclick" prefHeight="30.0"
-                                                                prefWidth="80.0"
-                                                                text="speichern">
+                                                                prefWidth="80.0" text="speichern">
                                                             <VBox.margin>
                                                                 <Insets left="100.0" top="50.0"/>
                                                             </VBox.margin>
@@ -131,6 +130,7 @@
                                                 </VBox>
                                                 <VBox prefHeight="675.0" prefWidth="350.0">
                                                     <children>
+
                                                         <ChoiceBox fx:id="anrede" maxWidth="250.0" prefWidth="150.0">
                                                             <VBox.margin>
                                                                 <Insets bottom="10.0" left="15.0" right="5.0"
@@ -199,9 +199,8 @@
                                                             </VBox.margin>
                                                         </TextField>
                                                         <Button fx:id="abbrechen" alignment="CENTER"
-                                                                mnemonicParsing="false"
-                                                                onAction="#onabbrechenclick" prefHeight="30.0"
-                                                                prefWidth="100.0" text="Abbrechen">
+                                                                mnemonicParsing="false" onAction="#onabbrechenclick"
+                                                                prefHeight="30.0" prefWidth="100.0" text="Abbrechen">
                                                             <VBox.margin>
                                                                 <Insets left="100.0" top="50.0"/>
                                                             </VBox.margin>
@@ -220,16 +219,16 @@
                                         <AnchorPane layoutX="-192.0" layoutY="-328.0" minHeight="0.0" minWidth="0.0"
                                                     prefHeight="160.0" prefWidth="100.0"/>
                                         <HBox layoutX="-3.0" prefHeight="699.0" prefWidth="618.0"
-                                              AnchorPane.bottomAnchor="5.0"
-                                              AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
-                                              AnchorPane.topAnchor="5.0">
+                                              AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
+                                              AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                             <children>
                                                 <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="252.0">
                                                     <children>
-                                                        <Label alignment="CENTER" prefHeight="40.0" prefWidth="305.0"
-                                                               text="Kurse" styleClass="headline">
+                                                        <Label fx:id="kursliste" alignment="CENTER" prefHeight="40.0"
+                                                               prefWidth="305.0" styleClass="headline" text="Kurse ">
                                                         </Label>
-                                                        <ListView prefHeight="264.0" prefWidth="252.0">
+                                                        <ListView fx:id="ListViewKurse" prefHeight="264.0"
+                                                                  prefWidth="252.0">
                                                             <VBox.margin>
                                                                 <Insets left="5.0" right="5.0"/>
                                                             </VBox.margin>
@@ -246,19 +245,32 @@
                                                             <VBox.margin>
                                                                 <Insets bottom="20.0"/>
                                                             </VBox.margin>
+                                                            <font>
+                                                                <Font name="System Bold" size="12.0"/>
+                                                            </font>
                                                         </Button>
                                                         <Button alignment="CENTER" contentDisplay="CENTER"
                                                                 mnemonicParsing="false" text="&lt;---">
                                                             <VBox.margin>
                                                                 <Insets bottom="190.0"/>
                                                             </VBox.margin>
+                                                            <font>
+                                                                <Font name="System Bold" size="12.0"/>
+                                                            </font>
                                                         </Button>
                                                         <Button mnemonicParsing="false" text="---&gt;">
                                                             <VBox.margin>
                                                                 <Insets bottom="20.0"/>
                                                             </VBox.margin>
+                                                            <font>
+                                                                <Font name="System Bold" size="12.0"/>
+                                                            </font>
                                                         </Button>
-                                                        <Button mnemonicParsing="false" text="&lt;---"/>
+                                                        <Button mnemonicParsing="false" text="&lt;---">
+                                                            <font>
+                                                                <Font name="System Bold" size="12.0"/>
+                                                            </font>
+                                                        </Button>
                                                     </children>
                                                     <HBox.margin>
                                                         <Insets/>
@@ -271,9 +283,10 @@
                                                       spacing="20.0">
                                                     <children>
                                                         <Label alignment="CENTER" contentDisplay="CENTER"
-                                                               text="Teilnehmer" styleClass="headline">
+                                                               styleClass="headline" text="Teilnehmer">
                                                         </Label>
-                                                        <ListView prefHeight="200.0" prefWidth="200.0">
+                                                        <ListView fx:id="listViewTeilnehmerZu" prefHeight="200.0"
+                                                                  prefWidth="200.0">
                                                             <VBox.margin>
                                                                 <Insets left="5.0" right="5.0"/>
                                                             </VBox.margin>
@@ -305,9 +318,10 @@
                                                             </children>
                                                         </HBox>
                                                         <Label alignment="CENTER" contentDisplay="CENTER"
-                                                               text="Interessenten" styleClass="headline">
+                                                               styleClass="headline" text="Interessenten">
                                                         </Label>
-                                                        <ListView prefHeight="200.0" prefWidth="200.0">
+                                                        <ListView fx:id="listViewInteressenteZu" prefHeight="200.0"
+                                                                  prefWidth="200.0">
                                                             <VBox.margin>
                                                                 <Insets left="5.0" right="5.0"/>
                                                             </VBox.margin>

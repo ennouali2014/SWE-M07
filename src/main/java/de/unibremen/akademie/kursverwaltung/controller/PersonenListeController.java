@@ -78,7 +78,6 @@ public class PersonenListeController implements Initializable {
     public void andernButtonAction(ActionEvent event) {
         if (!table.getSelectionModel().isEmpty()) {
 
-            PersonenDetailsController.updateExistingPerson = true;
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
             index_of_selected_item = table.getSelectionModel().getFocusedIndex();
 

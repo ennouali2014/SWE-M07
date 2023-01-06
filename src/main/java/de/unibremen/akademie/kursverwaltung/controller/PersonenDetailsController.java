@@ -42,7 +42,7 @@ public class PersonenDetailsController {
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
 
     public Tab fxmlPersonenDetails;
-    static public boolean updateExistingPerson;
+
     static public boolean zurueckPersonenliste = false;
 
     private MainController main;
