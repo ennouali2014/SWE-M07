@@ -74,7 +74,6 @@ public class PersonenListeController implements Initializable {
     public void andernButtonAction(ActionEvent event) {
         if (!table.getSelectionModel().isEmpty()) {
 
-
             PersonenDetailsController.updateExistingPerson = true;
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
             index_of_selected_item = table.getSelectionModel().getFocusedIndex();
@@ -82,9 +81,9 @@ public class PersonenListeController implements Initializable {
             main.fxmlPersonenDetailsController.update(KvModel.aktuellePerson);
 
             PersonenDetailsController.zurueckwechseln = true;
-            for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
-                if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
-                    tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+            for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
+                if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
+                    tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
 
                 }
             }
@@ -102,9 +101,9 @@ public class PersonenListeController implements Initializable {
     public void personAnlegenButtonAction(ActionEvent event) {
         main.fxmlPersonenDetailsController.onabbrechenclick(event);
         PersonenDetailsController.zurueckwechseln = true;
-        for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+        for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
+            if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
+                tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
 
             }
         }
