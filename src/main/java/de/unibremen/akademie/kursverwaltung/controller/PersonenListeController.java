@@ -59,6 +59,10 @@ public class PersonenListeController implements Initializable {
     @FXML
     private TextField suchTxtField;
     @FXML
+
+    private ObservableList<Person> filteredData = FXCollections.observableArrayList();
+
+    @FXML
     private Button suchenButton;
     @FXML
     private CheckBox teilnehmerChkBox;
@@ -106,9 +110,15 @@ public class PersonenListeController implements Initializable {
             }
         }
     }
+     String searchpattern ;
 
     @FXML
     void suchButtonAction(ActionEvent event) {
+        String such = suchTxtField.getText();
+        System.out.println(such);
+
+        filteredData.addAll(list);
+
 
     }
 
