@@ -1,7 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.Alert;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -63,15 +62,15 @@ public class Person implements Externalizable {
     public void updatePerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
 
         if (!checkIsEmpty(vorname)) {
-            //Meldung.eingabeFehler("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
+            vorname = getVorname();
 
         }
         if (!checkIsEmpty(nachname)) {
-            //Meldung.eingabeFehler("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
+            nachname = getNachname();
 
         }
         if (!checkValidEmail(email)) {
-            //Meldung.eingabeFehler("Die Email-Adresse ist fehlerhaft!");
+            email = getEmail();
 
         }
         this.setAnrede(anrede);

@@ -106,8 +106,6 @@ public class PersonenDetailsController {
         this.ort.setText(ort);
         this.email.setText(email);
         this.telefon.setText(telefon);
-
-
     }
 
     @FXML
