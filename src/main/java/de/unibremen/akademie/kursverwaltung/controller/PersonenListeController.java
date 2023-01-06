@@ -123,7 +123,29 @@ public class PersonenListeController implements Initializable {
 
       //  filteredData.addAll(list);
 
+        String newValue = suchTxtField.getText();
 
+        Predicate<Person> predicate = new Predicate<Person>() {
+
+            @Override
+            public boolean test(Person person) {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                // Compare first name and last name of every person with filter text
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (person.getVorname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches first name
+                } else if (person.getNachname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches last name
+                }
+                return false; // Does not match.
+            }
+
+        };
+
+        filteredData.setPredicate(predicate);
     }
 
     @FXML
@@ -135,8 +157,8 @@ public class PersonenListeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        filteredData = new FilteredList<>(list);
 
+        filteredData = new FilteredList<>(list);
         Predicate<Person> predicate = new Predicate<Person>() {
             @Override
             public boolean test(Person t) {
@@ -287,29 +309,7 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void handleFilter() {
-        String newValue = suchTxtField.getText();
 
-        Predicate<Person> predicate = new Predicate<Person>() {
-
-            @Override
-            public boolean test(Person person) {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                // Compare first name and last name of every person with filter text
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (person.getVorname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true; // Filter matches first name
-                } else if (person.getNachname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true; // Filter matches last name
-                }
-                return false; // Does not match.
-            }
-
-        };
-
-        filteredData.setPredicate(predicate);
     }
 
     public void init(MainController mainController) {
