@@ -12,6 +12,12 @@
     -fx-tab-min-width: 5em;
 }
 
+.tooltip {
+    -fx-background-color: #d37981;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
 #tabKurs {
     -fx-background-color: #dcfae4;
 }
