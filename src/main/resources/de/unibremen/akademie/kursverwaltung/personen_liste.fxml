@@ -49,7 +49,7 @@
                     <center>
                         <TableView fx:id="table" BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn fx:id="alleCheckBox" prefWidth="80.0" text="Alle">
+                                <TableColumn fx:id="alleCheckBox" prefWidth="90.0" text="Alle">
                                     <graphic>
                                         <CheckBox mnemonicParsing="false"/>
                                     </graphic>
