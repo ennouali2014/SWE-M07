@@ -112,6 +112,13 @@ public class KurseDetailsController {
         aktuelleTnZahl.clear();
         mtwsEuro.clear();
         gebuehrNetto.clear();
+        if( KvModel.aktuelleKurs !=null){
+            for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
+                if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
+                    tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
+                }
+            }
+        }
 
     }
 

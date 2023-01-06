@@ -128,7 +128,8 @@ public class KurseListeController {
 
     @FXML
     void bearbeitenButtonAction(ActionEvent event) throws IOException {
-        if (!tableView.getSelectionModel().isEmpty()) {
+        System.out.println();
+        if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size()<2 ) {
             KvModel.aktuelleKurs = tableView.getSelectionModel().getSelectedItem();
             main.fxmlKurseDetailsController.update(KvModel.aktuelleKurs);
             main.fxmlKurseDetailsController.show();
