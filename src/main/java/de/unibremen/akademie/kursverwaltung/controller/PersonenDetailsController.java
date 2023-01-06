@@ -42,7 +42,7 @@ public class PersonenDetailsController {
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
 
     public Tab fxmlPersonenDetails;
-    static public boolean updateExistingPerson;
+
     static public boolean zurueckPersonenliste = false;
 
     private MainController main;
@@ -131,7 +131,7 @@ public class PersonenDetailsController {
         felderLeeren();
 
         if (zurueckPersonenliste) {
-            System.out.println(zurueckPersonenliste);
+            //System.out.println(zurueckPersonenliste);
             for (Tab tabPanePersonAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Liste")) {
                     tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
