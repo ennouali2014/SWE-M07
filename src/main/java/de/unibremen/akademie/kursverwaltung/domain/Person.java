@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class Person implements Externalizable {
 
-    static final long serialVersionUID = -4303351764362789451L;
+    //static final long serialVersionUID = -4303351764362789451L;
 
     private SimpleStringProperty anrede;
     private SimpleStringProperty titel;
