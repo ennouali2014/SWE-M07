@@ -101,9 +101,9 @@ public class PersonenListeController implements Initializable {
     public void personAnlegenButtonAction(ActionEvent event) {
         main.fxmlPersonenDetailsController.onabbrechenclick(event);
         PersonenDetailsController.zurueckwechseln = true;
-        for (Tab tabPaneKursAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Personen-Details")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+        for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
+            if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
+                tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
 
             }
         }
