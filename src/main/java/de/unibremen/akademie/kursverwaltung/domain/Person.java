@@ -1,7 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.Alert;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -11,6 +10,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Person implements Externalizable {
+
+    //static final long serialVersionUID = -4303351764362789451L;
 
     private SimpleStringProperty anrede;
     private SimpleStringProperty titel;
@@ -31,15 +32,18 @@ public class Person implements Externalizable {
     public static Person addNewPerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
         Person person = new Person();
         if (!checkIsEmpty(vorname)) {
-            eingabeAlert("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
+            //Meldung.eingabeFehler("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
+            //throw new IllegalArgumentException("Name ist falsch");
             return person;
         }
         if (!checkIsEmpty(nachname)) {
-            eingabeAlert("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
+            //Meldung.eingabeFehler("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
+            //throw new IllegalArgumentException("Name ist falsch");
             return person;
         }
         if (!checkValidEmail(email)) {
-            eingabeAlert("Die Email-Adresse ist fehlerhaft!");
+            //Meldung.eingabeFehler("Die Email-Adresse ist fehlerhaft!");
+            //throw new IllegalArgumentException("Name ist falsch");
             return person;
         }
         person.setAnrede(anrede);
@@ -58,15 +62,15 @@ public class Person implements Externalizable {
     public void updatePerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
 
         if (!checkIsEmpty(vorname)) {
-            eingabeAlert("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
+            vorname = getVorname();
 
         }
         if (!checkIsEmpty(nachname)) {
-            eingabeAlert("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
+            nachname = getNachname();
 
         }
         if (!checkValidEmail(email)) {
-            eingabeAlert("Die Email-Adresse ist fehlerhaft!");
+            email = getEmail();
 
         }
         this.setAnrede(anrede);
@@ -78,7 +82,6 @@ public class Person implements Externalizable {
         this.setOrt(ort);
         this.setEmail(email);
         this.setTelefon(telefon);
-
     }
 
     public String getAnrede() {
@@ -95,14 +98,6 @@ public class Person implements Externalizable {
 
     public void setTitel(String titel) {
         this.titel = new SimpleStringProperty(titel);
-    }
-
-    public static void eingabeAlert(String meldung) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Fehler bei der Dateneingabe");
-        alert.setHeaderText("Eingabevalidierung");
-        alert.setContentText(meldung);
-        alert.showAndWait();
     }
 
     public String getNachname() {
