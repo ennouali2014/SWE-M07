@@ -87,9 +87,9 @@ public class PersonenDetailsController {
             }
         }
         KvModel.aktuellePerson = null;
-        for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+        for (Tab tabPanePersonAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
+            if (tabPanePersonAnlegen.getText().equals("Personen-Liste")) {
+                tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
             }
         }
         main.fxmlPersonenListeController.table.refresh();
@@ -135,9 +135,9 @@ public class PersonenDetailsController {
         email.clear();
         telefon.clear();
         if (true) {
-            for (Tab tabPaneKursAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
-                if (tabPaneKursAnlegen.getText().equals("Personen-Liste")) {
-                    tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+            for (Tab tabPanePersonenAnlegen : fxmlPersonenDetails.getTabPane().getTabs()) {
+                if (tabPanePersonenAnlegen.getText().equals("Personen-Liste")) {
+                    tabPanePersonenAnlegen.getTabPane().getSelectionModel().select(tabPanePersonenAnlegen);
                 }
             }
         }
