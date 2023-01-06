@@ -65,9 +65,8 @@ public class PersonenDetailsController {
     public void onsaveclick() {
         int aktuelleAnzPersonen = KvModel.personList.size();
         if (updateExistingPerson) {
-            Person person = Person.updateExistingPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(),
+            KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(),
                     nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
-            KvModel.personList.set(PersonenListeController.index_of_selected_item, person);
             felderLeeren();
 
         } else {
