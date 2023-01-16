@@ -73,6 +73,7 @@ public class PersonenDetailsController {
     public Button loeschVonTeilnehmer;
     @FXML
     public Button kurs_teilnehmer;
+    public TableView TableViewKurse;
 
 
     private MainController main;
