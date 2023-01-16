@@ -229,6 +229,17 @@
                                                         </Label>
                                                         <TableView fx:id="TableViewKurse" prefHeight="264.0"
                                                                    prefWidth="252.0">
+
+                                                            <columns>
+
+                                                                <TableColumn fx:id="kursname" prefWidth="126.0"
+                                                                             text="KursName"/>
+                                                                <TableColumn fx:id="startDate" prefWidth="126.0"
+                                                                             text="startDate"/>
+
+                                                            </columns>
+
+
                                                             <VBox.margin>
                                                                 <Insets left="5.0" right="5.0"/>
                                                             </VBox.margin>
