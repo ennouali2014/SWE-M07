@@ -48,7 +48,7 @@ public class PersonenDetailsController {
     public TableView TableViewKurse;
     public Label kursliste;
     public TableColumn kursname;
-    public TableColumn status;
+    public TableColumn startDate;
 
 
     private MainController main;
@@ -67,14 +67,14 @@ public class PersonenDetailsController {
         anrede.getSelectionModel().selectFirst();
         kursname.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         kursname.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
-        status.setCellValueFactory(new PropertyValueFactory<Kurs, String>("status"));
-        status.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+        startDate.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
+        startDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
         TableViewKurse.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 TableViewKurse.getSelectionModel();
         selectionModel.setSelectionMode(
-                SelectionMode.MULTIPLE);
+                SelectionMode.SINGLE);
     }
 
     @FXML
@@ -82,6 +82,7 @@ public class PersonenDetailsController {
         if (KvModel.aktuellePerson != null) {
             KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             felderLeeren();
+            save.setText("speichern");
         } else {
             int aktuelleAnzPersonen = KvModel.personList.size();
             try {

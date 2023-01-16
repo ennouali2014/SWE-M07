@@ -58,13 +58,16 @@ public class Person implements Externalizable {
         if (!checkIsEmpty(vorname)) {
             vorname = getVorname();
 
+
         }
         if (!checkIsEmpty(nachname)) {
             nachname = getNachname();
 
+
         }
         if (!checkValidEmail(email)) {
             email = getEmail();
+
 
         }
         this.setAnrede(anrede);
