@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -40,6 +41,8 @@ public class MainApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
         stage.setTitle("Kursverwaltung v 1.0");
+        Image image = new Image("file:src/main/resources/de/unibremen/akademie/kursverwaltung/images/appicon.png");
+        stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
 
