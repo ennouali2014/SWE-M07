@@ -14,9 +14,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 public class PersonenDetailsController {
     @FXML
     public ChoiceBox anrede;
-    @FXML
 
-    public static boolean zurueckwechseln;
     @FXML
     public TextField titel;
     @FXML
@@ -44,10 +42,35 @@ public class PersonenDetailsController {
     public Tab fxmlPersonenDetails;
 
     static public boolean zurueckPersonenliste = false;
-    public TableView TableViewKurse;
+    static public boolean bearbeiten = false;
+    @FXML
+    public TableView tableViewKurse;
+    @FXML
     public Label kursliste;
+    @FXML
     public TableColumn kursname;
+    @FXML
     public TableColumn status;
+    @FXML
+    public TableColumn kursZuTeilnehmer;
+    @FXML
+    public TableView tableViewTeilnehmerZu;
+    @FXML
+    public TableView tableViewInteressentenZu;
+    @FXML
+    public TableColumn kursZuInteressent;
+    @FXML
+    public Button zuTeilnehmer;
+    @FXML
+    public Button zuInteressent;
+    @FXML
+    public Button loeschVonInteressenten;
+    @FXML
+    public Button kurs_interessent;
+    @FXML
+    public Button loeschVonTeilnehmer;
+    @FXML
+    public Button kurs_teilnehmer;
 
 
     private MainController main;
@@ -64,26 +87,33 @@ public class PersonenDetailsController {
         choiceListAnrede.add("Divers");
         anrede.setItems(choiceListAnrede);
         anrede.getSelectionModel().selectFirst();
+
         kursname.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         kursname.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
         status.setCellValueFactory(new PropertyValueFactory<Kurs, String>("status"));
         status.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
-        TableViewKurse.setItems(KvModel.model.kursList);
+        tableViewKurse.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
-                TableViewKurse.getSelectionModel();
-        selectionModel.setSelectionMode(
-                SelectionMode.MULTIPLE);
+                tableViewKurse.getSelectionModel();
+        selectionModel.setSelectionMode(SelectionMode.SINGLE);
+
+
     }
 
     @FXML
     public void onsaveclick() {
+
         if (KvModel.aktuellePerson != null) {
-            KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(),
+                    vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(),
+                    ort.getText(), email.getText(), telefon.getText());
             felderLeeren();
         } else {
             int aktuelleAnzPersonen = KvModel.personList.size();
-            Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(),
+                    vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(),
+                    ort.getText(), email.getText(), telefon.getText());
             if (KvModel.personList.size() > aktuelleAnzPersonen) {
                 felderLeeren();
             }
@@ -93,6 +123,8 @@ public class PersonenDetailsController {
         plTab.getTabPane().getSelectionModel().select(plTab);
         main.fxmlPersonenListeController.table.refresh();
     }
+
+
     @FXML
     public void update(Person person) {
         String anrede = person.getAnrede();
@@ -143,5 +175,27 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
+    }
+
+    public void teilnehmerZuInteressent(ActionEvent actionEvent) {
+    }
+
+    public void interessentZuTeilnehmer(ActionEvent actionEvent) {
+    }
+
+    public void AusInteressentRaus(ActionEvent actionEvent) {
+    }
+
+    public void ausTeilnehmerRaus(ActionEvent actionEvent) {
+
+
+    }
+
+    public void kursZuTeilnehmer(ActionEvent actionEvent) {
+
+
+    }
+
+    public void kursZuInteressent(ActionEvent actionEvent) {
     }
 }

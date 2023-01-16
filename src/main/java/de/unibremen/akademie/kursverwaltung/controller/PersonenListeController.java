@@ -80,6 +80,7 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
+        PersonenDetailsController.bearbeiten = true;
         if (!table.getSelectionModel().isEmpty()) {
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
@@ -106,6 +107,7 @@ public class PersonenListeController implements Initializable {
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
         PersonenDetailsController.zurueckPersonenliste = true;
+
         for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
                 tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);

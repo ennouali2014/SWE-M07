@@ -13,8 +13,13 @@ public class KvModel {
             FXCollections.observableArrayList();
     static public final ObservableList<Kurs> kursList =
             FXCollections.observableArrayList();
+
+    static public final ObservableList<Person> listKursTeilnehmer =
+            FXCollections.observableArrayList();
+    static public final ObservableList<Person> listKursInteressent =
+            FXCollections.observableArrayList();
     static public final KvModel model = new KvModel();
-    static public Kurs aktuelleKurs ;
+    static public Kurs aktuelleKurs;
     static public Person aktuellePerson;
 
 

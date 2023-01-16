@@ -9,6 +9,7 @@
 <Tab xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" text="Personen-Details"
      fx:id="fxmlPersonenDetails"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenDetailsController">
+
     <content>
         <VBox>
             <children>
@@ -227,7 +228,7 @@
                                                         <Label fx:id="kursliste" alignment="CENTER" prefHeight="40.0"
                                                                prefWidth="305.0" styleClass="headline" text="Kurse ">
                                                         </Label>
-                                                        <TableView fx:id="TableViewKurse" prefHeight="264.0"
+                                                        <TableView fx:id="tableViewKurse" prefHeight="264.0"
                                                                    prefWidth="252.0">
 
                                                             <columns>
@@ -251,8 +252,9 @@
                                                 </VBox>
                                                 <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="104.0">
                                                     <children>
-                                                        <Button alignment="CENTER" contentDisplay="CENTER"
-                                                                mnemonicParsing="false" text="---&gt;">
+                                                        <Button fx:id="kurs_teilnehmer" alignment="CENTER"
+                                                                contentDisplay="CENTER" mnemonicParsing="false"
+                                                                onAction="#kursZuTeilnehmer" text="---&gt;">
                                                             <VBox.margin>
                                                                 <Insets bottom="20.0"/>
                                                             </VBox.margin>
@@ -260,8 +262,9 @@
                                                                 <Font name="System Bold" size="12.0"/>
                                                             </font>
                                                         </Button>
-                                                        <Button alignment="CENTER" contentDisplay="CENTER"
-                                                                mnemonicParsing="false" text="&lt;---">
+                                                        <Button fx:id="loeschVonTeilnehmer" alignment="CENTER"
+                                                                contentDisplay="CENTER" mnemonicParsing="false"
+                                                                onAction="#ausTeilnehmerRaus" text="&lt;---">
                                                             <VBox.margin>
                                                                 <Insets bottom="190.0"/>
                                                             </VBox.margin>
@@ -269,7 +272,8 @@
                                                                 <Font name="System Bold" size="12.0"/>
                                                             </font>
                                                         </Button>
-                                                        <Button mnemonicParsing="false" text="---&gt;">
+                                                        <Button fx:id="kurs_interessent" mnemonicParsing="false"
+                                                                onAction="#kursZuInteressent" text="---&gt;">
                                                             <VBox.margin>
                                                                 <Insets bottom="20.0"/>
                                                             </VBox.margin>
@@ -277,7 +281,8 @@
                                                                 <Font name="System Bold" size="12.0"/>
                                                             </font>
                                                         </Button>
-                                                        <Button mnemonicParsing="false" text="&lt;---">
+                                                        <Button fx:id="loeschVonInteressenten" mnemonicParsing="false"
+                                                                onAction="#AusInteressentRaus" text="&lt;---">
                                                             <font>
                                                                 <Font name="System Bold" size="12.0"/>
                                                             </font>
@@ -298,6 +303,12 @@
                                                         </Label>
                                                         <TableView fx:id="tableViewTeilnehmerZu" prefHeight="200.0"
                                                                    prefWidth="200.0">
+                                                            <columns>
+
+                                                                <TableColumn fx:id="kursZuTeilnehmer" prefWidth="126.0"
+                                                                             text="KursName"/>
+
+                                                            </columns>
                                                             <VBox.margin>
                                                                 <Insets left="5.0" right="5.0"/>
                                                             </VBox.margin>
@@ -305,7 +316,8 @@
                                                         <HBox alignment="CENTER" prefHeight="51.0" prefWidth="230.0"
                                                               spacing="20.0">
                                                             <children>
-                                                                <Button mnemonicParsing="false">
+                                                                <Button fx:id="zuTeilnehmer" mnemonicParsing="false"
+                                                                        onAction="#interessentZuTeilnehmer">
                                                                     <HBox.margin>
                                                                         <Insets/>
                                                                     </HBox.margin>
@@ -317,7 +329,8 @@
                                                                         </ImageView>
                                                                     </graphic>
                                                                 </Button>
-                                                                <Button mnemonicParsing="false">
+                                                                <Button fx:id="zuInteressent" mnemonicParsing="false"
+                                                                        onAction="#teilnehmerZuInteressent">
                                                                     <graphic>
                                                                         <ImageView fitHeight="20.0" fitWidth="18.0">
                                                                             <image>
@@ -331,8 +344,14 @@
                                                         <Label alignment="CENTER" contentDisplay="CENTER"
                                                                styleClass="headline" text="Interessenten">
                                                         </Label>
-                                                        <TableView fx:id="tableViewInteressenteZu" prefHeight="200.0"
+                                                        <TableView fx:id="tableViewInteressentenZu" prefHeight="200.0"
                                                                    prefWidth="200.0">
+                                                            <columns>
+
+                                                                <TableColumn fx:id="kursZuInteressent" prefWidth="126.0"
+                                                                             text="Kursname"/>
+
+                                                            </columns>
                                                             <VBox.margin>
                                                                 <Insets left="5.0" right="5.0"/>
                                                             </VBox.margin>
@@ -359,4 +378,5 @@
             </children>
         </VBox>
     </content>
+
 </Tab>
