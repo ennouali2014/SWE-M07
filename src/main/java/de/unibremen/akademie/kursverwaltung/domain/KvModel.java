@@ -5,6 +5,10 @@ import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
+
+import static de.unibremen.akademie.kursverwaltung.domain.Kurs.addNewKurs;
+import static de.unibremen.akademie.kursverwaltung.domain.Person.addNewPerson;
 
 public class KvModel {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
@@ -41,6 +45,18 @@ public class KvModel {
         } catch (ClassNotFoundException e) {
             System.err.print("Falsche Klasse in der Datei! Fehlermeldung: ");
             System.err.println(e.getMessage());
+        }
+
+        //Falls keine Daten nach dem Laden vorhanden sind, werden Daten automatisch angelegt
+        if (KvModel.personList.size() <= 0) {
+            Person person = new Person();
+            addNewPerson("Frau", "Prof.Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
+            System.out.println("Person-Standarddaten wurde geladen!");
+        }
+        if (KvModel.kursList.size() <= 0) {
+            Kurs kurs = new Kurs();
+            addNewKurs("PHP-Einsteiger", 14, 2, new Date(1709852800000L), 3, 6, 199.00, 19.0, "PHP für Dummies");
+            System.out.println("Kurs-Standarddaten wurde geladen!");
         }
     }
 
