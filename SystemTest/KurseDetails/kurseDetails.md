@@ -15,5 +15,7 @@ Start-Datum eintippen: funktioniert
 
 Start-Datum auch in Ferien: funktioniert nicht 
 
+Button-Abbrechen: zurück zur Kursliste oder Löschen und auf Kurse-Details bleiben
+
 
 
