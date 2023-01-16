@@ -26,7 +26,7 @@ public class PersonenListeController implements Initializable {
 
 
     public Tab fxmlPersonenListe;
-    static public int index_of_selected_item;
+
     @FXML
     private TableColumn<Person, String> anrede;
     @FXML
@@ -80,10 +80,12 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
+
         if (!table.getSelectionModel().isEmpty()) {
+            main.fxmlPersonenDetailsController.save.setText("Update");
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
-            index_of_selected_item = table.getSelectionModel().getFocusedIndex();
+            //index_of_selected_item = table.getSelectionModel().getFocusedIndex();
 
             main.fxmlPersonenDetailsController.update(KvModel.aktuellePerson);
 
