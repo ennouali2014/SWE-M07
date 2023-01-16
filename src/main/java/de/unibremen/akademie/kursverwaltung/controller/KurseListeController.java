@@ -6,12 +6,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,8 +19,8 @@ import java.util.List;
 public class KurseListeController {
 
 
-    public TableColumn<Kurs, Date> columnStartDatum;
-    public TableColumn<Kurs, Date> columnEndDatum;
+    public TableColumn<Kurs, String> columnStartDatum;
+    public TableColumn<Kurs, String> columnEndDatum;
     public TableColumn<Kurs, Integer> columnAnzFreiPlz;
     public TableColumn<Kurs, Integer> columnAnzTeilnehm;
     public TableColumn<Kurs, String> columnStatus;
@@ -28,6 +28,7 @@ public class KurseListeController {
     public TableView<Kurs> tableView;
     public TableColumn columnSelect;
     public Tab fxmlKurseListe;
+    public CheckBox checkbox;
 
 
     @FXML
@@ -71,10 +72,6 @@ public class KurseListeController {
 
         tableView.setPlaceholder(
                 new Label("No rows to display"));
-        columnSelect.setGraphic(new CheckBox());
-        //columnSelect.setCellValueFactory(cellData -> new ReadOnlyBooleanWrapper(cellData.getValue().getSelect()));
-        columnSelect.setCellFactory(CheckBoxTableCell.<Kurs>forTableColumn(columnSelect));
-
         columnName.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         columnName.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
@@ -87,11 +84,12 @@ public class KurseListeController {
         columnAnzTeilnehm.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("aktuelleTnZahl"));
         columnAnzTeilnehm.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
 
-        columnStartDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("startDatum"));
-        columnStartDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
 
-        columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("endeDatum"));
-        columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
+        columnStartDatum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
+        columnStartDatum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
+
+        columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displayEndeDate"));
+        columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
 
         tableView.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
@@ -128,11 +126,11 @@ public class KurseListeController {
 
     @FXML
     void bearbeitenButtonAction(ActionEvent event) throws IOException {
-        System.out.println();
         if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size()<2 ) {
             KvModel.aktuelleKurs = tableView.getSelectionModel().getSelectedItem();
             main.fxmlKurseDetailsController.update(KvModel.aktuelleKurs);
             main.fxmlKurseDetailsController.show();
+
         }
     }
 
@@ -153,5 +151,13 @@ public class KurseListeController {
 
     public void init(MainController mainController) {
         main=mainController;
+    }
+
+    public void allselect(ActionEvent actionEvent) {
+        System.out.println(checkbox.isIndeterminate());
+        if(checkbox.isIndeterminate()){
+            System.out.println(checkbox.isIndeterminate());
+            tableView.getSelectionModel().selectAll();
+        }
     }
 }
