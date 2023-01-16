@@ -33,6 +33,7 @@ public class Kurs implements Externalizable {
     private final List<Person> interessentenListe = new ArrayList<>();
     private final List<Person> teilnehmerListe = new ArrayList<>();
     private SimpleStringProperty displaystartDate;
+    private SimpleStringProperty displayEndeDate;
 
     public static Kurs addNewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
                                   double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
@@ -66,8 +67,10 @@ public class Kurs implements Externalizable {
 
         kurs.setDisplaystartDate(dateFormat.format(startDatum));
 
+
         kurs.setKursBeschreibung(kursBeschreibung);
         kurs.setEndeDatum();
+        kurs.setDisplayEndeDate(dateFormat.format(kurs.getEndeDatum()));
         kurs.setGebuehrNetto();
         kurs.setMwstEuro();
         kurs.setAktuelleTnZahl();
@@ -378,6 +381,7 @@ public class Kurs implements Externalizable {
         out.writeInt(getFreiePlaetze());
         out.writeInt(getAktuelleTnZahl());
         out.writeUTF(getDisplaystartDate());
+        out.writeUTF(getDisplayEndeDate());
         //System.out.println(this);
     }
 
@@ -401,6 +405,8 @@ public class Kurs implements Externalizable {
         setFreiePlaetze(in.readInt());
         setAktuelleTnZahl(in.readInt());
         setDisplaystartDate(in.readUTF());
+        setDisplayEndeDate(in.readUTF());
+
         //System.out.println(this);
     }
     @Override
@@ -431,5 +437,14 @@ public class Kurs implements Externalizable {
     public void setDisplaystartDate(String date) {
 
         displaystartDate = new SimpleStringProperty(date);
+    }
+
+    public String getDisplayEndeDate() {
+        return displayEndeDate.get();
+    }
+
+    public void setDisplayEndeDate(String date) {
+
+        displayEndeDate = new SimpleStringProperty(date);
     }
 }

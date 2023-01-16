@@ -1,13 +1,13 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.List;
 import java.util.Objects;
 
 public class Person implements Externalizable {
@@ -23,8 +23,8 @@ public class Person implements Externalizable {
     private SimpleStringProperty ort;
     private SimpleStringProperty email;
     private SimpleStringProperty telefon;
-    private List<Kurs> kursInteressiert;
-    private List<Kurs> kursTeilnahme;
+    private ObservableList<Kurs> kursInteressiert = FXCollections.observableArrayList();
+    private ObservableList<Kurs> kursTeilnahme = FXCollections.observableArrayList();
 
 
     public Person() {
@@ -102,7 +102,6 @@ public class Person implements Externalizable {
         return nachname.get();
     }
 
-
     public String getVorname() {
         return vorname.get();
     }
@@ -159,19 +158,19 @@ public class Person implements Externalizable {
         this.telefon = new SimpleStringProperty(telefon);
     }
 
-    public List<Kurs> getKursInteressiert() {
+    public ObservableList<Kurs> getKursInteressiert() {
         return kursInteressiert;
     }
 
-    public void setKursInteressiert(List<Kurs> kursInteressiert) {
+    public void setKursInteressiert(ObservableList<Kurs> kursInteressiert) {
         this.kursInteressiert = kursInteressiert;
     }
 
-    public List<Kurs> getKursTeilnahme() {
+    public ObservableList<Kurs> getKursTeilnahme() {
         return kursTeilnahme;
     }
 
-    public void setKursTeilnahme(List<Kurs> kursTeilnahme) {
+    public void setKursTeilnahme(ObservableList<Kurs> kursTeilnahme) {
         this.kursTeilnahme = kursTeilnahme;
     }
 
@@ -252,10 +251,5 @@ public class Person implements Externalizable {
         //System.out.println(this);
     }
 
-    public StringProperty vornameProperty() {
-        return vorname;
-    }
-    public StringProperty nachnameProperty() {
-        return vorname;
-    }
+
 }

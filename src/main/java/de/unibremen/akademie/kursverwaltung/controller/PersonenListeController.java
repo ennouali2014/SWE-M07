@@ -80,6 +80,7 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
+        PersonenDetailsController.bearbeiten = true;
 
         if (!table.getSelectionModel().isEmpty()) {
             main.fxmlPersonenDetailsController.save.setText("Update");
@@ -117,7 +118,6 @@ public class PersonenListeController implements Initializable {
     }
 
     String searchpattern;
-
 
     @FXML
     void suchButtonAction(ActionEvent event) {
