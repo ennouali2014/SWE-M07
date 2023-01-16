@@ -48,16 +48,7 @@ public class KvModel {
         }
 
         //Falls keine Daten nach dem Laden vorhanden sind, werden Daten automatisch angelegt
-        if (KvModel.personList.size() <= 0) {
-            Person person = new Person();
-            addNewPerson("Frau", "Prof.Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
-            System.out.println("Person-Standarddaten wurde geladen!");
-        }
-        if (KvModel.kursList.size() <= 0) {
-            Kurs kurs = new Kurs();
-            addNewKurs("PHP-Einsteiger", 14, 2, new Date(1709852800000L), 3, 6, 199.00, 19.0, "PHP für Dummies");
-            System.out.println("Kurs-Standarddaten wurde geladen!");
-        }
+        standardDaten();
     }
 
     public void save() {
@@ -77,6 +68,20 @@ public class KvModel {
         } catch (IOException e) {
             System.err.print("Die Daten können nicht in die Datei gespeichert werden!  Fehlermeldung: ");
             System.err.println(e.getMessage());
+        }
+    }
+
+    private void standardDaten() {
+        //Falls keine Daten nach dem Laden vorhanden sind, werden Daten automatisch angelegt
+        if (KvModel.personList.size() <= 0) {
+            Person person = new Person();
+            addNewPerson("Frau", "Prof. Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
+            System.out.println("Person-Standarddaten wurde geladen!");
+        }
+        if (KvModel.kursList.size() <= 0) {
+            Kurs kurs = new Kurs();
+            addNewKurs("PHP-Einsteiger", 14, 2, new Date(1709852800000L), 3, 6, 199.00, 19.0, "PHP für Dummies");
+            System.out.println("Kurs-Standarddaten wurde geladen!");
         }
     }
 }
