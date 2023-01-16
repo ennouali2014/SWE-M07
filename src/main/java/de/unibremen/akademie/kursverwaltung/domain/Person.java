@@ -1,6 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -100,6 +101,7 @@ public class Person implements Externalizable {
     public String getNachname() {
         return nachname.get();
     }
+
 
     public String getVorname() {
         return vorname.get();
@@ -250,5 +252,10 @@ public class Person implements Externalizable {
         //System.out.println(this);
     }
 
-
+    public StringProperty vornameProperty() {
+        return vorname;
+    }
+    public StringProperty nachnameProperty() {
+        return vorname;
+    }
 }
