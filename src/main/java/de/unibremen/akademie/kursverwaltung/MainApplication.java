@@ -4,6 +4,7 @@ import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -44,6 +45,8 @@ public class MainApplication extends Application {
         stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {

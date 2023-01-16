@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +19,8 @@ import java.util.List;
 public class KurseListeController {
 
 
-    public TableColumn<Kurs, Date> columnStartDatum;
-    public TableColumn<Kurs, Date> columnEndDatum;
+    public TableColumn<Kurs, String> columnStartDatum;
+    public TableColumn<Kurs, String> columnEndDatum;
     public TableColumn<Kurs, Integer> columnAnzFreiPlz;
     public TableColumn<Kurs, Integer> columnAnzTeilnehm;
     public TableColumn<Kurs, String> columnStatus;
@@ -83,11 +84,12 @@ public class KurseListeController {
         columnAnzTeilnehm.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("aktuelleTnZahl"));
         columnAnzTeilnehm.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
 
-        columnStartDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("startDatum"));
-        columnStartDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
 
-        columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("endeDatum"));
-        columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, Date>forTableColumn());
+        columnStartDatum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
+        columnStartDatum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
+
+        columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displayEndeDate"));
+        columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
 
         tableView.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =

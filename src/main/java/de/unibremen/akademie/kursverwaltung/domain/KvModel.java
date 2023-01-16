@@ -1,5 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController;
+import de.unibremen.akademie.kursverwaltung.controller.KurseListeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,8 +19,13 @@ public class KvModel {
             FXCollections.observableArrayList();
     static public final ObservableList<Kurs> kursList =
             FXCollections.observableArrayList();
+
+    static public final ObservableList<Person> listKursTeilnehmer =
+            FXCollections.observableArrayList();
+    static public final ObservableList<Person> listKursInteressent =
+            FXCollections.observableArrayList();
     static public final KvModel model = new KvModel();
-    static public Kurs aktuelleKurs ;
+    static public Kurs aktuelleKurs;
     static public Person aktuellePerson;
 
 

@@ -15,9 +15,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 public class PersonenDetailsController {
     @FXML
     public ChoiceBox anrede;
-    @FXML
 
-    public static boolean zurueckwechseln;
     @FXML
     public TextField titel;
     @FXML
@@ -45,10 +43,37 @@ public class PersonenDetailsController {
     public Tab fxmlPersonenDetails;
 
     static public boolean zurueckPersonenliste = false;
-    public TableView TableViewKurse;
+    static public boolean bearbeiten = false;
+    @FXML
+    public TableView tableViewKurse;
+    @FXML
     public Label kursliste;
+    @FXML
     public TableColumn kursname;
     public TableColumn startDate;
+    @FXML
+    public TableColumn status;
+    @FXML
+    public TableColumn kursZuTeilnehmer;
+    @FXML
+    public TableView tableViewTeilnehmerZu;
+    @FXML
+    public TableView tableViewInteressentenZu;
+    @FXML
+    public TableColumn kursZuInteressent;
+    @FXML
+    public Button zuTeilnehmer;
+    @FXML
+    public Button zuInteressent;
+    @FXML
+    public Button loeschVonInteressenten;
+    @FXML
+    public Button kurs_interessent;
+    @FXML
+    public Button loeschVonTeilnehmer;
+    @FXML
+    public Button kurs_teilnehmer;
+    public TableView TableViewKurse;
 
 
     private MainController main;
@@ -72,10 +97,15 @@ public class PersonenDetailsController {
 
 
         TableViewKurse.setItems(KvModel.model.kursList);
+        tableViewKurse.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 TableViewKurse.getSelectionModel();
         selectionModel.setSelectionMode(
                 SelectionMode.SINGLE);
+
+        tableViewKurse.getSelectionModel();
+        selectionModel.setSelectionMode(SelectionMode.SINGLE);
+
 
     }
 
@@ -102,6 +132,7 @@ public class PersonenDetailsController {
         }
         KvModel.aktuellePerson = null;
         Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
+        plTab.getTabPane().getSelectionModel().select(plTab);
         main.fxmlPersonenListeController.table.refresh();
         if (PersonenDetailsController.zurueckPersonenliste) {
             plTab.getTabPane().getSelectionModel().select(plTab);
@@ -158,5 +189,27 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
+    }
+
+    public void teilnehmerZuInteressent(ActionEvent actionEvent) {
+    }
+
+    public void interessentZuTeilnehmer(ActionEvent actionEvent) {
+    }
+
+    public void AusInteressentRaus(ActionEvent actionEvent) {
+    }
+
+    public void ausTeilnehmerRaus(ActionEvent actionEvent) {
+
+
+    }
+
+    public void kursZuTeilnehmer(ActionEvent actionEvent) {
+
+
+    }
+
+    public void kursZuInteressent(ActionEvent actionEvent) {
     }
 }
