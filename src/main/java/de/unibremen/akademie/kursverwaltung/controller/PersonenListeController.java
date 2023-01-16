@@ -80,6 +80,7 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
+        PersonenDetailsController.zurueckPersonenliste = true;
 
         if (!table.getSelectionModel().isEmpty()) {
             main.fxmlPersonenDetailsController.save.setText("Update");

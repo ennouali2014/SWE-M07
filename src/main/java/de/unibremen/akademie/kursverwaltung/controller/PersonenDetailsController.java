@@ -70,17 +70,23 @@ public class PersonenDetailsController {
         startDate.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
         startDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
+
         TableViewKurse.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 TableViewKurse.getSelectionModel();
         selectionModel.setSelectionMode(
                 SelectionMode.SINGLE);
+
     }
 
     @FXML
     public void onsaveclick() {
         if (KvModel.aktuellePerson != null) {
-            KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            try {
+                KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            } catch (Exception e) {
+                Meldung.eingabeFehler(e.getMessage());
+            }
             felderLeeren();
             save.setText("speichern");
         } else {
@@ -96,9 +102,12 @@ public class PersonenDetailsController {
         }
         KvModel.aktuellePerson = null;
         Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
-        plTab.getTabPane().getSelectionModel().select(plTab);
         main.fxmlPersonenListeController.table.refresh();
+        if (PersonenDetailsController.zurueckPersonenliste) {
+            plTab.getTabPane().getSelectionModel().select(plTab);
+        }
     }
+
     @FXML
     public void update(Person person) {
         String anrede = person.getAnrede();
