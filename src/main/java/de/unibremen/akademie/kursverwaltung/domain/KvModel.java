@@ -48,7 +48,7 @@ public class KvModel {
         }
 
         //Falls keine Daten nach dem Laden vorhanden sind, werden Daten automatisch angelegt
-        standardDaten();
+        standardDatenErstellen();
     }
 
     public void save() {
@@ -71,7 +71,7 @@ public class KvModel {
         }
     }
 
-    private void standardDaten() {
+    private void standardDatenerstellen() {
         //Falls keine Daten nach dem Laden vorhanden sind, werden Daten automatisch angelegt
         if (KvModel.personList.size() <= 0) {
             Person person = new Person();
