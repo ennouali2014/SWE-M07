@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -28,6 +27,7 @@ public class KurseListeController {
     public TableView<Kurs> tableView;
     public TableColumn columnSelect;
     public Tab fxmlKurseListe;
+    public CheckBox checkbox;
 
 
     @FXML
@@ -71,10 +71,6 @@ public class KurseListeController {
 
         tableView.setPlaceholder(
                 new Label("No rows to display"));
-        columnSelect.setGraphic(new CheckBox());
-        //columnSelect.setCellValueFactory(cellData -> new ReadOnlyBooleanWrapper(cellData.getValue().getSelect()));
-        columnSelect.setCellFactory(CheckBoxTableCell.<Kurs>forTableColumn(columnSelect));
-
         columnName.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         columnName.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
@@ -128,11 +124,11 @@ public class KurseListeController {
 
     @FXML
     void bearbeitenButtonAction(ActionEvent event) throws IOException {
-        System.out.println();
         if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size()<2 ) {
             KvModel.aktuelleKurs = tableView.getSelectionModel().getSelectedItem();
             main.fxmlKurseDetailsController.update(KvModel.aktuelleKurs);
             main.fxmlKurseDetailsController.show();
+
         }
     }
 
@@ -153,5 +149,13 @@ public class KurseListeController {
 
     public void init(MainController mainController) {
         main=mainController;
+    }
+
+    public void allselect(ActionEvent actionEvent) {
+        System.out.println(checkbox.isIndeterminate());
+        if(checkbox.isIndeterminate()){
+            System.out.println(checkbox.isIndeterminate());
+            tableView.getSelectionModel().selectAll();
+        }
     }
 }

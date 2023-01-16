@@ -1,15 +1,16 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
+import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
+import de.unibremen.akademie.kursverwaltung.domain.Meldung;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 public class PersonenDetailsController {
     @FXML
@@ -44,6 +45,11 @@ public class PersonenDetailsController {
     public Tab fxmlPersonenDetails;
 
     static public boolean zurueckPersonenliste = false;
+    public TableView TableViewKurse;
+    public Label kursliste;
+    public TableColumn kursname;
+    public TableColumn startDate;
+
 
     private MainController main;
 
@@ -59,6 +65,16 @@ public class PersonenDetailsController {
         choiceListAnrede.add("Divers");
         anrede.setItems(choiceListAnrede);
         anrede.getSelectionModel().selectFirst();
+        kursname.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
+        kursname.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+        startDate.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
+        startDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+
+        TableViewKurse.setItems(KvModel.model.kursList);
+        TableView.TableViewSelectionModel<Kurs> selectionModel =
+                TableViewKurse.getSelectionModel();
+        selectionModel.setSelectionMode(
+                SelectionMode.SINGLE);
     }
 
     @FXML
@@ -66,9 +82,14 @@ public class PersonenDetailsController {
         if (KvModel.aktuellePerson != null) {
             KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             felderLeeren();
+            save.setText("speichern");
         } else {
             int aktuelleAnzPersonen = KvModel.personList.size();
-            Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            try {
+                Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            } catch (Exception e) {
+                Meldung.eingabeFehler(e.getMessage());
+            }
             if (KvModel.personList.size() > aktuelleAnzPersonen) {
                 felderLeeren();
             }

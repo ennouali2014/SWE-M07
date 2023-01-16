@@ -8,12 +8,13 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Kurs implements Externalizable {
-
+    //static final long serialVersionUID = -3661556037235501674L;
     private SimpleStringProperty name;
     private SimpleIntegerProperty anzahlTage;
     private SimpleIntegerProperty zyklus;
@@ -31,9 +32,11 @@ public class Kurs implements Externalizable {
     private SimpleStringProperty status;
     private final List<Person> interessentenListe = new ArrayList<>();
     private final List<Person> teilnehmerListe = new ArrayList<>();
+    private SimpleStringProperty displaystartDate;
 
     public static Kurs addNewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
                                   double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
+
         Kurs kurs = new Kurs();
         if (!kurs.setName(name)) {
             throw new IllegalArgumentException("Name ist falsch");
@@ -59,6 +62,10 @@ public class Kurs implements Externalizable {
         if (!kurs.setMwstProzent(mwstProzent)) {
             throw new IllegalArgumentException("prozent MWST is Require");
         }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        kurs.setDisplaystartDate(dateFormat.format(startDatum));
+
         kurs.setKursBeschreibung(kursBeschreibung);
         kurs.setEndeDatum();
         kurs.setGebuehrNetto();
@@ -370,6 +377,7 @@ public class Kurs implements Externalizable {
         out.writeDouble(getMwstEuro());
         out.writeInt(getFreiePlaetze());
         out.writeInt(getAktuelleTnZahl());
+        out.writeUTF(getDisplaystartDate());
         //System.out.println(this);
     }
 
@@ -392,6 +400,7 @@ public class Kurs implements Externalizable {
         setMwstEuro(in.readDouble());
         setFreiePlaetze(in.readInt());
         setAktuelleTnZahl(in.readInt());
+        setDisplaystartDate(in.readUTF());
         //System.out.println(this);
     }
     @Override
@@ -413,5 +422,14 @@ public class Kurs implements Externalizable {
                 ", freiePlaetze=" + freiePlaetze.get() +
                 ", aktuelleTnZahl=" + aktuelleTnZahl.get() +
                 '}';
+    }
+
+    public String getDisplaystartDate() {
+        return displaystartDate.get();
+    }
+
+    public void setDisplaystartDate(String date) {
+
+        displaystartDate = new SimpleStringProperty(date);
     }
 }

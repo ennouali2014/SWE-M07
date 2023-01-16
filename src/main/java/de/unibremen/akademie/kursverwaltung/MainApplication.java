@@ -49,7 +49,7 @@ public class MainApplication extends Application {
 
     public static void main(String[] args) {
         //model aus Datei laden
-        //KvModel.model.load("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/1672994331854");
+        //KvModel.model.load("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/1672928183130");
         KvModel.model.load();
         //Application (GUI) starten
         launch();
