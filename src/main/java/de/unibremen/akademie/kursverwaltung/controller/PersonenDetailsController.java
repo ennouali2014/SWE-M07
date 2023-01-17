@@ -147,27 +147,19 @@ public class PersonenDetailsController {
     @FXML
     public void update(Person person) {
         String anrede = person.getAnrede();
-        String titel = person.getTitel();
-        String vorname = person.getVorname();
-        String nachname = person.getNachname();
-        String strasse = person.getStrasse();
-        String plz = person.getPlz();
-        String ort = person.getOrt();
-        String email = person.getEmail();
-        String telefon = person.getTelefon();
         for (int i = 0; i < choiceListAnrede.size(); i++) {
             if (choiceListAnrede.get(i).equals(anrede)) {
                 this.anrede.getSelectionModel().select(i);
             }
         }
-        this.titel.setText(person.getAnrede());
-        this.vorname.setText(vorname);
-        this.nachname.setText(nachname);
-        this.strasse.setText(strasse);
-        this.plz.setText(plz);
-        this.ort.setText(ort);
-        this.email.setText(email);
-        this.telefon.setText(telefon);
+        this.titel.setText(person.getTitel());
+        this.vorname.setText(person.getVorname());
+        this.nachname.setText(person.getNachname());
+        this.strasse.setText(person.getStrasse());
+        this.plz.setText(person.getPlz());
+        this.ort.setText(person.getOrt());
+        this.email.setText(person.getEmail());
+        this.telefon.setText(person.getTelefon());
     }
 
     @FXML
