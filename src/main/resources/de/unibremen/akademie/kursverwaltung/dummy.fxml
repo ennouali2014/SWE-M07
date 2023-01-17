@@ -1,379 +1,294 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<TabPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-         minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@css/style.css"
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<TabPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+         prefHeight="700.0" prefWidth="1200.0" stylesheets="@css/style.css"
          tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18">
     <Tab>
 
         <!-- ANFANG Hier den zu ändernden Content hineinkopieren -->
 
         <content>
-            <VBox>
+            <AnchorPane>
                 <children>
-                    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1200.0"
-                                VBox.vgrow="ALWAYS">
+                    <VBox layoutX="10.0" layoutY="10.0" spacing="20.0" AnchorPane.bottomAnchor="10.0"
+                          AnchorPane.leftAnchor="10.0"
+                          AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                         <children>
-                            <SplitPane dividerPositions="0.5" prefHeight="700.0" prefWidth="1200.0"
-                                       AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                       AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <items>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1200.0">
+                            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="790.0">
+                                <children>
+                                    <VBox prefHeight="43.0" prefWidth="191.0">
                                         <children>
-                                            <HBox prefHeight="700.0" prefWidth="575.0" AnchorPane.bottomAnchor="5.0"
-                                                  AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
-                                                  AnchorPane.topAnchor="5.0">
-                                                <children>
-                                                    <VBox prefHeight="700.0" prefWidth="300.0">
-                                                        <children>
-                                                            <Label prefHeight="30.0" prefWidth="45.0" text="Anrede">
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                                <VBox.margin>
-                                                                    <Insets bottom="5.0" left="40.0" right="5.0"
-                                                                            top="70.0"/>
-                                                                </VBox.margin>
-                                                            </Label>
-                                                            <Label layoutX="20.0" layoutY="85.0" prefHeight="30.0"
-                                                                   text="Titel">
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="40.0" right="10.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </Label>
-                                                            <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0"
-                                                                   text="Vorname *">
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="40.0" right="10.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </Label>
-                                                            <Label layoutX="20.0" layoutY="56.0" prefHeight="30.0"
-                                                                   text="Nachname *">
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="40.0" right="10.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </Label>
-
-                                                            <Label layoutX="20.0" layoutY="115.0" prefHeight="30.0"
-                                                                   text="E-Mail *">
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="40.0" right="10.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </Label>
-                                                            <Label layoutX="20.0" layoutY="144.0" prefHeight="30.0"
-                                                                   text="Tel-Nr.">
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="40.0" right="10.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </Label>
-                                                            <Label layoutX="20.0" layoutY="174.0" prefHeight="30.0"
-                                                                   text="Strasse">
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="40.0" right="10.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </Label>
-                                                            <Label layoutX="20.0" layoutY="204.0" prefHeight="30.0"
-                                                                   text="PLZ">
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="40.0" right="10.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </Label>
-                                                            <Label layoutX="20.0" layoutY="233.0" prefHeight="30.0"
-                                                                   text="Ort">
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="40.0" right="10.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </Label>
-                                                            <Button fx:id="save" alignment="CENTER"
-                                                                    mnemonicParsing="false"
-                                                                    onAction="#onsaveclick" prefHeight="30.0"
-                                                                    prefWidth="80.0" text="speichern">
-                                                                <VBox.margin>
-                                                                    <Insets left="100.0" top="50.0"/>
-                                                                </VBox.margin>
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                            </Button>
-                                                        </children>
-                                                    </VBox>
-                                                    <VBox prefHeight="675.0" prefWidth="350.0">
-                                                        <children>
-
-                                                            <ChoiceBox fx:id="anrede" maxWidth="250.0"
-                                                                       prefWidth="150.0">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="15.0" right="5.0"
-                                                                            top="70.0"/>
-                                                                </VBox.margin>
-                                                                <tooltip>
-                                                                    <Tooltip text="Frau, Herr, Divers oder Nix"/>
-                                                                </tooltip>
-                                                            </ChoiceBox>
-                                                            <TextField fx:id="titel" maxWidth="250.0" prefHeight="30.0">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="15.0" right="5.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                                <tooltip>
-                                                                    <Tooltip text="Dr. , Prof., Kaiserin, what ever"/>
-                                                                </tooltip>
-                                                            </TextField>
-                                                            <TextField fx:id="vorname" maxWidth="250.0"
-                                                                       prefHeight="30.0">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="15.0" right="5.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                                <tooltip>
-                                                                    <Tooltip
-                                                                            text="Bitte Vorname eingeben, Pflichtfeld!"/>
-                                                                </tooltip>
-                                                            </TextField>
-                                                            <TextField fx:id="nachname" maxWidth="250.0"
-                                                                       prefHeight="30.0">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="15.0" right="5.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                                <tooltip>
-                                                                    <Tooltip
-                                                                            text="Bitte Nachname eingeben, Pflichtfeld!"/>
-                                                                </tooltip>
-                                                            </TextField>
-                                                            <TextField fx:id="email" maxWidth="250.0" prefHeight="30.0">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="15.0" right="5.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </TextField>
-                                                            <TextField fx:id="telefon" layoutX="10.0" layoutY="156.0"
-                                                                       maxWidth="250.0" prefHeight="30.0">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="15.0" right="5.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </TextField>
-                                                            <TextField fx:id="strasse" maxWidth="250.0"
-                                                                       prefHeight="30.0">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="15.0" right="5.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </TextField>
-                                                            <TextField fx:id="plz" maxWidth="250.0" prefHeight="30.0">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="15.0" right="5.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </TextField>
-                                                            <TextField fx:id="ort" maxWidth="250.0" prefHeight="30.0">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="10.0" left="15.0" right="5.0"
-                                                                            top="10.0"/>
-                                                                </VBox.margin>
-                                                            </TextField>
-                                                            <Button fx:id="abbrechen" alignment="CENTER"
-                                                                    mnemonicParsing="false" onAction="#onabbrechenclick"
-                                                                    prefHeight="30.0" prefWidth="100.0"
-                                                                    text="Abbrechen">
-                                                                <VBox.margin>
-                                                                    <Insets left="100.0" top="50.0"/>
-                                                                </VBox.margin>
-                                                                <font>
-                                                                    <Font size="14.0"/>
-                                                                </font>
-                                                            </Button>
-                                                        </children>
-                                                    </VBox>
-                                                </children>
-                                            </HBox>
+                                            <Label text="Kursverwaltung">
+                                                <font>
+                                                    <Font size="28.0"/>
+                                                </font>
+                                            </Label>
                                         </children>
-                                    </AnchorPane>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="317.0">
+                                    </VBox>
+                                </children>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT">
+                                <children>
+                                    <Label text="Kurs Name : ">
+                                        <font>
+                                            <Font size="21.0"/>
+                                        </font>
+                                        <HBox.margin>
+                                            <Insets/>
+                                        </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="kursname">
+                                        <HBox.margin>
+                                            <Insets/>
+                                        </HBox.margin>
+                                    </TextField>
+                                    <ComboBox fx:id="status" promptText="- Status wählen-">
+                                        <HBox.margin>
+                                            <Insets left="20.0"/>
+                                        </HBox.margin>
+                                        <padding>
+                                            <Insets left="12.0"/>
+                                        </padding>
+                                        <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                                <String fx:value="Active"/>
+                                                <String fx:value="Passive"/>
+                                                <String fx:value="Ferien"/>
+
+                                            </FXCollections>
+                                        </items>
+                                    </ComboBox>
+                                </children>
+                                <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                </padding>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="50.0"
+                            >
+                                <children>
+                                    <VBox>
                                         <children>
-                                            <AnchorPane layoutX="-192.0" layoutY="-328.0" minHeight="0.0" minWidth="0.0"
-                                                        prefHeight="160.0" prefWidth="100.0"/>
-                                            <HBox layoutX="-3.0" prefHeight="699.0" prefWidth="618.0"
-                                                  AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
-                                                  AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                                                <children>
-                                                    <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="252.0">
-                                                        <children>
-                                                            <Label fx:id="kursliste" alignment="CENTER"
-                                                                   prefHeight="40.0"
-                                                                   prefWidth="305.0" styleClass="headline"
-                                                                   text="Kurse ">
-                                                            </Label>
-                                                            <TableView fx:id="TableViewKurse" prefHeight="264.0"
-                                                                       prefWidth="252.0">
-
-                                                                <columns>
-
-                                                                    <TableColumn fx:id="kursname" prefWidth="126.0"
-                                                                                 text="KursName"/>
-                                                                    <TableColumn fx:id="status" prefWidth="126.0"
-                                                                                 text="status"/>
-
-                                                                </columns>
-
-
-                                                                <VBox.margin>
-                                                                    <Insets left="5.0" right="5.0"/>
-                                                                </VBox.margin>
-                                                            </TableView>
-                                                        </children>
-                                                        <padding>
-                                                            <Insets top="150.0"/>
-                                                        </padding>
-                                                    </VBox>
-                                                    <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="104.0">
-                                                        <children>
-                                                            <Button alignment="CENTER" contentDisplay="CENTER"
-                                                                    mnemonicParsing="false" text="---&gt;">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="20.0"/>
-                                                                </VBox.margin>
-                                                                <font>
-                                                                    <Font name="System Bold" size="12.0"/>
-                                                                </font>
-                                                            </Button>
-                                                            <Button alignment="CENTER" contentDisplay="CENTER"
-                                                                    mnemonicParsing="false" text="&lt;---">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="190.0"/>
-                                                                </VBox.margin>
-                                                                <font>
-                                                                    <Font name="System Bold" size="12.0"/>
-                                                                </font>
-                                                            </Button>
-                                                            <Button mnemonicParsing="false" text="---&gt;">
-                                                                <VBox.margin>
-                                                                    <Insets bottom="20.0"/>
-                                                                </VBox.margin>
-                                                                <font>
-                                                                    <Font name="System Bold" size="12.0"/>
-                                                                </font>
-                                                            </Button>
-                                                            <Button mnemonicParsing="false" text="&lt;---">
-                                                                <font>
-                                                                    <Font name="System Bold" size="12.0"/>
-                                                                </font>
-                                                            </Button>
-                                                        </children>
-                                                        <HBox.margin>
-                                                            <Insets/>
-                                                        </HBox.margin>
-                                                        <padding>
-                                                            <Insets top="130.0"/>
-                                                        </padding>
-                                                    </VBox>
-                                                    <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="229.0"
-                                                          spacing="20.0">
-                                                        <children>
-                                                            <Label alignment="CENTER" contentDisplay="CENTER"
-                                                                   styleClass="headline" text="Teilnehmer">
-                                                            </Label>
-                                                            <TableView fx:id="tableViewTeilnehmerZu" prefHeight="200.0"
-                                                                       prefWidth="200.0">
-                                                                <VBox.margin>
-                                                                    <Insets left="5.0" right="5.0"/>
-                                                                </VBox.margin>
-                                                            </TableView>
-                                                            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="230.0"
-                                                                  spacing="20.0">
-                                                                <children>
-                                                                    <Button mnemonicParsing="false">
-                                                                        <HBox.margin>
-                                                                            <Insets/>
-                                                                        </HBox.margin>
-                                                                        <graphic>
-                                                                            <ImageView fitHeight="20.0" fitWidth="18.0">
-                                                                                <image>
-                                                                                    <Image url="@images/pfeil-oben.png"/>
-                                                                                </image>
-                                                                            </ImageView>
-                                                                        </graphic>
-                                                                    </Button>
-                                                                    <Button mnemonicParsing="false">
-                                                                        <graphic>
-                                                                            <ImageView fitHeight="20.0" fitWidth="18.0">
-                                                                                <image>
-                                                                                    <Image url="@images/pfeil-unten.png"/>
-                                                                                </image>
-                                                                            </ImageView>
-                                                                        </graphic>
-                                                                    </Button>
-                                                                </children>
-                                                            </HBox>
-                                                            <Label alignment="CENTER" contentDisplay="CENTER"
-                                                                   styleClass="headline" text="Interessenten">
-                                                            </Label>
-                                                            <TableView fx:id="tableViewInteressenteZu"
-                                                                       prefHeight="200.0"
-                                                                       prefWidth="200.0">
-                                                                <VBox.margin>
-                                                                    <Insets left="5.0" right="5.0"/>
-                                                                </VBox.margin>
-                                                            </TableView>
-                                                        </children>
-                                                        <opaqueInsets>
-                                                            <Insets/>
-                                                        </opaqueInsets>
-                                                        <HBox.margin>
-                                                            <Insets/>
-                                                        </HBox.margin>
-                                                        <padding>
-                                                            <Insets top="10.0"/>
-                                                        </padding>
-                                                    </VBox>
-                                                </children>
-                                            </HBox>
+                                            <Label text="Anzahl VA-Tage:">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="anzahlTage" promptText="AnzahlTage"/>
                                         </children>
-                                    </AnchorPane>
-                                </items>
-                            </SplitPane>
+                                    </VBox>
+                                    <VBox>
+                                        <children>
+                                            <Label text="VA-Zyklus:">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="zyklus" promptText="1-7"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox>
+                                        <children>
+                                            <Label text="Start Datum : ">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <DatePicker fx:id="startDatum" onAction="#onDatePickerAction"
+                                                        prefWidth="150.0"
+                                                        promptText="dd.MM.yyyy"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox>
+                                        <children>
+                                            <Label text="End Datum : ">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <DatePicker fx:id="endeDatum" prefWidth="165.0" disable="true"
+                                                        editable="false"/>
+                                        </children>
+                                    </VBox>
+                                </children>
+                                <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                </padding>
+                            </HBox>
+                            <HBox spacing="50.0">
+                                <children>
+                                    <VBox>
+                                        <children>
+                                            <Label text="Min TN: ">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="minTnZahl"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox>
+                                        <children>
+                                            <Label text="Max TN: ">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="maxTnZahl"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox>
+                                        <children>
+                                            <Label text="Freie Plätze: ">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="freiePlaetze" disable="true" editable="false"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox>
+                                        <children>
+                                            <Label text="Aktuelle TN-Zahl: ">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="aktuelleTnZahl" disable="true" editable="false"/>
+                                        </children>
+                                    </VBox>
+                                </children>
+                                <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                </padding>
+                            </HBox>
+                            <HBox spacing="50.0">
+                                <children>
+                                    <VBox>
+                                        <children>
+                                            <Label text="Gebühr brutto(€): ">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="gebuehrBrutto"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox>
+                                        <children>
+                                            <Label text="MWST (€): ">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="mtwsEuro" disable="true" editable="false"/>
+                                        </children>
+                                        <opaqueInsets>
+                                            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+                                        </opaqueInsets>
+                                    </VBox>
+                                    <VBox>
+                                        <children>
+                                            <Label text="MWST (%):">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="mtwsProzent"/>
+                                        </children>
+                                    </VBox>
+                                    <VBox>
+                                        <children>
+                                            <Label text="Gebühr netto(€):">
+                                                <font>
+                                                    <Font size="21.0"/>
+                                                </font>
+                                            </Label>
+                                            <TextField fx:id="gebuehrNetto" disable="true" editable="false"/>
+                                        </children>
+                                    </VBox>
+                                </children>
+                                <opaqueInsets>
+                                    <Insets/>
+                                </opaqueInsets>
+                                <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                </padding>
+                            </HBox>
+                            <VBox>
+                                <children>
+                                    <Label contentDisplay="CENTER" text="Kursbeschreibung">
+                                        <font>
+                                            <Font size="21.0"/>
+                                        </font>
+                                    </Label>
+                                    <TextArea fx:id="kursBeschreibung" prefHeight="182.0" prefWidth="906.0">
+                                        <VBox.margin>
+                                            <Insets/>
+                                        </VBox.margin>
+                                    </TextArea>
+                                </children>
+                                <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                </padding>
+                            </VBox>
+                            <HBox alignment="CENTER" spacing="50.0">
+                                <children>
+                                    <Button onAction="#apply" mnemonicParsing="false" prefHeight="51.0"
+                                            prefWidth="122.0"
+                                            text="Apply">
+                                        <font>
+                                            <Font size="18.0"/>
+                                        </font>
+                                    </Button>
+                                    <Button onAction="#abbrechen" mnemonicParsing="false" prefHeight="51.0"
+                                            prefWidth="122.0"
+                                            text="Abbrechen">
+                                        <font>
+                                            <Font size="18.0"/>
+                                        </font>
+                                    </Button>
+                                    <Button onAction="#teilnehmerlist" mnemonicParsing="false" prefHeight="51.0"
+                                            prefWidth="173.0"
+                                            text="Teilnehmerliste">
+                                        <font>
+                                            <Font size="18.0"/>
+                                        </font>
+                                    </Button>
+                                    <Button onAction="#interessentenlist" mnemonicParsing="false" prefHeight="51.0"
+                                            prefWidth="173.0" text="Interessentenlist">
+                                        <font>
+                                            <Font size="18.0"/>
+                                        </font>
+                                    </Button>
+                                </children>
+                                <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                </padding>
+                            </HBox>
                         </children>
-                    </AnchorPane>
+                    </VBox>
                 </children>
-            </VBox>
+            </AnchorPane>
         </content>
 
         <!-- ENDE zu bearbeitender Content-->
