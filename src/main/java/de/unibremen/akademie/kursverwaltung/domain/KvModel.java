@@ -1,5 +1,4 @@
 package de.unibremen.akademie.kursverwaltung.domain;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
