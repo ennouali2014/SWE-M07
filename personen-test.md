@@ -120,8 +120,8 @@
 | -------------------------------------------------------------------                                                                       | -------- | ---------------------- |
 | Person Liste Tabelle Anrede gefüllt                                                                                                       |    o     |           o            |
 | Person Liste Tabelle Titel gefüllt                                                                                                        |    o     |           o            |
-| Person Liste Tabelle Vorname gefüllt                                                                                                      |    o     |           o            |
-| Person Liste Tabelle Nachname gefüllt                                                                                                     |    o     |           o            |
+| Person Liste Tabelle Vorname gefüllt                                                                                                      |    o     |           x            |
+| Person Liste Tabelle Nachname gefüllt                                                                                                     |    o     |           x            |
 | Person Liste Tabelle Email gefüllt                                                                                                        |    o     |           o            |
 | Person Liste Tabelle Tel gefüllt                                                                                                          |    o     |           o            |
 | Person Liste Tabelle Straße gefüllt                                                                                                       |    o     |           o            |
@@ -145,7 +145,7 @@
 | Person Liste Button speichern funktioniert                                                                                                |    o     |           o            |
 | Person Liste Button ändern funktioniert                                                                                                   |    o     |           o            |
 | Person Liste Button ändern speichern anzeige nach update funktioniert                                                                     |    o     |           o            |
-| Person Liste Button ändern anzeige update <br/>nach abbrechen wieder Person anlegen<br/>anzeige Button auf  speichern zurück funktioniert |    o     |           x            |
+| Person Liste Button ändern anzeige update <br/>nach abbrechen wieder Person anlegen<br/>anzeige Button auf  speichern zurück funktioniert |    o     |           o            |
 | Person Liste single selection funktioniert                                                                                                |    o     |           o            |
 | Person Liste single selection nach Person anlegen<br/> entsprechende item in Liste selektiert funktioniert                                |    o     |           x            |
 | Person Liste multi selection funktioniert                                                                                                 |    o     |           o            |
