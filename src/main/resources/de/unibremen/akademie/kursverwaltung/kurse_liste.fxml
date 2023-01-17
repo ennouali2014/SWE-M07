@@ -11,80 +11,86 @@
     <content>
         <AnchorPane>
             <children>
-                <VBox prefHeight="120.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <Label text="KursList" textFill="#91c9a0">
-                            <font>
-                                <Font name="System Bold" size="54.0"/>
-                            </font>
-                        </Label>
-                        <Label text="Hier Kannst du deine Kurse verwalten" textFill="#91c9a0">
-                            <font>
-                                <Font name="System Italic" size="16.0"/>
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0"/>
-                            </VBox.margin>
-                        </Label>
-                        <HBox prefHeight="47.0" prefWidth="1000.0" spacing="10.0">
+                <BorderPane AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+                            AnchorPane.topAnchor="5.0">
+                    <top>
+                        <VBox BorderPane.alignment="CENTER">
                             <children>
-                                <Label fx:id="lblTextField" prefHeight="18.0" prefWidth="143.0"
-                                       text="Suche nach Kursname:">
-                                    <HBox.margin>
-                                        <Insets left="10.0"/>
-                                    </HBox.margin>
+                                <Label text="KursList" textFill="#91c9a0">
+                                    <font>
+                                        <Font name="System Bold" size="54.0"/>
+                                    </font>
                                 </Label>
-                                <TextField fx:id="kursNameTextField" >
-                                    <HBox.margin>
-                                        <Insets left="10.0"/>
-                                    </HBox.margin>
-                                </TextField>
-                                <Label fx:id="lblAbDatum" prefHeight="18.0" prefWidth="81.0" text="Ab Datum:">
-                                    <HBox.margin>
-                                        <Insets left="10.0"/>
-                                    </HBox.margin>
+                                <Label text="Hier Kannst du deine Kurse verwalten" textFill="#91c9a0">
+                                    <font>
+                                        <Font name="System Italic" size="16.0"/>
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0"/>
+                                    </VBox.margin>
                                 </Label>
-                                <DatePicker fx:id="abDatumDatePicker" onAction="#abDatselectDate"
-                                            >
-                                    <HBox.margin>
-                                        <Insets left="10.0"/>
-                                    </HBox.margin>
-                                </DatePicker>
-                                <Label fx:id="lblBisDatum" layoutX="328.0" layoutY="10.0" prefHeight="18.0"
-                                       prefWidth="81.0" text="Bis Datum:"/>
-                                <DatePicker fx:id="bisDatumDatePicker" layoutX="460.0" layoutY="10.0"
-                                            onAction="#bisDatSelectDate" />
-                                <Label prefHeight="18.0" prefWidth="47.0" text="Status:">
-                                    <HBox.margin>
-                                        <Insets left="10.0"/>
-                                    </HBox.margin>
-                                </Label>
-                                <MenuButton fx:id="alleMenuButton" mnemonicParsing="false" prefHeight="26.0"
-                                            prefWidth="79.0"  text="Alle">
-                                    <items>
-                                        <MenuItem mnemonicParsing="false" text="Aktiv"/>
-                                        <MenuItem mnemonicParsing="false" text="Geplant"/>
-                                        <MenuItem mnemonicParsing="false" text="Abgesagt"/>
-                                    </items>
-                                    <HBox.margin>
-                                        <Insets left="10.0"/>
-                                    </HBox.margin>
-                                </MenuButton>
-                                <Button mnemonicParsing="false"  text="Suchen">
-                                    <HBox.margin>
-                                        <Insets left="10.0"/>
-                                    </HBox.margin>
-                                </Button>
-                                <Button mnemonicParsing="false"  text="Reset">
-                                    <HBox.margin>
-                                        <Insets left="10.0"/>
-                                    </HBox.margin>
-                                </Button>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Label fx:id="lblTextField" prefHeight="18.0" prefWidth="143.0"
+                                               text="Suche nach Kursname:">
 
+                                        </Label>
+                                        <TextField fx:id="kursNameTextField">
+                                            <HBox.margin>
+                                                <Insets left="10.0"/>
+                                            </HBox.margin>
+                                        </TextField>
+                                        <Label fx:id="lblAbDatum" prefHeight="18.0" prefWidth="81.0" text="Ab Datum:">
+                                            <HBox.margin>
+                                                <Insets left="10.0"/>
+                                            </HBox.margin>
+                                        </Label>
+                                        <DatePicker fx:id="abDatumDatePicker" onAction="#abDatselectDate">
+                                            <HBox.margin>
+                                                <Insets left="10.0"/>
+                                            </HBox.margin>
+                                        </DatePicker>
+                                        <Label fx:id="lblBisDatum" layoutX="328.0" layoutY="10.0" prefHeight="18.0"
+                                               prefWidth="81.0" text="Bis Datum:"/>
+                                        <DatePicker fx:id="bisDatumDatePicker" layoutX="460.0" layoutY="10.0"
+                                                    onAction="#bisDatSelectDate"/>
+                                        <Label prefHeight="18.0" prefWidth="47.0" text="Status:">
+                                            <HBox.margin>
+                                                <Insets left="10.0"/>
+                                            </HBox.margin>
+                                        </Label>
+                                        <MenuButton fx:id="alleMenuButton" mnemonicParsing="false" prefHeight="26.0"
+                                                    prefWidth="79.0" text="Alle">
+                                            <items>
+                                                <MenuItem mnemonicParsing="false" text="Aktiv"/>
+                                                <MenuItem mnemonicParsing="false" text="Geplant"/>
+                                                <MenuItem mnemonicParsing="false" text="Abgesagt"/>
+                                            </items>
+                                            <HBox.margin>
+                                                <Insets left="10.0"/>
+                                            </HBox.margin>
+                                        </MenuButton>
+                                        <Button mnemonicParsing="false" text="Suchen">
+                                            <HBox.margin>
+                                                <Insets left="10.0"/>
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button mnemonicParsing="false" text="Reset">
+                                            <HBox.margin>
+                                                <Insets left="10.0"/>
+                                            </HBox.margin>
+                                        </Button>
+
+                                    </children>
+                                </HBox>
                             </children>
-                        </HBox>
-                        <TableView fx:id="tableView" prefHeight="331.0" prefWidth="1000.0">
+                            <BorderPane.margin>
+                                <Insets bottom="10.0"/>
+                            </BorderPane.margin>
+                        </VBox>
+                    </top>
+                    <center>
+                        <TableView fx:id="tableView" BorderPane.alignment="CENTER">
                             <columns>
                                 <TableColumn fx:id="columnName" prefWidth="109.60003662109375" text="Kursname"/>
                                 <TableColumn fx:id="columnStartDatum" prefWidth="134.3999481201172" text="Start_Datum"/>
@@ -99,33 +105,36 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                             </columnResizePolicy>
                         </TableView>
-                        <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1000.0">
+                    </center>
+                    <bottom>
+                        <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                             <children>
                                 <Button fx:id="hinzufugenButton" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#hinzufugenButtonAction"
-                                         text="Hinzufügen">
+                                        mnemonicParsing="false" onAction="#hinzufugenButtonAction" text="Hinzufügen">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0"/>
                                     </HBox.margin>
                                 </Button>
                                 <Button fx:id="bearbeitenButton" alignment="CENTER" contentDisplay="CENTER"
                                         mnemonicParsing="false" onAction="#bearbeitenButtonAction"
-                                         text="Bearbeiten/Anzeigen">
+                                        text="Bearbeiten/Anzeigen">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0"/>
                                     </HBox.margin>
                                 </Button>
                                 <Button fx:id="entfernenButton" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#entfernenButtonAction"
-                                        text="Entfernen">
+                                        mnemonicParsing="false" onAction="#entfernenButtonAction" text="Entfernen">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0"/>
                                     </HBox.margin>
                                 </Button>
                             </children>
+                            <BorderPane.margin>
+                                <Insets bottom="20.0" top="20.0"/>
+                            </BorderPane.margin>
                         </HBox>
-                    </children>
-                </VBox>
+                    </bottom>
+                </BorderPane>
             </children>
         </AnchorPane>
     </content>

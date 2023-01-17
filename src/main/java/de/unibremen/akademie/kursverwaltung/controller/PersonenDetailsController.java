@@ -98,10 +98,17 @@ public class PersonenDetailsController {
         startDate.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
         startDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
+
+        TableViewKurse.setItems(KvModel.model.kursList);
         tableViewKurse.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableViewKurse.getSelectionModel();
 
+                TableViewKurse.getSelectionModel();
+        selectionModel.setSelectionMode(
+                SelectionMode.SINGLE);
+
+        tableViewKurse.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.SINGLE);
 
         kursZuTeilnehmer.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
@@ -109,14 +116,17 @@ public class PersonenDetailsController {
 //        tableViewKurse.getSelectionModel().selectedItemProperty().addListener(
 //                (observable, oldValue, newValue) -> System.out.println(newValue));
 
+        
     }
 
     @FXML
     public void onsaveclick() {
         if (KvModel.aktuellePerson != null) {
-            KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(),
-                    vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(),
-                    ort.getText(), email.getText(), telefon.getText());
+            try {
+                KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+            } catch (Exception e) {
+                Meldung.eingabeFehler(e.getMessage());
+            }
             felderLeeren();
             save.setText("speichern");
         } else {
@@ -134,11 +144,13 @@ public class PersonenDetailsController {
         Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
         plTab.getTabPane().getSelectionModel().select(plTab);
         main.fxmlPersonenListeController.table.refresh();
+        if (PersonenDetailsController.zurueckPersonenliste) {
+            plTab.getTabPane().getSelectionModel().select(plTab);
+        }
     }
-
     @FXML
     public void update(Person person) {
-
+        String anrede = person.getAnrede();
         String titel = person.getTitel();
         String vorname = person.getVorname();
         String nachname = person.getNachname();
@@ -167,6 +179,7 @@ public class PersonenDetailsController {
         felderLeeren();
 
         if (zurueckPersonenliste) {
+            //System.out.println(zurueckPersonenliste);
             Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
             zurueckPersonenliste = false;
@@ -185,7 +198,6 @@ public class PersonenDetailsController {
         email.clear();
         telefon.clear();
     }
-
 
     public void teilnehmerZuInteressent(ActionEvent actionEvent) {
     }

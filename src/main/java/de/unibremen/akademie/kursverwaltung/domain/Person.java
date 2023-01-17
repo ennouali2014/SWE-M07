@@ -59,19 +59,16 @@ public class Person implements Externalizable {
     public void updatePerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
 
         if (!checkIsEmpty(vorname)) {
-            vorname = getVorname();
-
-
+            throw new IllegalArgumentException("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
+            //vorname = getVorname();
         }
         if (!checkIsEmpty(nachname)) {
-            nachname = getNachname();
-
-
+            throw new IllegalArgumentException("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
+            //nachname = getNachname();
         }
         if (!checkValidEmail(email)) {
-            email = getEmail();
-
-
+            throw new IllegalArgumentException("Die Email-Adresse ist fehlerhaft!");
+            //email = getEmail();
         }
         this.setAnrede(anrede);
         this.setTitel(titel);
