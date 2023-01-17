@@ -174,7 +174,6 @@ public class PersonenDetailsController {
         }
     }
 
-
     public void felderLeeren() {
         anrede.getSelectionModel().selectFirst();
         titel.clear();
@@ -208,7 +207,7 @@ public class PersonenDetailsController {
         }
 
         Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
-        KvModel.aktuellePerson.addKursInteressiert(kurs); //
+        KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
         tableViewTeilnehmerZu.getItems().add(kurs);
 
         System.out.println(KvModel.aktuellePerson);
