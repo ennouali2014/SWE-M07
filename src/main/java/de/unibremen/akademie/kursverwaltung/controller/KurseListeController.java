@@ -2,7 +2,10 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,11 +13,9 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class KurseListeController {
 
@@ -30,6 +31,8 @@ public class KurseListeController {
     public Tab fxmlKurseListe;
     public CheckBox checkbox;
 
+
+    ObservableList<Kurs> list = FXCollections.observableArrayList();
 
     @FXML
     private DatePicker abDatumDatePicker;
@@ -66,9 +69,17 @@ public class KurseListeController {
     @FXML
     private Label lblTextField;
     private MainController main;
+    private FilteredList<Kurs> filteredData;
+
+    public TableView<Kurs> getTableView() {
+        return tableView;
+    }
 
     public void initialize() {
+
+
         tableView.setEditable(false);
+
 
         tableView.setPlaceholder(
                 new Label("No rows to display"));
@@ -97,22 +108,56 @@ public class KurseListeController {
         selectionModel.setSelectionMode(
                 SelectionMode.MULTIPLE);
 
+
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                list = tableView.getSelectionModel().getSelectedItems();
+            }
+            if (list.size() > 1) {
+                bearbeitenButton.setDisable(true);
+            } else {
+                bearbeitenButton.setDisable(false);
+            }
+        });
+
+        FilteredList<Kurs> filteredData = new FilteredList<>(KvModel.kursList, kurs -> true);
+        kursNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(kurs -> {
+
+                if (newValue == null || newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (kurs.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (kurs.getStatus().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+        SortedList<Kurs> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedData);
     }
 
     @FXML
     void hinzufugenButtonAction(ActionEvent event) {
-        KvModel.aktuelleKurs=null;
-        main.fxmlKurseDetailsController.abbrechen(event);
-        for (Tab tabPaneKursAnlegen : fxmlKurseListe.getTabPane().getTabs()) {
-            if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
-                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
-            }
+        if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size() < 2) {
+            KvModel.aktuelleKurs = null;
+            main.fxmlKurseDetailsController.abbrechen(event);
+            for (Tab tabPaneKursAnlegen : fxmlKurseListe.getTabPane().getTabs()) {
+                if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
+                    tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
+                }
+            }
         }
     }
 
     @FXML
     void entfernenButtonAction(ActionEvent event) {
+        tableView.setItems(KvModel.model.kursList);
         ObservableList<Kurs> kurse = tableView.getItems();
         List<Kurs> selectedCoursesCopy = new ArrayList<>(tableView.getSelectionModel().getSelectedItems());
         selectedCoursesCopy.forEach(kurse::remove);
@@ -125,12 +170,12 @@ public class KurseListeController {
     }
 
     @FXML
-    void bearbeitenButtonAction(ActionEvent event) throws IOException {
-        if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size()<2 ) {
+    void bearbeitenButtonAction(ActionEvent event) {
+        tableView.setItems(KvModel.model.kursList);
+        if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size() < 2) {
             KvModel.aktuelleKurs = tableView.getSelectionModel().getSelectedItem();
-            main.fxmlKurseDetailsController.update(KvModel.aktuelleKurs);
+            main.fxmlKurseDetailsController.anzeigeZumAendern(KvModel.aktuelleKurs);
             main.fxmlKurseDetailsController.show();
-
         }
     }
 
@@ -140,7 +185,27 @@ public class KurseListeController {
 
     }
 
+
+    public void searchButtonAction(ActionEvent actionEvent) {
+
+        String searchText = kursNameTextField.getText();
+        Predicate<Kurs> predicate = new Predicate<Kurs>() {
+            @Override
+            public boolean test(Kurs kurs) {
+                if (searchText == null || searchText.toLowerCase().isEmpty() || searchText.isBlank()) {
+                    return true;
+                }
+                String searchKeywordLowerC = searchText.toLowerCase();
+                return kurs.getName().toLowerCase().contains(searchKeywordLowerC);
+            }
+        };
+        filteredData.setPredicate(predicate);
+    }
+
+
     public void suchButtonAction(ActionEvent actionEvent) {
+
+
     }
 
     public void zurucksetzenButtonAction(ActionEvent actionEvent) {
@@ -150,12 +215,12 @@ public class KurseListeController {
     }
 
     public void init(MainController mainController) {
-        main=mainController;
+        main = mainController;
     }
 
     public void allselect(ActionEvent actionEvent) {
         System.out.println(checkbox.isIndeterminate());
-        if(checkbox.isIndeterminate()){
+        if (checkbox.isIndeterminate()) {
             System.out.println(checkbox.isIndeterminate());
             tableView.getSelectionModel().selectAll();
         }

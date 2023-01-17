@@ -1,9 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
-import de.unibremen.akademie.kursverwaltung.domain.Meldung;
-import de.unibremen.akademie.kursverwaltung.domain.Person;
+import de.unibremen.akademie.kursverwaltung.domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -117,20 +114,24 @@ public class PersonenDetailsController {
 
     @FXML
     public void onsaveclick() {
+        // Update einer bestehenden Person
         if (KvModel.aktuellePerson != null) {
             try {
                 KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
+                return;
             }
             felderLeeren();
             save.setText("speichern");
         } else {
+            // Neue Person hinzufuegen
             int aktuelleAnzPersonen = KvModel.personList.size();
             try {
                 Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
+                return;
             }
             if (KvModel.personList.size() > aktuelleAnzPersonen) {
                 felderLeeren();
@@ -138,28 +139,32 @@ public class PersonenDetailsController {
         }
         KvModel.aktuellePerson = null;
         Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
-        plTab.getTabPane().getSelectionModel().select(plTab);
+        //plTab.getTabPane().getSelectionModel().select(plTab);
         main.fxmlPersonenListeController.table.refresh();
+
         if (PersonenDetailsController.zurueckPersonenliste) {
             plTab.getTabPane().getSelectionModel().select(plTab);
         }
     }
+
     @FXML
-    public void update(Person person) {
-        String anrede = person.getAnrede();
-        for (int i = 0; i < choiceListAnrede.size(); i++) {
-            if (choiceListAnrede.get(i).equals(anrede)) {
-                this.anrede.getSelectionModel().select(i);
+    public void anzeigeZumAendern(Person person) {
+        if (person != null) {
+            String anrede = person.getAnrede();
+            for (int i = 0; i < choiceListAnrede.size(); i++) {
+                if (choiceListAnrede.get(i).equals(anrede)) {
+                    this.anrede.getSelectionModel().select(i);
+                }
             }
+            this.titel.setText(person.getTitel());
+            this.vorname.setText(person.getVorname());
+            this.nachname.setText(person.getNachname());
+            this.strasse.setText(person.getStrasse());
+            this.plz.setText(person.getPlz());
+            this.ort.setText(person.getOrt());
+            this.email.setText(person.getEmail());
+            this.telefon.setText(person.getTelefon());
         }
-        this.titel.setText(person.getTitel());
-        this.vorname.setText(person.getVorname());
-        this.nachname.setText(person.getNachname());
-        this.strasse.setText(person.getStrasse());
-        this.plz.setText(person.getPlz());
-        this.ort.setText(person.getOrt());
-        this.email.setText(person.getEmail());
-        this.telefon.setText(person.getTelefon());
     }
 
     @FXML
@@ -173,7 +178,6 @@ public class PersonenDetailsController {
             zurueckPersonenliste = false;
         }
     }
-
 
     public void felderLeeren() {
         anrede.getSelectionModel().selectFirst();
@@ -201,21 +205,42 @@ public class PersonenDetailsController {
 
     }
 
+    /*
+        public void kursZuTeilnehmer(ActionEvent actionEvent) {
+
+            if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
+                return;
+            }
+
+            Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
+            KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
+            tableViewTeilnehmerZu.getItems().add(kurs);
+
+            System.out.println(KvModel.aktuellePerson);
+            System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
+
+
+        }
+    */
     public void kursZuTeilnehmer(ActionEvent actionEvent) {
 
         if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
+        Boolean test_add_kurs = PersonKursListe.modelKP.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson, (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
+//    Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
+//    KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
+        if (test_add_kurs) {
+            tableViewTeilnehmerZu.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
+        }
 
-        Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
-        KvModel.aktuellePerson.addKursInteressiert(kurs); //
-        tableViewTeilnehmerZu.getItems().add(kurs);
 
-        System.out.println(KvModel.aktuellePerson);
-        System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
+//    System.out.println(KvModel.aktuellePerson);
+//    System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
 
 
     }
+
 
     public void kursZuInteressent(ActionEvent actionEvent) {
     }
