@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.List;
 
 public class Kurs implements Externalizable {
-    //static final long serialVersionUID = -3661556037235501674L;
     private SimpleStringProperty name;
     private SimpleIntegerProperty anzahlTage;
     private SimpleIntegerProperty zyklus;
@@ -40,28 +39,28 @@ public class Kurs implements Externalizable {
 
         Kurs kurs = new Kurs();
         if (!kurs.setName(name)) {
-            throw new IllegalArgumentException("Name ist falsch");
+            throw new IllegalArgumentException("Der Kurs-Name ist leer!");
         }
         if (!kurs.setAnzahlTage(anzahlTage)) {
-            throw new IllegalArgumentException("minimum teilnahme ist falsch");
+            throw new IllegalArgumentException("Der Kurs muss mindestens 1 Tag dauern!");
         }
         if (!kurs.setZyklus(zyklus)) {
-            throw new IllegalArgumentException("zyklus is Require");
+            throw new IllegalArgumentException("Bitte einen Zyklus angeben!");
         }
         if (!kurs.setStartDatum(startDatum)) {
-            throw new IllegalArgumentException(" Start Date is Require");
+            throw new IllegalArgumentException("Wann soll der Kurs starten?");
         }
         if (!kurs.setMinTnZahl(minTnZahl)) {
-            throw new IllegalArgumentException("minimum teilnahme ist falsch");
+            throw new IllegalArgumentException("Mindestens 1 Teilnehmer sollte schon sein!");
         }
         if (!kurs.setMaxTnZahl(maxTnZahl)) {
-            throw new IllegalArgumentException(" Max anzahl darf nicht weniger als Min anzahl der Teilnehmer");
+            throw new IllegalArgumentException("Die maximale Anzahl der Teilnehmer muss mindestens so gross sein \nwie die minimale Anzahl der Teilnehmer!");
         }
         if (!kurs.setGebuehrBrutto(gebuehrBrutto)) {
-            throw new IllegalArgumentException("gebuhr Brutto ist falsch");
+            throw new IllegalArgumentException("Die Gebühr sollte mindestens 1,- symbolischen Euro betragen!");
         }
         if (!kurs.setMwstProzent(mwstProzent)) {
-            throw new IllegalArgumentException("prozent MWST is Require");
+            throw new IllegalArgumentException("Bitte einen MwSt-Satz angeben!");
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -75,7 +74,7 @@ public class Kurs implements Externalizable {
         kurs.setMwstEuro();
         kurs.setAktuelleTnZahl();
         if (!kurs.setFreiePlaetze()) {
-            throw new IllegalArgumentException("Alles Voll");
+            throw new IllegalArgumentException("Leider sind alles Plätze belegt!");
         }
         kurs.setStatus();
         KvModel.kursList.add(kurs);
@@ -202,7 +201,7 @@ public class Kurs implements Externalizable {
     }
 
     public boolean setMaxTnZahl(int maxTnZahl) {
-        if (maxTnZahl > 0 && maxTnZahl > this.minTnZahl.get()) {
+        if (maxTnZahl >= this.minTnZahl.get()) {
             if (this.maxTnZahl == null) {
                 this.maxTnZahl = new SimpleIntegerProperty(maxTnZahl);
             } else {
