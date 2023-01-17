@@ -99,14 +99,10 @@ public class PersonenDetailsController {
         startDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
 
-        TableViewKurse.setItems(KvModel.model.kursList);
         tableViewKurse.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableViewKurse.getSelectionModel();
 
-                TableViewKurse.getSelectionModel();
-        selectionModel.setSelectionMode(
-                SelectionMode.SINGLE);
 
         tableViewKurse.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.SINGLE);

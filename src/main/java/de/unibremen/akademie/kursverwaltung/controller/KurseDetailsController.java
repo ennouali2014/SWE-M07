@@ -67,7 +67,7 @@ public class KurseDetailsController {
             KvModel.aktuelleKurs.setAktuelleTnZahl();
             KvModel.aktuelleKurs.setStatus(status.getValue().toString());
             main.fxmlKurseListeController.tableView.refresh();
-            main.fxmlPersonenDetailsController.TableViewKurse.refresh();
+            main.fxmlPersonenDetailsController.tableViewKurse.refresh();
 
         }else {
             String name = kursname.getText();
