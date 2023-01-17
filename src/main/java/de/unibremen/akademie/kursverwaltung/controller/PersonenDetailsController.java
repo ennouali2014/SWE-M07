@@ -39,7 +39,10 @@ public class PersonenDetailsController {
     public Button abbrechen;
 
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
-
+    static public final ObservableList<Person> listKursTeilnehmer =
+            FXCollections.observableArrayList();
+    static public final ObservableList<Person> listKursInteressent =
+            FXCollections.observableArrayList();
     public Tab fxmlPersonenDetails;
 
     static public boolean zurueckPersonenliste = false;
@@ -98,10 +101,14 @@ public class PersonenDetailsController {
         tableViewKurse.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableViewKurse.getSelectionModel();
+
         selectionModel.setSelectionMode(SelectionMode.SINGLE);
 
+        kursZuTeilnehmer.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
+        kursZuTeilnehmer.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+//        tableViewKurse.getSelectionModel().selectedItemProperty().addListener(
+//                (observable, oldValue, newValue) -> System.out.println(newValue));
 
-        
     }
 
     @FXML
@@ -128,9 +135,10 @@ public class PersonenDetailsController {
         plTab.getTabPane().getSelectionModel().select(plTab);
         main.fxmlPersonenListeController.table.refresh();
     }
+
     @FXML
     public void update(Person person) {
-        String anrede = person.getAnrede();
+
         String titel = person.getTitel();
         String vorname = person.getVorname();
         String nachname = person.getNachname();
@@ -144,8 +152,7 @@ public class PersonenDetailsController {
                 this.anrede.getSelectionModel().select(i);
             }
         }
-
-        this.titel.setText(titel);
+        this.titel.setText(person.getAnrede());
         this.vorname.setText(vorname);
         this.nachname.setText(nachname);
         this.strasse.setText(strasse);
@@ -160,7 +167,6 @@ public class PersonenDetailsController {
         felderLeeren();
 
         if (zurueckPersonenliste) {
-            //System.out.println(zurueckPersonenliste);
             Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
             zurueckPersonenliste = false;
@@ -180,6 +186,7 @@ public class PersonenDetailsController {
         telefon.clear();
     }
 
+
     public void teilnehmerZuInteressent(ActionEvent actionEvent) {
     }
 
@@ -195,6 +202,17 @@ public class PersonenDetailsController {
     }
 
     public void kursZuTeilnehmer(ActionEvent actionEvent) {
+
+        if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
+            return;
+        }
+
+        Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
+        KvModel.aktuellePerson.addKursInteressiert(kurs); //
+        tableViewTeilnehmerZu.getItems().add(kurs);
+
+        System.out.println(KvModel.aktuellePerson);
+        System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
 
 
     }

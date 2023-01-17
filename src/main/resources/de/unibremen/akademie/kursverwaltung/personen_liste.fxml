@@ -63,6 +63,7 @@
                                 <TableColumn fx:id="ort" prefWidth="110.0" text="Ort"/>
                                 <TableColumn fx:id="email" prefWidth="120.0" text="Email"/>
                                 <TableColumn fx:id="telefon" prefWidth="120.0" text="Telefon"/>
+                                <TableColumn fx:id="kursTeilnahmeStr" prefWidth="120.0" text="KursTeilnehme"/>
                             </columns>
                         </TableView>
                     </center>

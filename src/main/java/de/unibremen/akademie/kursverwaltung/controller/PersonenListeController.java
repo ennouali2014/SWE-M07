@@ -19,13 +19,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 
 public class PersonenListeController implements Initializable {
 
 
     public Tab fxmlPersonenListe;
+    @FXML
+    public TableColumn kursTeilnahmeStr;
 
     @FXML
     private TableColumn<Person, String> anrede;
@@ -86,7 +87,6 @@ public class PersonenListeController implements Initializable {
             main.fxmlPersonenDetailsController.save.setText("Update");
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
-            //index_of_selected_item = table.getSelectionModel().getFocusedIndex();
 
             main.fxmlPersonenDetailsController.update(KvModel.aktuellePerson);
 
@@ -284,6 +284,11 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
+
+        kursTeilnahmeStr.setCellValueFactory(new PropertyValueFactory<Person, String>("kursTeilnahmeStr"));
+        kursTeilnahmeStr.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+
+
         table.setItems(KvModel.personList);
 
         TableView.TableViewSelectionModel<Person> selectionModel =
@@ -354,7 +359,6 @@ public class PersonenListeController implements Initializable {
     public void init(MainController mainController) {
         main=mainController;
     }
-
 
 
 }
