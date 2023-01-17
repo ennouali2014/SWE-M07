@@ -88,7 +88,7 @@ public class PersonenListeController implements Initializable {
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
 
-            main.fxmlPersonenDetailsController.update(KvModel.aktuellePerson);
+            main.fxmlPersonenDetailsController.anzeigeZumAendern(KvModel.aktuellePerson);
 
             for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
@@ -101,7 +101,7 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void loeschButtonAction(ActionEvent event) {
-        ObservableList<Person> allPerson = table.getItems();
+        ObservableList<Person> allPerson = KvModel.model.personList;
         List<Person> selectedPersonCopy = new ArrayList<>(table.getSelectionModel().getSelectedItems());
         selectedPersonCopy.forEach(allPerson::remove);
     }
@@ -321,7 +321,7 @@ public class PersonenListeController implements Initializable {
                     return true;
                 }
 
-                //compare first name and last name
+                //compare first name and last name...
                 String lowerCaseFilter = newValue.toLowerCase();
                 if (person.getVorname().toLowerCase().contains(lowerCaseFilter)){
                     return true;
@@ -341,6 +341,7 @@ public class PersonenListeController implements Initializable {
                     return false;
             });
         });
+
 
         //wrap the filterList in a sortedList
         SortedList<Person> sortedData = new SortedList<>(filteredData);
