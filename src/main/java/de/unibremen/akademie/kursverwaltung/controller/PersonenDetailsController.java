@@ -149,22 +149,25 @@ public class PersonenDetailsController {
             plTab.getTabPane().getSelectionModel().select(plTab);
         }
     }
+
     @FXML
-    public void update(Person person) {
-        String anrede = person.getAnrede();
-        for (int i = 0; i < choiceListAnrede.size(); i++) {
-            if (choiceListAnrede.get(i).equals(anrede)) {
-                this.anrede.getSelectionModel().select(i);
+    public void anzeigeZumAendern(Person person) {
+        if (person != null) {
+            String anrede = person.getAnrede();
+            for (int i = 0; i < choiceListAnrede.size(); i++) {
+                if (choiceListAnrede.get(i).equals(anrede)) {
+                    this.anrede.getSelectionModel().select(i);
+                }
             }
+            this.titel.setText(person.getTitel());
+            this.vorname.setText(person.getVorname());
+            this.nachname.setText(person.getNachname());
+            this.strasse.setText(person.getStrasse());
+            this.plz.setText(person.getPlz());
+            this.ort.setText(person.getOrt());
+            this.email.setText(person.getEmail());
+            this.telefon.setText(person.getTelefon());
         }
-        this.titel.setText(person.getTitel());
-        this.vorname.setText(person.getVorname());
-        this.nachname.setText(person.getNachname());
-        this.strasse.setText(person.getStrasse());
-        this.plz.setText(person.getPlz());
-        this.ort.setText(person.getOrt());
-        this.email.setText(person.getEmail());
-        this.telefon.setText(person.getTelefon());
     }
 
     @FXML

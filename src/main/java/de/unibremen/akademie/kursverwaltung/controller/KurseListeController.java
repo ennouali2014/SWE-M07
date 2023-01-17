@@ -174,7 +174,7 @@ public class KurseListeController {
         tableView.setItems(KvModel.model.kursList);
         if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size() < 2) {
             KvModel.aktuelleKurs = tableView.getSelectionModel().getSelectedItem();
-            main.fxmlKurseDetailsController.update(KvModel.aktuelleKurs);
+            main.fxmlKurseDetailsController.anzeigeZumAendern(KvModel.aktuelleKurs);
             main.fxmlKurseDetailsController.show();
         }
     }

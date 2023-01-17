@@ -96,12 +96,10 @@ public class KurseDetailsController {
                 freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
                 mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
                 gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
-
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
             }
-
         }
         for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
@@ -148,8 +146,9 @@ public class KurseDetailsController {
 
         }
     }
-    public void update(Kurs kurs) {
-        if(kurs!=null){
+
+    public void anzeigeZumAendern(Kurs kurs) {
+        if (kurs != null) {
             kursname.setText(kurs.getName());
             status.setValue(kurs.getStatus());
             anzahlTage.setText(String.valueOf(kurs.getAnzahlTage()));
