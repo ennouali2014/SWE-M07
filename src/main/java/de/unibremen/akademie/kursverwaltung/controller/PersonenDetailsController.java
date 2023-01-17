@@ -189,6 +189,7 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
+        save.setText("speichern");
     }
 
     public void teilnehmerZuInteressent(ActionEvent actionEvent) {
