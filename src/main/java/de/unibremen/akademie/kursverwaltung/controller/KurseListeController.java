@@ -155,6 +155,7 @@ public class KurseListeController {
 
     @FXML
     void entfernenButtonAction(ActionEvent event) {
+        tableView.setItems(KvModel.model.kursList);
         ObservableList<Kurs> kurse = tableView.getItems();
         List<Kurs> selectedCoursesCopy = new ArrayList<>(tableView.getSelectionModel().getSelectedItems());
         selectedCoursesCopy.forEach(kurse::remove);
