@@ -169,6 +169,7 @@ public class KurseListeController {
 
     @FXML
     void bearbeitenButtonAction(ActionEvent event) {
+        tableView.setItems(KvModel.model.kursList);
         if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size() < 2) {
             KvModel.aktuelleKurs = tableView.getSelectionModel().getSelectedItem();
             main.fxmlKurseDetailsController.update(KvModel.aktuelleKurs);
