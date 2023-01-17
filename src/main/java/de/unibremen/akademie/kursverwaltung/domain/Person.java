@@ -24,7 +24,7 @@ public class Person implements Externalizable {
     private SimpleStringProperty email;
     private SimpleStringProperty telefon;
 
-    private SimpleStringProperty kursTeilnahmeStr;
+   //private SimpleStringProperty kursTeilnahmeStr;
     private ObservableList<Kurs> kursInteressiert = FXCollections.observableArrayList();
     private ObservableList<Kurs> kursTeilnahme = FXCollections.observableArrayList();
 
@@ -154,13 +154,13 @@ public class Person implements Externalizable {
     }
 
 
-    public String getKursTeilnahmeStr() {
-        StringBuilder st = new StringBuilder();
-        for (Kurs s : kursTeilnahme) {
-            st.append(s.getName() + " ");
-        }
-        return st.toString();
-    }
+//    public String getKursTeilnahmeStr() {
+//        StringBuilder st = new StringBuilder();
+//        for (Kurs s : kursTeilnahme) {
+//            st.append(s.getName() + " ");
+//        }
+//        return st.toString();
+//    }
 
     public void setTelefon(String telefon) {
         this.telefon = new SimpleStringProperty(telefon);
