@@ -155,7 +155,6 @@ public class Person implements Externalizable {
 
 
     public String getKursTeilnahmeStr() {
-        System.out.println(getNachname());
         StringBuilder st = new StringBuilder();
         for (Kurs s : kursTeilnahme) {
             st.append(s.getName() + " ");
