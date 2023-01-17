@@ -7,7 +7,6 @@ public class PersonKurs {
     private Person person;
     private Kurs kurs;
     private SimpleBooleanProperty teilnehmer;
-    private SimpleBooleanProperty interessent;
 
 
     public Person getPerson() {
@@ -38,15 +37,5 @@ public class PersonKurs {
         return teilnehmer;
     }
 
-    public boolean isInteressent() {
-        return interessent.get();
-    }
 
-    public void setInteressent(boolean interessent) {
-        this.interessent.set(interessent);
-    }
-
-    public SimpleBooleanProperty interessentProperty() {
-        return interessent;
-    }
 }
