@@ -23,19 +23,17 @@ import java.util.ResourceBundle;
 
 public class PersonenListeController implements Initializable {
 
-
     public Tab fxmlPersonenListe;
     @FXML
     public TableColumn kursTeilnahmeStr;
-
     @FXML
     private TableColumn<Person, String> anrede;
     @FXML
     public TableColumn columnSelect;
     @FXML
-    private TableColumn<Person, String> nachname;
-    @FXML
     private TableColumn<Person, String> vorname;
+    @FXML
+    private TableColumn<Person, String> nachname;
     @FXML
     private TableColumn<Person, String> titel;
     @FXML
@@ -65,7 +63,6 @@ public class PersonenListeController implements Initializable {
     @FXML
     private TextField suchTxtField;
     @FXML
-
     private FilteredList<Person> filteredData;
     private ObservableList<Person> list = FXCollections.observableArrayList();
     @FXML
@@ -74,8 +71,6 @@ public class PersonenListeController implements Initializable {
     private CheckBox teilnehmerChkBox;
     @FXML
     private Button zurucksetzenButton;
-
-
     @FXML
     public TableView<Person> table;
 
@@ -125,7 +120,7 @@ public class PersonenListeController implements Initializable {
         //String such = suchTxtField.getText();
         //System.out.println(such);
 
-      //  filteredData.addAll(list);
+        //  filteredData.addAll(list);
 
 //        String searchValue = suchTxtField.getText();
 //
@@ -308,37 +303,36 @@ public class PersonenListeController implements Initializable {
         });
 
 
-
         // [Filtering with suchTextField]
         //Wrap the ObserviableList in a FilteredList
         FilteredList<Person> filteredData = new FilteredList<>(KvModel.personList, person -> true);
 
         // set the filter Predicate whenever the filter changes
-        suchTxtField.textProperty().addListener((observable, oldValue, newValue) ->{
+        suchTxtField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(person -> {
                 //if filter text is empty display all persons
-                if (newValue == null || newValue.isEmpty()){
+                if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
                 //compare first name and last name...
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (person.getVorname().toLowerCase().contains(lowerCaseFilter)){
+                if (person.getVorname().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                } else if (person.getNachname().toLowerCase().contains(lowerCaseFilter)){
+                } else if (person.getNachname().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }else if(person.getStrasse().toLowerCase().contains(lowerCaseFilter)){
+                } else if (person.getStrasse().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }else if(person.getPlz().toLowerCase().contains(lowerCaseFilter)){
+                } else if (person.getPlz().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }else if(person.getOrt().toLowerCase().contains(lowerCaseFilter)){
+                } else if (person.getOrt().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }else if(person.getEmail().toLowerCase().contains(lowerCaseFilter)){
+                } else if (person.getEmail().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }else if(person.getTelefon().toLowerCase().contains(lowerCaseFilter)) {
+                } else if (person.getTelefon().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 }
-                    return false;
+                return false;
             });
         });
 
@@ -359,7 +353,7 @@ public class PersonenListeController implements Initializable {
     }
 
     public void init(MainController mainController) {
-        main=mainController;
+        main = mainController;
     }
 
 

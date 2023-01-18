@@ -1,5 +1,7 @@
 **Eingaben bei Kurse-Detail:**
 
+Stand: 16.01.23
+
 Keine Fehlermeldungen: wir wissen nicht, warum wir nicht abspeichern können = geändert
 
 Was ist die Bedeutung von VA-Tage und VA-Zyklus? beim Arbeit 
