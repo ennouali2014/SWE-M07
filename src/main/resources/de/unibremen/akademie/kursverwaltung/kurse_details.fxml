@@ -253,7 +253,7 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Button>
-                                                <Button mnemonicParsing="false" onAction="#abbrechen" prefHeight="30.0" prefWidth="125.0" text="Abbrechen">
+                                                <Button mnemonicParsing="false" onAction="#onClickAbbrechenKurs" prefHeight="30.0" prefWidth="125.0" text="Abbrechen">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>

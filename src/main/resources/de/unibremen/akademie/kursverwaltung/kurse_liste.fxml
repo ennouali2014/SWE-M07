@@ -24,7 +24,7 @@
                                         <Insets left="10.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label text="Hier können die Kurse verwaltet werden" textFill="#91c9a0">
+                                <Label text="Übersicht aller Kurse" textFill="#91c9a0">
                                     <font>
                                         <Font name="System Italic" size="16.0"/>
                                     </font>
