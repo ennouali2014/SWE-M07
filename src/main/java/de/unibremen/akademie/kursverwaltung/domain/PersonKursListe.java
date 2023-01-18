@@ -12,7 +12,7 @@ public class PersonKursListe {
 
     static public final ObservableList<PersonKurs> personKursList =
             FXCollections.observableArrayList();
-
+//Mohamed
     public Boolean addPersonInKursAlsTeilnehmer(Person person, Kurs kurs) {
 
         for (PersonKurs personKurs : this.personKursList) {
