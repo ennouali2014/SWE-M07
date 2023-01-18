@@ -338,6 +338,10 @@ public class PersonenListeController implements Initializable {
                 String lowerCaseFilter = newValue.toLowerCase();
                 if (person.getVorname().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
+                } else if (person.getAnrede().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (person.getTitel().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
                 } else if (person.getNachname().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 } else if (person.getStrasse().toLowerCase().contains(lowerCaseFilter)) {
