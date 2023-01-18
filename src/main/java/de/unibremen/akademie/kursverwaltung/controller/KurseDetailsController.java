@@ -47,7 +47,7 @@ public class KurseDetailsController {
     private ComboBox status;
     private MainController main;
 
-    public void abbrechen(ActionEvent actionEvent) {
+    public void onClickAbbrechenKurs(ActionEvent actionEvent) {
         kursname.clear();
         status.setValue(status.getPromptText());
         anzahlTage.clear();
@@ -64,11 +64,8 @@ public class KurseDetailsController {
         mtwsEuro.clear();
         gebuehrNetto.clear();
         if (KvModel.aktuellerKurs != null) {
-            for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
-                if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
-                    tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
-                }
-            }
+            Tab plTab = main.fxmlKurseListeController.fxmlKurseListe;
+            plTab.getTabPane().getSelectionModel().select(plTab);
         }
     }
 
@@ -80,7 +77,7 @@ public class KurseDetailsController {
         }
     }
 
-    public void anzeigeZumAendern(Kurs kurs) {
+    public void anzeigeZumAendernKurs(Kurs kurs) {
         if (kurs != null) {
             kursname.setText(kurs.getName());
             status.setValue(kurs.getStatus());
@@ -116,7 +113,7 @@ public class KurseDetailsController {
         main = mainController;
     }
 
-    public void apply(ActionEvent actionEvent) {
+    public void onClickSaveKurs(ActionEvent actionEvent) {
         if (KvModel.aktuellerKurs != null) {
             // Bestehenden Kurs aendern
             try {
@@ -205,7 +202,7 @@ public class KurseDetailsController {
                 tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
             }
         }
-        abbrechen(actionEvent);
+        onClickAbbrechenKurs(actionEvent);
     }
 
     // checks fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder

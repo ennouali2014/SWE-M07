@@ -19,19 +19,12 @@
                                 <Insets bottom="10.0"/>
                             </BorderPane.margin>
                             <children>
-                                <Label text="Personenliste" textFill="#91c9a0"  >
-                                    <font>
-                                        <Font name="System Bold" size="54.0"/>
-                                    </font>
+                                <Label text="Personenliste" fx:id="headline">
                                     <VBox.margin>
                                         <Insets left="10.0" />
                                     </VBox.margin>
-
                                 </Label>
-                                <Label text="Hier können die Personen verwaltet werden" textFill="#91c9a0">
-                                    <font>
-                                        <Font name="System Italic" size="16.0"/>
-                                    </font>
+                                <Label text="Übersicht aller Personen" fx:id="subheadline">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0" />
                                     </VBox.margin>

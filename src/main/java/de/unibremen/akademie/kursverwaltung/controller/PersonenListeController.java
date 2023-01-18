@@ -115,7 +115,7 @@ public class PersonenListeController implements Initializable {
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
 
-            main.fxmlPersonenDetailsController.anzeigeZumAendern(KvModel.aktuellePerson);
+            main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(KvModel.aktuellePerson);
 
             for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
@@ -336,13 +336,13 @@ public class PersonenListeController implements Initializable {
 
                 //compare first name and last name...
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (person.getVorname().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                } else if (person.getAnrede().toLowerCase().contains(lowerCaseFilter)) {
+                 if (person.getAnrede().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 } else if (person.getTitel().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                } else if (person.getNachname().toLowerCase().contains(lowerCaseFilter)) {
+                } else if (person.getVorname().toLowerCase().contains(lowerCaseFilter)) {
+                     return true;
+                 } else if (person.getNachname().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 } else if (person.getStrasse().toLowerCase().contains(lowerCaseFilter)) {
                     return true;

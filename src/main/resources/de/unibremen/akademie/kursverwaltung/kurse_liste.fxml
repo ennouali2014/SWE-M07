@@ -24,7 +24,7 @@
                                         <Insets left="10.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label text="Hier können die Kurse verwaltet werden" textFill="#91c9a0">
+                                <Label text="Übersicht aller Kurse" textFill="#91c9a0">
                                     <font>
                                         <Font name="System Italic" size="16.0"/>
                                     </font>
@@ -109,7 +109,7 @@
                         <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                             <children>
                                 <Button fx:id="hinzufugenButton" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#hinzufugenButtonAction" text="Kurs Anlegen">
+                                        mnemonicParsing="false" onAction="#hinzufugenButtonAction" text="Kurs anlegen">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0"/>
                                     </HBox.margin>

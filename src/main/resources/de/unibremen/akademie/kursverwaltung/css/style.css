@@ -12,34 +12,56 @@
     -fx-tab-min-width: 5em;
 }
 
+#tabKurs {
+    -fx-background-color: #dcfae4;
+}
+
+#headline {
+    -fx-text-fill: #73d194;
+    -fx-font-weight: bold;
+    -fx-font-size: 3.5em;
+}
+
+#subheadline {
+    -fx-text-fill: #6fa3f3;
+    -fx-font-style: italic;
+    -fx-font-size: 1.3em;
+}
+
+.root {
+    -fx-text-fill: #000;
+    -fx-font-size: 1.1em;
+}
+
 .tooltip {
     -fx-background-color: #d37981;
     -fx-font-weight: bold;
     -fx-text-fill: black;
 }
 
-.headline {
-    -fx-text-fill: #73d194;
-    -fx-font-weight: bold;
-    -fx-font-size: 20px;
-}
-
-#tabKurs {
-    -fx-background-color: #dcfae4;
-}
-
 .button {
     -fx-background-color: #dcfae4;
     -fx-font-size: 14px;
+}
 
+#abbrechen {
+    -fx-background-color: #f488a1;
 }
 
 .button:hover {
     -fx-background-color: #A1C1F4;
 }
 
+#abbrechen:hover {
+    -fx-background-color: #e56b87;
+}
+
 .button:pressed {
     -fx-background-color: #73A3EF;
+}
+
+#abbrechen:pressed {
+    -fx-background-color: #fb0039;
 }
 
 .table-view .column-header,
