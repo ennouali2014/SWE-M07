@@ -41,6 +41,7 @@ public class KvModel {
             personList.addAll((ArrayList<Person>) input.readObject());
             kursList.addAll((ArrayList<Kurs>) input.readObject());
             personKursList.addAll((ArrayList<PersonKurs>) input.readObject());
+
             input.close();
         } catch (FileNotFoundException e) {
             System.err.print("Die Datei zum Lesen der Daten kann nicht gefunden werden! Fehlermeldung: ");
@@ -69,6 +70,7 @@ public class KvModel {
             output.writeObject(new ArrayList<Person>(personList));
             output.writeObject(new ArrayList<Kurs>(kursList));
             output.writeObject(new ArrayList<PersonKurs>(personKursList));
+
             output.close();
         } catch (FileNotFoundException e) {
             System.err.print("Die Datei zum Schreiben der Daten kann nicht erstellt werden! Fehlermeldung: ");
@@ -100,9 +102,9 @@ public class KvModel {
             System.out.println("Kurs-Standarddaten wurde geladen!");
         }
         if (KvModel.personKursList.size() <= 0) {
-            addPersonInKursAlsTeilnehmer(KvModel.personList.get(0), KvModel.kursList.get(0));
-            addPersonInKursAlsTeilnehmer(KvModel.personList.get(1), KvModel.kursList.get(0));
-            addPersonInKursAlsTeilnehmer(KvModel.personList.get(4), KvModel.kursList.get(0));
+            //addPersonInKursAlsTeilnehmer(KvModel.personList.get(0), KvModel.kursList.get(0));
+            //addPersonInKursAlsTeilnehmer(KvModel.personList.get(1), KvModel.kursList.get(0));
+            //addPersonInKursAlsTeilnehmer(KvModel.personList.get(4), KvModel.kursList.get(0));
             System.out.println("PersonKursList-Standarddaten wurde geladen!");
         }
     }
