@@ -47,37 +47,6 @@ public class KurseDetailsController {
     private ComboBox status;
     private MainController main;
 
-    // checks fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder
-    public static boolean checkIsInt(String wert) {
-        return wert.matches("\\d+");
-    }
-
-    public void teilnehmerlist(ActionEvent actionEvent) {
-        for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
-            if (tabPaneKursListe.getText().equals("Personen-Liste")) {
-                tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
-            }
-        }
-    }
-
-    public static boolean checkIsDouble(String wert) {
-        return wert.matches("\\d+\\.\\d+");
-    }
-
-    public void interessentenlist(ActionEvent actionEvent) {
-    }
-
-    public void onDatePickerAction(ActionEvent actionEvent) {
-    }
-
-    public void show() {
-        fxmlKurseDetails.getTabPane().getSelectionModel().select(fxmlKurseDetails);
-    }
-
-    public void init(MainController mainController) {
-        main = mainController;
-    }
-
     public void abbrechen(ActionEvent actionEvent) {
         kursname.clear();
         status.setValue(status.getPromptText());
@@ -103,6 +72,14 @@ public class KurseDetailsController {
         }
     }
 
+    public void teilnehmerlist(ActionEvent actionEvent) {
+        for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
+            if (tabPaneKursListe.getText().equals("Personen-Liste")) {
+                tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
+            }
+        }
+    }
+
     public void anzeigeZumAendern(Kurs kurs) {
         if (kurs != null) {
             kursname.setText(kurs.getName());
@@ -123,6 +100,20 @@ public class KurseDetailsController {
             mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
             gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
         }
+    }
+
+    public void interessentenlist(ActionEvent actionEvent) {
+    }
+
+    public void onDatePickerAction(ActionEvent actionEvent) {
+    }
+
+    public void show() {
+        fxmlKurseDetails.getTabPane().getSelectionModel().select(fxmlKurseDetails);
+    }
+
+    public void init(MainController mainController) {
+        main = mainController;
     }
 
     public void apply(ActionEvent actionEvent) {
@@ -215,6 +206,15 @@ public class KurseDetailsController {
             }
         }
         abbrechen(actionEvent);
+    }
+
+    // checks fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder
+    public static boolean checkIsInt(String wert) {
+        return wert.matches("\\d+");
+    }
+
+    public static boolean checkIsDouble(String wert) {
+        return wert.matches("\\d+\\.\\d+");
     }
 
     public static boolean checkIsDate(String wert) {
