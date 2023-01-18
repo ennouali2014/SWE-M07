@@ -18,7 +18,7 @@
                                 <Insets bottom="10.0"/>
                             </BorderPane.margin>
                             <children>
-                                <Label text="PersonList" textFill="#91c9a0">
+                                <Label text="Personenliste" textFill="#91c9a0">
                                     <font>
                                         <Font name="System Bold" size="54.0"/>
                                     </font>

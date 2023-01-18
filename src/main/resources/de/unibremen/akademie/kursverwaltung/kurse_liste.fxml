@@ -16,7 +16,7 @@
                     <top>
                         <VBox BorderPane.alignment="CENTER">
                             <children>
-                                <Label text="KursList" textFill="#91c9a0">
+                                <Label text="Kursliste" textFill="#91c9a0">
                                     <font>
                                         <Font name="System Bold" size="54.0"/>
                                     </font>
