@@ -7,7 +7,8 @@
 <Tab xmlns:fx="http://javafx.com/fxml/1" text="Personen-Liste" fx:id="fxmlPersonenListe"
      xmlns="http://javafx.com/javafx/18"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenListeController">
-    <content>
+
+<content>
         <AnchorPane>
             <children>
                 <BorderPane AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
@@ -87,4 +88,5 @@
             </children>
         </AnchorPane>
     </content>
+
 </Tab>

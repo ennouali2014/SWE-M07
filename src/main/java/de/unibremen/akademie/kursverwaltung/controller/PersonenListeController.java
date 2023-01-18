@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
+import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -23,15 +24,17 @@ import java.util.ResourceBundle;
 
 public class PersonenListeController implements Initializable {
 
+
     public Tab fxmlPersonenListe;
     @FXML
     public TableColumn kursTeilnahmeStr;
+
     @FXML
     private TableColumn<Person, String> anrede;
     @FXML
     public TableColumn columnSelect;
-    @FXML
-    private TableColumn<Person, String> vorname;
+    // TODO wid noch bearbeitet! Mohammed
+    String listPersonDetails[] = {"titel", "vorname", "nachname", "strasse", "plz", "ort", "email", "telefon"};
     @FXML
     private TableColumn<Person, String> nachname;
     @FXML
@@ -63,7 +66,9 @@ public class PersonenListeController implements Initializable {
     @FXML
     private TextField suchTxtField;
     @FXML
-    private FilteredList<Person> filteredData;
+    private TableColumn<Person, String> vorname;
+    @FXML
+    private SplitPane splitPane;
     private ObservableList<Person> list = FXCollections.observableArrayList();
     @FXML
     private Button suchenButton;
@@ -73,26 +78,9 @@ public class PersonenListeController implements Initializable {
     private Button zurucksetzenButton;
     @FXML
     public TableView<Person> table;
-
     @FXML
-    public void andernButtonAction(ActionEvent event) {
-        PersonenDetailsController.zurueckPersonenliste = true;
 
-        if (!table.getSelectionModel().isEmpty()) {
-            main.fxmlPersonenDetailsController.save.setText("Update");
-
-            KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
-
-            main.fxmlPersonenDetailsController.anzeigeZumAendern(KvModel.aktuellePerson);
-
-            for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
-                if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
-                    tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
-
-                }
-            }
-        }
-    }
+    private FilteredList<Person> filteredData;
 
     @FXML
     public void loeschButtonAction(ActionEvent event) {
@@ -114,6 +102,42 @@ public class PersonenListeController implements Initializable {
 
     String searchpattern;
 
+    @FXML
+    public void andernButtonAction(ActionEvent event) {
+        PersonenDetailsController.zurueckPersonenliste = true;
+
+        if (!table.getSelectionModel().isEmpty()) {
+            main.fxmlPersonenDetailsController.save.setText("Update");
+
+            KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
+
+            main.fxmlPersonenDetailsController.anzeigeZumAendern(KvModel.aktuellePerson);
+
+            for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
+                if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
+                    tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
+
+                }
+            }
+            //TODO Mohammed
+
+            for (PersonKurs personKurs : KvModel.personKursList) {
+                if (personKurs.getKurs().equals("kurs")) {
+                    personKurs.getKurs().getKursBeschreibung();
+
+                }
+            }
+            //TODO
+        }
+    }
+
+    @FXML
+    public void zurucksetzenButtonAction(ActionEvent event) {
+        suchTxtField.setText("");
+
+    }
+
+    private MainController main;
 
     @FXML
     void suchButtonAction(ActionEvent event) {
@@ -149,14 +173,6 @@ public class PersonenListeController implements Initializable {
 //        filteredData.setPredicate(predicate);
     }
 
-    @FXML
-    public void zurucksetzenButtonAction(ActionEvent event) {
-        suchTxtField.setText("");
-
-    }
-
-    private MainController main;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -174,6 +190,7 @@ public class PersonenListeController implements Initializable {
                     }
                 }
         );
+
 
         titel.setCellValueFactory(new PropertyValueFactory<Person, String>("titel"));
         titel.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
@@ -301,6 +318,7 @@ public class PersonenListeController implements Initializable {
                 andernButton.setDisable(false);
             }
         });
+
 
 
         // [Filtering with suchTextField]
