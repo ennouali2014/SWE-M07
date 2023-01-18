@@ -42,15 +42,26 @@
 .button {
     -fx-background-color: #dcfae4;
     -fx-font-size: 14px;
+}
 
+#abbrechen {
+    -fx-background-color: #f488a1;
 }
 
 .button:hover {
     -fx-background-color: #A1C1F4;
 }
 
+#abbrechen:hover {
+    -fx-background-color: #e56b87;
+}
+
 .button:pressed {
     -fx-background-color: #73A3EF;
+}
+
+#abbrechen:pressed {
+    -fx-background-color: #fb0039;
 }
 
 .table-view .column-header,
