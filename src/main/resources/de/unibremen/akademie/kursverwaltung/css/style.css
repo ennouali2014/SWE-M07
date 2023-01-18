@@ -15,13 +15,13 @@
 #headline {
     -fx-text-fill: #73d194;
     -fx-font-weight: bold;
-    -fx-font-size: 48px;
+    -fx-font-size: 3.5em;
 }
 
 #subheadline {
     -fx-text-fill: #6fa3f3;
     -fx-font-style: italic;
-    -fx-font-size: 16px;
+    -fx-font-size: 1.3em;
 }
 
 #tabKurs {
