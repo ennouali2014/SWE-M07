@@ -131,9 +131,11 @@ public class PersonenListeController implements Initializable {
         }
     }
 
+
     @FXML
     public void zurucksetzenButtonAction(ActionEvent event) {
-        suchTxtField.setText("");
+        suchTxtField.clear();
+        table.getItems();
 
     }
 
