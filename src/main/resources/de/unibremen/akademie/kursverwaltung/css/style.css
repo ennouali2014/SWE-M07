@@ -12,6 +12,10 @@
     -fx-tab-min-width: 5em;
 }
 
+#tabKurs {
+    -fx-background-color: #dcfae4;
+}
+
 #headline {
     -fx-text-fill: #73d194;
     -fx-font-weight: bold;
@@ -22,10 +26,6 @@
     -fx-text-fill: #6fa3f3;
     -fx-font-style: italic;
     -fx-font-size: 1.3em;
-}
-
-#tabKurs {
-    -fx-background-color: #dcfae4;
 }
 
 .tooltip {
