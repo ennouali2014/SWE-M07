@@ -90,12 +90,13 @@
                                                                 <Insets left="10.0" />
                                                             </HBox.margin>
                                                         </Label>
-                                                        <TextField fx:id="nachname" maxWidth="250.0" prefHeight="30.0" prefWidth="300.0">
+                                                        <TextField fx:id="vorname" maxWidth="250.0" prefHeight="30.0"
+                                                                   prefWidth="300.0">
                                                             <tooltip>
-                                                                <Tooltip text="Bitte Nachname eingeben, Pflichtfeld!" />
+                                                                <Tooltip text="Bitte Vorname eingeben, Pflichtfeld!"/>
                                                             </tooltip>
                                                             <HBox.margin>
-                                                                <Insets />
+                                                                <Insets/>
                                                             </HBox.margin>
                                                         </TextField>
                                                     </children>
@@ -110,9 +111,10 @@
                                                                 <Insets left="10.0" />
                                                             </HBox.margin>
                                                         </Label>
-                                                        <TextField fx:id="vorname" maxWidth="250.0" prefHeight="30.0" prefWidth="300.0">
+                                                        <TextField fx:id="nachname" maxWidth="250.0" prefHeight="30.0"
+                                                                   prefWidth="300.0">
                                                             <tooltip>
-                                                                <Tooltip text="Bitte Vorname eingeben, Pflichtfeld!" />
+                                                                <Tooltip text="Bitte Nachname eingeben, Pflichtfeld!"/>
                                                             </tooltip>
                                                         </TextField>
                                                     </children>
@@ -312,7 +314,8 @@
                                                         </Button>
                                                     </children>
                                                 </HBox>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="headline" text="Interessenten">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="headline"
+                                                       text="Interessent">
                                                 </Label>
                                                 <TableView fx:id="tableViewInteressentenZu" prefHeight="200.0" prefWidth="200.0">
                                                     <columns>
