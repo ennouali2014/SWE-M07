@@ -23,7 +23,7 @@
                                         <Font name="System Bold" size="54.0"/>
                                     </font>
                                 </Label>
-                                <Label text="Hier Kannst du Ihre Personen verwalten" textFill="#91c9a0">
+                                <Label text="Hier können die Personen verwaltet werden" textFill="#91c9a0">
                                     <font>
                                         <Font name="System Italic" size="16.0"/>
                                     </font>
