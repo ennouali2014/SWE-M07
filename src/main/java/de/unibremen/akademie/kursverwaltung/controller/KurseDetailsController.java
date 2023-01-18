@@ -45,12 +45,7 @@ public class KurseDetailsController {
     private TextArea kursBeschreibung;
     @FXML
     private ComboBox status;
-
     private MainController main;
-
-    public static boolean checkIsDouble(String wert) {
-        return wert.matches("\\d+\\.\\d+");
-    }
 
     public void abbrechen(ActionEvent actionEvent) {
         kursname.clear();
@@ -121,9 +116,13 @@ public class KurseDetailsController {
         main = mainController;
     }
 
-    // check fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder
+    // checks fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder
     public static boolean checkIsInt(String wert) {
         return wert.matches("\\d+");
+    }
+
+    public static boolean checkIsDouble(String wert) {
+        return wert.matches("\\d+\\.\\d+");
     }
 
     public void apply(ActionEvent actionEvent) {
@@ -192,13 +191,13 @@ public class KurseDetailsController {
                 return;
             }
 
-
             try {
                 kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
             }
+
             LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
             endeDatum.setValue(datetolocal);
             aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
