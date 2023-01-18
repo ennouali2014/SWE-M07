@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static de.unibremen.akademie.kursverwaltung.domain.Kurs.addNewKurs;
 import static de.unibremen.akademie.kursverwaltung.domain.Person.addNewPerson;
@@ -27,6 +28,16 @@ public class KvModel {
     private KvModel() {
     }
 
+    public List<String> getTeilnehmer(Person person){
+        List<String> listkurs = new ArrayList<>();
+
+        for(PersonKurs personKurs:KvModel.personKursList){
+            if(personKurs.getPerson().equals(person)) {
+                listkurs.add(personKurs.getKurs().getName());
+            }
+        }
+        return listkurs;
+    }
     public void load() {
         load(VERWALTUNGSDATEI);
     }

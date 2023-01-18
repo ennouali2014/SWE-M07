@@ -4,6 +4,7 @@ import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -28,7 +29,7 @@ public class PersonenListeController implements Initializable {
 
     public Tab fxmlPersonenListe;
     @FXML
-    public TableColumn<String, String> kursTeilnahmeStr;
+    public TableColumn<Person, String> kursTeilnahmeStr;
 
     @FXML
     private TableColumn<Person, String> anrede;
@@ -181,8 +182,6 @@ public class PersonenListeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
         table.setEditable(true);
         anrede.setCellValueFactory(new PropertyValueFactory<Person, String>("anrede"));
         anrede.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn("", "Herr", "Frau", "Divers"));
@@ -196,8 +195,6 @@ public class PersonenListeController implements Initializable {
                     }
                 }
         );
-
-
         titel.setCellValueFactory(new PropertyValueFactory<Person, String>("titel"));
         titel.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
         titel.setOnEditCommit(
@@ -303,14 +300,8 @@ public class PersonenListeController implements Initializable {
                     }
                 }
         );
-        ObservableList<String> listkurs = FXCollections.observableArrayList();
 
-        for(PersonKurs personKurs:KvModel.personKursList){
-            listkurs.add(personKurs.getKurs().getName());
-        }
-
-        kursTeilnahmeStr.setCellFactory(ComboBoxTableCell.<String, String>forTableColumn(listkurs));
-
+        kursTeilnahmeStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(KvModel.model.getTeilnehmer(person.getValue()).toString()));
 
 
         table.setItems(KvModel.personList);

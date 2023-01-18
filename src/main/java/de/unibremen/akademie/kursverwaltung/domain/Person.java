@@ -25,8 +25,8 @@ public class Person implements Externalizable {
     private SimpleStringProperty telefon;
 
 
-    private ObservableList<Kurs> kursInteressiert = FXCollections.observableArrayList();
-    private ObservableList<Kurs> kursTeilnahme = FXCollections.observableArrayList();
+    //private ObservableList<Kurs> kursInteressiert = FXCollections.observableArrayList();
+    //private ObservableList<Kurs> kursTeilnahme = FXCollections.observableArrayList();
 
 
     public Person() {
@@ -159,37 +159,7 @@ public class Person implements Externalizable {
         this.telefon = new SimpleStringProperty(telefon);
     }
 
-    public ObservableList<Kurs> getKursInteressiert() {
-        return kursInteressiert;
-    }
 
-    public void setKursInteressiert(ObservableList<Kurs> kursInteressiert) {
-        this.kursInteressiert = kursInteressiert;
-    }
-
-    public void addKursInteressiert(Kurs kurs) {
-        this.kursInteressiert.add(kurs);
-    }
-
-    public void removeKursInteressiert(Kurs kurs) {
-        this.kursInteressiert.remove(kurs);
-    }
-
-    public void addKursTeilnehmer(Kurs kurs) {
-        this.kursTeilnahme.add(kurs);
-    }
-
-    public void removeKursTeilnehmer(Kurs kurs) {
-        this.kursTeilnahme.remove(kurs);
-    }
-
-    public ObservableList<Kurs> getKursTeilnahme() {
-        return kursTeilnahme;
-    }
-
-    public void setKursTeilnahme(ObservableList<Kurs> kursTeilnahme) {
-        this.kursTeilnahme = kursTeilnahme;
-    }
 
 
     public static boolean checkIsEmpty(String wert) {
