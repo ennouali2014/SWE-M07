@@ -1,9 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
-import de.unibremen.akademie.kursverwaltung.domain.Meldung;
-import de.unibremen.akademie.kursverwaltung.domain.Person;
+import de.unibremen.akademie.kursverwaltung.domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -192,6 +189,7 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
+        save.setText("speichern");
     }
 
     public void teilnehmerZuInteressent(ActionEvent actionEvent) {
@@ -208,21 +206,42 @@ public class PersonenDetailsController {
 
     }
 
+    /*
+        public void kursZuTeilnehmer(ActionEvent actionEvent) {
+
+            if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
+                return;
+            }
+
+            Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
+            KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
+            tableViewTeilnehmerZu.getItems().add(kurs);
+
+            System.out.println(KvModel.aktuellePerson);
+            System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
+
+
+        }
+    */
     public void kursZuTeilnehmer(ActionEvent actionEvent) {
 
         if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
+        Boolean test_add_kurs = PersonKursListe.modelKP.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson, (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
+//    Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
+//    KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
+        if (test_add_kurs) {
+            tableViewTeilnehmerZu.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
+        }
 
-        Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
-        KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
-        tableViewTeilnehmerZu.getItems().add(kurs);
 
-        System.out.println(KvModel.aktuellePerson);
-        System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
+//    System.out.println(KvModel.aktuellePerson);
+//    System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
 
 
     }
+
 
     public void kursZuInteressent(ActionEvent actionEvent) {
     }

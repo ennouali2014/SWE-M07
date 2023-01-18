@@ -50,25 +50,25 @@ public class KurseDetailsController {
     private MainController main;
 
     public void apply(ActionEvent actionEvent) {
-        if( KvModel.aktuelleKurs !=null) {
+        if (KvModel.aktuellerKurs != null) {
             // Bestehenden Kurs aendern
             try {
-                KvModel.aktuelleKurs.setName(kursname.getText());
-                KvModel.aktuelleKurs.setAnzahlTage((Integer.parseInt(anzahlTage.getText())));
-                KvModel.aktuelleKurs.setZyklus((Integer.parseInt(zyklus.getText())));
+                KvModel.aktuellerKurs.setName(kursname.getText());
+                KvModel.aktuellerKurs.setAnzahlTage((Integer.parseInt(anzahlTage.getText())));
+                KvModel.aktuellerKurs.setZyklus((Integer.parseInt(zyklus.getText())));
                 LocalDate localDate = startDatum.getValue();
-                KvModel.aktuelleKurs.setStartDatum(Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant()));
-                KvModel.aktuelleKurs.setMinTnZahl((Integer.parseInt(minTnZahl.getText())));
-                KvModel.aktuelleKurs.setMaxTnZahl((Integer.parseInt(maxTnZahl.getText())));
-                KvModel.aktuelleKurs.setGebuehrBrutto((Double.parseDouble(gebuehrBrutto.getText())));
-                KvModel.aktuelleKurs.setMwstProzent((Double.parseDouble(mtwsProzent.getText())));
-                KvModel.aktuelleKurs.setKursBeschreibung(kursBeschreibung.getText());
-                KvModel.aktuelleKurs.setEndeDatum();
-                KvModel.aktuelleKurs.setGebuehrNetto();
-                KvModel.aktuelleKurs.setFreiePlaetze();
-                KvModel.aktuelleKurs.setMwstEuro();
-                KvModel.aktuelleKurs.setAktuelleTnZahl();
-                KvModel.aktuelleKurs.setStatus(status.getValue().toString());
+                KvModel.aktuellerKurs.setStartDatum(Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant()));
+                KvModel.aktuellerKurs.setMinTnZahl((Integer.parseInt(minTnZahl.getText())));
+                KvModel.aktuellerKurs.setMaxTnZahl((Integer.parseInt(maxTnZahl.getText())));
+                KvModel.aktuellerKurs.setGebuehrBrutto((Double.parseDouble(gebuehrBrutto.getText())));
+                KvModel.aktuellerKurs.setMwstProzent((Double.parseDouble(mtwsProzent.getText())));
+                KvModel.aktuellerKurs.setKursBeschreibung(kursBeschreibung.getText());
+                KvModel.aktuellerKurs.setEndeDatum();
+                KvModel.aktuellerKurs.setGebuehrNetto();
+                KvModel.aktuellerKurs.setFreiePlaetze();
+                KvModel.aktuellerKurs.setMwstEuro();
+                KvModel.aktuellerKurs.setAktuelleTnZahl();
+                KvModel.aktuellerKurs.setStatus(status.getValue().toString());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -77,29 +77,24 @@ public class KurseDetailsController {
             main.fxmlPersonenDetailsController.tableViewKurse.refresh();
 
         }else {
-            // Neuen Kurs anlegen
-            try {
-                String name = kursname.getText();
-                int anzahl = Integer.parseInt(anzahlTage.getText());
-                int zykls = Integer.parseInt(zyklus.getText());
-                LocalDate localDate = startDatum.getValue();
-                Date startDate = Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant());
-                int minTn = Integer.parseInt(minTnZahl.getText());
-                int maxTn = Integer.parseInt(maxTnZahl.getText());
-                double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
-                double mwstPro = Double.parseDouble(mtwsProzent.getText());
-                String kursBesch = kursBeschreibung.getText();
-                Kurs kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
-                LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
-                endeDatum.setValue(datetolocal);
-                aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
-                freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
-                mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
-                gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
-            } catch (Exception e) {
-                Meldung.eingabeFehler(e.getMessage());
-                return;
-            }
+            String name = kursname.getText();
+            int anzahl = Integer.parseInt(anzahlTage.getText());
+            int zykls = Integer.parseInt(zyklus.getText());
+            LocalDate localDate = startDatum.getValue();
+            Date startDate = Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant());
+            int minTn = Integer.parseInt(minTnZahl.getText());
+            int maxTn = Integer.parseInt(maxTnZahl.getText());
+            double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
+            double mwstPro = Double.parseDouble(mtwsProzent.getText());
+            String kursBesch = kursBeschreibung.getText();
+            Kurs kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
+            LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
+            endeDatum.setValue(datetolocal);
+            aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
+            freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
+            mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
+            gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+
         }
         for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
@@ -125,7 +120,7 @@ public class KurseDetailsController {
         aktuelleTnZahl.clear();
         mtwsEuro.clear();
         gebuehrNetto.clear();
-        if( KvModel.aktuelleKurs !=null){
+        if( KvModel.aktuellerKurs !=null){
             for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
                 if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
                     tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
@@ -146,9 +141,8 @@ public class KurseDetailsController {
 
         }
     }
-
     public void anzeigeZumAendern(Kurs kurs) {
-        if (kurs != null) {
+        if(kurs!=null){
             kursname.setText(kurs.getName());
             status.setValue(kurs.getStatus());
             anzahlTage.setText(String.valueOf(kurs.getAnzahlTage()));

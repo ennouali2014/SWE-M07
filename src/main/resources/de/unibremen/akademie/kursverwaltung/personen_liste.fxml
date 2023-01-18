@@ -18,12 +18,12 @@
                                 <Insets bottom="10.0"/>
                             </BorderPane.margin>
                             <children>
-                                <Label text="PersonList" textFill="#91c9a0">
+                                <Label text="Personenliste" textFill="#91c9a0">
                                     <font>
                                         <Font name="System Bold" size="54.0"/>
                                     </font>
                                 </Label>
-                                <Label text="Hier Kannst du Ihre Personen verwalten" textFill="#91c9a0">
+                                <Label text="Hier können die Personen verwaltet werden" textFill="#91c9a0">
                                     <font>
                                         <Font name="System Italic" size="16.0"/>
                                     </font>
@@ -35,10 +35,8 @@
                                     <children>
                                         <Label prefHeight="18.0" prefWidth="99.0" text="Person suchen:"/>
                                         <TextField fx:id="suchTxtField" prefHeight="26.0" prefWidth="297.0"
-                                                   text="Suchbegriff eingeben......">
-                                            <tooltip>
-                                                <Tooltip text="Bitte einen Suchbegriff eingeben......"/>
-                                            </tooltip>
+                                                   promptText="Suchbegriff eingeben......">
+
                                         </TextField>
                                         <Button fx:id="zurucksetzenButton" alignment="CENTER" contentDisplay="CENTER"
                                                 mnemonicParsing="false" onAction="#zurucksetzenButtonAction"

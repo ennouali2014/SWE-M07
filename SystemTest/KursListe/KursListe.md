@@ -1,5 +1,7 @@
 **KursListe**
 
+Stand: 16.01.23
+
 Zuwenig Spalten in der KursListe, es fehlen Gebühr, Beschreibung
 
 Wähle ich zwei Kurse aus, dann sollte Button Bearbeiten/Anzeigen deaktiviert sein = geändert
