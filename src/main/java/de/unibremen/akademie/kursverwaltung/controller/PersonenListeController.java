@@ -1,6 +1,5 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
@@ -338,6 +337,10 @@ public class PersonenListeController implements Initializable {
                 //compare first name and last name...
                 String lowerCaseFilter = newValue.toLowerCase();
                 if (person.getVorname().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (person.getAnrede().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (person.getTitel().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 } else if (person.getNachname().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
