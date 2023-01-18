@@ -11,12 +11,10 @@ public class PersonKurs implements Externalizable {
 
     private Person person;
     private Kurs kurs;
-    private SimpleBooleanProperty teilnehmer;
+    private boolean teilnehmer;
 
-    public PersonKurs(Person person, Kurs kurs, boolean teilnehmer) {
-        this.person = person;
-        this.kurs = kurs;
-        this.teilnehmer = new SimpleBooleanProperty(teilnehmer);
+    public PersonKurs() {
+
     }
 
     public Person getPerson() {
@@ -36,23 +34,19 @@ public class PersonKurs implements Externalizable {
     }
 
     public boolean isTeilnehmer() {
-        return teilnehmer.get();
+        return teilnehmer;
     }
 
     public void setTeilnehmer(boolean teilnehmer) {
-        this.teilnehmer.set(teilnehmer);
-    }
-
-    public SimpleBooleanProperty teilnehmerProperty() {
-        return teilnehmer;
+        this.teilnehmer = teilnehmer;
     }
 
     @Override
     public void writeExternal(ObjectOutput stream) throws IOException {
+
         stream.writeObject(getPerson());
         stream.writeObject(getKurs());
         stream.writeUTF(String.valueOf(isTeilnehmer()));
-
     }
 
     @Override
@@ -60,7 +54,6 @@ public class PersonKurs implements Externalizable {
         setPerson((Person) in.readObject());
         setKurs((Kurs) in.readObject());
         setTeilnehmer(Boolean.parseBoolean(in.readUTF()));
-
     }
 
 }
