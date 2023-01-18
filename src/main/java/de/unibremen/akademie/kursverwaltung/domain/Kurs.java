@@ -63,10 +63,7 @@ public class Kurs implements Externalizable {
             throw new IllegalArgumentException("Bitte einen MwSt-Satz angeben!");
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
         kurs.setDisplaystartDate(dateFormat.format(startDatum));
-
-
         kurs.setKursBeschreibung(kursBeschreibung);
         kurs.setEndeDatum();
         kurs.setDisplayEndeDate(dateFormat.format(kurs.getEndeDatum()));
