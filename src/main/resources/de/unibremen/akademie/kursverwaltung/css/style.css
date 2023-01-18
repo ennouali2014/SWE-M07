@@ -30,6 +30,8 @@
 
 .button {
     -fx-background-color: #dcfae4;
+    -fx-font-size: 14px;
+
 }
 
 .button:hover {

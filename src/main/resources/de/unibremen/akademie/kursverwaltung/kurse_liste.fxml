@@ -70,11 +70,7 @@
                                                 <Insets left="10.0"/>
                                             </HBox.margin>
                                         </MenuButton>
-                                        <Button mnemonicParsing="false" text="Suchen">
-                                            <HBox.margin>
-                                                <Insets left="10.0"/>
-                                            </HBox.margin>
-                                        </Button>
+
                                         <Button mnemonicParsing="false" text="Reset">
                                             <HBox.margin>
                                                 <Insets left="10.0"/>
@@ -110,7 +106,7 @@
                         <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                             <children>
                                 <Button fx:id="hinzufugenButton" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#hinzufugenButtonAction" text="Hinzufügen">
+                                        mnemonicParsing="false" onAction="#hinzufugenButtonAction" text="Kurs Anlegen">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0"/>
                                     </HBox.margin>
