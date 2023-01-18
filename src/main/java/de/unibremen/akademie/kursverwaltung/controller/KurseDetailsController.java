@@ -168,12 +168,25 @@ public class KurseDetailsController {
 
     public void onDatePickerAction(ActionEvent actionEvent) {
     }
-    public void init(MainController mainController) {
-        main=mainController;
+
+    public static boolean checkIsInt(String wert) {
+        return wert.matches("\\d+");
     }
 
     public void show() {
         fxmlKurseDetails.getTabPane().getSelectionModel().select(fxmlKurseDetails);
+    }
+
+    public static boolean ceckIsDouble(String wert) {
+        return wert.matches("\\d+\\.\\d+");
+    }
+
+    public static boolean checkIsDate(String wert) {
+        return wert.matches("^\s*((?:20)\\d{2})\\-(1[012]|0?[1-9])\\-(3[01]|[12][0-9]|0?[1-9])\s*$");
+    }
+
+    public void init(MainController mainController) {
+        main = mainController;
     }
 
 }
