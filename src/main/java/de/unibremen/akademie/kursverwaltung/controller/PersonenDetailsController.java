@@ -189,6 +189,7 @@ public class PersonenDetailsController {
         ort.clear();
         email.clear();
         telefon.clear();
+        tableViewTeilnehmerZu.getItems().clear();
         save.setText("speichern");
     }
 
@@ -228,17 +229,16 @@ public class PersonenDetailsController {
         if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
-        Boolean test_add_kurs = PersonKursListe.modelKP.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson, (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
+        Boolean test_add_kurs = PersonKursListe.modelKP.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson,
+                (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
 //    Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
 //    KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
         if (test_add_kurs) {
             tableViewTeilnehmerZu.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
         }
 
-
 //    System.out.println(KvModel.aktuellePerson);
 //    System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
-
 
     }
 

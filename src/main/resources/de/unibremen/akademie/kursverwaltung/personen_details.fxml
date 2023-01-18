@@ -314,7 +314,8 @@
                                                         </Button>
                                                     </children>
                                                 </HBox>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="headline" text="Interessenten">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="headline"
+                                                       text="Interessent">
                                                 </Label>
                                                 <TableView fx:id="tableViewInteressentenZu" prefHeight="200.0" prefWidth="200.0">
                                                     <columns>
