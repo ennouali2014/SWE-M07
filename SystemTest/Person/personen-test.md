@@ -105,7 +105,7 @@
 | -------------------------------------------------------------------                                                                       | -------- | ---------------------- |
 | Person Liste Tabelle vorhanden                                                                                                            |    o     |           o            |
 | Person Liste Tabelle Häckchen alle vorhanden                                                                                              |    o     |           o            |
-| Person Liste Tabelle Häckchen alle ändern-Bbutton deaktiviert funktioniert                                                                |    o     |           o            |
+| Person Liste Tabelle Häckchen alle ändern-Button deaktiviert funktioniert                                                                 |    o     |           o            |
 | Person Liste Tabelle Anrede vorhanden                                                                                                     |    o     |           o            |
 | Person Liste Tabelle Titel vorhanden                                                                                                      |    o     |           o            |
 | Person Liste Tabelle Vorname vorhanden                                                                                                    |    o     |           o            |
@@ -139,7 +139,7 @@
 | -------------------------------------------------------------------                                                                       | -------- | ---------------------- |
 | Person Liste buttons/suche vorhanden gesamt                                                                                               |    o     |           o            |
 | -------------------------------------------------------------------                                                                       | -------- | ---------------------- |
-| Person Liste Suchfeld Tabelle suchen- Button funktioniert                                                                                 |    o     |           x            |
+| Person Liste Suchfeld Tabelle suchen- Button funktioniert  (entfernt)                                                                     |    o     |           o            |
 | Person Liste Suchfeld Tabelle zurücksetzen- Button funktioniert                                                                           |    o     |           o            |
 | Person Liste Button löschen funktioniert                                                                                                  |    o     |           o            |
 | Person Liste Button speichern funktioniert                                                                                                |    o     |           o            |
@@ -147,13 +147,14 @@
 | Person Liste Button ändern speichern anzeige nach update funktioniert                                                                     |    o     |           o            |
 | Person Liste Button ändern anzeige update <br/>nach abbrechen wieder Person anlegen<br/>anzeige Button auf  speichern zurück funktioniert |    o     |           o            |
 | Person Liste single selection funktioniert                                                                                                |    o     |           o            |
-| Person Liste single selection nach Person anlegen<br/> entsprechende item in Liste selektiert funktioniert                                |    o     |           x            |
+| Person Liste single selection nach Person anlegen<br/> entsprechende item in Liste selektiert funktioniert                                |    o     |           o            |
+| Person Liste single selection nach Person anlegen<br/> entsprechende item in Liste auch nach umsortieren selektiert funktioniert          |    o     |           x            |
 | Person Liste multi selection funktioniert                                                                                                 |    o     |           o            |
 | Person Liste multi selection button ändern deaktiviert funktioniert                                                                       |    o     |           o            |
 | Person Liste multi selection button löschen funktioniert                                                                                  |    o     |           o            |
 | Person Liste Button ändern/update funktioniert                                                                                            |    o     |           o            |
 | Person Liste Button abbrechen nach ändern/update funktioniert                                                                             |    o     |           o            |
 | -------------------------------------------------------------------                                                                       | -------- | ---------------------- |
-| Person Liste buttons/suche funktioniert gesamt                                                                                            |    o     |           x            |
+| Person Liste buttons/suche funktioniert gesamt                                                                                            |    o     |           o            |
 | -------------------------------------------------------------------                                                                       | -------- | ---------------------- |
 
