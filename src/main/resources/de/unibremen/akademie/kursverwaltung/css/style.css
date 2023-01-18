@@ -28,6 +28,11 @@
     -fx-font-size: 1.3em;
 }
 
+.root {
+    -fx-text-fill: #000;
+    -fx-font-size: 1.1em;
+}
+
 .tooltip {
     -fx-background-color: #d37981;
     -fx-font-weight: bold;
