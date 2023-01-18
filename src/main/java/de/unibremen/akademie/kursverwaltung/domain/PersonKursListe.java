@@ -10,14 +10,13 @@ public class PersonKursListe {
 
     static public final PersonKursListe modelKP = new PersonKursListe();
 
-    static public final ObservableList<PersonKurs> personKursList =
-            FXCollections.observableArrayList();
+    static public final ObservableList<PersonKurs> personKursList = FXCollections.observableArrayList();
 
-    private final String PERSONKURSSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekteKurs";
+    //private final String PERSONKURSSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekteKurs";
 
-    public Boolean addPersonInKursAlsTeilnehmer(Person person, Kurs kurs) {
+    public static Boolean addPersonInKursAlsTeilnehmer(Person person, Kurs kurs) {
 
-        for (PersonKurs personKurs : this.personKursList) {
+        for (PersonKurs personKurs : personKursList) {
             if (personKurs.getPerson().equals(person) && personKurs.getKurs().equals(kurs)) {
                 System.out.println("Ich bin hier1" + personKursList.size());
                 return false;
@@ -25,11 +24,11 @@ public class PersonKursListe {
         }
         PersonKurs personKurs = new PersonKurs(person, kurs, true);
         System.out.println("Ich bin hier2" + personKursList.size());
-        this.personKursList.add(personKurs);
+        personKursList.add(personKurs);
         return true;
     }
 
-    public void load() {
+   /* public void load() {
         load(PERSONKURSSDATEI);
     }
 
@@ -73,5 +72,5 @@ public class PersonKursListe {
             System.err.print("Die Daten können niermeldung: ");
             System.err.println(e.getMessage());
         }
-    }
+    }*/
 }

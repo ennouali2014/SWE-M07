@@ -8,6 +8,7 @@ import java.util.Date;
 
 import static de.unibremen.akademie.kursverwaltung.domain.Kurs.addNewKurs;
 import static de.unibremen.akademie.kursverwaltung.domain.Person.addNewPerson;
+import static de.unibremen.akademie.kursverwaltung.domain.PersonKursListe.addPersonInKursAlsTeilnehmer;
 
 public class KvModel {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
@@ -15,7 +16,7 @@ public class KvModel {
     static public final ObservableList<Person> personList = FXCollections.observableArrayList();
     static public final ObservableList<Kurs> kursList = FXCollections.observableArrayList();
 
-    //static public final ObservableList<PersonKurs> personKursList = FXCollections.observableArrayList();
+    static public final ObservableList<PersonKurs> personKursList = FXCollections.observableArrayList();
 
 
     static public final KvModel model = new KvModel();
@@ -39,7 +40,7 @@ public class KvModel {
             // ObservableList is not Serializable. We have to work around
             personList.addAll((ArrayList<Person>) input.readObject());
             kursList.addAll((ArrayList<Kurs>) input.readObject());
-            //personKursList.addAll((ArrayList<PersonKurs>) input.readObject());
+            personKursList.addAll((ArrayList<PersonKurs>) input.readObject());
             input.close();
         } catch (FileNotFoundException e) {
             System.err.print("Die Datei zum Lesen der Daten kann nicht gefunden werden! Fehlermeldung: ");
@@ -67,7 +68,7 @@ public class KvModel {
             // ObservableList is not Serializable. We have to work around
             output.writeObject(new ArrayList<Person>(personList));
             output.writeObject(new ArrayList<Kurs>(kursList));
-            //output.writeObject(new ArrayList<PersonKurs>(personKursList));
+            output.writeObject(new ArrayList<PersonKurs>(personKursList));
             output.close();
         } catch (FileNotFoundException e) {
             System.err.print("Die Datei zum Schreiben der Daten kann nicht erstellt werden! Fehlermeldung: ");
@@ -98,9 +99,11 @@ public class KvModel {
             addNewKurs("Web-Start", 7, 3, new Date(1920240000000L), 12, 15, 249.00, 19.0, "HTML und CSS zum Frühstück");
             System.out.println("Kurs-Standarddaten wurde geladen!");
         }
-        /*if (KvModel.personKursList.size() <= 0) {
+        if (KvModel.personKursList.size() <= 0) {
             addPersonInKursAlsTeilnehmer(KvModel.personList.get(0), KvModel.kursList.get(0));
+            addPersonInKursAlsTeilnehmer(KvModel.personList.get(1), KvModel.kursList.get(0));
+            addPersonInKursAlsTeilnehmer(KvModel.personList.get(4), KvModel.kursList.get(0));
             System.out.println("PersonKursList-Standarddaten wurde geladen!");
-        }*/
+        }
     }
 }
