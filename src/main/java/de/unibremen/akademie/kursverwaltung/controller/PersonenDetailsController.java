@@ -12,7 +12,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 public class PersonenDetailsController {
     @FXML
     public ChoiceBox anrede;
-
     @FXML
     public TextField titel;
     @FXML
@@ -33,12 +32,13 @@ public class PersonenDetailsController {
     public Button save;
     @FXML
     public Button abbrechen;
-
+    @FXML
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
     static public final ObservableList<Person> listKursTeilnehmer =
             FXCollections.observableArrayList();
     static public final ObservableList<Person> listKursInteressent =
             FXCollections.observableArrayList();
+    @FXML
     public Tab fxmlPersonenDetails;
 
     static public boolean zurueckPersonenliste = false;
@@ -94,11 +94,9 @@ public class PersonenDetailsController {
         startDate.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
         startDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
-
         tableViewKurse.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableViewKurse.getSelectionModel();
-
 
         tableViewKurse.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.SINGLE);
@@ -107,8 +105,6 @@ public class PersonenDetailsController {
         kursZuTeilnehmer.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 //        tableViewKurse.getSelectionModel().selectedItemProperty().addListener(
 //                (observable, oldValue, newValue) -> System.out.println(newValue));
-
-
     }
 
     @FXML
@@ -147,7 +143,6 @@ public class PersonenDetailsController {
 
             main.fxmlPersonenListeController.table.getSelectionModel().clearSelection();
             main.fxmlPersonenListeController.table.getSelectionModel().select(person);
-
         }
     }
 
@@ -208,8 +203,6 @@ public class PersonenDetailsController {
     }
 
     public void ausTeilnehmerRaus(ActionEvent actionEvent) {
-
-
     }
 
     /*
@@ -246,7 +239,6 @@ public class PersonenDetailsController {
 //    System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
 
     }
-
 
     public void kursZuInteressent(ActionEvent actionEvent) {
     }
