@@ -21,19 +21,13 @@
                                     <children>
                                         <VBox>
                                             <children>
-                                                <Label text="Personen Details" textFill="#91c9a0">
-                                                    <font>
-                                                        <Font name="System Bold" size="54.0"/>
-                                                    </font>
+                                                <Label text="Personen Details" fx:id="headline">
                                                     <VBox.margin>
                                                         <Insets left="10.0"/>
                                                     </VBox.margin>
                                                 </Label>
                                                 <Label text="Personen anlegen, ändern und als Teilnehmer/Interessent einem Kurs zuweisen"
-                                                       textFill="#91c9a0">
-                                                    <font>
-                                                        <Font name="System Italic" size="16.0"/>
-                                                    </font>
+                                                       fx:id="subheadline">
                                                     <VBox.margin>
                                                         <Insets left="10.0" bottom="10.0"/>
                                                     </VBox.margin>

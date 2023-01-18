@@ -18,10 +18,16 @@
     -fx-text-fill: black;
 }
 
-.headline {
+#headline {
     -fx-text-fill: #73d194;
     -fx-font-weight: bold;
-    -fx-font-size: 20px;
+    -fx-font-size: 48px;
+}
+
+#subheadline {
+    -fx-text-fill: #6fa3f3;
+    -fx-font-style: italic;
+    -fx-font-size: 16px;
 }
 
 #tabKurs {
