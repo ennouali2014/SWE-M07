@@ -15,7 +15,6 @@ public class KurseDetailsController {
 
     @FXML
     private Tab fxmlKurseDetails;
-
     @FXML
     private TextField kursname;
     @FXML
@@ -127,20 +126,16 @@ public class KurseDetailsController {
                 }
             }
         }
-
     }
 
-
-
     public void teilnehmerlist(ActionEvent actionEvent) {
-
         for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Personen-Liste")) {
                 tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
             }
-
         }
     }
+
     public void anzeigeZumAendern(Kurs kurs) {
         if(kurs!=null){
             kursname.setText(kurs.getName());
@@ -169,12 +164,17 @@ public class KurseDetailsController {
     public void onDatePickerAction(ActionEvent actionEvent) {
     }
 
-    public static boolean checkIsInt(String wert) {
-        return wert.matches("\\d+");
-    }
-
     public void show() {
         fxmlKurseDetails.getTabPane().getSelectionModel().select(fxmlKurseDetails);
+    }
+
+    public void init(MainController mainController) {
+        main = mainController;
+    }
+
+    // check fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder
+    public static boolean checkIsInt(String wert) {
+        return wert.matches("\\d+");
     }
 
     public static boolean ceckIsDouble(String wert) {
@@ -183,10 +183,6 @@ public class KurseDetailsController {
 
     public static boolean checkIsDate(String wert) {
         return wert.matches("^\s*((?:20)\\d{2})\\-(1[012]|0?[1-9])\\-(3[01]|[12][0-9]|0?[1-9])\s*$");
-    }
-
-    public void init(MainController mainController) {
-        main = mainController;
     }
 
 }
