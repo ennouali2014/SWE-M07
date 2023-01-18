@@ -152,10 +152,7 @@
                                                                     <items>
                                                                         <FXCollections fx:factory="observableArrayList">
                                                                             <String fx:value="Aktiv" />
-                                                                            <String fx:value="Passiv" />
                                                                             <String fx:value="Geplant" />
-                                                                            <String fx:value="Abgesagt" />
-
                                                                         </FXCollections>
                                                                     </items>
                                                                 </ComboBox>
