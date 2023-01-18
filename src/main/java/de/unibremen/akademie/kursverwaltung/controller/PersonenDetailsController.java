@@ -31,7 +31,6 @@ public class PersonenDetailsController {
     public TextField ort;
     @FXML
     public Button save;
-
     @FXML
     public Button abbrechen;
 
@@ -113,7 +112,7 @@ public class PersonenDetailsController {
     }
 
     @FXML
-    public void onsaveclick() {
+    public void onClickSavePerson() {
         Person person = null;
         // Update einer bestehenden Person
         if (KvModel.aktuellePerson != null) {
@@ -154,7 +153,7 @@ public class PersonenDetailsController {
 
   
     @FXML
-    public void anzeigeZumAendern(Person person) {
+    public void onClickAnzeigeAendernPerson(Person person) {
         if (person != null) {
             String anrede = person.getAnrede();
             for (int i = 0; i < choiceListAnrede.size(); i++) {
@@ -174,7 +173,7 @@ public class PersonenDetailsController {
     }
 
     @FXML
-    public void onabbrechenclick(ActionEvent event) {
+    public void onClickAbbrechenPerson(ActionEvent event) {
         felderLeeren();
 
         if (zurueckPersonenliste) {

@@ -1,6 +1,5 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
@@ -116,7 +115,7 @@ public class PersonenListeController implements Initializable {
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
 
-            main.fxmlPersonenDetailsController.anzeigeZumAendern(KvModel.aktuellePerson);
+            main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(KvModel.aktuellePerson);
 
             for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {

@@ -80,7 +80,7 @@ public class KurseDetailsController {
         }
     }
 
-    public void anzeigeZumAendern(Kurs kurs) {
+    public void anzeigeZumAendernKurs(Kurs kurs) {
         if (kurs != null) {
             kursname.setText(kurs.getName());
             status.setValue(kurs.getStatus());
@@ -116,7 +116,7 @@ public class KurseDetailsController {
         main = mainController;
     }
 
-    public void apply(ActionEvent actionEvent) {
+    public void onClickSaveKurs(ActionEvent actionEvent) {
         if (KvModel.aktuellerKurs != null) {
             // Bestehenden Kurs aendern
             try {

@@ -11,7 +11,7 @@
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenDetailsController">
 
     <content>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1200.0">
+        <AnchorPane prefHeight="700.0" prefWidth="1200.0">
             <children>
                 <SplitPane dividerPositions="0.5" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
@@ -22,7 +22,7 @@
                                         <VBox>
                                             <children>
 
-                                                <Label text="Person Details" textFill="#91c9a0">
+                                                <Label text="Personen Details" textFill="#91c9a0">
                                                     <font>
                                                         <Font name="System Bold" size="54.0" />
                                                     </font>
@@ -30,7 +30,7 @@
                                                         <Insets left="10.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label text="Hier Kannst du deine Persondetails" textFill="#91c9a0">
+                                                <Label text="Personen anlegen, ändern und als Teilnehmer/Interessent einem Kurs zuweisen" textFill="#91c9a0">
                                                     <font>
                                                         <Font name="System Italic" size="16.0" />
                                                     </font>
@@ -191,12 +191,12 @@
                                                 </HBox>
                                                 <HBox alignment="CENTER" spacing="50.0">
                                                     <children>
-                                                        <Button fx:id="save" alignment="CENTER" mnemonicParsing="false" onAction="#onsaveclick" prefHeight="30.0" prefWidth="125.0" text="Speichern">
+                                                        <Button fx:id="save" alignment="CENTER" mnemonicParsing="false" onAction="#onClickSavePerson" prefHeight="30.0" prefWidth="125.0" text="Speichern">
                                                             <font>
                                                                 <Font size="14.0" />
                                                             </font>
                                                         </Button>
-                                                        <Button fx:id="abbrechen" alignment="CENTER" mnemonicParsing="false" onAction="#onabbrechenclick" prefHeight="30.0" prefWidth="125.0" text="Abbrechen">
+                                                        <Button fx:id="abbrechen" alignment="CENTER" mnemonicParsing="false" onAction="#onClickAbbrechenPerson" prefHeight="30.0" prefWidth="125.0" text="Abbrechen">
                                                             <font>
                                                                 <Font size="14.0" />
                                                             </font>
@@ -245,34 +245,50 @@
                                         </VBox>
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="104.0">
                                             <children>
-                                                <Button fx:id="kurs_teilnehmer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kursZuTeilnehmer" text="---&gt;">
+                                                <Button fx:id="kurs_teilnehmer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kursZuTeilnehmer">
                                                     <VBox.margin>
                                                         <Insets bottom="20.0" />
                                                     </VBox.margin>
-                                                    <font>
-                                                        <Font name="System Bold" size="12.0" />
-                                                    </font>
+                                                    <graphic>
+                                                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                            <image>
+                                                                <Image url="@images/pfeil-rechts.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="loeschVonTeilnehmer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ausTeilnehmerRaus" text="&lt;---">
+                                                <Button fx:id="loeschVonTeilnehmer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ausTeilnehmerRaus">
                                                     <VBox.margin>
                                                         <Insets bottom="190.0" />
                                                     </VBox.margin>
-                                                    <font>
-                                                        <Font name="System Bold" size="12.0" />
-                                                    </font>
+                                                    <graphic>
+                                                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                            <image>
+                                                                <Image url="@images/pfeil-links.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="kurs_interessent" mnemonicParsing="false" onAction="#kursZuInteressent" text="---&gt;">
+                                                <Button fx:id="kurs_interessent" mnemonicParsing="false" onAction="#kursZuInteressent">
                                                     <VBox.margin>
                                                         <Insets bottom="20.0" />
                                                     </VBox.margin>
-                                                    <font>
-                                                        <Font name="System Bold" size="12.0" />
-                                                    </font>
+                                                    <graphic>
+                                                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                            <image>
+                                                                <Image url="@images/pfeil-rechts.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="loeschVonInteressenten" mnemonicParsing="false" onAction="#AusInteressentRaus" text="&lt;---">
-                                                    <font>
-                                                        <Font name="System Bold" size="12.0" />
-                                                    </font>
+                                                <Button fx:id="loeschVonInteressenten" mnemonicParsing="false" onAction="#AusInteressentRaus">
+                                                    <graphic>
+                                                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                            <image>
+                                                                <Image url="@images/pfeil-links.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
                                                 </Button>
                                             </children>
                                             <HBox.margin>
@@ -303,7 +319,7 @@
                                                                 <Insets />
                                                             </HBox.margin>
                                                             <graphic>
-                                                                <ImageView fitHeight="20.0" fitWidth="18.0">
+                                                                <ImageView fitHeight="20.0" fitWidth="20.0">
                                                                     <image>
                                                                         <Image url="@images/pfeil-oben.png" />
                                                                     </image>
@@ -312,7 +328,7 @@
                                                         </Button>
                                                         <Button fx:id="zuInteressent" mnemonicParsing="false" onAction="#teilnehmerZuInteressent">
                                                             <graphic>
-                                                                <ImageView fitHeight="20.0" fitWidth="18.0">
+                                                                <ImageView fitHeight="20.0" fitWidth="20.0">
                                                                     <image>
                                                                         <Image url="@images/pfeil-unten.png" />
                                                                     </image>
