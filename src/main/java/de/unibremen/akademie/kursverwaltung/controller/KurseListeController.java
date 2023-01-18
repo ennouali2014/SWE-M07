@@ -30,6 +30,7 @@ public class KurseListeController {
     public TableColumn columnSelect;
     public Tab fxmlKurseListe;
     public CheckBox checkbox;
+    public Button resetAction;
 
 
     ObservableList<Kurs> list = FXCollections.observableArrayList();
@@ -208,8 +209,6 @@ public class KurseListeController {
 
     }
 
-    public void zurucksetzenButtonAction(ActionEvent actionEvent) {
-    }
 
     public void personAnlegenButtonAction(ActionEvent actionEvent) {
     }
@@ -224,5 +223,10 @@ public class KurseListeController {
             System.out.println(checkbox.isIndeterminate());
             tableView.getSelectionModel().selectAll();
         }
+    }
+
+    public void resetButtonAction(ActionEvent actionEvent) {
+        kursNameTextField.clear();
+        tableView.getItems();
     }
 }

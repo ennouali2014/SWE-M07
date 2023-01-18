@@ -52,12 +52,12 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
         //model aus Datei laden
         KvModel.model.load();
-        PersonKursListe.modelKP.load();
+
         //Application (GUI) starten
         launch();
         //model beim Beenden in Datei speichern
         KvModel.model.save();
-        PersonKursListe.modelKP.save();
+
         KvModel.model.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + System.currentTimeMillis());
 
     }

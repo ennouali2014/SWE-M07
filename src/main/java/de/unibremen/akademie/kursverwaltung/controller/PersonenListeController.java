@@ -1,7 +1,9 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
+import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
+import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -26,16 +28,16 @@ public class PersonenListeController implements Initializable {
 
     public Tab fxmlPersonenListe;
     @FXML
-    public TableColumn kursTeilnahmeStr;
+    public TableColumn<String, String> kursTeilnahmeStr;
 
     @FXML
     private TableColumn<Person, String> anrede;
     @FXML
     public TableColumn columnSelect;
+    // TODO wid noch bearbeitet! Mohammed
+    String listPersonDetails[] = {"titel", "vorname", "nachname", "strasse", "plz", "ort", "email", "telefon"};
     @FXML
     private TableColumn<Person, String> nachname;
-    @FXML
-    private TableColumn<Person, String> vorname;
     @FXML
     private TableColumn<Person, String> titel;
     @FXML
@@ -65,8 +67,9 @@ public class PersonenListeController implements Initializable {
     @FXML
     private TextField suchTxtField;
     @FXML
-
-    private FilteredList<Person> filteredData;
+    private TableColumn<Person, String> vorname;
+    @FXML
+    private SplitPane splitPane;
     private ObservableList<Person> list = FXCollections.observableArrayList();
     @FXML
     private Button suchenButton;
@@ -74,10 +77,34 @@ public class PersonenListeController implements Initializable {
     private CheckBox teilnehmerChkBox;
     @FXML
     private Button zurucksetzenButton;
-
-
     @FXML
     public TableView<Person> table;
+    @FXML
+
+    private FilteredList<Person> filteredData;
+
+    @FXML
+    public void loeschButtonAction(ActionEvent event) {
+        ObservableList<Person> allPerson = KvModel.model.personList;
+        List<Person> selectedPersonCopy = new ArrayList<>(table.getSelectionModel().getSelectedItems());
+        selectedPersonCopy.forEach(allPerson::remove);
+    }
+
+    @FXML
+    public void personAnlegenButtonAction(ActionEvent event) {
+
+        KvModel.aktuellePerson = null;
+        main.fxmlPersonenDetailsController.felderLeeren();
+        PersonenDetailsController.zurueckPersonenliste = true;
+        for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
+            if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
+                tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
+
+            }
+        }
+    }
+
+    String searchpattern;
 
     @FXML
     public void andernButtonAction(ActionEvent event) {
@@ -96,36 +123,34 @@ public class PersonenListeController implements Initializable {
 
                 }
             }
-        }
-    }
+            //TODO Mohammed
 
-    @FXML
-    public void loeschButtonAction(ActionEvent event) {
-        ObservableList<Person> allPerson = KvModel.model.personList;
-        List<Person> selectedPersonCopy = new ArrayList<>(table.getSelectionModel().getSelectedItems());
-        selectedPersonCopy.forEach(allPerson::remove);
-    }
+            for (PersonKurs personKurs : KvModel.personKursList) {
+                if (personKurs.getKurs().equals("kurs")) {
+                    personKurs.getKurs().getKursBeschreibung();
 
-    @FXML
-    public void personAnlegenButtonAction(ActionEvent event) {
-        PersonenDetailsController.zurueckPersonenliste = true;
-        for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
-            if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
-                tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
-
+                }
             }
+            //TODO
         }
     }
 
-    String searchpattern;
 
+    @FXML
+    public void zurucksetzenButtonAction(ActionEvent event) {
+        suchTxtField.clear();
+        table.getItems();
+
+    }
+
+    private MainController main;
 
     @FXML
     void suchButtonAction(ActionEvent event) {
         //String such = suchTxtField.getText();
         //System.out.println(such);
 
-      //  filteredData.addAll(list);
+        //  filteredData.addAll(list);
 
 //        String searchValue = suchTxtField.getText();
 //
@@ -154,14 +179,6 @@ public class PersonenListeController implements Initializable {
 //        filteredData.setPredicate(predicate);
     }
 
-    @FXML
-    public void zurucksetzenButtonAction(ActionEvent event) {
-        suchTxtField.setText("");
-
-    }
-
-    private MainController main;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -179,6 +196,7 @@ public class PersonenListeController implements Initializable {
                     }
                 }
         );
+
 
         titel.setCellValueFactory(new PropertyValueFactory<Person, String>("titel"));
         titel.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
@@ -270,6 +288,7 @@ public class PersonenListeController implements Initializable {
                         ).setTelefon(v.getNewValue());
                     }
                 }
+
         );
 
         telefon.setCellValueFactory(new PropertyValueFactory<Person, String>("telefon"));
@@ -284,10 +303,14 @@ public class PersonenListeController implements Initializable {
                     }
                 }
         );
+        ObservableList<String> listkurs = FXCollections.observableArrayList();
 
+        for(PersonKurs personKurs:KvModel.personKursList){
+            listkurs.add(personKurs.getKurs().getName());
+        }
 
-        kursTeilnahmeStr.setCellValueFactory(new PropertyValueFactory<Person, String>("kursTeilnahmeStr"));
-        kursTeilnahmeStr.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        kursTeilnahmeStr.setCellFactory(ComboBoxTableCell.<String, String>forTableColumn(listkurs));
+
 
 
         table.setItems(KvModel.personList);
@@ -314,31 +337,31 @@ public class PersonenListeController implements Initializable {
         FilteredList<Person> filteredData = new FilteredList<>(KvModel.personList, person -> true);
 
         // set the filter Predicate whenever the filter changes
-        suchTxtField.textProperty().addListener((observable, oldValue, newValue) ->{
+        suchTxtField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(person -> {
                 //if filter text is empty display all persons
-                if (newValue == null || newValue.isEmpty()){
+                if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
                 //compare first name and last name...
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (person.getVorname().toLowerCase().contains(lowerCaseFilter)){
+                if (person.getVorname().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                } else if (person.getNachname().toLowerCase().contains(lowerCaseFilter)){
+                } else if (person.getNachname().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }else if(person.getStrasse().toLowerCase().contains(lowerCaseFilter)){
+                } else if (person.getStrasse().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }else if(person.getPlz().toLowerCase().contains(lowerCaseFilter)){
+                } else if (person.getPlz().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }else if(person.getOrt().toLowerCase().contains(lowerCaseFilter)){
+                } else if (person.getOrt().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }else if(person.getEmail().toLowerCase().contains(lowerCaseFilter)){
+                } else if (person.getEmail().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }else if(person.getTelefon().toLowerCase().contains(lowerCaseFilter)) {
+                } else if (person.getTelefon().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 }
-                    return false;
+                return false;
             });
         });
 
@@ -359,10 +382,8 @@ public class PersonenListeController implements Initializable {
     }
 
     public void init(MainController mainController) {
-        main=mainController;
+        main = mainController;
     }
 
 
 }
-
-
