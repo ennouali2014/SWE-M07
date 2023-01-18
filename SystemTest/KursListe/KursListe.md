@@ -13,3 +13,5 @@ funktioniert noch nicht: AnzTeilnehmer, Teilnehmerlist, Interessenlist
 Button Bearbeiten/Anzeigen: Kurs Ändern, KUrs in Kursliste wird geändert, es gibt Fehlermeldung in Intellij
 
 Reset Button name ist geändert, ComboBox bleibt erstmal da aber es hat keine funktion
+
+resetButton funktion ist behoben

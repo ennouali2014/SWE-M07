@@ -4,7 +4,7 @@ Stand: 16.01.23
 
 Keine Fehlermeldungen: wir wissen nicht, warum wir nicht abspeichern können = geändert
 
-Was ist die Bedeutung von VA-Tage und VA-Zyklus? beim Arbeit 
+Was ist die Bedeutung von VA-Tage und VA-Zyklus? in Arbeit 
 
 Max < Min funktioniert, Startdatum < heute funktioniert,
 
@@ -15,7 +15,7 @@ Eingabe von Wörtern/ Strings bei numerischen Feldern funktioniert
 
 Start-Datum eintippen: funktioniert
 
-Start-Datum auch in Ferien: funktioniert nicht (?) 
+Start-Datum auch in Ferien: funktioniert nicht (?) = geändert 
 
 Button-Abbrechen: zurück zur Kursliste oder Löschen und auf Kurse-Details bleiben
 

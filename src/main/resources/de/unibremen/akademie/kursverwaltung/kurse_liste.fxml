@@ -75,7 +75,7 @@
                                                 <Insets left="10.0"/>
                                             </HBox.margin>
                                         </Button>
-                                        <Button mnemonicParsing="false" text="Reset">
+                                        <Button fx:id="resetAction" onAction="#resetButtonAction" mnemonicParsing="false" text="Reset">
                                             <HBox.margin>
                                                 <Insets left="10.0"/>
                                             </HBox.margin>

@@ -92,6 +92,9 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
+
+        KvModel.aktuellePerson = null;
+        main.fxmlPersonenDetailsController.felderLeeren();
         PersonenDetailsController.zurueckPersonenliste = true;
         for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
@@ -132,9 +135,11 @@ public class PersonenListeController implements Initializable {
         }
     }
 
+
     @FXML
     public void zurucksetzenButtonAction(ActionEvent event) {
-        suchTxtField.setText("");
+        suchTxtField.clear();
+        table.getItems();
 
     }
 
@@ -382,5 +387,3 @@ public class PersonenListeController implements Initializable {
 
 
 }
-
-
