@@ -12,11 +12,11 @@
      xmlns="http://javafx.com/javafx/18"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController">
     <content>
-        <AnchorPane>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1200.0">
             <children>
-                <SplitPane dividerPositions="0.5" layoutX="10.0" layoutY="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                <SplitPane dividerPositions="0.6" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                        <AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1200.0">
                             <children>
                                 <VBox>
                                     <children>
@@ -27,13 +27,14 @@
                                             <VBox.margin>
                                                 <Insets left="10.0" />
                                             </VBox.margin>
+
                                         </Label>
                                         <Label text="Hier Kannst du deine Kursdetails" textFill="#91c9a0">
                                             <font>
                                                 <Font name="System Italic" size="16.0" />
                                             </font>
                                             <VBox.margin>
-                                                <Insets left="10.0" />
+                                                <Insets left="10.0" bottom="10.0"/>
                                             </VBox.margin>
                                         </Label>
                                         <HBox prefHeight="100.0" prefWidth="200.0">
