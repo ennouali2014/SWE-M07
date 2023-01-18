@@ -63,7 +63,7 @@ public class KurseDetailsController {
         aktuelleTnZahl.clear();
         mtwsEuro.clear();
         gebuehrNetto.clear();
-        if( KvModel.aktuellerKurs !=null){
+        if (KvModel.aktuellerKurs != null) {
             for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
                 if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
                     tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
@@ -81,7 +81,7 @@ public class KurseDetailsController {
     }
 
     public void anzeigeZumAendern(Kurs kurs) {
-        if(kurs!=null){
+        if (kurs != null) {
             kursname.setText(kurs.getName());
             status.setValue(kurs.getStatus());
             anzahlTage.setText(String.valueOf(kurs.getAnzahlTage()));
@@ -116,15 +116,6 @@ public class KurseDetailsController {
         main = mainController;
     }
 
-    // checks fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder
-    public static boolean checkIsInt(String wert) {
-        return wert.matches("\\d+");
-    }
-
-    public static boolean checkIsDouble(String wert) {
-        return wert.matches("\\d+\\.\\d+");
-    }
-
     public void apply(ActionEvent actionEvent) {
         if (KvModel.aktuellerKurs != null) {
             // Bestehenden Kurs aendern
@@ -152,7 +143,7 @@ public class KurseDetailsController {
             main.fxmlKurseListeController.tableView.refresh();
             main.fxmlPersonenDetailsController.tableViewKurse.refresh();
 
-        }else {
+        } else {
             int anzahl = 0, zykls = 0, minTn = 0, maxTn = 0;
             double gebuhrB = 0, mwstPro = 0;
             LocalDate localDate;
@@ -164,7 +155,10 @@ public class KurseDetailsController {
             String kursBesch = kursBeschreibung.getText();
 
             try {
-                if (!checkIsInt(anzahlTage.getText()) || !checkIsInt(zyklus.getText()) || !checkIsInt(minTnZahl.getText()) || !checkIsInt(maxTnZahl.getText())) {
+                if (!checkIsInt(anzahlTage.getText()) ||
+                        !checkIsInt(zyklus.getText()) ||
+                        !checkIsInt(minTnZahl.getText()) ||
+                        !checkIsInt(maxTnZahl.getText())) {
                     throw new IllegalArgumentException("Bitte nur ganze Zahlen (1) eingeben!");
                 } else {
                     anzahl = Integer.parseInt(anzahlTage.getText());
@@ -173,7 +167,8 @@ public class KurseDetailsController {
                     maxTn = Integer.parseInt(maxTnZahl.getText());
                 }
 
-                if (!checkIsDouble(gebuehrBrutto.getText()) || !checkIsDouble(mtwsProzent.getText())) {
+                if (!checkIsDouble(gebuehrBrutto.getText()) ||
+                        !checkIsDouble(mtwsProzent.getText())) {
                     throw new IllegalArgumentException("Bitte nur Zahlen mit Nachkommastelle (1.0) eingeben!");
                 } else {
                     gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
@@ -181,7 +176,7 @@ public class KurseDetailsController {
                 }
 
                 if (!checkIsDate(String.valueOf(startDatum.getValue()))) {
-                    throw new IllegalArgumentException("Bitte datum mit dem DatePicker wählen!");
+                    throw new IllegalArgumentException("Bitte Datum mit dem DatePicker wählen!");
                 } else {
                     localDate = startDatum.getValue();
                     startDate = Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant());
@@ -211,6 +206,15 @@ public class KurseDetailsController {
             }
         }
         abbrechen(actionEvent);
+    }
+
+    // checks fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder
+    public static boolean checkIsInt(String wert) {
+        return wert.matches("\\d+");
+    }
+
+    public static boolean checkIsDouble(String wert) {
+        return wert.matches("\\d+\\.\\d+");
     }
 
     public static boolean checkIsDate(String wert) {
