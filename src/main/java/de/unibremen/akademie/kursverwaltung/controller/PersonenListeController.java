@@ -1,5 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
+import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
@@ -27,7 +28,7 @@ public class PersonenListeController implements Initializable {
 
     public Tab fxmlPersonenListe;
     @FXML
-    public TableColumn kursTeilnahmeStr;
+    public TableColumn<String, String> kursTeilnahmeStr;
 
     @FXML
     private TableColumn<Person, String> anrede;
@@ -282,6 +283,7 @@ public class PersonenListeController implements Initializable {
                         ).setTelefon(v.getNewValue());
                     }
                 }
+
         );
 
         telefon.setCellValueFactory(new PropertyValueFactory<Person, String>("telefon"));
@@ -296,10 +298,14 @@ public class PersonenListeController implements Initializable {
                     }
                 }
         );
+        ObservableList<String> listkurs = FXCollections.observableArrayList();
 
+        for(PersonKurs personKurs:KvModel.personKursList){
+            listkurs.add(personKurs.getKurs().getName());
+        }
 
-        kursTeilnahmeStr.setCellValueFactory(new PropertyValueFactory<Person, String>("kursTeilnahmeStr"));
-        kursTeilnahmeStr.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        kursTeilnahmeStr.setCellFactory(ComboBoxTableCell.<String, String>forTableColumn(listkurs));
+
 
 
         table.setItems(KvModel.personList);
