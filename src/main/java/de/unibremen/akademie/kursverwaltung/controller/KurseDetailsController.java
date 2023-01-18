@@ -86,14 +86,18 @@ public class KurseDetailsController {
             double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
             double mwstPro = Double.parseDouble(mtwsProzent.getText());
             String kursBesch = kursBeschreibung.getText();
-            Kurs kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
-            LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
+            try {
+                Kurs kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
+            } catch (Exception e) {
+                Meldung.eingabeFehler(e.getMessage());
+                return;
+            }
+            LocalDate datetolocal = LocalDate.ofInstant(KvModel.aktuellerKurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
             endeDatum.setValue(datetolocal);
-            aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
-            freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
-            mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
-            gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
-
+            aktuelleTnZahl.setText(String.valueOf(KvModel.aktuellerKurs.getAktuelleTnZahl()));
+            freiePlaetze.setText(String.valueOf(KvModel.aktuellerKurs.getFreiePlaetze()));
+            mtwsEuro.setText(String.valueOf(KvModel.aktuellerKurs.getMwstEuro()));
+            gebuehrNetto.setText(String.valueOf(KvModel.aktuellerKurs.getGebuehrNetto()));
         }
         for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
