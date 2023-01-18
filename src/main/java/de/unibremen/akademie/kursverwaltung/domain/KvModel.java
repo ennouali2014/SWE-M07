@@ -98,5 +98,9 @@ public class KvModel {
             addNewKurs("Web-Start", 7, 3, new Date(1920240000000L), 12, 15, 249.00, 19.0, "HTML und CSS zum Frühstück");
             System.out.println("Kurs-Standarddaten wurde geladen!");
         }
+        /*if (KvModel.personKursList.size() <= 0) {
+            addPersonInKursAlsTeilnehmer(KvModel.personList.get(0), KvModel.kursList.get(0));
+            System.out.println("PersonKursList-Standarddaten wurde geladen!");
+        }*/
     }
 }
