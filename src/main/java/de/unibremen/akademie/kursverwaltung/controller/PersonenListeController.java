@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
+import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -90,6 +91,9 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
+
+        KvModel.aktuellePerson = null;
+        main.fxmlPersonenDetailsController.felderLeeren();
         PersonenDetailsController.zurueckPersonenliste = true;
         for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
             if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
@@ -120,12 +124,12 @@ public class PersonenListeController implements Initializable {
             }
             //TODO Mohammed
 
-//            for (PersonKurs personKurs : KvModel.personKursList) {
-//                if (personKurs.getKurs().equals("kurs")) {
-//                    personKurs.getKurs().getKursBeschreibung();
-//
-//                }
-//            }
+            for (PersonKurs personKurs : KvModel.personKursList) {
+                if (personKurs.getKurs().equals("kurs")) {
+                    personKurs.getKurs().getKursBeschreibung();
+
+                }
+            }
             //TODO
         }
     }
@@ -297,8 +301,8 @@ public class PersonenListeController implements Initializable {
         );
 
 
-//        kursTeilnahmeStr.setCellValueFactory(new PropertyValueFactory<Person, String>("kursTeilnahmeStr"));
-//        kursTeilnahmeStr.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        kursTeilnahmeStr.setCellValueFactory(new PropertyValueFactory<Person, String>("kursTeilnahmeStr"));
+        kursTeilnahmeStr.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
 
         table.setItems(KvModel.personList);
@@ -375,5 +379,3 @@ public class PersonenListeController implements Initializable {
 
 
 }
-
-
