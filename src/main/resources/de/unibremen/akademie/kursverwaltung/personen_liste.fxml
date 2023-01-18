@@ -28,7 +28,7 @@
                                     </VBox.margin>
 
                                 </Label>
-                                <Label text="Hier können die Personen verwaltet werden" textFill="#91c9a0">
+                                <Label text="Übersicht aller Personen" textFill="#91c9a0">
                                     <font>
                                         <Font name="System Italic" size="16.0"/>
                                     </font>
