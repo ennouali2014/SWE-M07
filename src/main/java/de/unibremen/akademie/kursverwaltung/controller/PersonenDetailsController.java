@@ -109,11 +109,12 @@ public class PersonenDetailsController {
 //        tableViewKurse.getSelectionModel().selectedItemProperty().addListener(
 //                (observable, oldValue, newValue) -> System.out.println(newValue));
 
-        
+
     }
 
     @FXML
     public void onsaveclick() {
+        Person person = null;
         // Update einer bestehenden Person
         if (KvModel.aktuellePerson != null) {
             try {
@@ -128,7 +129,7 @@ public class PersonenDetailsController {
             // Neue Person hinzufuegen
             int aktuelleAnzPersonen = KvModel.personList.size();
             try {
-                Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+                person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -144,9 +145,14 @@ public class PersonenDetailsController {
 
         if (PersonenDetailsController.zurueckPersonenliste) {
             plTab.getTabPane().getSelectionModel().select(plTab);
+
+            main.fxmlPersonenListeController.table.getSelectionModel().clearSelection();
+            main.fxmlPersonenListeController.table.getSelectionModel().select(person);
+
         }
     }
 
+  
     @FXML
     public void anzeigeZumAendern(Person person) {
         if (person != null) {
