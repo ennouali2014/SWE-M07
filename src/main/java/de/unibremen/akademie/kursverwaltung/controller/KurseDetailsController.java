@@ -77,29 +77,24 @@ public class KurseDetailsController {
             main.fxmlPersonenDetailsController.tableViewKurse.refresh();
 
         }else {
-            // Neuen Kurs anlegen
-            try {
-                String name = kursname.getText();
-                int anzahl = Integer.parseInt(anzahlTage.getText());
-                int zykls = Integer.parseInt(zyklus.getText());
-                LocalDate localDate = startDatum.getValue();
-                Date startDate = Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant());
-                int minTn = Integer.parseInt(minTnZahl.getText());
-                int maxTn = Integer.parseInt(maxTnZahl.getText());
-                double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
-                double mwstPro = Double.parseDouble(mtwsProzent.getText());
-                String kursBesch = kursBeschreibung.getText();
-                Kurs kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
-                LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
-                endeDatum.setValue(datetolocal);
-                aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
-                freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
-                mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
-                gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
-            } catch (Exception e) {
-                Meldung.eingabeFehler(e.getMessage());
-                return;
-            }
+            String name = kursname.getText();
+            int anzahl = Integer.parseInt(anzahlTage.getText());
+            int zykls = Integer.parseInt(zyklus.getText());
+            LocalDate localDate = startDatum.getValue();
+            Date startDate = Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant());
+            int minTn = Integer.parseInt(minTnZahl.getText());
+            int maxTn = Integer.parseInt(maxTnZahl.getText());
+            double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
+            double mwstPro = Double.parseDouble(mtwsProzent.getText());
+            String kursBesch = kursBeschreibung.getText();
+            Kurs kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
+            LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
+            endeDatum.setValue(datetolocal);
+            aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
+            freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
+            mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
+            gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+
         }
         for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
@@ -125,7 +120,7 @@ public class KurseDetailsController {
         aktuelleTnZahl.clear();
         mtwsEuro.clear();
         gebuehrNetto.clear();
-        if (KvModel.aktuellerKurs != null) {
+        if( KvModel.aktuellerKurs !=null){
             for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
                 if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
                     tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
@@ -146,9 +141,8 @@ public class KurseDetailsController {
 
         }
     }
-
     public void anzeigeZumAendern(Kurs kurs) {
-        if (kurs != null) {
+        if(kurs!=null){
             kursname.setText(kurs.getName());
             status.setValue(kurs.getStatus());
             anzahlTage.setText(String.valueOf(kurs.getAnzahlTage()));
