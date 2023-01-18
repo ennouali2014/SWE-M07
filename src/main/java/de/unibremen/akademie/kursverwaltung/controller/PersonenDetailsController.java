@@ -114,6 +114,7 @@ public class PersonenDetailsController {
         if (KvModel.aktuellePerson != null) {
             try {
                 KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+                person = KvModel.aktuellePerson;
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
