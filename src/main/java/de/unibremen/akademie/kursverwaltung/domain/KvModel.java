@@ -12,14 +12,14 @@ import static de.unibremen.akademie.kursverwaltung.domain.Person.addNewPerson;
 public class KvModel {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
 
-    static public final ObservableList<Person> personList =
-            FXCollections.observableArrayList();
-    static public final ObservableList<Kurs> kursList =
-            FXCollections.observableArrayList();
+    static public final ObservableList<Person> personList = FXCollections.observableArrayList();
+    static public final ObservableList<Kurs> kursList = FXCollections.observableArrayList();
+
+    //static public final ObservableList<PersonKurs> personKursList = FXCollections.observableArrayList();
 
 
     static public final KvModel model = new KvModel();
-    static public Kurs aktuelleKurs;
+    static public Kurs aktuellerKurs;
     static public Person aktuellePerson;
 
 
@@ -31,6 +31,7 @@ public class KvModel {
     }
 
 
+
     public void load(String speicherPfad) {
         try {
             FileInputStream infile = new FileInputStream(speicherPfad);
@@ -38,6 +39,7 @@ public class KvModel {
             // ObservableList is not Serializable. We have to work around
             personList.addAll((ArrayList<Person>) input.readObject());
             kursList.addAll((ArrayList<Kurs>) input.readObject());
+            //personKursList.addAll((ArrayList<PersonKurs>) input.readObject());
             input.close();
         } catch (FileNotFoundException e) {
             System.err.print("Die Datei zum Lesen der Daten kann nicht gefunden werden! Fehlermeldung: ");
@@ -65,6 +67,7 @@ public class KvModel {
             // ObservableList is not Serializable. We have to work around
             output.writeObject(new ArrayList<Person>(personList));
             output.writeObject(new ArrayList<Kurs>(kursList));
+            //output.writeObject(new ArrayList<PersonKurs>(personKursList));
             output.close();
         } catch (FileNotFoundException e) {
             System.err.print("Die Datei zum Schreiben der Daten kann nicht erstellt werden! Fehlermeldung: ");
