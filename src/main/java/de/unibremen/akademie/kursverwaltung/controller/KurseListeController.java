@@ -226,7 +226,6 @@ public class KurseListeController {
     }
 
     public void resetButtonAction(ActionEvent actionEvent) {
-        System.out.println("Hallo");
         kursNameTextField.clear();
         tableView.getItems();
     }
