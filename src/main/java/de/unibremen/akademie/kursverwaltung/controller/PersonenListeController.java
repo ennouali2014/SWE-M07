@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
+import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,8 +29,7 @@ public class PersonenListeController implements Initializable {
     public Tab fxmlPersonenListe;
     @FXML
     public TableColumn<Person, String> kursTeilnahmeStr;
-    @FXML
-    public TableColumn kursInteressentStr;
+
     @FXML
     private TableColumn<Person, String> anrede;
     @FXML
