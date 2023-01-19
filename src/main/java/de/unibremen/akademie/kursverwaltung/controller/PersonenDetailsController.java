@@ -193,6 +193,7 @@ public class PersonenDetailsController {
         email.clear();
         telefon.clear();
         tableViewTeilnehmerZu.getItems().clear();
+        tableViewInteressentenZu.getItems().clear();
         save.setText("speichern");
     }
 
