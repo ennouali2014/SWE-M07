@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+// TODO: Datumsänderung wird nicht aktualaiesiert.
+
 public class KurseDetailsController {
 
     @FXML
@@ -113,6 +115,7 @@ public class KurseDetailsController {
         main = mainController;
     }
 
+    // FIXME: status leer gibt keinen Fehlermeldung
     public void onClickSaveKurs(ActionEvent actionEvent) {
         if (KvModel.aktuellerKurs != null) {
             // Bestehenden Kurs aendern
