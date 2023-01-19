@@ -1,4 +1,5 @@
 package de.unibremen.akademie.kursverwaltung.domain;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -9,7 +10,6 @@ import java.util.List;
 
 import static de.unibremen.akademie.kursverwaltung.domain.Kurs.addNewKurs;
 import static de.unibremen.akademie.kursverwaltung.domain.Person.addNewPerson;
-import static de.unibremen.akademie.kursverwaltung.domain.PersonKursListe.addPersonInKursAlsTeilnehmer;
 
 public class KvModel {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
@@ -30,7 +30,6 @@ public class KvModel {
 
     public List<String> getTeilnehmer(Person person){
         List<String> listkurs = new ArrayList<>();
-
         for(PersonKurs personKurs:KvModel.personKursList){
             if(personKurs.getPerson().equals(person)) {
                 listkurs.add(personKurs.getKurs().getName());
