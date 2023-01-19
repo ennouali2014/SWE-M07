@@ -33,7 +33,6 @@ public class PersonenListeController implements Initializable {
     public TableColumn<Person, String> kursTeilnehmerStr;
     @FXML
     public TableColumn<Person, String> kursInteressentenStr;
-
     @FXML
     private TableColumn<Person, String> anrede;
     @FXML
@@ -115,7 +114,7 @@ public class PersonenListeController implements Initializable {
         PersonenDetailsController.zurueckPersonenliste = true;
 
         if (!table.getSelectionModel().isEmpty()) {
-            main.fxmlPersonenDetailsController.save.setText("Update");
+            main.fxmlPersonenDetailsController.btnSavePersonDetails.setText("Update");
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
 

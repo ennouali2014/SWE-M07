@@ -16,13 +16,13 @@
     -fx-background-color: #dcfae4;
 }
 
-#headline {
+.headline {
     -fx-text-fill: #73d194;
     -fx-font-weight: bold;
     -fx-font-size: 3.5em;
 }
 
-#subheadline {
+.subheadline {
     -fx-text-fill: #73d194;
     -fx-font-style: italic;
     -fx-font-size: 1.3em;
@@ -41,8 +41,22 @@
 
 .button {
     -fx-background-color: #dcfae4;
+    -fx-font-weight: bold;
     -fx-font-size: 14px;
 }
+
+.pfeilbutton {
+    -fx-min-width: 30px;
+    -fx-pref-width: 30px;
+    -fx-max-width: 30px;
+    -fx-min-height: 30px;
+    -fx-pref-height: 30px;
+    -fx-max-height: 30px;
+}
+
+/*.button{
+    -fx-graphic: url(../images/pfeil-oben.png);
+}*/
 
 /*#abbrechen {
     -fx-background-color: #f488a1;
