@@ -112,10 +112,13 @@ public class PersonenDetailsController {
 
         kursZuTeilnehmer.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         kursZuTeilnehmer.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+
+        kursZuInteressent.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
+        kursZuInteressent.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 //        tableViewKurse.getSelectionModel().selectedItemProperty().addListener(
 //                (observable, oldValue, newValue) -> System.out.println(newValue));
 
-        
+
     }
 
     @FXML
@@ -126,6 +129,7 @@ public class PersonenDetailsController {
             try {
                 KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
                 pkListe.addKurseAlsTeilnehmer(KvModel.aktuellePerson, this.tableViewTeilnehmerZu.getItems());
+                pkListe.addKurseAlsInteressent(KvModel.aktuellePerson, this.tableViewInteressentenZu.getItems());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -244,11 +248,24 @@ public class PersonenDetailsController {
 
         if (test_is_kurs) {
             tableViewTeilnehmerZu.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
+            // FIXME: Falls schon in InteressentView ist, dort dann rausnehmen (AxF)
         }
 
     }
 
 
     public void kursZuInteressent(ActionEvent actionEvent) {
+
+        if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
+            return;
+        }
+        Boolean test_is_kurs = pkListe.addPersonInKursAlsInteressent(KvModel.aktuellePerson,
+                (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
+
+        if (test_is_kurs) {
+            tableViewInteressentenZu.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
+            // FIXME: Falls schon in TeilnehmerView ist, dort dann rausnehmen (AxF)
+        }
+
     }
 }
