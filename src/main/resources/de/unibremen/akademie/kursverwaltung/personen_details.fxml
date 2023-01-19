@@ -4,7 +4,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <Tab xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" text="Personen-Details"
      fx:id="fxmlTabPersonenDetails"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenDetailsController">
