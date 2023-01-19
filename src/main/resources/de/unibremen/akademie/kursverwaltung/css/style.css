@@ -23,14 +23,14 @@
 }
 
 #subheadline {
-    -fx-text-fill: #6fa3f3;
+    -fx-text-fill: #73d194;
     -fx-font-style: italic;
     -fx-font-size: 1.3em;
 }
 
 .root {
     -fx-text-fill: #000;
-    -fx-font-size: 1.1em;
+    -fx-font-size: 1.0em;
 }
 
 .tooltip {
@@ -44,25 +44,25 @@
     -fx-font-size: 14px;
 }
 
-#abbrechen {
+/*#abbrechen {
     -fx-background-color: #f488a1;
-}
+}*/
 
 .button:hover {
     -fx-background-color: #A1C1F4;
 }
 
-#abbrechen:hover {
+/*#abbrechen:hover {
     -fx-background-color: #e56b87;
-}
+}*/
 
 .button:pressed {
     -fx-background-color: #73A3EF;
 }
 
-#abbrechen:pressed {
+/*#abbrechen:pressed {
     -fx-background-color: #fb0039;
-}
+}*/
 
 .table-view .column-header,
 .table-view .column-header-background .filler {

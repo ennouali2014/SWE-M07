@@ -20,19 +20,13 @@
                             <children>
                                 <VBox>
                                     <children>
-                                        <Label text="Kurs Details" textFill="#91c9a0">
-                                            <font>
-                                                <Font name="System Bold" size="54.0" />
-                                            </font>
+                                        <Label text="Kurs Details" id="headline">
                                             <VBox.margin>
                                                 <Insets left="10.0" />
                                             </VBox.margin>
 
                                         </Label>
-                                        <Label text="Kurse anlegen, ändern und Teilnehmer/Interessenten zuweisen" textFill="#91c9a0">
-                                            <font>
-                                                <Font name="System Italic" size="16.0" />
-                                            </font>
+                                        <Label text="Kurse anlegen, ändern und Teilnehmer/Interessenten zuweisen" id="subheadline">
                                             <VBox.margin>
                                                 <Insets left="10.0" bottom="10.0"/>
                                             </VBox.margin>
@@ -44,9 +38,6 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="150.0" text="Kurs Name : ">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
                                                                     <HBox.margin>
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
@@ -57,9 +48,6 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="150.0" text="Anzahl Tage:">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
                                                                     <HBox.margin>
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
@@ -69,10 +57,7 @@
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="150.0" text="Start Datum : ">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
+                                                                <Label prefWidth="150.0" text="Start Datum: ">
                                                                     <HBox.margin>
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
@@ -83,9 +68,6 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="150.0" text="Min TN: ">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
                                                                     <HBox.margin>
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
@@ -96,9 +78,6 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="150.0" text="Aktuelle TN-Zahl: ">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
                                                                     <HBox.margin>
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
@@ -109,9 +88,6 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="150.0" text="Gebühr brutto(€): ">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
                                                                     <HBox.margin>
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
@@ -122,9 +98,6 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="150.0" text="MWST (%):">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
                                                                     <HBox.margin>
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
@@ -141,11 +114,7 @@
                                                     <children>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="120.0" text="Status:">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
-                                                                </Label>
+                                                                <Label prefWidth="120.0" text="Status:" />
                                                                 <ComboBox fx:id="status" promptText="- Status wählen-">
                                                                     <padding>
                                                                         <Insets left="12.0" />
@@ -162,9 +131,6 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Zyklus:">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
                                                                     <HBox.margin>
                                                                         <Insets />
                                                                     </HBox.margin>
@@ -174,20 +140,13 @@
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="120.0" text="End Datum : ">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
-                                                                </Label>
+                                                                <Label prefWidth="120.0" text="End Datum : " />
                                                                 <DatePicker fx:id="endeDatum" disable="true" editable="false" prefHeight="26.0" />
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Max TN: ">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
                                                                     <HBox.margin>
                                                                         <Insets />
                                                                     </HBox.margin>
@@ -197,11 +156,7 @@
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="120.0" text="Freie Plätze: ">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
-                                                                </Label>
+                                                                <Label prefWidth="120.0" text="Freie Plätze:" />
                                                                 <TextField fx:id="freiePlaetze" disable="true" editable="false" />
                                                             </children>
                                                         </HBox>
@@ -217,11 +172,7 @@
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="120.0" text="MWST (€): ">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
-                                                                </Label>
+                                                                <Label prefWidth="120.0" text="MWST (€):" />
                                                                 <TextField fx:id="mtwsEuro" disable="true" editable="false" />
                                                             </children>
                                                         </HBox>
@@ -231,11 +182,7 @@
                                         </HBox>
                                         <VBox maxWidth="680.0">
                                             <children>
-                                                <Label contentDisplay="CENTER" text="Kursbeschreibung">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
+                                                <Label text="Kursbeschreibung" />
                                                 <TextArea fx:id="kursBeschreibung" maxWidth="600.0" prefHeight="138.0" prefWidth="600.0">
                                                     <VBox.margin>
                                                         <Insets />
@@ -248,16 +195,10 @@
                                         </VBox>
                                         <HBox alignment="CENTER" spacing="50.0">
                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#onClickSaveKurs" prefHeight="30.0" prefWidth="125.0" text="Speichern">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Button>
-                                                <Button mnemonicParsing="false" onAction="#onClickAbbrechenKurs" prefHeight="30.0" prefWidth="125.0" text="Abbrechen">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Button>
+                                                <Button mnemonicParsing="false" onAction="#onClickSaveKurs"
+                                                        prefHeight="30.0" prefWidth="125.0" text="Speichern"/>
+                                                <Button mnemonicParsing="false" onAction="#onClickAbbrechenKurs"
+                                                        prefHeight="30.0" prefWidth="125.0" text="Abbrechen"/>
                                             </children>
                                             <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -273,18 +214,12 @@
                                     <children>
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="252.0">
                                             <children>
-                                                <Label fx:id="kursliste" alignment="CENTER" prefHeight="40.0" prefWidth="305.0" styleClass="headline" text="Person">
-                                                </Label>
+                                                <Label text="Person" id="subheadline" />
                                                 <TableView fx:id="tableViewKurse" prefHeight="264.0" prefWidth="252.0">
-
                                                     <columns>
-
                                                         <TableColumn fx:id="personname" prefWidth="93.59991437196732" text="Person Name" />
                                                         <TableColumn fx:id="startDate" prefWidth="159.20005798339844" text="Person Nachname" />
-
                                                     </columns>
-
-
                                                     <VBox.margin>
                                                         <Insets left="5.0" right="5.0" />
                                                     </VBox.margin>
@@ -351,13 +286,10 @@
                                         </VBox>
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="229.0" spacing="20.0">
                                             <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="headline" text="Teilnehmer">
-                                                </Label>
+                                                <Label text="Teilnehmer" id="subheadline" />
                                                 <TableView fx:id="tableViewTeilnehmerZu" prefHeight="200.0" prefWidth="200.0">
                                                     <columns>
-
                                                         <TableColumn fx:id="kursZuTeilnehmer" prefWidth="126.0" text="Person Name Nachname" />
-
                                                     </columns>
                                                     <VBox.margin>
                                                         <Insets left="5.0" right="5.0" />
@@ -370,7 +302,7 @@
                                                                 <Insets />
                                                             </HBox.margin>
                                                             <graphic>
-                                                                <ImageView fitHeight="20.0" fitWidth="18.0">
+                                                                <ImageView fitHeight="20.0" fitWidth="20.0">
                                                                     <image>
                                                                         <Image url="@images/pfeil-oben.png" />
                                                                     </image>
@@ -379,7 +311,7 @@
                                                         </Button>
                                                         <Button fx:id="zuInteressent" mnemonicParsing="false" >
                                                             <graphic>
-                                                                <ImageView fitHeight="20.0" fitWidth="18.0">
+                                                                <ImageView fitHeight="20.0" fitWidth="20.0">
                                                                     <image>
                                                                         <Image url="@images/pfeil-unten.png" />
                                                                     </image>
@@ -388,13 +320,10 @@
                                                         </Button>
                                                     </children>
                                                 </HBox>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="headline" text="Interessenten">
-                                                </Label>
+                                                <Label text="Interessenten" id="subheadline" />
                                                 <TableView fx:id="tableViewInteressentenZu" prefHeight="200.0" prefWidth="200.0">
                                                     <columns>
-
                                                         <TableColumn fx:id="kursZuInteressent" prefWidth="126.0" text="Person Name Nachname" />
-
                                                     </columns>
                                                     <VBox.margin>
                                                         <Insets left="5.0" right="5.0" />
