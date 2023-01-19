@@ -59,6 +59,7 @@
                                                     prefWidth="79.0" text="Alle">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="Aktiv"/>
+                                                <MenuItem mnemonicParsing="false" text="Passiv"/>
                                                 <MenuItem mnemonicParsing="false" text="Geplant"/>
                                                 <MenuItem mnemonicParsing="false" text="Abgesagt"/>
                                             </items>
