@@ -5,6 +5,7 @@ import de.unibremen.akademie.kursverwaltung.domain.Person;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -308,16 +309,15 @@ public class PersonenListeController implements Initializable {
         TableView.TableViewSelectionModel<Person> selectionModel = table.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
 
-        table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                list = table.getSelectionModel().getSelectedItems();
-            }
-            if (list.size() > 1) {
-                andernButton.setDisable(true);
-            } else {
-                andernButton.setDisable(false);
-            }
-        });
+        table.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Person> change) -> {
+            list = table.getSelectionModel().getSelectedItems();
+        if (list != null && list.size() > 1) {
+            andernButton.setDisable(true);
+        } else {
+            andernButton.setDisable(false);
+        }});
+
+
 
         // [Filtering with suchTextField]
         //Wrap the ObserviableList in a FilteredList
