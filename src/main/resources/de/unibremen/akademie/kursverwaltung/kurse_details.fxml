@@ -162,11 +162,7 @@
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="120.0" text="Gebühr netto(€):">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
-                                                                </Label>
+                                                                <Label prefWidth="120.0" text="Gebühr netto(€):" />
                                                                 <TextField fx:id="gebuehrNetto" disable="true" editable="false" />
                                                             </children>
                                                         </HBox>
