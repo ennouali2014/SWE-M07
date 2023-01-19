@@ -311,11 +311,8 @@ public class PersonenListeController implements Initializable {
 
         table.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Person> change) -> {
             list = table.getSelectionModel().getSelectedItems();
-        if (list != null && list.size() > 1) {
-            andernButton.setDisable(true);
-        } else {
-            andernButton.setDisable(false);
-        }});
+            andernButton.setDisable(list != null && list.size() > 1);
+        });
 
 
 
