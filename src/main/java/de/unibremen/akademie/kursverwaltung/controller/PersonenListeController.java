@@ -3,6 +3,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
+import de.unibremen.akademie.kursverwaltung.domain.PersonKursListe;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -125,7 +126,7 @@ public class PersonenListeController implements Initializable {
             }
             //TODO Mohammed
 
-            for (PersonKurs personKurs : KvModel.personKursList) {
+            for (PersonKurs personKurs : PersonKursListe.personKursList) {
                 if (personKurs.getKurs().equals("kurs")) {
                     personKurs.getKurs().getKursBeschreibung();
 
@@ -300,7 +301,7 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        kursTeilnahmeStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(KvModel.model.getTeilnehmer(person.getValue()).toString()));
+        kursTeilnahmeStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(PersonKursListe.modelKP.getKurseAlsTeilnehmer(person.getValue()).toString()));
 
 
         table.setItems(KvModel.personList);
