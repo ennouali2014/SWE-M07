@@ -164,6 +164,8 @@ public class PersonenDetailsController {
             this.ort.setText(person.getOrt());
             this.email.setText(person.getEmail());
             this.telefon.setText(person.getTelefon());
+
+
         }
     }
 
@@ -203,8 +205,7 @@ public class PersonenDetailsController {
     }
 
     public void ausTeilnehmerRaus(ActionEvent actionEvent) {
-
-
+        tableViewTeilnehmerZu.getItems().removeAll(tableViewTeilnehmerZu.getSelectionModel().getSelectedItem());
     }
 
     /*

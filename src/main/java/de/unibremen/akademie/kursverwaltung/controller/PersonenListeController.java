@@ -1,9 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
-import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +35,7 @@ public class PersonenListeController implements Initializable {
     public TableColumn columnSelect;
     // TODO wid noch bearbeitet! Mohammed
     String listPersonDetails[] = {"titel", "vorname", "nachname", "strasse", "plz", "ort", "email", "telefon"};
+
     @FXML
     private TableColumn<Person, String> nachname;
     @FXML
@@ -51,6 +50,7 @@ public class PersonenListeController implements Initializable {
     private TableColumn<Person, String> email;
     @FXML
     private TableColumn<Person, String> telefon;
+
     @FXML
     private TableColumn<Person, Boolean> alleCheckBox;
     @FXML
@@ -115,7 +115,6 @@ public class PersonenListeController implements Initializable {
             main.fxmlPersonenDetailsController.save.setText("Update");
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
-
             main.fxmlPersonenDetailsController.anzeigeZumAendern(KvModel.aktuellePerson);
 
             for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
@@ -126,12 +125,14 @@ public class PersonenListeController implements Initializable {
             }
             //TODO Mohammed
 
-            for (PersonKurs personKurs : KvModel.personKursList) {
-                if (personKurs.getKurs().equals("kurs")) {
-                    personKurs.getKurs().getKursBeschreibung();
+//            kursTeilnahmeStr.setCellValueFactory(person -> new ReadOnlyStringWrapper
+//                    (KvModel.model.getTeilnehmer(person.getValue()).toString()));
+//           // for (Tab tab : KvModel.model.getTeilnehmer(KvModel.aktuellePerson)) {
+//                if (kursTeilnahmeStr.getText().equals("Person")) {
+//                    kursTeilnahmeStr.getTabPane().getSelectionModel().select(kursTeilnahmeStr);
 
-                }
-            }
+//                }
+//            }
             //TODO
         }
     }
@@ -195,6 +196,7 @@ public class PersonenListeController implements Initializable {
                     }
                 }
         );
+
         titel.setCellValueFactory(new PropertyValueFactory<Person, String>("titel"));
         titel.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
         titel.setOnEditCommit(
@@ -301,7 +303,9 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        kursTeilnahmeStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(KvModel.model.getTeilnehmer(person.getValue()).toString()));
+
+        kursTeilnahmeStr.setCellValueFactory(person -> new ReadOnlyStringWrapper
+                (KvModel.model.getTeilnehmer(person.getValue()).toString()));
 
 
         table.setItems(KvModel.personList);
