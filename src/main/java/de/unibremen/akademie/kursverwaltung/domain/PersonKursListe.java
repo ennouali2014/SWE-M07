@@ -5,19 +5,30 @@ import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PersonKursListe {
 
     static public final PersonKursListe modelKP = new PersonKursListe();
 
-    //static public final ObservableList<PersonKurs> personKursList =
-           // FXCollections.observableArrayList();
-//Mohamed
-public static Boolean addPersonInKursAlsTeilnehmer(Person person, Kurs kurs) {
+    static public final ObservableList<PersonKurs> personKursList =
+            FXCollections.observableArrayList();
 
+
+
+    public List<String> getTeilnehmer(Person person){
+        List<String> listkurs = new ArrayList<>();
+
+        for(PersonKurs personKurs:KvModel.personKursList){
+            if(personKurs.getPerson().equals(person)) {
+                listkurs.add(personKurs.getKurs().getName());
+            }
+        }
+        return listkurs;
+    }
+public static Boolean addPersonInKursAlsTeilnehmer(Person person, Kurs kurs) {
     for (PersonKurs personKurs : KvModel.personKursList) {
         if (personKurs.getPerson().equals(person) && personKurs.getKurs().equals(kurs)) {
-
             return false;
         }
     }
@@ -26,7 +37,7 @@ public static Boolean addPersonInKursAlsTeilnehmer(Person person, Kurs kurs) {
     personKurs.setKurs(kurs);
     personKurs.setTeilnehmer(true);
 
-    KvModel.personKursList.add(personKurs);
+    personKursList.add(personKurs);
         return true;
     }
 
