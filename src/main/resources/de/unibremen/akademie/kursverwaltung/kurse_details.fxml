@@ -62,7 +62,7 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <DatePicker fx:id="startDatum" onAction="#onDatePickerAction" promptText="dd.MM.yyyy" />
+                                                                <DatePicker fx:id="startDatum" onAction="#onDatePickerAction" promptText="dd.MM.yyyy" prefWidth="163.0"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -141,7 +141,7 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="End Datum : " />
-                                                                <DatePicker fx:id="endeDatum" disable="true" editable="false" prefHeight="26.0" />
+                                                                <DatePicker fx:id="endeDatum" disable="true" editable="false" prefHeight="26.0" prefWidth="163.0" />
                                                             </children>
                                                         </HBox>
                                                         <HBox>
