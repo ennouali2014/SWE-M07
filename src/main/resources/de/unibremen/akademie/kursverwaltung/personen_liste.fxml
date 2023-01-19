@@ -73,8 +73,8 @@
                                 <TableColumn fx:id="ort" prefWidth="110.0" text="Ort"/>
                                 <TableColumn fx:id="email" prefWidth="120.0" text="Email"/>
                                 <TableColumn fx:id="telefon" prefWidth="120.0" text="Telefon"/>
-                                <TableColumn fx:id="kursTeilnahmeStr" prefWidth="120.0" text="Teilnehmer"/>
-                                <TableColumn fx:id="kursInteressentStr" prefWidth="120.0" text="Interessent"/>
+                                <TableColumn fx:id="kursTeilnehmerStr" prefWidth="120.0" text="Teilnehmer"/>
+                                <TableColumn fx:id="kursInteressentenStr" prefWidth="120.0" text="Interessenten"/>
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>

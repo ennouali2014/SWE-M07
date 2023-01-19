@@ -30,7 +30,9 @@ public class PersonenListeController implements Initializable {
 
     public Tab fxmlPersonenListe;
     @FXML
-    public TableColumn<Person, String> kursTeilnahmeStr;
+    public TableColumn<Person, String> kursTeilnehmerStr;
+    @FXML
+    public TableColumn<Person, String> kursInteressentenStr;
 
     @FXML
     private TableColumn<Person, String> anrede;
@@ -302,7 +304,8 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        kursTeilnahmeStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsTeilnehmer(person.getValue()).toString()));
+        kursTeilnehmerStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsTeilnehmer(person.getValue()).toString()));
+        kursInteressentenStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsInteressent(person.getValue()).toString()));
 
 
         table.setItems(KvModel.personList);
