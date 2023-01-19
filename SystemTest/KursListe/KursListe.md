@@ -15,3 +15,6 @@ Button Bearbeiten/Anzeigen: Kurs Ändern, KUrs in Kursliste wird geändert, es g
 Reset Button name ist geändert, ComboBox bleibt erstmal da aber es hat keine funktion
 
 resetButton funktion ist behoben
+
+suchButton ist raus
+
