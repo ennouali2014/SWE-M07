@@ -34,12 +34,13 @@ public class PersonenDetailsController {
 
     @FXML
     public Button abbrechen;
-
+    @FXML
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
     static public final ObservableList<Person> listKursTeilnehmer =
             FXCollections.observableArrayList();
     static public final ObservableList<Person> listKursInteressent =
             FXCollections.observableArrayList();
+    @FXML
     public Tab fxmlPersonenDetails;
 
     static public boolean zurueckPersonenliste = false;
@@ -113,11 +114,13 @@ public class PersonenDetailsController {
     }
 
     @FXML
-    public void onsaveclick() {
+    public void onClickSavePerson() {
+        Person person = null;
         // Update einer bestehenden Person
         if (KvModel.aktuellePerson != null) {
             try {
                 KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+                person = KvModel.aktuellePerson;
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -128,7 +131,7 @@ public class PersonenDetailsController {
             // Neue Person hinzufuegen
             int aktuelleAnzPersonen = KvModel.personList.size();
             try {
-                Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+                person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -144,11 +147,14 @@ public class PersonenDetailsController {
 
         if (PersonenDetailsController.zurueckPersonenliste) {
             plTab.getTabPane().getSelectionModel().select(plTab);
+
+            main.fxmlPersonenListeController.table.getSelectionModel().clearSelection();
+            main.fxmlPersonenListeController.table.getSelectionModel().select(person);
         }
     }
 
     @FXML
-    public void anzeigeZumAendern(Person person) {
+    public void onClickAnzeigeAendernPerson(Person person) {
         if (person != null) {
             String anrede = person.getAnrede();
             for (int i = 0; i < choiceListAnrede.size(); i++) {
@@ -164,13 +170,11 @@ public class PersonenDetailsController {
             this.ort.setText(person.getOrt());
             this.email.setText(person.getEmail());
             this.telefon.setText(person.getTelefon());
-
-
         }
     }
 
     @FXML
-    public void onabbrechenclick(ActionEvent event) {
+    public void onClickAbbrechenPerson(ActionEvent event) {
         felderLeeren();
 
         if (zurueckPersonenliste) {

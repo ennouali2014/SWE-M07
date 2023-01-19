@@ -19,17 +19,14 @@
                                 <Insets bottom="10.0"/>
                             </BorderPane.margin>
                             <children>
-                                <Label text="Personenliste" textFill="#91c9a0">
-                                    <font>
-                                        <Font name="System Bold" size="54.0"/>
-                                    </font>
-                                </Label>
-                                <Label text="Hier können die Personen verwaltet werden" textFill="#91c9a0">
-                                    <font>
-                                        <Font name="System Italic" size="16.0"/>
-                                    </font>
+                                <Label text="Personenliste" fx:id="headline">
                                     <VBox.margin>
-                                        <Insets bottom="10.0"/>
+                                        <Insets left="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <Label text="Übersicht aller Personen" fx:id="subheadline">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" left="10.0" />
                                     </VBox.margin>
                                 </Label>
                                 <HBox alignment="CENTER_LEFT" spacing="20.0">
@@ -41,7 +38,7 @@
                                         </TextField>
                                         <Button fx:id="zurucksetzenButton" alignment="CENTER" contentDisplay="CENTER"
                                                 mnemonicParsing="false" onAction="#zurucksetzenButtonAction"
-                                                text="zurücksetzen"/>
+                                                text="Zurücksetzen"/>
                                     </children>
                                 </HBox>
                             </children>
@@ -53,7 +50,7 @@
                                 <Button fx:id="personAnlegenButton" mnemonicParsing="false"
                                         onAction="#personAnlegenButtonAction" text="Person anlegen"/>
                                 <Button fx:id="andernButton" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#andernButtonAction" text="Ändern"/>
+                                        mnemonicParsing="false" onAction="#andernButtonAction" text="Bearbeiten/Anzeigen"/>
                                 <Button fx:id="loeschButton" alignment="CENTER" contentDisplay="CENTER"
                                         mnemonicParsing="false" onAction="#loeschButtonAction" text="Löschen"/>
                             </children>

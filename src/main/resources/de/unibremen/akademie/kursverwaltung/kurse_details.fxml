@@ -12,11 +12,11 @@
      xmlns="http://javafx.com/javafx/18"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController">
     <content>
-        <AnchorPane>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1200.0">
             <children>
-                <SplitPane dividerPositions="0.5" layoutX="10.0" layoutY="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                <SplitPane dividerPositions="0.6" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                        <AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1200.0">
                             <children>
                                 <VBox>
                                     <children>
@@ -27,13 +27,14 @@
                                             <VBox.margin>
                                                 <Insets left="10.0" />
                                             </VBox.margin>
+
                                         </Label>
-                                        <Label text="Hier Kannst du deine Kursdetails" textFill="#91c9a0">
+                                        <Label text="Kurse anlegen, ändern und Teilnehmer/Interessenten zuweisen" textFill="#91c9a0">
                                             <font>
                                                 <Font name="System Italic" size="16.0" />
                                             </font>
                                             <VBox.margin>
-                                                <Insets left="10.0" />
+                                                <Insets left="10.0" bottom="10.0"/>
                                             </VBox.margin>
                                         </Label>
                                         <HBox prefHeight="100.0" prefWidth="200.0">
@@ -152,10 +153,7 @@
                                                                     <items>
                                                                         <FXCollections fx:factory="observableArrayList">
                                                                             <String fx:value="Aktiv" />
-                                                                            <String fx:value="Passiv" />
                                                                             <String fx:value="Geplant" />
-                                                                            <String fx:value="Abgesagt" />
-
                                                                         </FXCollections>
                                                                     </items>
                                                                 </ComboBox>
@@ -250,12 +248,12 @@
                                         </VBox>
                                         <HBox alignment="CENTER" spacing="50.0">
                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#apply" prefHeight="30.0" prefWidth="125.0" text="Speichern">
+                                                <Button mnemonicParsing="false" onAction="#onClickSaveKurs" prefHeight="30.0" prefWidth="125.0" text="Speichern">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Button>
-                                                <Button mnemonicParsing="false" onAction="#abbrechen" prefHeight="30.0" prefWidth="125.0" text="Abbrechen">
+                                                <Button mnemonicParsing="false" onAction="#onClickAbbrechenKurs" prefHeight="30.0" prefWidth="125.0" text="Abbrechen">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
@@ -298,34 +296,50 @@
                                         </VBox>
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="104.0">
                                             <children>
-                                                <Button fx:id="kurs_teilnehmer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"  text="---&gt;">
+                                                <Button fx:id="kurs_teilnehmer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false">
                                                     <VBox.margin>
                                                         <Insets bottom="20.0" />
                                                     </VBox.margin>
-                                                    <font>
-                                                        <Font name="System Bold" size="12.0" />
-                                                    </font>
+                                                    <graphic>
+                                                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                            <image>
+                                                                <Image url="@images/pfeil-links.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="loeschVonTeilnehmer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"  text="&lt;---">
+                                                <Button fx:id="loeschVonTeilnehmer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false">
                                                     <VBox.margin>
                                                         <Insets bottom="190.0" />
                                                     </VBox.margin>
-                                                    <font>
-                                                        <Font name="System Bold" size="12.0" />
-                                                    </font>
+                                                    <graphic>
+                                                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                            <image>
+                                                                <Image url="@images/pfeil-rechts.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="kurs_interessent" mnemonicParsing="false"  text="---&gt;">
+                                                <Button fx:id="kurs_interessent" mnemonicParsing="false">
                                                     <VBox.margin>
                                                         <Insets bottom="20.0" />
                                                     </VBox.margin>
-                                                    <font>
-                                                        <Font name="System Bold" size="12.0" />
-                                                    </font>
+                                                    <graphic>
+                                                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                            <image>
+                                                                <Image url="@images/pfeil-rechts.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="loeschVonInteressenten" mnemonicParsing="false"  text="&lt;---">
-                                                    <font>
-                                                        <Font name="System Bold" size="12.0" />
-                                                    </font>
+                                                <Button fx:id="loeschVonInteressenten" mnemonicParsing="false">
+                                                    <graphic>
+                                                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                            <image>
+                                                                <Image url="@images/pfeil-links.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
                                                 </Button>
                                             </children>
                                             <HBox.margin>
