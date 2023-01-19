@@ -1,15 +1,14 @@
 package de.unibremen.akademie.kursverwaltung.domain;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import static de.unibremen.akademie.kursverwaltung.domain.Kurs.addNewKurs;
 import static de.unibremen.akademie.kursverwaltung.domain.Person.addNewPerson;
-import static de.unibremen.akademie.kursverwaltung.domain.PersonKursListe.addPersonInKursAlsTeilnehmer;
 
 public class KvModel {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
@@ -17,7 +16,7 @@ public class KvModel {
     static public final ObservableList<Person> personList = FXCollections.observableArrayList();
     static public final ObservableList<Kurs> kursList = FXCollections.observableArrayList();
 
-    static public final ObservableList<PersonKurs> personKursList = FXCollections.observableArrayList();
+    // static public final PersonKursListe personKursList = PersonKursListe.modelKP;
 
 
     static public final KvModel model = new KvModel();
@@ -28,16 +27,6 @@ public class KvModel {
     private KvModel() {
     }
 
-    public List<String> getTeilnehmer(Person person){
-        List<String> listkurs = new ArrayList<>();
-
-        for(PersonKurs personKurs:KvModel.personKursList){
-            if(personKurs.getPerson().equals(person)) {
-                listkurs.add(personKurs.getKurs().getName());
-            }
-        }
-        return listkurs;
-    }
     public void load() {
         load(VERWALTUNGSDATEI);
     }
@@ -51,7 +40,7 @@ public class KvModel {
             // ObservableList is not Serializable. We have to work around
             personList.addAll((ArrayList<Person>) input.readObject());
             kursList.addAll((ArrayList<Kurs>) input.readObject());
-            personKursList.addAll((ArrayList<PersonKurs>) input.readObject());
+            PersonKursListe.personKursList.addAll((ArrayList<PersonKurs>) input.readObject());
 
             input.close();
         } catch (FileNotFoundException e) {
@@ -80,7 +69,7 @@ public class KvModel {
             // ObservableList is not Serializable. We have to work around
             output.writeObject(new ArrayList<Person>(personList));
             output.writeObject(new ArrayList<Kurs>(kursList));
-            output.writeObject(new ArrayList<PersonKurs>(personKursList));
+            output.writeObject(new ArrayList<PersonKurs>(PersonKursListe.personKursList));
 
             output.close();
         } catch (FileNotFoundException e) {
@@ -105,14 +94,14 @@ public class KvModel {
         }
         if (KvModel.kursList.size() <= 0) {
             Kurs kurs = new Kurs();
-            addNewKurs("PHP-Einsteiger", 14, 2, new Date(1900368000000L), 3, 6, 199.00, 19.0, "PHP für Dummies","Aktiv");
-            addNewKurs("Angular FE", 21, 3, new Date(1901232000000L), 2, 8, 849.00, 19.0, "Angular für Frontend-Entwickler","Aktiv");
-            addNewKurs("Arduino", 5, 5, new Date(1899763200000L), 10, 12, 79.00, 19.0, "Arduino für Kids und Großeltern","geplant");
-            addNewKurs("Deep S9", 32, 4, new Date(1911772800000L), 8, 9, 1275.00, 19.0, "Deep learning mit Python","Abgesagt");
-            addNewKurs("Web-Start", 7, 3, new Date(1920240000000L), 12, 15, 249.00, 19.0, "HTML und CSS zum Frühstück","Aktiv");
+            addNewKurs("PHP-Einsteiger", 14, 2, new Date(1900368000000L), 3, 6, 199.00, 19.0, "PHP für Dummies", "Aktiv");
+            addNewKurs("Angular FE", 21, 3, new Date(1901232000000L), 2, 8, 849.00, 19.0, "Angular für Frontend-Entwickler", "Aktiv");
+            addNewKurs("Arduino", 5, 5, new Date(1899763200000L), 10, 12, 79.00, 19.0, "Arduino für Kids und Großeltern", "geplant");
+            addNewKurs("Deep S9", 32, 4, new Date(1911772800000L), 8, 9, 1275.00, 19.0, "Deep learning mit Python", "Abgesagt");
+            addNewKurs("Web-Start", 7, 3, new Date(1920240000000L), 12, 15, 249.00, 19.0, "HTML und CSS zum Frühstück", "Aktiv");
             System.out.println("Kurs-Standarddaten wurde geladen!");
         }
-        if (KvModel.personKursList.size() <= 0) {
+        if (PersonKursListe.personKursList.size() <= 0) {
             //addPersonInKursAlsTeilnehmer(KvModel.personList.get(0), KvModel.kursList.get(0));
             //addPersonInKursAlsTeilnehmer(KvModel.personList.get(1), KvModel.kursList.get(0));
             //addPersonInKursAlsTeilnehmer(KvModel.personList.get(4), KvModel.kursList.get(0));

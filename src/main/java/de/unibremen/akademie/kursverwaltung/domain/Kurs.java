@@ -78,7 +78,6 @@ public class Kurs implements Externalizable {
         KvModel.kursList.add(kurs);
         System.out.println(KvModel.kursList);
         return kurs;
-
     }
 
     public Kurs() {

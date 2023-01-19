@@ -9,8 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
-import java.util.List;
-
 public class PersonenDetailsController {
     @FXML
     public ChoiceBox anrede;
@@ -117,7 +115,8 @@ public class PersonenDetailsController {
             try {
                 KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
                 person = KvModel.aktuellePerson;
-                KvModel.personKursList.addAll(PersonKursListe.personKursList);
+                // FIXME: Geht überhaupt nicht!
+                PersonKursListe.modelKP.addAll(PersonKursListe.personKursList);
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
