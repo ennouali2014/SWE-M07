@@ -3,7 +3,6 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <Tab xmlns:fx="http://javafx.com/fxml/1" text="Kurse-Liste" fx:id="fxmlKurseListe"
      xmlns="http://javafx.com/javafx/18"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseListeController">
@@ -68,7 +67,8 @@
                                             </HBox.margin>
                                         </MenuButton>
 
-                                        <Button mnemonicParsing="false" text="Zurücksetzen">
+                                        <Button mnemonicParsing="false" text="Zurücksetzen"
+                                                onAction="#resetButtonAction">
                                             <HBox.margin>
                                                 <Insets left="10.0"/>
                                             </HBox.margin>
