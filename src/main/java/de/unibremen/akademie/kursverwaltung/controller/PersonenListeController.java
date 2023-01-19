@@ -305,10 +305,9 @@ public class PersonenListeController implements Initializable {
 
         table.setItems(KvModel.personList);
 
-        TableView.TableViewSelectionModel<Person> selectionModel =
-                table.getSelectionModel();
-        selectionModel.setSelectionMode(
-                SelectionMode.MULTIPLE);
+        TableView.TableViewSelectionModel<Person> selectionModel = table.getSelectionModel();
+        selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
+
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 list = table.getSelectionModel().getSelectedItems();
@@ -319,8 +318,6 @@ public class PersonenListeController implements Initializable {
                 andernButton.setDisable(false);
             }
         });
-
-
 
         // [Filtering with suchTextField]
         //Wrap the ObserviableList in a FilteredList
