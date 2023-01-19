@@ -1,8 +1,12 @@
+
+
 package de.unibremen.akademie.kursverwaltung.controller;
+
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -110,16 +114,11 @@ public class KurseListeController {
                 SelectionMode.MULTIPLE);
 
 
-        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                list = tableView.getSelectionModel().getSelectedItems();
-            }
-            if (list.size() > 1) {
-                bearbeitenButton.setDisable(true);
-            } else {
-                bearbeitenButton.setDisable(false);
-            }
+        tableView.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Kurs> change) -> {
+            list = tableView.getSelectionModel().getSelectedItems();
+            bearbeitenButton.setDisable(list != null && list.size() > 1);
         });
+
 
         FilteredList<Kurs> filteredData = new FilteredList<>(KvModel.kursList, kurs -> true);
         kursNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -144,15 +143,15 @@ public class KurseListeController {
 
     @FXML
     void hinzufugenButtonAction(ActionEvent event) {
-            KvModel.aktuellerKurs = null;
-            main.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
-            for (Tab tabPaneKursAnlegen : fxmlKurseListe.getTabPane().getTabs()) {
-                if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
-                    tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
+        KvModel.aktuellerKurs = null;
+        main.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
+        for (Tab tabPaneKursAnlegen : fxmlKurseListe.getTabPane().getTabs()) {
+            if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
+                tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
-                }
             }
         }
+    }
 
 
     @FXML
@@ -233,3 +232,4 @@ public class KurseListeController {
         tableView.getItems();
     }
 }
+
