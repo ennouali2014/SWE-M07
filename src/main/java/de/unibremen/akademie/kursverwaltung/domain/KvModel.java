@@ -15,11 +15,10 @@ public class KvModel {
 
     static public final ObservableList<Person> personList = FXCollections.observableArrayList();
     static public final ObservableList<Kurs> kursList = FXCollections.observableArrayList();
+    static public final PersonKursListe pkListe = new PersonKursListe();
 
-    // static public final PersonKursListe personKursList = PersonKursListe.modelKP;
 
-
-    static public final KvModel model = new KvModel();
+    static public final KvModel kvModel = new KvModel();
     static public Kurs aktuellerKurs;
     static public Person aktuellePerson;
 
@@ -40,7 +39,7 @@ public class KvModel {
             // ObservableList is not Serializable. We have to work around
             personList.addAll((ArrayList<Person>) input.readObject());
             kursList.addAll((ArrayList<Kurs>) input.readObject());
-            PersonKursListe.personKursList.addAll((ArrayList<PersonKurs>) input.readObject());
+            pkListe.personKursList.addAll((ArrayList<PersonKurs>) input.readObject());
 
             input.close();
         } catch (FileNotFoundException e) {
@@ -69,7 +68,7 @@ public class KvModel {
             // ObservableList is not Serializable. We have to work around
             output.writeObject(new ArrayList<Person>(personList));
             output.writeObject(new ArrayList<Kurs>(kursList));
-            output.writeObject(new ArrayList<PersonKurs>(PersonKursListe.personKursList));
+            output.writeObject(new ArrayList<PersonKurs>(pkListe.personKursList));
 
             output.close();
         } catch (FileNotFoundException e) {
@@ -101,7 +100,7 @@ public class KvModel {
             addNewKurs("Web-Start", 7, 3, new Date(1920240000000L), 12, 15, 249.00, 19.0, "HTML und CSS zum Frühstück", "Aktiv");
             System.out.println("Kurs-Standarddaten wurde geladen!");
         }
-        if (PersonKursListe.personKursList.size() <= 0) {
+        if (pkListe.personKursList.size() <= 0) {
             //addPersonInKursAlsTeilnehmer(KvModel.personList.get(0), KvModel.kursList.get(0));
             //addPersonInKursAlsTeilnehmer(KvModel.personList.get(1), KvModel.kursList.get(0));
             //addPersonInKursAlsTeilnehmer(KvModel.personList.get(4), KvModel.kursList.get(0));
