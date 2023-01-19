@@ -3,7 +3,6 @@ package de.unibremen.akademie.kursverwaltung.controller;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
-import de.unibremen.akademie.kursverwaltung.domain.PersonKursListe;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -23,6 +22,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static de.unibremen.akademie.kursverwaltung.domain.KvModel.pkListe;
 
 public class PersonenListeController implements Initializable {
 
@@ -86,7 +87,7 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void loeschButtonAction(ActionEvent event) {
-        ObservableList<Person> allPerson = KvModel.model.personList;
+        ObservableList<Person> allPerson = KvModel.kvModel.personList;
         List<Person> selectedPersonCopy = new ArrayList<>(table.getSelectionModel().getSelectedItems());
         selectedPersonCopy.forEach(allPerson::remove);
     }
@@ -126,7 +127,7 @@ public class PersonenListeController implements Initializable {
             }
             //TODO Mohammed
 
-            for (PersonKurs personKurs : PersonKursListe.personKursList) {
+            for (PersonKurs personKurs : pkListe.personKursList) {
                 if (personKurs.getKurs().equals("kurs")) {
                     personKurs.getKurs().getKursBeschreibung();
 
@@ -301,7 +302,7 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        kursTeilnahmeStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(PersonKursListe.modelKP.getKurseAlsTeilnehmer(person.getValue()).toString()));
+        kursTeilnahmeStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsTeilnehmer(person.getValue()).toString()));
 
 
         table.setItems(KvModel.personList);

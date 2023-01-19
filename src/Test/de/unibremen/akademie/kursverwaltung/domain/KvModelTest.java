@@ -7,7 +7,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class KvModelTest {
-    KvModel model = KvModel.model;
+    KvModel model = KvModel.kvModel;
 
     @Test
     void saveLoadtest() {

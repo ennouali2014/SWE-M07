@@ -1,6 +1,9 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.*;
+import de.unibremen.akademie.kursverwaltung.domain.Kurs;
+import de.unibremen.akademie.kursverwaltung.domain.KvModel;
+import de.unibremen.akademie.kursverwaltung.domain.Meldung;
+import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+
+import static de.unibremen.akademie.kursverwaltung.domain.KvModel.pkListe;
 
 public class PersonenDetailsController {
     @FXML
@@ -97,7 +102,7 @@ public class PersonenDetailsController {
         startDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
 
-        tableViewKurse.setItems(KvModel.model.kursList);
+        tableViewKurse.setItems(KvModel.kvModel.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableViewKurse.getSelectionModel();
 
@@ -120,9 +125,7 @@ public class PersonenDetailsController {
         if (KvModel.aktuellePerson != null) {
             try {
                 KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
-                person = KvModel.aktuellePerson;
-                // FIXME: Geht überhaupt nicht!
-                // PersonKursListe.modelKP.addAll(PersonKursListe.personKursList);
+                pkListe.addKurseAlsTeilnehmer(KvModel.aktuellePerson, this.tableViewTeilnehmerZu.getItems());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -236,7 +239,7 @@ public class PersonenDetailsController {
         if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
-        Boolean test_is_kurs = PersonKursListe.modelKP.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson,
+        Boolean test_is_kurs = pkListe.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson,
                 (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
 
         if (test_is_kurs) {

@@ -107,7 +107,7 @@ public class KurseListeController {
         columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displayEndeDate"));
         columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
 
-        tableView.setItems(KvModel.model.kursList);
+        tableView.setItems(KvModel.kvModel.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableView.getSelectionModel();
         selectionModel.setSelectionMode(
@@ -156,7 +156,7 @@ public class KurseListeController {
 
     @FXML
     void entfernenButtonAction(ActionEvent event) {
-        tableView.setItems(KvModel.model.kursList);
+        tableView.setItems(KvModel.kvModel.kursList);
         ObservableList<Kurs> kurse = tableView.getItems();
         List<Kurs> selectedCoursesCopy = new ArrayList<>(tableView.getSelectionModel().getSelectedItems());
         selectedCoursesCopy.forEach(kurse::remove);
@@ -170,7 +170,7 @@ public class KurseListeController {
 
     @FXML
     void bearbeitenButtonAction(ActionEvent event) {
-        tableView.setItems(KvModel.model.kursList);
+        tableView.setItems(KvModel.kvModel.kursList);
         if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size() < 2) {
             KvModel.aktuellerKurs = tableView.getSelectionModel().getSelectedItem();
             //KvModel.aktuellerKurs = tableView.getSelectionModel().;
