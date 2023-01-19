@@ -116,11 +116,7 @@ public class KurseListeController {
 
         tableView.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Kurs> change) -> {
             list = tableView.getSelectionModel().getSelectedItems();
-            if (list != null && list.size() > 1) {
-                bearbeitenButton.setDisable(true);
-            } else {
-                bearbeitenButton.setDisable(false);
-            }
+            bearbeitenButton.setDisable(list != null && list.size() > 1);
         });
 
 
