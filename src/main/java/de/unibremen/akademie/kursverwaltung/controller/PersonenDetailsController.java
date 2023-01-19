@@ -14,6 +14,7 @@ import java.util.List;
 public class PersonenDetailsController {
     @FXML
     public ChoiceBox anrede;
+
     @FXML
     public TextField titel;
     @FXML
@@ -32,6 +33,7 @@ public class PersonenDetailsController {
     public TextField ort;
     @FXML
     public Button save;
+
     @FXML
     public Button abbrechen;
     @FXML
@@ -96,9 +98,11 @@ public class PersonenDetailsController {
         startDate.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
         startDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
+
         tableViewKurse.setItems(KvModel.model.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableViewKurse.getSelectionModel();
+
 
         tableViewKurse.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.SINGLE);
@@ -107,6 +111,8 @@ public class PersonenDetailsController {
         kursZuTeilnehmer.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 //        tableViewKurse.getSelectionModel().selectedItemProperty().addListener(
 //                (observable, oldValue, newValue) -> System.out.println(newValue));
+
+        
     }
 
     @FXML
@@ -150,7 +156,6 @@ public class PersonenDetailsController {
         }
     }
 
-  
     @FXML
     public void onClickAnzeigeAendernPerson(Person person) {
         if (person != null) {
@@ -207,6 +212,7 @@ public class PersonenDetailsController {
     }
 
     public void ausTeilnehmerRaus(ActionEvent actionEvent) {
+        tableViewTeilnehmerZu.getItems().removeAll(tableViewTeilnehmerZu.getSelectionModel().getSelectedItem());
     }
 
     /*
@@ -239,6 +245,7 @@ public class PersonenDetailsController {
         }
 
     }
+
 
     public void kursZuInteressent(ActionEvent actionEvent) {
     }
