@@ -31,13 +31,17 @@
                                 <HBox alignment="CENTER_LEFT" spacing="20.0">
                                     <children>
                                         <Label prefHeight="18.0" prefWidth="99.0" text="Person suchen:"/>
-                                        <TextField fx:id="suchTxtField" prefHeight="26.0" prefWidth="297.0"
+                                        <TextField fx:id="txInpPersonSuche" prefHeight="26.0" prefWidth="297.0"
                                                    promptText="Suchbegriff eingeben......">
 
                                         </TextField>
-                                        <Button fx:id="zurucksetzenButton" alignment="CENTER" contentDisplay="CENTER"
-                                                mnemonicParsing="false" onAction="#zurucksetzenButtonAction"
-                                                text="Zurücksetzen"/>
+                                        <Button fx:id="btnResetSuchfeld" alignment="CENTER" contentDisplay="CENTER"
+                                                mnemonicParsing="false" onAction="#onClickResetSuchfeld"
+                                                text="Zurücksetzen">
+                                            <tooltip>
+                                            <Tooltip text="Sucheingabe löschen" />
+                                        </tooltip>
+                                        </Button>
                                     </children>
                                 </HBox>
                             </children>
