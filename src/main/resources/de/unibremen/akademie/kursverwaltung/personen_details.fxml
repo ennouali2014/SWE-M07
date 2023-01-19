@@ -21,13 +21,13 @@
                                     <children>
                                         <VBox>
                                             <children>
-                                                <Label text="Personen Details" fx:id="headline">
+                                                <Label text="Personen Details" id="headline">
                                                     <VBox.margin>
                                                         <Insets left="10.0"/>
                                                     </VBox.margin>
                                                 </Label>
                                                 <Label text="Personen anlegen, ändern und als Teilnehmer/Interessent einem Kurs zuweisen"
-                                                       fx:id="subheadline">
+                                                       id="subheadline">
                                                     <VBox.margin>
                                                         <Insets left="10.0" bottom="10.0"/>
                                                     </VBox.margin>
@@ -219,8 +219,7 @@
                                     <children>
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="323.0">
                                             <children>
-                                                <Label text="Kurse">
-                                                </Label>
+                                                <Label text="Kurse" id="subheadline"/>
                                                 <TableView fx:id="tableViewKurse" prefHeight="264.0" prefWidth="252.0">
                                                     <columns>
                                                         <TableColumn fx:id="kursname" prefWidth="126.0"
@@ -313,8 +312,7 @@
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="229.0"
                                               spacing="20.0">
                                             <children>
-                                                <Label text="Teilnehmer">
-                                                </Label>
+                                                <Label text="Teilnehmer" id="subheadline"/>
                                                 <TableView fx:id="tableViewTeilnehmerZu" prefHeight="200.0"
                                                            prefWidth="200.0">
                                                     <columns>
@@ -359,8 +357,7 @@
                                                         </Button>
                                                     </children>
                                                 </HBox>
-                                                <Label text="Interessent">
-                                                </Label>
+                                                <Label text="Interessent" id="subheadline"/>
                                                 <TableView fx:id="tableViewInteressentenZu" prefHeight="200.0"
                                                            prefWidth="200.0">
                                                     <columns>

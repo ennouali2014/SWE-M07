@@ -16,18 +16,12 @@
                     <top>
                         <VBox BorderPane.alignment="CENTER">
                             <children>
-                                <Label text="Kursliste" textFill="#91c9a0">
-                                    <font>
-                                        <Font name="System Bold" size="54.0"/>
-                                    </font>
+                                <Label text="Kursliste" id="headline">
                                     <VBox.margin>
                                         <Insets left="10.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label text="Übersicht aller Kurse" textFill="#91c9a0">
-                                    <font>
-                                        <Font name="System Italic" size="16.0"/>
-                                    </font>
+                                <Label text="Übersicht aller Kurse" id="subheadline">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0"/>
                                     </VBox.margin>

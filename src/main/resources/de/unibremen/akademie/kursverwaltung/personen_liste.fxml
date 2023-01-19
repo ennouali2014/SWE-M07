@@ -19,12 +19,12 @@
                                 <Insets bottom="10.0"/>
                             </BorderPane.margin>
                             <children>
-                                <Label text="Personenliste" fx:id="headline">
+                                <Label text="Personenliste" id="headline">
                                     <VBox.margin>
                                         <Insets left="10.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label text="Übersicht aller Personen" fx:id="subheadline">
+                                <Label text="Übersicht aller Personen" id="subheadline">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0" />
                                     </VBox.margin>
