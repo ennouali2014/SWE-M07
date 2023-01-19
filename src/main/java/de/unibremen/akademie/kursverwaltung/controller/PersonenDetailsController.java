@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
+import java.util.List;
+
 public class PersonenDetailsController {
     @FXML
     public ChoiceBox anrede;
@@ -121,6 +123,7 @@ public class PersonenDetailsController {
             try {
                 KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
                 person = KvModel.aktuellePerson;
+                KvModel.personKursList.addAll(PersonKursListe.personKursList);
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -234,16 +237,12 @@ public class PersonenDetailsController {
         if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
-        Boolean test_add_kurs = PersonKursListe.modelKP.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson,
+        Boolean test_is_kurs = PersonKursListe.modelKP.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson,
                 (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
-//    Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
-//    KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
-        if (test_add_kurs) {
+
+        if (test_is_kurs) {
             tableViewTeilnehmerZu.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
         }
-
-//    System.out.println(KvModel.aktuellePerson);
-//    System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
 
     }
 
