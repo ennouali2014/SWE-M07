@@ -133,6 +133,7 @@ public class KurseDetailsController {
                 KvModel.aktuellerKurs.setMwstEuro();
                 KvModel.aktuellerKurs.setAktuelleTnZahl();
                 KvModel.aktuellerKurs.setStatus(status.getValue().toString());
+                //KvModel.aktuellerKurs.setStatus(status.getSelectionModel().getSelectedItem().toString());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -150,7 +151,7 @@ public class KurseDetailsController {
 
             String name = kursname.getText();
             String kursBesch = kursBeschreibung.getText();
-
+            String statusSTR = status.getSelectionModel().getSelectedItem().toString();
             try {
                 if (!checkIsInt(anzahlTage.getText()) ||
                         !checkIsInt(zyklus.getText()) ||
@@ -184,7 +185,7 @@ public class KurseDetailsController {
             }
 
             try {
-                kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
+                kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch,statusSTR);
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -196,6 +197,7 @@ public class KurseDetailsController {
             freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
             mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
             gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+
         }
         for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {

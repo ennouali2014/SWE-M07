@@ -34,17 +34,17 @@ public class Kurs implements Externalizable {
     private SimpleStringProperty displaystartDate;
     private SimpleStringProperty displayEndeDate;
 
-    public static Kurs addNewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
-                                  double gebuehrBrutto, double mwstProzent, String kursBeschreibung) {
 
+    public static Kurs addNewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
+                                  double gebuehrBrutto, double mwstProzent, String kursBeschreibung,String statusSTR) {
         Kurs kurs = new Kurs();
         if (!kurs.setName(name)) {
             throw new IllegalArgumentException("Der Kurs-Name ist leer!");
         }
-        if (!kurs.setAnzahlTage(anzahlTage)) {
+                if (!kurs.setAnzahlTage(anzahlTage)) {
             throw new IllegalArgumentException("Der Kurs muss mindestens 1 Tag dauern!");
         }
-        if (!kurs.setZyklus(zyklus)) {
+                if (!kurs.setZyklus(zyklus)) {
             throw new IllegalArgumentException("Bitte einen Zyklus angeben!");
         }
         if (!kurs.setStartDatum(startDatum)) {
@@ -63,6 +63,7 @@ public class Kurs implements Externalizable {
             throw new IllegalArgumentException("Bitte einen MwSt-Satz angeben!");
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
         kurs.setDisplaystartDate(dateFormat.format(startDatum));
         kurs.setKursBeschreibung(kursBeschreibung);
         kurs.setEndeDatum();
@@ -73,9 +74,11 @@ public class Kurs implements Externalizable {
         if (!kurs.setFreiePlaetze()) {
             throw new IllegalArgumentException("Leider sind alles Plätze belegt!");
         }
-        kurs.setStatus();
+        kurs.setStatus(statusSTR);
         KvModel.kursList.add(kurs);
+        System.out.println(KvModel.kursList);
         return kurs;
+
     }
 
     public Kurs() {
@@ -340,24 +343,32 @@ public class Kurs implements Externalizable {
         return status.get();
     }
 
-    public void setStatus() {
+    public void setStatus(String status) {
+        this.status = new SimpleStringProperty(status);
+    }
+   /* public void setStatus() {
+
         if (this.endeDatum.before(new Date())) {
             if (this.status == null) {
                 this.status = new SimpleStringProperty("geendet");
             } else {
                 this.status.set("Aktiv");
+
             }
         } else {
             if (this.status == null) {
-                this.status = new SimpleStringProperty("Aktiv");
+                //this.status = new SimpleStringProperty("Aktiv");
+
             } else {
                 this.status.set("geendet");
             }
         }
+        //this.status = new SimpleStringProperty(status.get());
     }
+
     public void setStatus(String status){
        this.status=new SimpleStringProperty(status);
-    }
+    }*/
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
@@ -443,4 +454,5 @@ public class Kurs implements Externalizable {
 
         displayEndeDate = new SimpleStringProperty(date);
     }
+
 }
