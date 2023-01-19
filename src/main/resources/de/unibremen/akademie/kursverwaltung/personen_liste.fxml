@@ -18,12 +18,12 @@
                                 <Insets bottom="10.0"/>
                             </BorderPane.margin>
                             <children>
-                                <Label text="Personenliste" id="headline">
+                                <Label text="Personenliste" styleClass="headline">
                                     <VBox.margin>
                                         <Insets left="10.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label text="Übersicht aller Personen" id="subheadline">
+                                <Label text="Übersicht aller Personen" styleClass="subheadline">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0" />
                                     </VBox.margin>

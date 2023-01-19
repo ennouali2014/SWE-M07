@@ -15,12 +15,12 @@
                     <top>
                         <VBox BorderPane.alignment="CENTER">
                             <children>
-                                <Label text="Kursliste" id="headline">
+                                <Label text="Kursliste" styleClass="headline">
                                     <VBox.margin>
                                         <Insets left="10.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label text="Übersicht aller Kurse" id="subheadline">
+                                <Label text="Übersicht aller Kurse" styleClass="subheadline">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0"/>
                                     </VBox.margin>
