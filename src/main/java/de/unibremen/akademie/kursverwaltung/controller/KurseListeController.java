@@ -144,7 +144,6 @@ public class KurseListeController {
 
     @FXML
     void hinzufugenButtonAction(ActionEvent event) {
-        if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size() < 2) {
             KvModel.aktuellerKurs = null;
             main.fxmlKurseDetailsController.abbrechen(event);
             for (Tab tabPaneKursAnlegen : fxmlKurseListe.getTabPane().getTabs()) {
@@ -154,7 +153,7 @@ public class KurseListeController {
                 }
             }
         }
-    }
+
 
     @FXML
     void entfernenButtonAction(ActionEvent event) {
@@ -177,6 +176,8 @@ public class KurseListeController {
             KvModel.aktuellerKurs = tableView.getSelectionModel().getSelectedItem();
             main.fxmlKurseDetailsController.anzeigeZumAendern(KvModel.aktuellerKurs);
             main.fxmlKurseDetailsController.show();
+
+
         }
     }
 
