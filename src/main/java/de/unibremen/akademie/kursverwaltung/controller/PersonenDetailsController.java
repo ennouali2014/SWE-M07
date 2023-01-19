@@ -122,7 +122,7 @@ public class PersonenDetailsController {
                 KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
                 person = KvModel.aktuellePerson;
                 // FIXME: Geht überhaupt nicht!
-                PersonKursListe.modelKP.addAll(PersonKursListe.personKursList);
+                // PersonKursListe.modelKP.addAll(PersonKursListe.personKursList);
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
