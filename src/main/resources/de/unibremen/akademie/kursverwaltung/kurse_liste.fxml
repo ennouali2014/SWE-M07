@@ -20,13 +20,16 @@
                                     <font>
                                         <Font name="System Bold" size="54.0"/>
                                     </font>
+                                    <VBox.margin>
+                                        <Insets left="10.0" />
+                                    </VBox.margin>
                                 </Label>
-                                <Label text="Hier können die Kurse verwaltet werden" textFill="#91c9a0">
+                                <Label text="Übersicht aller Kurse" textFill="#91c9a0">
                                     <font>
                                         <Font name="System Italic" size="16.0"/>
                                     </font>
                                     <VBox.margin>
-                                        <Insets bottom="10.0"/>
+                                        <Insets bottom="10.0" left="10.0"/>
                                     </VBox.margin>
                                 </Label>
                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
@@ -71,7 +74,7 @@
                                             </HBox.margin>
                                         </MenuButton>
 
-                                        <Button mnemonicParsing="false" text="Reset">
+                                        <Button mnemonicParsing="false" text="Zurücksetzen">
                                             <HBox.margin>
                                                 <Insets left="10.0"/>
                                             </HBox.margin>
@@ -106,7 +109,7 @@
                         <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                             <children>
                                 <Button fx:id="hinzufugenButton" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#hinzufugenButtonAction" text="Kurs Anlegen">
+                                        mnemonicParsing="false" onAction="#hinzufugenButtonAction" text="Kurs anlegen">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0"/>
                                     </HBox.margin>
@@ -119,7 +122,7 @@
                                     </HBox.margin>
                                 </Button>
                                 <Button fx:id="entfernenButton" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#entfernenButtonAction" text="Entfernen">
+                                        mnemonicParsing="false" onAction="#entfernenButtonAction" text="Löschen">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0"/>
                                     </HBox.margin>

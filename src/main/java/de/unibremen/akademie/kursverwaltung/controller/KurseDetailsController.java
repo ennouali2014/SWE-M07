@@ -45,65 +45,9 @@ public class KurseDetailsController {
     private TextArea kursBeschreibung;
     @FXML
     private ComboBox status;
-
     private MainController main;
 
-    public void apply(ActionEvent actionEvent) {
-        if (KvModel.aktuellerKurs != null) {
-            // Bestehenden Kurs aendern
-            try {
-                KvModel.aktuellerKurs.setName(kursname.getText());
-                KvModel.aktuellerKurs.setAnzahlTage((Integer.parseInt(anzahlTage.getText())));
-                KvModel.aktuellerKurs.setZyklus((Integer.parseInt(zyklus.getText())));
-                LocalDate localDate = startDatum.getValue();
-                KvModel.aktuellerKurs.setStartDatum(Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant()));
-                KvModel.aktuellerKurs.setMinTnZahl((Integer.parseInt(minTnZahl.getText())));
-                KvModel.aktuellerKurs.setMaxTnZahl((Integer.parseInt(maxTnZahl.getText())));
-                KvModel.aktuellerKurs.setGebuehrBrutto((Double.parseDouble(gebuehrBrutto.getText())));
-                KvModel.aktuellerKurs.setMwstProzent((Double.parseDouble(mtwsProzent.getText())));
-                KvModel.aktuellerKurs.setKursBeschreibung(kursBeschreibung.getText());
-                KvModel.aktuellerKurs.setEndeDatum();
-                KvModel.aktuellerKurs.setGebuehrNetto();
-                KvModel.aktuellerKurs.setFreiePlaetze();
-                KvModel.aktuellerKurs.setMwstEuro();
-                KvModel.aktuellerKurs.setAktuelleTnZahl();
-                KvModel.aktuellerKurs.setStatus(status.getValue().toString());
-            } catch (Exception e) {
-                Meldung.eingabeFehler(e.getMessage());
-                return;
-            }
-            main.fxmlKurseListeController.tableView.refresh();
-            main.fxmlPersonenDetailsController.tableViewKurse.refresh();
-
-        }else {
-            String name = kursname.getText();
-            int anzahl = Integer.parseInt(anzahlTage.getText());
-            int zykls = Integer.parseInt(zyklus.getText());
-            LocalDate localDate = startDatum.getValue();
-            Date startDate = Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant());
-            int minTn = Integer.parseInt(minTnZahl.getText());
-            int maxTn = Integer.parseInt(maxTnZahl.getText());
-            double gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
-            double mwstPro = Double.parseDouble(mtwsProzent.getText());
-            String kursBesch = kursBeschreibung.getText();
-            Kurs kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
-            LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
-            endeDatum.setValue(datetolocal);
-            aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
-            freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
-            mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
-            gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
-
-        }
-        for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
-            if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
-                tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
-            }
-        }
-        abbrechen(actionEvent);
-    }
-
-    public void abbrechen(ActionEvent actionEvent) {
+    public void onClickAbbrechenKurs(ActionEvent actionEvent) {
         kursname.clear();
         status.setValue(status.getPromptText());
         anzahlTage.clear();
@@ -119,12 +63,9 @@ public class KurseDetailsController {
         aktuelleTnZahl.clear();
         mtwsEuro.clear();
         gebuehrNetto.clear();
-        if( KvModel.aktuellerKurs !=null){
-            for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
-                if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
-                    tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
-                }
-            }
+        if (KvModel.aktuellerKurs != null) {
+            Tab plTab = main.fxmlKurseListeController.fxmlKurseListe;
+            plTab.getTabPane().getSelectionModel().select(plTab);
         }
     }
 
@@ -136,8 +77,8 @@ public class KurseDetailsController {
         }
     }
 
-    public void anzeigeZumAendern(Kurs kurs) {
-        if(kurs!=null){
+    public void anzeigeZumAendernKurs(Kurs kurs) {
+        if (kurs != null) {
             kursname.setText(kurs.getName());
             status.setValue(kurs.getStatus());
             anzahlTage.setText(String.valueOf(kurs.getAnzahlTage()));
@@ -172,12 +113,104 @@ public class KurseDetailsController {
         main = mainController;
     }
 
-    // check fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder
+    public void onClickSaveKurs(ActionEvent actionEvent) {
+        if (KvModel.aktuellerKurs != null) {
+            // Bestehenden Kurs aendern
+            try {
+                KvModel.aktuellerKurs.setName(kursname.getText());
+                KvModel.aktuellerKurs.setAnzahlTage((Integer.parseInt(anzahlTage.getText())));
+                KvModel.aktuellerKurs.setZyklus((Integer.parseInt(zyklus.getText())));
+                LocalDate localDate = startDatum.getValue();
+                KvModel.aktuellerKurs.setStartDatum(Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant()));
+                KvModel.aktuellerKurs.setMinTnZahl((Integer.parseInt(minTnZahl.getText())));
+                KvModel.aktuellerKurs.setMaxTnZahl((Integer.parseInt(maxTnZahl.getText())));
+                KvModel.aktuellerKurs.setGebuehrBrutto((Double.parseDouble(gebuehrBrutto.getText())));
+                KvModel.aktuellerKurs.setMwstProzent((Double.parseDouble(mtwsProzent.getText())));
+                KvModel.aktuellerKurs.setKursBeschreibung(kursBeschreibung.getText());
+                KvModel.aktuellerKurs.setEndeDatum();
+                KvModel.aktuellerKurs.setGebuehrNetto();
+                KvModel.aktuellerKurs.setFreiePlaetze();
+                KvModel.aktuellerKurs.setMwstEuro();
+                KvModel.aktuellerKurs.setAktuelleTnZahl();
+                KvModel.aktuellerKurs.setStatus(status.getValue().toString());
+            } catch (Exception e) {
+                Meldung.eingabeFehler(e.getMessage());
+                return;
+            }
+            main.fxmlKurseListeController.tableView.refresh();
+            main.fxmlPersonenDetailsController.tableViewKurse.refresh();
+
+        } else {
+            int anzahl = 0, zykls = 0, minTn = 0, maxTn = 0;
+            double gebuhrB = 0, mwstPro = 0;
+            LocalDate localDate;
+            Date startDate = null;
+
+            Kurs kurs;
+
+            String name = kursname.getText();
+            String kursBesch = kursBeschreibung.getText();
+
+            try {
+                if (!checkIsInt(anzahlTage.getText()) ||
+                        !checkIsInt(zyklus.getText()) ||
+                        !checkIsInt(minTnZahl.getText()) ||
+                        !checkIsInt(maxTnZahl.getText())) {
+                    throw new IllegalArgumentException("Bitte nur ganze Zahlen (1) eingeben!");
+                } else {
+                    anzahl = Integer.parseInt(anzahlTage.getText());
+                    zykls = Integer.parseInt(zyklus.getText());
+                    minTn = Integer.parseInt(minTnZahl.getText());
+                    maxTn = Integer.parseInt(maxTnZahl.getText());
+                }
+
+                if (!checkIsDouble(gebuehrBrutto.getText()) ||
+                        !checkIsDouble(mtwsProzent.getText())) {
+                    throw new IllegalArgumentException("Bitte nur Zahlen mit Nachkommastelle (1.0) eingeben!");
+                } else {
+                    gebuhrB = Double.parseDouble(gebuehrBrutto.getText());
+                    mwstPro = Double.parseDouble(mtwsProzent.getText());
+                }
+
+                if (!checkIsDate(String.valueOf(startDatum.getValue()))) {
+                    throw new IllegalArgumentException("Bitte Datum mit dem DatePicker wählen!");
+                } else {
+                    localDate = startDatum.getValue();
+                    startDate = Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant());
+                }
+            } catch (Exception e) {
+                Meldung.eingabeFehler(e.getMessage());
+                return;
+            }
+
+            try {
+                kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch);
+            } catch (Exception e) {
+                Meldung.eingabeFehler(e.getMessage());
+                return;
+            }
+
+            LocalDate datetolocal = LocalDate.ofInstant(kurs.getEndeDatum().toInstant(), ZoneId.of("CET"));
+            endeDatum.setValue(datetolocal);
+            aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
+            freiePlaetze.setText(String.valueOf(kurs.getFreiePlaetze()));
+            mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
+            gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+        }
+        for (Tab tabPaneKursListe : fxmlKurseDetails.getTabPane().getTabs()) {
+            if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
+                tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
+            }
+        }
+        onClickAbbrechenKurs(actionEvent);
+    }
+
+    // checks fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder
     public static boolean checkIsInt(String wert) {
         return wert.matches("\\d+");
     }
 
-    public static boolean ceckIsDouble(String wert) {
+    public static boolean checkIsDouble(String wert) {
         return wert.matches("\\d+\\.\\d+");
     }
 

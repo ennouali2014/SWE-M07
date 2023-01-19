@@ -1,9 +1,9 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -28,7 +28,7 @@ public class PersonenListeController implements Initializable {
 
     public Tab fxmlPersonenListe;
     @FXML
-    public TableColumn<String, String> kursTeilnahmeStr;
+    public TableColumn<Person, String> kursTeilnahmeStr;
 
     @FXML
     private TableColumn<Person, String> anrede;
@@ -115,7 +115,7 @@ public class PersonenListeController implements Initializable {
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
 
-            main.fxmlPersonenDetailsController.anzeigeZumAendern(KvModel.aktuellePerson);
+            main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(KvModel.aktuellePerson);
 
             for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
@@ -181,8 +181,6 @@ public class PersonenListeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
         table.setEditable(true);
         anrede.setCellValueFactory(new PropertyValueFactory<Person, String>("anrede"));
         anrede.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn("", "Herr", "Frau", "Divers"));
@@ -196,8 +194,6 @@ public class PersonenListeController implements Initializable {
                     }
                 }
         );
-
-
         titel.setCellValueFactory(new PropertyValueFactory<Person, String>("titel"));
         titel.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
         titel.setOnEditCommit(
@@ -303,14 +299,8 @@ public class PersonenListeController implements Initializable {
                     }
                 }
         );
-        ObservableList<String> listkurs = FXCollections.observableArrayList();
 
-        for(PersonKurs personKurs:KvModel.personKursList){
-            listkurs.add(personKurs.getKurs().getName());
-        }
-
-        kursTeilnahmeStr.setCellFactory(ComboBoxTableCell.<String, String>forTableColumn(listkurs));
-
+        kursTeilnahmeStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(KvModel.model.getTeilnehmer(person.getValue()).toString()));
 
 
         table.setItems(KvModel.personList);
@@ -346,9 +336,13 @@ public class PersonenListeController implements Initializable {
 
                 //compare first name and last name...
                 String lowerCaseFilter = newValue.toLowerCase();
-                if (person.getVorname().toLowerCase().contains(lowerCaseFilter)) {
+                 if (person.getAnrede().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                } else if (person.getNachname().toLowerCase().contains(lowerCaseFilter)) {
+                } else if (person.getTitel().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (person.getVorname().toLowerCase().contains(lowerCaseFilter)) {
+                     return true;
+                 } else if (person.getNachname().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 } else if (person.getStrasse().toLowerCase().contains(lowerCaseFilter)) {
                     return true;

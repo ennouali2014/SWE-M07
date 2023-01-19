@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
+import java.util.List;
+
 public class PersonenDetailsController {
     @FXML
     public ChoiceBox anrede;
@@ -34,12 +36,13 @@ public class PersonenDetailsController {
 
     @FXML
     public Button abbrechen;
-
+    @FXML
     public ObservableList<String> choiceListAnrede = FXCollections.observableArrayList();
     static public final ObservableList<Person> listKursTeilnehmer =
             FXCollections.observableArrayList();
     static public final ObservableList<Person> listKursInteressent =
             FXCollections.observableArrayList();
+    @FXML
     public Tab fxmlPersonenDetails;
 
     static public boolean zurueckPersonenliste = false;
@@ -113,11 +116,14 @@ public class PersonenDetailsController {
     }
 
     @FXML
-    public void onsaveclick() {
+    public void onClickSavePerson() {
+        Person person = null;
         // Update einer bestehenden Person
         if (KvModel.aktuellePerson != null) {
             try {
                 KvModel.aktuellePerson.updatePerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+                person = KvModel.aktuellePerson;
+                KvModel.personKursList.addAll(PersonKursListe.personKursList);
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -128,7 +134,7 @@ public class PersonenDetailsController {
             // Neue Person hinzufuegen
             int aktuelleAnzPersonen = KvModel.personList.size();
             try {
-                Person person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
+                person = Person.addNewPerson(anrede.getValue().toString(), titel.getText(), vorname.getText(), nachname.getText(), strasse.getText(), plz.getText(), ort.getText(), email.getText(), telefon.getText());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -144,11 +150,14 @@ public class PersonenDetailsController {
 
         if (PersonenDetailsController.zurueckPersonenliste) {
             plTab.getTabPane().getSelectionModel().select(plTab);
+
+            main.fxmlPersonenListeController.table.getSelectionModel().clearSelection();
+            main.fxmlPersonenListeController.table.getSelectionModel().select(person);
         }
     }
 
     @FXML
-    public void anzeigeZumAendern(Person person) {
+    public void onClickAnzeigeAendernPerson(Person person) {
         if (person != null) {
             String anrede = person.getAnrede();
             for (int i = 0; i < choiceListAnrede.size(); i++) {
@@ -168,7 +177,7 @@ public class PersonenDetailsController {
     }
 
     @FXML
-    public void onabbrechenclick(ActionEvent event) {
+    public void onClickAbbrechenPerson(ActionEvent event) {
         felderLeeren();
 
         if (zurueckPersonenliste) {
@@ -203,8 +212,7 @@ public class PersonenDetailsController {
     }
 
     public void ausTeilnehmerRaus(ActionEvent actionEvent) {
-
-
+        tableViewTeilnehmerZu.getItems().removeAll(tableViewTeilnehmerZu.getSelectionModel().getSelectedItem());
     }
 
     /*
@@ -229,16 +237,12 @@ public class PersonenDetailsController {
         if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
-        Boolean test_add_kurs = PersonKursListe.modelKP.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson,
+        Boolean test_is_kurs = PersonKursListe.modelKP.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson,
                 (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
-//    Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
-//    KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
-        if (test_add_kurs) {
+
+        if (test_is_kurs) {
             tableViewTeilnehmerZu.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
         }
-
-//    System.out.println(KvModel.aktuellePerson);
-//    System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
 
     }
 
