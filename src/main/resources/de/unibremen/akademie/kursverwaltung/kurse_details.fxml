@@ -3,11 +3,10 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.String?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <Tab xmlns:fx="http://javafx.com/fxml/1" text="Kurse-Details" fx:id="fxmlKurseDetails"
      xmlns="http://javafx.com/javafx/18"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController">
@@ -45,13 +44,14 @@
                                                             <children>
                                                                 <Label prefWidth="150.0" text="Kurs Name : ">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="14.0"/>
                                                                     </font>
                                                                     <HBox.margin>
-                                                                        <Insets left="10.0" />
+                                                                        <Insets left="10.0"/>
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="kursname" />
+                                                                <TextField fx:id="kursname"
+                                                                           promptText="z.B. JAVA Anfänger 2023"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -64,46 +64,50 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="anzahlTage" promptText="AnzahlTage" />
+                                                                <TextField fx:id="anzahlTage" promptText="zb. 4"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="150.0" text="Start Datum : ">
+                                                                <Label prefWidth="150.0" text="Start-Datum : ">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="14.0"/>
                                                                     </font>
                                                                     <HBox.margin>
-                                                                        <Insets left="10.0" />
+                                                                        <Insets left="10.0"/>
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <DatePicker fx:id="startDatum" onAction="#onDatePickerAction" promptText="dd.MM.yyyy" />
+                                                                <DatePicker fx:id="startDatum"
+                                                                            onAction="#onDatePickerAction"
+                                                                            promptText="dd.MM.yyyy" prefWidth="163.0"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="150.0" text="Min TN: ">
+                                                                <Label prefWidth="150.0" text="Min Teilnehmer: ">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="14.0"/>
                                                                     </font>
                                                                     <HBox.margin>
-                                                                        <Insets left="10.0" />
+                                                                        <Insets left="10.0"/>
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="minTnZahl" />
+                                                                <TextField fx:id="minTnZahl" promptText="z.B. 1"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="150.0" text="Aktuelle TN-Zahl: ">
+                                                                <Label prefWidth="150.0" text="Akt. Teilnehmerzahl: ">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="14.0"/>
                                                                     </font>
                                                                     <HBox.margin>
-                                                                        <Insets left="10.0" />
+                                                                        <Insets left="10.0"/>
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="aktuelleTnZahl" disable="true" editable="false" />
+                                                                <TextField fx:id="aktuelleTnZahl" disable="true"
+                                                                           editable="false"
+                                                                           promptText="automatisch berechnet"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -116,7 +120,7 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="gebuehrBrutto" />
+                                                                <TextField fx:id="gebuehrBrutto" promptText="z.B. 5.0"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -129,7 +133,7 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="mtwsProzent" />
+                                                                <TextField fx:id="mtwsProzent" promptText="z.B. 19.0"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -143,17 +147,18 @@
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Status:">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="14.0"/>
                                                                     </font>
                                                                 </Label>
-                                                                <ComboBox fx:id="status" promptText="- Status wählen-">
+                                                                <ComboBox fx:id="status" promptText="- Status wählen-"
+                                                                          prefWidth="165.0">
                                                                     <padding>
-                                                                        <Insets left="12.0" />
+                                                                        <Insets left="12.0"/>
                                                                     </padding>
                                                                     <items>
                                                                         <FXCollections fx:factory="observableArrayList">
-                                                                            <String fx:value="Aktiv" />
-                                                                            <String fx:value="Geplant" />
+                                                                            <String fx:value="Aktiv"/>
+                                                                            <String fx:value="Geplant"/>
                                                                         </FXCollections>
                                                                     </items>
                                                                 </ComboBox>
@@ -174,55 +179,64 @@
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="120.0" text="End Datum : ">
+                                                                <Label prefWidth="120.0" text="End-Datum : ">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="14.0"/>
                                                                     </font>
                                                                 </Label>
-                                                                <DatePicker fx:id="endeDatum" disable="true" editable="false" prefHeight="26.0" />
+                                                                <DatePicker fx:id="endeDatum" disable="true"
+                                                                            editable="false" prefHeight="26.0"
+                                                                            prefWidth="163.0"
+                                                                            promptText="autom. berechnet"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="120.0" text="Max TN: ">
+                                                                <Label prefWidth="120.0" text="Max Teilnehmer: ">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="14.0"/>
                                                                     </font>
                                                                     <HBox.margin>
-                                                                        <Insets />
+                                                                        <Insets/>
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="maxTnZahl" />
+                                                                <TextField fx:id="maxTnZahl" promptText="z.B. 2"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Freie Plätze: ">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="14.0"/>
                                                                     </font>
                                                                 </Label>
-                                                                <TextField fx:id="freiePlaetze" disable="true" editable="false" />
+                                                                <TextField fx:id="freiePlaetze" disable="true"
+                                                                           editable="false"
+                                                                           promptText="automatisch berechnet"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Gebühr netto(€):">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="14.0"/>
                                                                     </font>
                                                                 </Label>
-                                                                <TextField fx:id="gebuehrNetto" disable="true" editable="false" />
+                                                                <TextField fx:id="gebuehrNetto" disable="true"
+                                                                           editable="false"
+                                                                           promptText="automatisch berechnet"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="MWST (€): ">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="14.0"/>
                                                                     </font>
                                                                 </Label>
-                                                                <TextField fx:id="mtwsEuro" disable="true" editable="false" />
+                                                                <TextField fx:id="mtwsEuro" disable="true"
+                                                                           editable="false"
+                                                                           promptText="automatisch berechnet"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -233,12 +247,13 @@
                                             <children>
                                                 <Label contentDisplay="CENTER" text="Kursbeschreibung">
                                                     <font>
-                                                        <Font size="14.0" />
+                                                        <Font size="14.0"/>
                                                     </font>
                                                 </Label>
-                                                <TextArea fx:id="kursBeschreibung" maxWidth="600.0" prefHeight="138.0" prefWidth="600.0">
+                                                <TextArea fx:id="kursBeschreibung" maxWidth="600.0" prefHeight="138.0"
+                                                          prefWidth="600.0" promptText="detailierte Infos zum Kurs">
                                                     <VBox.margin>
-                                                        <Insets />
+                                                        <Insets/>
                                                     </VBox.margin>
                                                 </TextArea>
                                             </children>
