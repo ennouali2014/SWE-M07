@@ -345,29 +345,7 @@ public class Kurs implements Externalizable {
     public void setStatus(String status) {
         this.status = new SimpleStringProperty(status);
     }
-   /* public void setStatus() {
 
-        if (this.endeDatum.before(new Date())) {
-            if (this.status == null) {
-                this.status = new SimpleStringProperty("geendet");
-            } else {
-                this.status.set("Aktiv");
-
-            }
-        } else {
-            if (this.status == null) {
-                //this.status = new SimpleStringProperty("Aktiv");
-
-            } else {
-                this.status.set("geendet");
-            }
-        }
-        //this.status = new SimpleStringProperty(status.get());
-    }
-
-    public void setStatus(String status){
-       this.status=new SimpleStringProperty(status);
-    }*/
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
@@ -433,6 +411,7 @@ public class Kurs implements Externalizable {
                 ", mwstEuro=" + mwstEuro.get() +
                 ", freiePlaetze=" + freiePlaetze.get() +
                 ", aktuelleTnZahl=" + aktuelleTnZahl.get() +
+
                 '}';
     }
 
@@ -441,7 +420,6 @@ public class Kurs implements Externalizable {
     }
 
     public void setDisplaystartDate(String date) {
-
         displaystartDate = new SimpleStringProperty(date);
     }
 
@@ -450,7 +428,6 @@ public class Kurs implements Externalizable {
     }
 
     public void setDisplayEndeDate(String date) {
-
         displayEndeDate = new SimpleStringProperty(date);
     }
 
