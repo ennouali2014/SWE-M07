@@ -24,25 +24,19 @@ import java.util.function.Predicate;
 public class KurseListeController {
 
 
-    public TableColumn<Kurs, String> columnStartDatum;
-    public TableColumn<Kurs, String> columnEndDatum;
-    public TableColumn<Kurs, Integer> columnAnzFreiPlz;
-    public TableColumn<Kurs, Integer> columnAnzTeilnehm;
-    public TableColumn<Kurs, String> columnStatus;
-    public TableColumn<Kurs, String> columnName;
-    public TableView<Kurs> tableView;
-    public TableColumn columnSelect;
-    public Tab fxmlKurseListe;
-    public CheckBox checkbox;
-
-    public Button resetAction;
-
-
+    public TableColumn<Kurs, String> colKursname;
+    public TableColumn<Kurs, String> colStart_Datum;
+    public TableColumn<Kurs, String> colEnd_Datum;
+    public TableColumn<Kurs, Integer> colAnzhl_Frei_plaetze;
+    public TableColumn<Kurs, Integer> colAnzahl_Teilnehmer;
+    public TableColumn<Kurs, String> colStatus;
+    public TableView<Kurs> tableKurseListe;
+    public Tab tabKurseListe;
+    public Button btnResetAction;
     ObservableList<Kurs> list = FXCollections.observableArrayList();
 
     @FXML
     private DatePicker abDatumDatePicker;
-
 
     @FXML
     private MenuButton alleMenuButton;
@@ -63,7 +57,7 @@ public class KurseListeController {
     private Button hinzufugenButton;
 
     @FXML
-    private TextField kursNameTextField;
+    private TextField txInpSuche;
 
     @FXML
     private Label lblAbDatum;
@@ -77,52 +71,52 @@ public class KurseListeController {
     private MainController main;
     private FilteredList<Kurs> filteredData;
 
-    public TableView<Kurs> getTableView() {
-        return tableView;
+    public TableView<Kurs> getTableKurseListe() {
+        return tableKurseListe;
     }
 
     public void initialize() {
 
 
-        tableView.setEditable(false);
+        tableKurseListe.setEditable(false);
 
 
-        tableView.setPlaceholder(
+        tableKurseListe.setPlaceholder(
                 new Label("No rows to display"));
-        columnName.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
-        columnName.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+        colKursname.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
+        colKursname.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
-        columnStatus.setCellValueFactory(new PropertyValueFactory<Kurs, String>("status"));
-        columnStatus.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+        colStatus.setCellValueFactory(new PropertyValueFactory<Kurs, String>("status"));
+        colStatus.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
-        columnAnzFreiPlz.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("freiePlaetze"));
-        columnAnzFreiPlz.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
+        colAnzhl_Frei_plaetze.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("freiePlaetze"));
+        colAnzhl_Frei_plaetze.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
 
-        columnAnzTeilnehm.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("aktuelleTnZahl"));
-        columnAnzTeilnehm.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
+        colAnzahl_Teilnehmer.setCellValueFactory(new PropertyValueFactory<Kurs, Integer>("aktuelleTnZahl"));
+        colAnzahl_Teilnehmer.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
 
 
-        columnStartDatum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
-        columnStartDatum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
+        colStart_Datum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
+        colStart_Datum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
 
-        columnEndDatum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displayEndeDate"));
-        columnEndDatum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
+        colEnd_Datum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displayEndeDate"));
+        colEnd_Datum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
 
-        tableView.setItems(KvModel.kvModel.kursList);
+        tableKurseListe.setItems(KvModel.kvModel.kursList);
         TableView.TableViewSelectionModel<Kurs> selectionModel =
-                tableView.getSelectionModel();
+                tableKurseListe.getSelectionModel();
         selectionModel.setSelectionMode(
                 SelectionMode.MULTIPLE);
 
 
-        tableView.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Kurs> change) -> {
-            list = tableView.getSelectionModel().getSelectedItems();
+        tableKurseListe.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Kurs> change) -> {
+            list = tableKurseListe.getSelectionModel().getSelectedItems();
             bearbeitenButton.setDisable(list != null && list.size() > 1);
         });
 
 
         FilteredList<Kurs> filteredData = new FilteredList<>(KvModel.kursList, kurs -> true);
-        kursNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+        txInpSuche.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(kurs -> {
 
                 if (newValue == null || newValue.isEmpty() || newValue.isBlank()) {
@@ -138,15 +132,15 @@ public class KurseListeController {
             });
         });
         SortedList<Kurs> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(tableView.comparatorProperty());
-        tableView.setItems(sortedData);
+        sortedData.comparatorProperty().bind(tableKurseListe.comparatorProperty());
+        tableKurseListe.setItems(sortedData);
     }
 
     @FXML
     void hinzufugenButtonAction(ActionEvent event) {
         KvModel.aktuellerKurs = null;
         main.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
-        for (Tab tabPaneKursAnlegen : fxmlKurseListe.getTabPane().getTabs()) {
+        for (Tab tabPaneKursAnlegen : tabKurseListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
 
@@ -157,9 +151,9 @@ public class KurseListeController {
 
     @FXML
     void entfernenButtonAction(ActionEvent event) {
-        tableView.setItems(KvModel.kvModel.kursList);
-        ObservableList<Kurs> kurse = tableView.getItems();
-        List<Kurs> selectedCoursesCopy = new ArrayList<>(tableView.getSelectionModel().getSelectedItems());
+        tableKurseListe.setItems(KvModel.kvModel.kursList);
+        ObservableList<Kurs> kurse = tableKurseListe.getItems();
+        List<Kurs> selectedCoursesCopy = new ArrayList<>(tableKurseListe.getSelectionModel().getSelectedItems());
         selectedCoursesCopy.forEach(kurse::remove);
     }
 
@@ -171,9 +165,9 @@ public class KurseListeController {
 
     @FXML
     void bearbeitenButtonAction(ActionEvent event) {
-        tableView.setItems(KvModel.kvModel.kursList);
-        if (!tableView.getSelectionModel().isEmpty() && tableView.getSelectionModel().getSelectedItems().size() < 2) {
-            KvModel.aktuellerKurs = tableView.getSelectionModel().getSelectedItem();
+        tableKurseListe.setItems(KvModel.kvModel.kursList);
+        if (!tableKurseListe.getSelectionModel().isEmpty() && tableKurseListe.getSelectionModel().getSelectedItems().size() < 2) {
+            KvModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
             //KvModel.aktuellerKurs = tableView.getSelectionModel().;
 
             main.fxmlKurseDetailsController.anzeigeZumAendernKurs(KvModel.aktuellerKurs);
@@ -192,7 +186,7 @@ public class KurseListeController {
 
     public void searchButtonAction(ActionEvent actionEvent) {
 
-        String searchText = kursNameTextField.getText();
+        String searchText = txInpSuche.getText();
         Predicate<Kurs> predicate = new Predicate<Kurs>() {
             @Override
             public boolean test(Kurs kurs) {
@@ -220,21 +214,14 @@ public class KurseListeController {
         main = mainController;
     }
 
-    public void allselect(ActionEvent actionEvent) {
-        System.out.println(checkbox.isIndeterminate());
-        if (checkbox.isIndeterminate()) {
-            System.out.println(checkbox.isIndeterminate());
-            tableView.getSelectionModel().selectAll();
-        }
-    }
 
     public void resetButtonAction(ActionEvent actionEvent) {
-        kursNameTextField.clear();
+        txInpSuche.clear();
 
         abDatumDatePicker.setValue(null);
         bisDatumDatePicker.setValue(null);
 
-        tableView.getItems();
+        tableKurseListe.getItems();
     }
 }
 

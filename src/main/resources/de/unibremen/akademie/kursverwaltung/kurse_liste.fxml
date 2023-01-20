@@ -3,7 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<Tab xmlns:fx="http://javafx.com/fxml/1" fx:id="fxmlKurseListe" text="Kurse-Liste" xmlns="http://javafx.com/javafx/16"
+<Tab xmlns:fx="http://javafx.com/fxml/1" fx:id="tabKurseListe" text="Kurse-Liste" xmlns="http://javafx.com/javafx/16"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseListeController">
     <content>
         <AnchorPane>
@@ -29,7 +29,7 @@
                                                text="Suche nach Kursname:">
 
                                         </Label>
-                                        <TextField fx:id="kursNameTextField">
+                                        <TextField fx:id="txInpSuche">
                                             <HBox.margin>
                                                 <Insets left="10.0"/>
                                             </HBox.margin>
@@ -66,7 +66,7 @@
                                             </HBox.margin>
                                         </MenuButton>
 
-                                        <Button fx:id="resetAction" mnemonicParsing="false"
+                                        <Button fx:id="btnResetAction" mnemonicParsing="false"
                                                 onAction="#resetButtonAction" text="Zurücksetzen">
                                             <HBox.margin>
                                                 <Insets left="10.0"/>
@@ -82,16 +82,16 @@
                         </VBox>
                     </top>
                     <center>
-                        <TableView fx:id="tableView" BorderPane.alignment="CENTER">
+                        <TableView fx:id="tableKurseListe" BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn fx:id="columnName" prefWidth="109.60003662109375" text="Kursname"/>
-                                <TableColumn fx:id="columnStartDatum" prefWidth="134.3999481201172" text="Start_Datum"/>
-                                <TableColumn fx:id="columnEndDatum" prefWidth="125.60006713867188" text="End_Datum"/>
-                                <TableColumn fx:id="columnAnzFreiPlz" prefWidth="179.20001220703125"
+                                <TableColumn fx:id="colKursname" prefWidth="109.60003662109375" text="Kursname"/>
+                                <TableColumn fx:id="colStart_Datum" prefWidth="134.3999481201172" text="Start_Datum"/>
+                                <TableColumn fx:id="colEnd_Datum" prefWidth="125.60006713867188" text="End_Datum"/>
+                                <TableColumn fx:id="colAnzhl_Frei_plaetze" prefWidth="179.20001220703125"
                                              text="Anzahl_Frei_plätze"/>
-                                <TableColumn fx:id="columnAnzTeilnehm" prefWidth="170.39996337890625"
+                                <TableColumn fx:id="colAnzahl_Teilnehmer" prefWidth="170.39996337890625"
                                              text="Anzahl_Teilnehmer"/>
-                                <TableColumn fx:id="columnStatus" prefWidth="144.7999267578125" text="Status"/>
+                                <TableColumn fx:id="colStatus" prefWidth="144.7999267578125" text="Status"/>
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>

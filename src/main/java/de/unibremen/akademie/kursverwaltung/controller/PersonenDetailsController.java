@@ -150,6 +150,16 @@ public class PersonenDetailsController {
             btnInteressentKursRein.setDisable(true);
         }
     }
+   /* private void checkKursVonInteressentZuTeilnehmerButton() {
+        selectedItem = tableViewInteresseKurse.getSelectionModel().getSelectedItem();
+        boolean disable = tableViewTeilnahmeKurse.getItems().contains(selectedItem) || tableViewInteresseKurse.getItems().contains(selectedItem);
+        if (selectedItem != null) {
+            btnInteressentZuTeilnehmer.setDisable(disable);
+            btnInteressentKursRein.setDisable(disable);
+        } else {
+            btnTeilnehmerKursRein.setDisable(true);
+        }*/
+
 
     @FXML
     public void onClickSavePerson() {
@@ -243,6 +253,10 @@ public class PersonenDetailsController {
     }
 
     public void onClickInteressentZuTeilnehmer(ActionEvent actionEvent) {
+//        selectedItem = tableViewInteresseKurse.getSelectionModel().getSelectedItem();
+//
+//        tableViewTeilnahmeKurse.setItems(tableViewInteresseKurse.getSelectionModel().getSelectedItems());
+//        tableViewInteresseKurse.getItems().removeAll(selectedItem);
     }
 
     public void onClickKursRausAusInteressent(ActionEvent actionEvent) {
