@@ -2,7 +2,6 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
-import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -129,12 +128,11 @@ public class PersonenListeController implements Initializable {
             }
             //TODO Mohammed
 
-            for (PersonKurs personKurs : pkListe.personKursList) {
-                if (personKurs.getKurs().equals("kurs")) {
-                    personKurs.getKurs().getKursBeschreibung();
-
-                }
-            }
+//            for (PersonKurs personKurs : pkListe.personKursList) {
+//                if (personKurs.getKurs().equals("kurs")) {
+//                    personKurs.getKurs().getTeilnehmerListe();
+//                }
+//            }
             //TODO
         }
     }
