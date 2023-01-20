@@ -1,6 +1,5 @@
 package de.unibremen.akademie.kursverwaltung;
 
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +12,8 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.Optional;
+
+import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
 public class MainApplication extends Application {
     //KvModel model;
@@ -50,14 +51,13 @@ public class MainApplication extends Application {
 
     public static void main(String[] args) {
         //model aus Datei laden
-        KvModel.kvModel.load();
+        kvModel.load();
 
         //Application (GUI) starten
         launch();
         //model beim Beenden in Datei speichern
-        KvModel.kvModel.save();
-
-        KvModel.kvModel.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + System.currentTimeMillis());
+        kvModel.save();
+        kvModel.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + System.currentTimeMillis());
 
     }
 }
