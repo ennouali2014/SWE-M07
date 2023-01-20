@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<Tab xmlns:fx="http://javafx.com/fxml/1" text="Personen-Liste" fx:id="fxmlPersonenListe"
+<Tab xmlns:fx="http://javafx.com/fxml/1" text="Personen-Liste" fx:id="tabPersonenListe"
      xmlns="http://javafx.com/javafx/18"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenListeController">
 
@@ -63,20 +63,20 @@
                     </bottom>
 
                     <center>
-                        <TableView fx:id="table" BorderPane.alignment="CENTER">
+                        <TableView fx:id="tablePersonenListe" BorderPane.alignment="CENTER">
                             <columns>
 
-                                <TableColumn fx:id="anrede" prefWidth="70.0" text="Anrede"/>
-                                <TableColumn fx:id="titel" prefWidth="70.0" text="Titel"/>
-                                <TableColumn fx:id="vorname" prefWidth="110.0" text="Vorname"/>
-                                <TableColumn fx:id="nachname" prefWidth="118.4000244140625" text="Nachname"/>
-                                <TableColumn fx:id="strasse" prefWidth="102.39996337890625" text="Strasse"/>
-                                <TableColumn fx:id="plz" prefWidth="100.0" text="Plz"/>
-                                <TableColumn fx:id="ort" prefWidth="110.0" text="Ort"/>
-                                <TableColumn fx:id="email" prefWidth="120.0" text="Email"/>
-                                <TableColumn fx:id="telefon" prefWidth="120.0" text="Telefon"/>
-                                <TableColumn fx:id="kursTeilnehmerStr" prefWidth="120.0" text="Teilnehmer"/>
-                                <TableColumn fx:id="kursInteressentenStr" prefWidth="120.0" text="Interessenten"/>
+                                <TableColumn fx:id="colPersonenListeAnrede" prefWidth="70.0" text="Anrede"/>
+                                <TableColumn fx:id="colPersonenListeTitel" prefWidth="70.0" text="Titel"/>
+                                <TableColumn fx:id="colPersonenListeVorname" prefWidth="110.0" text="Vorname"/>
+                                <TableColumn fx:id="colPersonenListeNachname" prefWidth="118.4000244140625" text="Nachname"/>
+                                <TableColumn fx:id="colPersonenListeStrasse" prefWidth="102.39996337890625" text="Strasse"/>
+                                <TableColumn fx:id="colPersonenListePlz" prefWidth="100.0" text="Plz"/>
+                                <TableColumn fx:id="colPersonenListeOrt" prefWidth="110.0" text="Ort"/>
+                                <TableColumn fx:id="colPersonenListeEmail" prefWidth="120.0" text="Email"/>
+                                <TableColumn fx:id="colPersonenListeTelefon" prefWidth="120.0" text="Telefon"/>
+                                <TableColumn fx:id="colPersonenListeTeilnahmeKurse" prefWidth="120.0" text="Teilnehmer"/>
+                                <TableColumn fx:id="colPersonenListeInteressierteKurse" prefWidth="120.0" text="Interessenten"/>
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
