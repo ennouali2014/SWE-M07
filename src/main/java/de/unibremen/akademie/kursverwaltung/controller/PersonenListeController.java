@@ -27,67 +27,51 @@ import static de.unibremen.akademie.kursverwaltung.domain.KvModel.pkListe;
 public class PersonenListeController implements Initializable {
 
 
-    public Tab fxmlPersonenListe;
+    public Tab tabPersonenListe;
     @FXML
-    public TableColumn<Person, String> kursTeilnehmerStr;
+    public TableView<Person> tablePersonenListe;
     @FXML
-    public TableColumn<Person, String> kursInteressentenStr;
+    public TableColumn<Person, String> colPersonenListeTeilnahmeKurse;
     @FXML
-    private TableColumn<Person, String> anrede;
+    public TableColumn<Person, String> colPersonenListeInteressierteKurse;
     @FXML
-    public TableColumn columnSelect;
+    private TableColumn<Person, String> colPersonenListeAnrede;
     // TODO wid noch bearbeitet! Mohammed
     String listPersonDetails[] = {"titel", "vorname", "nachname", "strasse", "plz", "ort", "email", "telefon"};
     @FXML
-    private TableColumn<Person, String> nachname;
+    private TableColumn<Person, String> colPersonenListeVorname;
     @FXML
-    private TableColumn<Person, String> titel;
+    private TableColumn<Person, String> colPersonenListeNachname;
     @FXML
-    private TableColumn<Person, String> strasse;
+    private TableColumn<Person, String> colPersonenListeTitel;
     @FXML
-    private TableColumn<Person, String> plz;
+    private TableColumn<Person, String> colPersonenListeStrasse;
     @FXML
-    private TableColumn<Person, String> ort;
+    private TableColumn<Person, String> colPersonenListePlz;
     @FXML
-    private TableColumn<Person, String> email;
+    private TableColumn<Person, String> colPersonenListeOrt;
     @FXML
-    private TableColumn<Person, String> telefon;
+    private TableColumn<Person, String> colPersonenListeEmail;
     @FXML
-    private TableColumn<Person, Boolean> alleCheckBox;
+    private TableColumn<Person, String> colPersonenListeTelefon;
     @FXML
     private Button andernButton;
-    @FXML
-    private ChoiceBox<String> choiceBox;
-    @FXML
-    private CheckBox interessentChkBox;
-    @FXML
-    private Label lblKursauswahl;
     @FXML
     private Button loeschButton;
     @FXML
     private Button personAnlegenButton;
     @FXML
     private TextField txInpPersonSuche;
-    @FXML
-    private TableColumn<Person, String> vorname;
-    @FXML
-    private SplitPane splitPane;
     private ObservableList<Person> list = FXCollections.observableArrayList();
     @FXML
-    private Button suchenButton;
-    @FXML
-    private CheckBox teilnehmerChkBox;
-    @FXML
     private Button btnResetSuchfeld;
-    @FXML
-    public TableView<Person> table;
 
     private FilteredList<Person> filteredData;
 
     @FXML
     public void loeschButtonAction(ActionEvent event) {
         ObservableList<Person> allPerson = KvModel.kvModel.personList;
-        List<Person> selectedPersonCopy = new ArrayList<>(table.getSelectionModel().getSelectedItems());
+        List<Person> selectedPersonCopy = new ArrayList<>(tablePersonenListe.getSelectionModel().getSelectedItems());
         selectedPersonCopy.forEach(allPerson::remove);
     }
 
@@ -97,7 +81,7 @@ public class PersonenListeController implements Initializable {
         KvModel.aktuellePerson = null;
         main.fxmlPersonenDetailsController.felderLeeren();
         PersonenDetailsController.zurueckPersonenliste = true;
-        for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
+        for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
             if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
                 tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
 
@@ -111,14 +95,14 @@ public class PersonenListeController implements Initializable {
     public void andernButtonAction(ActionEvent event) {
         PersonenDetailsController.zurueckPersonenliste = true;
 
-        if (!table.getSelectionModel().isEmpty()) {
+        if (!tablePersonenListe.getSelectionModel().isEmpty()) {
             main.fxmlPersonenDetailsController.btnSavePersonDetails.setText("Update");
 
-            KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
+            KvModel.aktuellePerson = tablePersonenListe.getSelectionModel().getSelectedItem();
 
             main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(KvModel.aktuellePerson);
 
-            for (Tab tabPanePersonAnlegen : fxmlPersonenListe.getTabPane().getTabs()) {
+            for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
                     tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
 
@@ -139,7 +123,7 @@ public class PersonenListeController implements Initializable {
     @FXML
     public void onClickResetSuchfeld(ActionEvent event) {
         txInpPersonSuche.clear();
-        table.getItems();
+        tablePersonenListe.getItems();
 
     }
 
@@ -181,10 +165,10 @@ public class PersonenListeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        table.setEditable(true);
-        anrede.setCellValueFactory(new PropertyValueFactory<Person, String>("anrede"));
-        anrede.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn("", "Herr", "Frau", "Divers"));
-        anrede.setOnEditCommit(
+        tablePersonenListe.setEditable(true);
+        colPersonenListeAnrede.setCellValueFactory(new PropertyValueFactory<Person, String>("anrede"));
+        colPersonenListeAnrede.setCellFactory(ComboBoxTableCell.<Person, String>forTableColumn("", "Herr", "Frau", "Divers"));
+        colPersonenListeAnrede.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Person, String> t) {
@@ -194,9 +178,9 @@ public class PersonenListeController implements Initializable {
                     }
                 }
         );
-        titel.setCellValueFactory(new PropertyValueFactory<Person, String>("titel"));
-        titel.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
-        titel.setOnEditCommit(
+        colPersonenListeTitel.setCellValueFactory(new PropertyValueFactory<Person, String>("titel"));
+        colPersonenListeTitel.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        colPersonenListeTitel.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Person, String> v) {
@@ -207,9 +191,9 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        vorname.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
-        vorname.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
-        vorname.setOnEditCommit(
+        colPersonenListeVorname.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
+        colPersonenListeVorname.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        colPersonenListeVorname.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Person, String> v) {
@@ -220,9 +204,9 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        nachname.setCellValueFactory(new PropertyValueFactory<Person, String>("nachname"));
-        nachname.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
-        nachname.setOnEditCommit(
+        colPersonenListeNachname.setCellValueFactory(new PropertyValueFactory<Person, String>("nachname"));
+        colPersonenListeNachname.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        colPersonenListeNachname.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Person, String> v) {
@@ -234,9 +218,9 @@ public class PersonenListeController implements Initializable {
         );
 
 
-        strasse.setCellValueFactory(new PropertyValueFactory<Person, String>("strasse"));
-        strasse.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
-        strasse.setOnEditCommit(
+        colPersonenListeStrasse.setCellValueFactory(new PropertyValueFactory<Person, String>("strasse"));
+        colPersonenListeStrasse.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        colPersonenListeStrasse.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Person, String> v) {
@@ -247,9 +231,9 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        plz.setCellValueFactory(new PropertyValueFactory<Person, String>("plz"));
-        plz.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
-        plz.setOnEditCommit(
+        colPersonenListePlz.setCellValueFactory(new PropertyValueFactory<Person, String>("plz"));
+        colPersonenListePlz.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        colPersonenListePlz.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Person, String> v) {
@@ -260,9 +244,9 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        ort.setCellValueFactory(new PropertyValueFactory<Person, String>("ort"));
-        ort.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
-        ort.setOnEditCommit(
+        colPersonenListeOrt.setCellValueFactory(new PropertyValueFactory<Person, String>("ort"));
+        colPersonenListeOrt.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        colPersonenListeOrt.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Person, String> v) {
@@ -273,9 +257,9 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        email.setCellValueFactory(new PropertyValueFactory<Person, String>("email"));
-        email.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
-        email.setOnEditCommit(
+        colPersonenListeEmail.setCellValueFactory(new PropertyValueFactory<Person, String>("email"));
+        colPersonenListeEmail.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        colPersonenListeEmail.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Person, String> v) {
@@ -287,9 +271,9 @@ public class PersonenListeController implements Initializable {
 
         );
 
-        telefon.setCellValueFactory(new PropertyValueFactory<Person, String>("telefon"));
-        telefon.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
-        telefon.setOnEditCommit(
+        colPersonenListeTelefon.setCellValueFactory(new PropertyValueFactory<Person, String>("telefon"));
+        colPersonenListeTelefon.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        colPersonenListeTelefon.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Person, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Person, String> v) {
@@ -300,17 +284,17 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        kursTeilnehmerStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsTeilnehmer(person.getValue()).toString()));
-        kursInteressentenStr.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsInteressent(person.getValue()).toString()));
+        colPersonenListeTeilnahmeKurse.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsTeilnehmer(person.getValue()).toString()));
+        colPersonenListeInteressierteKurse.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsInteressent(person.getValue()).toString()));
 
 
-        table.setItems(KvModel.personList);
+        tablePersonenListe.setItems(KvModel.personList);
 
-        TableView.TableViewSelectionModel<Person> selectionModel = table.getSelectionModel();
+        TableView.TableViewSelectionModel<Person> selectionModel = tablePersonenListe.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
 
-        table.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Person> change) -> {
-            list = table.getSelectionModel().getSelectedItems();
+        tablePersonenListe.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Person> change) -> {
+            list = tablePersonenListe.getSelectionModel().getSelectedItems();
             andernButton.setDisable(list != null && list.size() > 1);
         });
 
@@ -358,10 +342,10 @@ public class PersonenListeController implements Initializable {
         SortedList<Person> sortedData = new SortedList<>(filteredData);
 
         //bind the SortedList comparator to the TableView comparator
-        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        sortedData.comparatorProperty().bind(tablePersonenListe.comparatorProperty());
 
         //add sorted and filtered data to the table
-        table.setItems(sortedData);
+        tablePersonenListe.setItems(sortedData);
     }
 
     @FXML

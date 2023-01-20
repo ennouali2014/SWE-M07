@@ -190,15 +190,15 @@ public class PersonenDetailsController {
             }
         }
         KvModel.aktuellePerson = null;
-        Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
+        Tab plTab = main.fxmlPersonenListeController.tabPersonenListe;
         //plTab.getTabPane().getSelectionModel().select(plTab);
-        main.fxmlPersonenListeController.table.refresh();
+        main.fxmlPersonenListeController.tablePersonenListe.refresh();
 
         if (PersonenDetailsController.zurueckPersonenliste) {
             plTab.getTabPane().getSelectionModel().select(plTab);
 
-            main.fxmlPersonenListeController.table.getSelectionModel().clearSelection();
-            main.fxmlPersonenListeController.table.getSelectionModel().select(person);
+            main.fxmlPersonenListeController.tablePersonenListe.getSelectionModel().clearSelection();
+            main.fxmlPersonenListeController.tablePersonenListe.getSelectionModel().select(person);
         }
     }
 
@@ -228,7 +228,7 @@ public class PersonenDetailsController {
 
         if (zurueckPersonenliste) {
             //System.out.println(zurueckPersonenliste);
-            Tab plTab = main.fxmlPersonenListeController.fxmlPersonenListe;
+            Tab plTab = main.fxmlPersonenListeController.tabPersonenListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
             zurueckPersonenliste = false;
         }
