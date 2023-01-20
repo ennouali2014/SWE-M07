@@ -47,12 +47,12 @@ public class KurseDetailsController {
     @FXML
     private TextArea txtAreaKursBeschreibung;
     @FXML
-    private ComboBox comobStatus;
+    private ComboBox comboStatus;
     private MainController main;
 
     public void onClickAbbrechenKurs(ActionEvent actionEvent) {
         txInpKursname.clear();
-        comobStatus.setValue(comobStatus.getPromptText());
+        comboStatus.setValue(comboStatus.getPromptText());
         txInpAnzahlTage.clear();
         txInpZyklus.clear();
         pickStartDatum.setValue(null);
@@ -83,7 +83,7 @@ public class KurseDetailsController {
     public void anzeigeZumAendernKurs(Kurs kurs) {
         if (kurs != null) {
             txInpKursname.setText(kurs.getName());
-            comobStatus.setValue(kurs.getStatus());
+            comboStatus.setValue(kurs.getStatus());
             txInpAnzahlTage.setText(String.valueOf(kurs.getAnzahlTage()));
             txInpZyklus.setText(String.valueOf(kurs.getZyklus()));
             LocalDate datetolocal = LocalDate.ofInstant(kurs.getStartDatum().toInstant(), ZoneId.of("CET"));
@@ -138,7 +138,7 @@ public class KurseDetailsController {
                 AnwendungsModel.aktuellerKurs.setFreiePlaetze();
                 AnwendungsModel.aktuellerKurs.setMwstEuro();
                 AnwendungsModel.aktuellerKurs.setAktuelleTnZahl();
-                AnwendungsModel.aktuellerKurs.setStatus(comobStatus.getValue().toString());
+                AnwendungsModel.aktuellerKurs.setStatus(comboStatus.getValue().toString());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
                 AnwendungsModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(AnwendungsModel.aktuellerKurs.getStartDatum()));
@@ -162,7 +162,7 @@ public class KurseDetailsController {
 
             String name = txInpKursname.getText();
             String kursBesch = txtAreaKursBeschreibung.getText();
-            String statusSTR = comobStatus.getSelectionModel().getSelectedItem().toString();
+            String statusSTR = comboStatus.getSelectionModel().getSelectedItem().toString();
             try {
                 if (!checkIsInt(txInpAnzahlTage.getText()) ||
                         !checkIsInt(txInpZyklus.getText()) ||
