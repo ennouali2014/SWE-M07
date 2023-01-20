@@ -32,7 +32,6 @@ public class PersonenListeController implements Initializable {
     public TableColumn<Person, String> kursTeilnehmerStr;
     @FXML
     public TableColumn<Person, String> kursInteressentenStr;
-
     @FXML
     private TableColumn<Person, String> anrede;
     @FXML
@@ -68,7 +67,7 @@ public class PersonenListeController implements Initializable {
     @FXML
     private Button personAnlegenButton;
     @FXML
-    private TextField suchTxtField;
+    private TextField txInpPersonSuche;
     @FXML
     private TableColumn<Person, String> vorname;
     @FXML
@@ -79,10 +78,9 @@ public class PersonenListeController implements Initializable {
     @FXML
     private CheckBox teilnehmerChkBox;
     @FXML
-    private Button zurucksetzenButton;
+    private Button btnResetSuchfeld;
     @FXML
     public TableView<Person> table;
-    @FXML
 
     private FilteredList<Person> filteredData;
 
@@ -114,7 +112,7 @@ public class PersonenListeController implements Initializable {
         PersonenDetailsController.zurueckPersonenliste = true;
 
         if (!table.getSelectionModel().isEmpty()) {
-            main.fxmlPersonenDetailsController.save.setText("Update");
+            main.fxmlPersonenDetailsController.btnSavePersonDetails.setText("Update");
 
             KvModel.aktuellePerson = table.getSelectionModel().getSelectedItem();
 
@@ -139,8 +137,8 @@ public class PersonenListeController implements Initializable {
 
 
     @FXML
-    public void zurucksetzenButtonAction(ActionEvent event) {
-        suchTxtField.clear();
+    public void onClickResetSuchfeld(ActionEvent event) {
+        txInpPersonSuche.clear();
         table.getItems();
 
     }
@@ -323,7 +321,7 @@ public class PersonenListeController implements Initializable {
         FilteredList<Person> filteredData = new FilteredList<>(KvModel.personList, person -> true);
 
         // set the filter Predicate whenever the filter changes
-        suchTxtField.textProperty().addListener((observable, oldValue, newValue) -> {
+        txInpPersonSuche.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(person -> {
                 //if filter text is empty display all persons
                 if (newValue == null || newValue.isEmpty()) {

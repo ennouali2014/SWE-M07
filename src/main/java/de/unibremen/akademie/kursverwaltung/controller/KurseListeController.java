@@ -34,6 +34,7 @@ public class KurseListeController {
     public TableColumn columnSelect;
     public Tab fxmlKurseListe;
     public CheckBox checkbox;
+
     public Button resetAction;
 
 
@@ -229,6 +230,10 @@ public class KurseListeController {
 
     public void resetButtonAction(ActionEvent actionEvent) {
         kursNameTextField.clear();
+
+        abDatumDatePicker.setValue(null);
+        bisDatumDatePicker.setValue(null);
+
         tableView.getItems();
     }
 }

@@ -20,13 +20,13 @@
                             <children>
                                 <VBox>
                                     <children>
-                                        <Label text="Kurs Details" id="headline">
+                                        <Label text="Kurs Details" styleClass="headline">
                                             <VBox.margin>
                                                 <Insets left="10.0" />
                                             </VBox.margin>
 
                                         </Label>
-                                        <Label text="Kurse anlegen, ändern und Teilnehmer/Interessenten zuweisen" id="subheadline">
+                                        <Label text="Kurse anlegen, ändern und Teilnehmer/Interessenten zuweisen" styleClass="subheadline">
                                             <VBox.margin>
                                                 <Insets left="10.0" bottom="10.0"/>
                                             </VBox.margin>
@@ -210,7 +210,7 @@
                                     <children>
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="252.0">
                                             <children>
-                                                <Label text="Person" id="subheadline" />
+                                                <Label text="Person" styleClass="subheadline" />
                                                 <TableView fx:id="tableViewKurse" prefHeight="264.0" prefWidth="252.0">
                                                     <columns>
                                                         <TableColumn fx:id="personname" prefWidth="93.59991437196732" text="Person Name" />
@@ -282,7 +282,7 @@
                                         </VBox>
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="229.0" spacing="20.0">
                                             <children>
-                                                <Label text="Teilnehmer" id="subheadline" />
+                                                <Label text="Teilnehmer" styleClass="subheadline" />
                                                 <TableView fx:id="tableViewTeilnehmerZu" prefHeight="200.0" prefWidth="200.0">
                                                     <columns>
                                                         <TableColumn fx:id="kursZuTeilnehmer" prefWidth="126.0" text="Person Name Nachname" />
@@ -316,7 +316,7 @@
                                                         </Button>
                                                     </children>
                                                 </HBox>
-                                                <Label text="Interessenten" id="subheadline" />
+                                                <Label text="Interessenten" styleClass="subheadline" />
                                                 <TableView fx:id="tableViewInteressentenZu" prefHeight="200.0" prefWidth="200.0">
                                                     <columns>
                                                         <TableColumn fx:id="kursZuInteressent" prefWidth="126.0" text="Person Name Nachname" />

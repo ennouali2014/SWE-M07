@@ -3,9 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<Tab xmlns:fx="http://javafx.com/fxml/1" text="Kurse-Liste" fx:id="fxmlKurseListe"
-     xmlns="http://javafx.com/javafx/18"
+<Tab xmlns:fx="http://javafx.com/fxml/1" fx:id="fxmlKurseListe" text="Kurse-Liste" xmlns="http://javafx.com/javafx/16"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseListeController">
     <content>
         <AnchorPane>
@@ -15,12 +13,12 @@
                     <top>
                         <VBox BorderPane.alignment="CENTER">
                             <children>
-                                <Label text="Kursliste" id="headline">
+                                <Label styleClass="headline" text="Kursliste">
                                     <VBox.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </VBox.margin>
                                 </Label>
-                                <Label text="Übersicht aller Kurse" id="subheadline">
+                                <Label styleClass="subheadline" text="Übersicht aller Kurse">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0"/>
                                     </VBox.margin>
@@ -68,7 +66,8 @@
                                             </HBox.margin>
                                         </MenuButton>
 
-                                        <Button mnemonicParsing="false" text="Zurücksetzen">
+                                        <Button fx:id="resetAction" mnemonicParsing="false"
+                                                onAction="#resetButtonAction" text="Zurücksetzen">
                                             <HBox.margin>
                                                 <Insets left="10.0"/>
                                             </HBox.margin>
@@ -132,5 +131,3 @@
         </AnchorPane>
     </content>
 </Tab>
-
-
