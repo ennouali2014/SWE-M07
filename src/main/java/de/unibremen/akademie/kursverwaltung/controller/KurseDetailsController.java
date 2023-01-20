@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -98,6 +99,8 @@ public class KurseDetailsController {
             aktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
             mtwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
             gebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+
+
         }
     }
 
@@ -136,7 +139,12 @@ public class KurseDetailsController {
                 KvModel.aktuellerKurs.setMwstEuro();
                 KvModel.aktuellerKurs.setAktuelleTnZahl();
                 KvModel.aktuellerKurs.setStatus(status.getValue().toString());
-                //KvModel.aktuellerKurs.setStatus(status.getSelectionModel().getSelectedItem().toString());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                KvModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(KvModel.aktuellerKurs.getStartDatum()));
+                KvModel.aktuellerKurs.setDisplayEndeDate(dateFormat.format(KvModel.aktuellerKurs.getEndeDatum()));
+
+
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
