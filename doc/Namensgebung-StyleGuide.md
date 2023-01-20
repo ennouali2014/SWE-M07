@@ -58,7 +58,6 @@ Namenkonvention
     // Präfix: onClick + Bezeichnung (Beschreibende Benennung der Aktion)
 
     // Standards:
-
     onClickSaveFOO - Speichern + was wird gespeichert
     onClickCancelFOO - Abbrechen + was/wo wird abgebrochen
     onClickUpdateFOO - Speichern als Update bestehnder Daten + was wird upgedatet
