@@ -3,18 +3,17 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.String?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<Tab xmlns:fx="http://javafx.com/fxml/1" text="Kurse-Details" fx:id="fxmlKurseDetails"
+<Tab xmlns:fx="http://javafx.com/fxml/1" text="Kurse-Details" fx:id="tabKurseDetails"
      xmlns="http://javafx.com/javafx/18"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseDetailsController">
     <content>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="1200.0">
             <children>
-                <SplitPane dividerPositions="0.6" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <SplitPane dividerPositions="0.6" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1200.0">
                             <children>
@@ -42,7 +41,7 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="kursname" />
+                                                                <TextField fx:id="txInpKursname"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -52,7 +51,8 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="anzahlTage" promptText="AnzahlTage" />
+                                                                <TextField fx:id="txInpAnzahlTage"
+                                                                           promptText="AnzahlTage"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -62,7 +62,9 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <DatePicker fx:id="startDatum" onAction="#onDatePickerAction" promptText="dd.MM.yyyy" prefWidth="163.0"/>
+                                                                <DatePicker fx:id="pickStartDatum"
+                                                                            onAction="#onDatePickerAction"
+                                                                            promptText="dd.MM.yyyy" prefWidth="163.0"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -72,7 +74,7 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="minTnZahl" />
+                                                                <TextField fx:id="txInpMinTnZahl"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -82,7 +84,8 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="aktuelleTnZahl" disable="true" editable="false" />
+                                                                <TextField fx:id="txInpAktuelleTnZahl" disable="true"
+                                                                           editable="false"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -92,7 +95,7 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="gebuehrBrutto" />
+                                                                <TextField fx:id="txInpGebuehrBrutto"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -102,7 +105,7 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="mtwsProzent" />
+                                                                <TextField fx:id="txInpMwsProzent"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -115,14 +118,15 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Status:" />
-                                                                <ComboBox fx:id="status" promptText="- Status wählen-">
+                                                                <ComboBox fx:id="comobStatus"
+                                                                          promptText="- Status wählen-">
                                                                     <padding>
-                                                                        <Insets left="12.0" />
+                                                                        <Insets left="12.0"/>
                                                                     </padding>
                                                                     <items>
                                                                         <FXCollections fx:factory="observableArrayList">
-                                                                            <String fx:value="Aktiv" />
-                                                                            <String fx:value="Geplant" />
+                                                                            <String fx:value="Aktiv"/>
+                                                                            <String fx:value="Geplant"/>
                                                                         </FXCollections>
                                                                     </items>
                                                                 </ComboBox>
@@ -135,13 +139,15 @@
                                                                         <Insets />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="zyklus" promptText="1-7" />
+                                                                <TextField fx:id="txInpZyklus" promptText="1-7"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="End Datum : " />
-                                                                <DatePicker fx:id="endeDatum" disable="true" editable="false" prefHeight="26.0" prefWidth="163.0" />
+                                                                <DatePicker fx:id="pickEndDatum" disable="true"
+                                                                            editable="false" prefHeight="26.0"
+                                                                            prefWidth="163.0"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -151,25 +157,28 @@
                                                                         <Insets />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="maxTnZahl" />
+                                                                <TextField fx:id="txInpMaxTnZahl"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Freie Plätze:" />
-                                                                <TextField fx:id="freiePlaetze" disable="true" editable="false" />
+                                                                <TextField fx:id="txInpFreiePlaetze" disable="true"
+                                                                           editable="false"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Gebühr netto(€):" />
-                                                                <TextField fx:id="gebuehrNetto" disable="true" editable="false" />
+                                                                <TextField fx:id="txInpGebuehrNetto" disable="true"
+                                                                           editable="false"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="MWST (€):" />
-                                                                <TextField fx:id="mtwsEuro" disable="true" editable="false" />
+                                                                <TextField fx:id="txInpMwsEuro" disable="true"
+                                                                           editable="false"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -179,9 +188,10 @@
                                         <VBox maxWidth="680.0">
                                             <children>
                                                 <Label text="Kursbeschreibung" />
-                                                <TextArea fx:id="kursBeschreibung" maxWidth="600.0" prefHeight="138.0" prefWidth="600.0">
+                                                <TextArea fx:id="txtAreaKursBeschreibung" maxWidth="600.0"
+                                                          prefHeight="138.0" prefWidth="600.0">
                                                     <VBox.margin>
-                                                        <Insets />
+                                                        <Insets/>
                                                     </VBox.margin>
                                                 </TextArea>
                                             </children>

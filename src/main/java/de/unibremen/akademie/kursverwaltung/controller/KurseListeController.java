@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
+
 public class KurseListeController {
 
 
@@ -128,7 +130,7 @@ public class KurseListeController {
 
     @FXML
     void hinzufugenButtonAction(ActionEvent event) {
-        KvModel.aktuellerKurs = null;
+        kvModel.aktuellerKurs = null;
         main.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
         for (Tab tabPaneKursAnlegen : tabKurseListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
