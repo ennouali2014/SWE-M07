@@ -1,6 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
+import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 import static de.unibremen.akademie.kursverwaltung.domain.KvModel.pkListe;
 
 public class PersonenListeController implements Initializable {
@@ -69,7 +70,7 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void loeschButtonAction(ActionEvent event) {
-        ObservableList<Person> allPerson = KvModel.kvModel.personList;
+        ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
         List<Person> selectedPersonCopy = new ArrayList<>(tablePersonenListe.getSelectionModel().getSelectedItems());
         selectedPersonCopy.forEach(allPerson::remove);
     }
@@ -77,7 +78,7 @@ public class PersonenListeController implements Initializable {
     @FXML
     public void personAnlegenButtonAction(ActionEvent event) {
 
-        KvModel.aktuellePerson = null;
+        AnwendungsModel.aktuellePerson = null;
         main.fxmlPersonenDetailsController.felderLeeren();
         PersonenDetailsController.zurueckPersonenliste = true;
         for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
@@ -97,9 +98,9 @@ public class PersonenListeController implements Initializable {
         if (!tablePersonenListe.getSelectionModel().isEmpty()) {
             main.fxmlPersonenDetailsController.btnSavePersonDetails.setText("Update");
 
-            KvModel.aktuellePerson = tablePersonenListe.getSelectionModel().getSelectedItem();
+            AnwendungsModel.aktuellePerson = tablePersonenListe.getSelectionModel().getSelectedItem();
 
-            main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(KvModel.aktuellePerson);
+            main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(AnwendungsModel.aktuellePerson);
 
             for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
@@ -287,7 +288,7 @@ public class PersonenListeController implements Initializable {
         colPersonenListeInteressierteKurse.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsInteressent(person.getValue()).toString()));
 
 
-        tablePersonenListe.setItems(KvModel.personList);
+        tablePersonenListe.setItems(kvModel.getPersonen().getPersonenListe());
 
         TableView.TableViewSelectionModel<Person> selectionModel = tablePersonenListe.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
@@ -301,7 +302,7 @@ public class PersonenListeController implements Initializable {
 
         // [Filtering with suchTextField]
         //Wrap the ObserviableList in a FilteredList
-        FilteredList<Person> filteredData = new FilteredList<>(KvModel.personList, person -> true);
+        FilteredList<Person> filteredData = new FilteredList<>(kvModel.getPersonen().getPersonenListe(), person -> true);
 
         // set the filter Predicate whenever the filter changes
         txInpPersonSuche.textProperty().addListener((observable, oldValue, newValue) -> {
