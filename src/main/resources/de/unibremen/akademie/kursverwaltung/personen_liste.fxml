@@ -32,9 +32,7 @@
                                     <children>
                                         <Label prefHeight="18.0" prefWidth="99.0" text="Person suchen:"/>
                                         <TextField fx:id="txInpPersonSuche" prefHeight="26.0" prefWidth="297.0"
-                                                   promptText="Suchbegriff eingeben......">
-
-                                        </TextField>
+                                                   promptText="Suchbegriff eingeben......"/>
                                         <Button fx:id="btnResetSuchfeld" alignment="CENTER" contentDisplay="CENTER"
                                                 mnemonicParsing="false" onAction="#onClickResetSuchfeld"
                                                 text="Zurücksetzen">
