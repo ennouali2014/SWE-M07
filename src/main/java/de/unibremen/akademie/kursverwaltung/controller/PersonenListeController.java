@@ -35,7 +35,7 @@ public class PersonenListeController implements Initializable {
     public TableColumn<Person, String> colPersonenListeInteressierteKurse;
     @FXML
     private TableColumn<Person, String> colPersonenListeAnrede;
-    // TODO wid noch bearbeitet! Mohammed
+    // TODO wird noch bearbeitet! Mohammed
     String listPersonDetails[] = {"titel", "vorname", "nachname", "strasse", "plz", "ort", "email", "telefon"};
     @FXML
     private TableColumn<Person, String> colPersonenListeVorname;
@@ -54,7 +54,7 @@ public class PersonenListeController implements Initializable {
     @FXML
     private TableColumn<Person, String> colPersonenListeTelefon;
     @FXML
-    private Button andernButton;
+    private Button btnAendernAnzeigen;
     @FXML
     private Button loeschButton;
     @FXML
@@ -294,7 +294,7 @@ public class PersonenListeController implements Initializable {
 
         tablePersonenListe.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Person> change) -> {
             list = tablePersonenListe.getSelectionModel().getSelectedItems();
-            andernButton.setDisable(list != null && list.size() > 1);
+            btnAendernAnzeigen.setDisable(list != null && list.size() > 1);
         });
 
 
