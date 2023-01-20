@@ -26,7 +26,6 @@ import static de.unibremen.akademie.kursverwaltung.domain.KvModel.pkListe;
 
 public class PersonenListeController implements Initializable {
 
-
     public Tab tabPersonenListe;
     @FXML
     public TableView<Person> tablePersonenListe;
