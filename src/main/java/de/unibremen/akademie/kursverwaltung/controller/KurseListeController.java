@@ -129,7 +129,8 @@ public class KurseListeController {
     }
 
     @FXML
-    void hinzufugenButtonAction(ActionEvent event) {
+
+    void onClickHinzufügenButton(ActionEvent event) {
         AnwendungsModel.aktuellerKurs = null;
         main.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
         for (Tab tabPaneKursAnlegen : tabKurseListe.getTabPane().getTabs()) {
@@ -142,8 +143,8 @@ public class KurseListeController {
 
 
     @FXML
-    void entfernenButtonAction(ActionEvent event) {
-        tableKurseListe.setItems(KvModel.kvModel.kursList);
+    void onClickEntfernenButton(ActionEvent event) {
+        tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         ObservableList<Kurs> kurse = tableKurseListe.getItems();
         List<Kurs> selectedCoursesCopy = new ArrayList<>(tableKurseListe.getSelectionModel().getSelectedItems());
         selectedCoursesCopy.forEach(kurse::remove);
@@ -156,13 +157,13 @@ public class KurseListeController {
     }
 
     @FXML
-    void bearbeitenButtonAction(ActionEvent event) {
-        tableKurseListe.setItems(KvModel.kvModel.kursList);
+    void onClickBearbeitenButton(ActionEvent event) {
+        tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         if (!tableKurseListe.getSelectionModel().isEmpty() && tableKurseListe.getSelectionModel().getSelectedItems().size() < 2) {
-            KvModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
+            AnwendungsModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
             //KvModel.aktuellerKurs = tableView.getSelectionModel().;
 
-            main.fxmlKurseDetailsController.anzeigeZumAendernKurs(KvModel.aktuellerKurs);
+            main.fxmlKurseDetailsController.anzeigeZumAendernKurs(AnwendungsModel.aktuellerKurs);
             main.fxmlKurseDetailsController.show();
 
 
