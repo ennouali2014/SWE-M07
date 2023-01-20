@@ -152,8 +152,13 @@ public class KurseListeController {
 
     @FXML
     void abDatselectDate(ActionEvent event) {
+        pickDatumAb.getValue();
+    }
 
-        lblDatumBis.setText(pickDate.getValue().toString());
+
+    @FXML
+    void bisDatSelectDate(ActionEvent event) {
+        pickDatumBis.getValue();
     }
 
     @FXML
@@ -171,10 +176,6 @@ public class KurseListeController {
     }
 
 
-    @FXML
-    void bisDatSelectDate(ActionEvent event) {
-
-    }
 
 
     public void searchButtonAction(ActionEvent actionEvent) {
