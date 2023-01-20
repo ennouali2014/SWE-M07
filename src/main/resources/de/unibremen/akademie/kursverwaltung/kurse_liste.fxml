@@ -102,20 +102,20 @@
                         <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                             <children>
                                 <Button fx:id="btnHinzufuegen" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#hinzufugenButtonAction" text="Kurs anlegen">
+                                        mnemonicParsing="false" onAction="#onClickHinzufügenButton" text="Kurs anlegen">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0"/>
                                     </HBox.margin>
                                 </Button>
                                 <Button fx:id="btnBearbeiten" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#bearbeitenButtonAction"
+                                        mnemonicParsing="false" onAction="#onClickBearbeitenButton"
                                         text="Bearbeiten/Anzeigen">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0"/>
                                     </HBox.margin>
                                 </Button>
                                 <Button fx:id="btnEntfernen" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#entfernenButtonAction" text="Löschen">
+                                        mnemonicParsing="false" onAction="#onClickEntfernenButton" text="Löschen">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0"/>
                                     </HBox.margin>
