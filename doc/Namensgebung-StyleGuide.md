@@ -1,6 +1,6 @@
 Namenkonvention
 ===============
-    FXML-Elemente
+### FXML-Elemente
 
     Label lblHinweis;
     // Präfix: lbl für Label + Bezeichnung
@@ -43,9 +43,9 @@ Namenkonvention
     TableView tableInteresseKurse;
     TableColumn colInteresseKurseKursname;
 
-    FXML-Actions
-    
-    Beispiele:
+### FXML-Actions
+
+    // Beispiele:
     public void onClickResetSuchfeld(ActionEvent event) {
         txInpPersonSuche.clear();
         table.getItems();
