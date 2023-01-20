@@ -269,9 +269,8 @@ public class PersonenDetailsController {
 
         }
     */
-    public void onClickKursZuTeilnehmer(ActionEvent actionEvent) {
 
-    public void kursZuTeilnehmer(ActionEvent actionEvent) {
+    public void onClickKursZuTeilnehmer(ActionEvent actionEvent) {
         if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
@@ -280,14 +279,13 @@ public class PersonenDetailsController {
         tableViewTeilnahmeKurse.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
         checkKursTeilnehmerButton();
         // FIXME: Falls schon in InteressentView ist, dort dann rausnehmen (AxF)
-    }
 
         if (test_is_kurs) {
             tableViewTeilnahmeKurse.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
             // FIXME: Falls schon in InteressentView ist, dort dann rausnehmen (AxF)
         }
 
-    public void kursZuInteressent(ActionEvent actionEvent) {
+//    public void kursZuInteressent(ActionEvent actionEvent) {
     }
 
 
