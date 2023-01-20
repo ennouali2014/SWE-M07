@@ -3,8 +3,8 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 
+import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -94,7 +94,7 @@ public class KurseListeController {
         colEnd_Datum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displayEndeDate"));
         colEnd_Datum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
 
-        tableKurseListe.setItems(KvModel.kvModel.kursList);
+        tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableKurseListe.getSelectionModel();
         selectionModel.setSelectionMode(
@@ -107,7 +107,7 @@ public class KurseListeController {
         });
 
 
-        FilteredList<Kurs> filteredData = new FilteredList<>(KvModel.kursList, kurs -> true);
+        FilteredList<Kurs> filteredData = new FilteredList<>(kvModel.getKurse().getKursListe(), kurs -> true);
         txInpSuche.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(kurs -> {
 
@@ -129,8 +129,9 @@ public class KurseListeController {
     }
 
     @FXML
+
     void onClickHinzufügenButton(ActionEvent event) {
-        kvModel.aktuellerKurs = null;
+        AnwendungsModel.aktuellerKurs = null;
         main.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
         for (Tab tabPaneKursAnlegen : tabKurseListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
@@ -143,7 +144,7 @@ public class KurseListeController {
 
     @FXML
     void onClickEntfernenButton(ActionEvent event) {
-        tableKurseListe.setItems(KvModel.kvModel.kursList);
+        tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         ObservableList<Kurs> kurse = tableKurseListe.getItems();
         List<Kurs> selectedCoursesCopy = new ArrayList<>(tableKurseListe.getSelectionModel().getSelectedItems());
         selectedCoursesCopy.forEach(kurse::remove);
@@ -157,12 +158,12 @@ public class KurseListeController {
 
     @FXML
     void onClickBearbeitenButton(ActionEvent event) {
-        tableKurseListe.setItems(KvModel.kvModel.kursList);
+        tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         if (!tableKurseListe.getSelectionModel().isEmpty() && tableKurseListe.getSelectionModel().getSelectedItems().size() < 2) {
-            KvModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
+            AnwendungsModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
             //KvModel.aktuellerKurs = tableView.getSelectionModel().;
 
-            main.fxmlKurseDetailsController.anzeigeZumAendernKurs(KvModel.aktuellerKurs);
+            main.fxmlKurseDetailsController.anzeigeZumAendernKurs(AnwendungsModel.aktuellerKurs);
             main.fxmlKurseDetailsController.show();
 
 

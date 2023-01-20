@@ -1,6 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
+import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 import static de.unibremen.akademie.kursverwaltung.domain.KvModel.pkListe;
 
 public class PersonenListeController implements Initializable {
@@ -69,15 +70,18 @@ public class PersonenListeController implements Initializable {
     private MainController main;
 
     @FXML
+
     public void onClickPersonAusListeLoeschen(ActionEvent event) {
-        ObservableList<Person> allPerson = KvModel.kvModel.personList;
+        ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
         List<Person> selectedPersonCopy = new ArrayList<>(tablePersonenListe.getSelectionModel().getSelectedItems());
         selectedPersonCopy.forEach(allPerson::remove);
     }
 
     @FXML
     public void onClickPersonAnlegenPersonenListe(ActionEvent event) {
-        KvModel.aktuellePerson = null;
+
+        AnwendungsModel.aktuellePerson = null;
+        AnwendungsModel.aktuellePerson = null;
         main.fxmlPersonenDetailsController.felderLeeren();
         PersonenDetailsController.zurueckPersonenliste = true;
         for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
@@ -93,14 +97,19 @@ public class PersonenListeController implements Initializable {
 
         if (!tablePersonenListe.getSelectionModel().isEmpty()) {
             main.fxmlPersonenDetailsController.btnSavePersonDetails.setText("Update");
-            KvModel.aktuellePerson = tablePersonenListe.getSelectionModel().getSelectedItem();
-            main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(KvModel.aktuellePerson);
+
+            AnwendungsModel.aktuellePerson = tablePersonenListe.getSelectionModel().getSelectedItem();
+
+            main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(AnwendungsModel.aktuellePerson);
+
             for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
                     tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
+
                 }
             }
             //TODO Mohammed
+
 //            for (PersonKurs personKurs : pkListe.personKursList) {
 //                if (personKurs.getKurs().equals("kurs")) {
 //                    personKurs.getKurs().getTeilnehmerListe();
@@ -110,17 +119,23 @@ public class PersonenListeController implements Initializable {
         }
     }
 
+
     @FXML
     public void onClickResetSuchfeld(ActionEvent event) {
         txInpPersonSuche.clear();
         tablePersonenListe.getItems();
+
     }
+
+
 
     @FXML
     void suchButtonAction(ActionEvent event) {
         //String such = suchTxtField.getText();
         //System.out.println(such);
+
         //  filteredData.addAll(list);
+
 //        String searchValue = suchTxtField.getText();
 //
 //        Predicate<Person> predicate = new Predicate<Person>() {
@@ -202,6 +217,7 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
+
         colPersonenListeStrasse.setCellValueFactory(new PropertyValueFactory<Person, String>("strasse"));
         colPersonenListeStrasse.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
         colPersonenListeStrasse.setOnEditCommit(
@@ -252,6 +268,7 @@ public class PersonenListeController implements Initializable {
                         ).setTelefon(v.getNewValue());
                     }
                 }
+
         );
 
         colPersonenListeTelefon.setCellValueFactory(new PropertyValueFactory<Person, String>("telefon"));
@@ -270,6 +287,7 @@ public class PersonenListeController implements Initializable {
         colPersonenListeTeilnahmeKurse.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsTeilnehmer(person.getValue()).toString()));
         colPersonenListeInteressierteKurse.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsInteressent(person.getValue()).toString()));
 
+
         tablePersonenListe.setItems(KvModel.personList);
 
         TableView.TableViewSelectionModel<Person> selectionModel = tablePersonenListe.getSelectionModel();
@@ -280,9 +298,11 @@ public class PersonenListeController implements Initializable {
             btnAendernAnzeigen.setDisable(list != null && list.size() > 1);
         });
 
+
+
         // [Filtering with suchTextField]
         //Wrap the ObserviableList in a FilteredList
-        FilteredList<Person> filteredData = new FilteredList<>(KvModel.personList, person -> true);
+        FilteredList<Person> filteredData = new FilteredList<>(kvModel.getPersonen().getPersonenListe(), person -> true);
 
         // set the filter Predicate whenever the filter changes
         txInpPersonSuche.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -291,6 +311,7 @@ public class PersonenListeController implements Initializable {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
+
                 //compare first name and last name...
                 String lowerCaseFilter = newValue.toLowerCase();
                  if (person.getAnrede().toLowerCase().contains(lowerCaseFilter)) {
@@ -316,6 +337,7 @@ public class PersonenListeController implements Initializable {
             });
         });
 
+
         //wrap the filterList in a sortedList
         SortedList<Person> sortedData = new SortedList<>(filteredData);
 
@@ -328,10 +350,12 @@ public class PersonenListeController implements Initializable {
 
     @FXML
     public void handleFilter() {
+
     }
 
     public void init(MainController mainController) {
         main = mainController;
     }
+
 
 }

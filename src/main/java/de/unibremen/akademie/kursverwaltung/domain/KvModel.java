@@ -11,8 +11,7 @@ public class KvModel {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
 
     static public PersonKursListe pkListe = new PersonKursListe();
-    public Kurs aktuellerKurs;
-    public Person aktuellePerson;
+
     private PersonenListe personen = new PersonenListe();
     private KursListe kurse = new KursListe();
 
