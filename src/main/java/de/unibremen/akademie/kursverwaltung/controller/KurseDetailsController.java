@@ -1,7 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
+import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Meldung;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -66,7 +66,7 @@ public class KurseDetailsController {
         txInpAktuelleTnZahl.clear();
         txInpMwsEuro.clear();
         txInpGebuehrNetto.clear();
-        if (KvModel.aktuellerKurs != null) {
+        if (AnwendungsModel.aktuellerKurs != null) {
             Tab plTab = main.fxmlKurseListeController.tabKurseListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
         }
@@ -120,29 +120,29 @@ public class KurseDetailsController {
 
     // FIXME: status leer gibt keinen Fehlermeldung
     public void onClickSaveKurs(ActionEvent actionEvent) {
-        if (KvModel.aktuellerKurs != null) {
+        if (AnwendungsModel.aktuellerKurs != null) {
             // Bestehenden Kurs aendern
             try {
-                KvModel.aktuellerKurs.setName(txInpKursname.getText());
-                KvModel.aktuellerKurs.setAnzahlTage((Integer.parseInt(txInpAnzahlTage.getText())));
-                KvModel.aktuellerKurs.setZyklus((Integer.parseInt(txInpZyklus.getText())));
+                AnwendungsModel.aktuellerKurs.setName(txInpKursname.getText());
+                AnwendungsModel.aktuellerKurs.setAnzahlTage((Integer.parseInt(txInpAnzahlTage.getText())));
+                AnwendungsModel.aktuellerKurs.setZyklus((Integer.parseInt(txInpZyklus.getText())));
                 LocalDate localDate = pickStartDatum.getValue();
-                KvModel.aktuellerKurs.setStartDatum(Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant()));
-                KvModel.aktuellerKurs.setMinTnZahl((Integer.parseInt(txInpMinTnZahl.getText())));
-                KvModel.aktuellerKurs.setMaxTnZahl((Integer.parseInt(txInpMaxTnZahl.getText())));
-                KvModel.aktuellerKurs.setGebuehrBrutto((Double.parseDouble(txInpGebuehrBrutto.getText())));
-                KvModel.aktuellerKurs.setMwstProzent((Double.parseDouble(txInpMwsProzent.getText())));
-                KvModel.aktuellerKurs.setKursBeschreibung(txtAreaKursBeschreibung.getText());
-                KvModel.aktuellerKurs.setEndeDatum();
-                KvModel.aktuellerKurs.setGebuehrNetto();
-                KvModel.aktuellerKurs.setFreiePlaetze();
-                KvModel.aktuellerKurs.setMwstEuro();
-                KvModel.aktuellerKurs.setAktuelleTnZahl();
-                KvModel.aktuellerKurs.setStatus(comobStatus.getValue().toString());
+                AnwendungsModel.aktuellerKurs.setStartDatum(Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant()));
+                AnwendungsModel.aktuellerKurs.setMinTnZahl((Integer.parseInt(txInpMinTnZahl.getText())));
+                AnwendungsModel.aktuellerKurs.setMaxTnZahl((Integer.parseInt(txInpMaxTnZahl.getText())));
+                AnwendungsModel.aktuellerKurs.setGebuehrBrutto((Double.parseDouble(txInpGebuehrBrutto.getText())));
+                AnwendungsModel.aktuellerKurs.setMwstProzent((Double.parseDouble(txInpMwsProzent.getText())));
+                AnwendungsModel.aktuellerKurs.setKursBeschreibung(txtAreaKursBeschreibung.getText());
+                AnwendungsModel.aktuellerKurs.setEndeDatum();
+                AnwendungsModel.aktuellerKurs.setGebuehrNetto();
+                AnwendungsModel.aktuellerKurs.setFreiePlaetze();
+                AnwendungsModel.aktuellerKurs.setMwstEuro();
+                AnwendungsModel.aktuellerKurs.setAktuelleTnZahl();
+                AnwendungsModel.aktuellerKurs.setStatus(comobStatus.getValue().toString());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-                KvModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(KvModel.aktuellerKurs.getStartDatum()));
-                KvModel.aktuellerKurs.setDisplayEndeDate(dateFormat.format(KvModel.aktuellerKurs.getEndeDatum()));
+                AnwendungsModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(AnwendungsModel.aktuellerKurs.getStartDatum()));
+                AnwendungsModel.aktuellerKurs.setDisplayEndeDate(dateFormat.format(AnwendungsModel.aktuellerKurs.getEndeDatum()));
 
 
             } catch (Exception e) {

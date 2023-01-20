@@ -12,7 +12,7 @@ class KvModelTest {
     @Test
     void saveLoadtest() {
         Person person = Person.addNewPerson("Herr", "Dr. rer. nat.", "Alexander", "Förster", "Feldweg 17", "28195", "Bremen", "axf@uni-bremen.de", "+49 162 175 978 23");
-        Kurs kurs = Kurs.addNewKurs("php", 12, 3, new Date(1898553600000L), 1, 10, 150, 19, "php backend");
+        Kurs kurs = Kurs.addNewKurs("php", 12, 3, new Date(1898553600000L), 1, 10, 150, 19, "php backend", "Aktiv");
         model.save("src/test/resources/storage/gespeicherteTestObjekte");
         model.getKurse().getKursListe().clear();
         model.getPersonen().getPersonenListe().clear();
