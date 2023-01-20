@@ -72,7 +72,7 @@ public class PersonenDetailsController {
 
 
     private MainController main;
-    private Object selektedItem;
+    private Object selectedItem;
 
     public void init(MainController mainController) {
         main = mainController;
@@ -120,9 +120,9 @@ public class PersonenDetailsController {
     }
 
     private void checkKursTeilnehmerButton() {
-        selektedItem = tableViewKurse.getSelectionModel().getSelectedItem();
-        boolean disable = tableViewTeilnahmeKurse.getItems().contains(selektedItem) || tableViewInteresseKurse.getItems().contains(selektedItem);
-        if (selektedItem != null) {
+        selectedItem = tableViewKurse.getSelectionModel().getSelectedItem();
+        boolean disable = tableViewTeilnahmeKurse.getItems().contains(selectedItem) || tableViewInteresseKurse.getItems().contains(selectedItem);
+        if (selectedItem != null) {
             btnTeilnehmerKursRein.setDisable(disable);
             btnInteressentKursRein.setDisable(disable);
         } else {
@@ -131,8 +131,8 @@ public class PersonenDetailsController {
     }
 
     private void checkKursAusTeilnehmerButton() {
-        selektedItem = tableViewTeilnahmeKurse.getSelectionModel().getSelectedItem();
-        if (selektedItem != null) {
+        selectedItem = tableViewTeilnahmeKurse.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
             btnTeilnehmerKursRaus.setDisable(false);
         } else {
             btnTeilnehmerKursRaus.setDisable(true);
@@ -140,9 +140,9 @@ public class PersonenDetailsController {
     }
 
     private void checkKursInteressentenButton() {
-        selektedItem = tableViewInteresseKurse.getSelectionModel().getSelectedItem();
-        boolean disable = tableViewTeilnahmeKurse.getItems().contains(selektedItem) || tableViewKurse.getItems().contains(selektedItem);
-        if (selektedItem != null) {
+        selectedItem = tableViewInteresseKurse.getSelectionModel().getSelectedItem();
+        boolean disable = tableViewTeilnahmeKurse.getItems().contains(selectedItem) || tableViewKurse.getItems().contains(selectedItem);
+        if (selectedItem != null) {
             btnInteressentKursRein.setDisable(disable);
             btnTeilnehmerKursRein.setDisable(disable);
         } else {
@@ -245,7 +245,7 @@ public class PersonenDetailsController {
     }
 
     public void onClickKursRausAusInteressent(ActionEvent actionEvent) {
-        tableViewInteresseKurse.getItems().removeAll(tableViewTeilnahmeKurse.getSelectionModel().getSelectedItem());
+        tableViewInteresseKurse.getItems().removeAll(tableViewInteresseKurse.getSelectionModel().getSelectedItem());
     }
 
     public void onClickKursRausAusTeilnehmer(ActionEvent actionEvent) {
@@ -276,16 +276,13 @@ public class PersonenDetailsController {
         }
         Boolean test_is_kurs = pkListe.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson,
                 (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
-        tableViewTeilnahmeKurse.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
-        checkKursTeilnehmerButton();
-        // FIXME: Falls schon in InteressentView ist, dort dann rausnehmen (AxF)
 
         if (test_is_kurs) {
             tableViewTeilnahmeKurse.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
+            checkKursTeilnehmerButton();
             // FIXME: Falls schon in InteressentView ist, dort dann rausnehmen (AxF)
         }
 
-//    public void kursZuInteressent(ActionEvent actionEvent) {
     }
 
 
@@ -299,6 +296,7 @@ public class PersonenDetailsController {
 
         if (test_is_kurs) {
             tableViewInteresseKurse.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
+            checkKursInteressentenButton();
             // FIXME: Falls schon in TeilnehmerView ist, dort dann rausnehmen (AxF)
         }
 
