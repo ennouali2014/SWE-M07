@@ -26,7 +26,7 @@ import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvMode
 import static de.unibremen.akademie.kursverwaltung.domain.KvModel.pkListe;
 
 public class PersonenListeController implements Initializable {
-
+    @FXML
     public Tab tabPersonenListe;
     @FXML
     public TableView<Person> tablePersonenListe;
@@ -57,9 +57,9 @@ public class PersonenListeController implements Initializable {
     @FXML
     private Button btnAendernAnzeigen;
     @FXML
-    private Button loeschButton;
+    private Button btnPersonAusListeLoeschen;
     @FXML
-    private Button personAnlegenButton;
+    private Button btnPersonAnlegenPersonenListe;
     @FXML
     private TextField txInpPersonSuche;
     private ObservableList<Person> list = FXCollections.observableArrayList();
@@ -71,12 +71,14 @@ public class PersonenListeController implements Initializable {
     @FXML
     public void loeschButtonAction(ActionEvent event) {
         ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
+    public void onClickPersonAusListeLoeschen(ActionEvent event) {
+        ObservableList<Person> allPerson = KvModel.kvModel.personList;
         List<Person> selectedPersonCopy = new ArrayList<>(tablePersonenListe.getSelectionModel().getSelectedItems());
         selectedPersonCopy.forEach(allPerson::remove);
     }
 
     @FXML
-    public void personAnlegenButtonAction(ActionEvent event) {
+    public void onClickPersonAnlegenPersonenListe(ActionEvent event) {
 
         AnwendungsModel.aktuellePerson = null;
         main.fxmlPersonenDetailsController.felderLeeren();
@@ -88,8 +90,6 @@ public class PersonenListeController implements Initializable {
             }
         }
     }
-
-    String searchpattern;
 
     @FXML
     public void andernButtonAction(ActionEvent event) {

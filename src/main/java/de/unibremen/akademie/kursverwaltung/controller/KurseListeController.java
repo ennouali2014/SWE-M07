@@ -143,7 +143,7 @@ public class KurseListeController {
 
     @FXML
     void entfernenButtonAction(ActionEvent event) {
-        tableKurseListe.setItems(kvModel.getKurse().getKursListe());
+        tableKurseListe.setItems(KvModel.kvModel.kursList);
         ObservableList<Kurs> kurse = tableKurseListe.getItems();
         List<Kurs> selectedCoursesCopy = new ArrayList<>(tableKurseListe.getSelectionModel().getSelectedItems());
         selectedCoursesCopy.forEach(kurse::remove);
@@ -157,12 +157,12 @@ public class KurseListeController {
 
     @FXML
     void bearbeitenButtonAction(ActionEvent event) {
-        tableKurseListe.setItems(kvModel.getKurse().getKursListe());
+        tableKurseListe.setItems(KvModel.kvModel.kursList);
         if (!tableKurseListe.getSelectionModel().isEmpty() && tableKurseListe.getSelectionModel().getSelectedItems().size() < 2) {
-            AnwendungsModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
+            KvModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
             //KvModel.aktuellerKurs = tableView.getSelectionModel().;
 
-            main.fxmlKurseDetailsController.anzeigeZumAendernKurs(AnwendungsModel.aktuellerKurs);
+            main.fxmlKurseDetailsController.anzeigeZumAendernKurs(KvModel.aktuellerKurs);
             main.fxmlKurseDetailsController.show();
 
 
