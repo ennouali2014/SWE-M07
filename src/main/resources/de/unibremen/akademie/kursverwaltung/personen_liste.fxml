@@ -51,7 +51,7 @@
                                 <Button fx:id="btnPersonAnlegenPersonenListe" mnemonicParsing="false"
                                         onAction="#onClickPersonAnlegenPersonenListe" text="Person anlegen"/>
                                 <Button fx:id="btnAendernAnzeigen" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#andernButtonAction" text="Bearbeiten/Anzeigen"/>
+                                        mnemonicParsing="false" onAction="#onClickPersonAendernPersonenListe" text="Bearbeiten/Anzeigen"/>
                                 <Button fx:id="btnPersonAusListeLoeschen" alignment="CENTER" contentDisplay="CENTER"
                                         mnemonicParsing="false" onAction="#onClickPersonAusListeLoeschen" text="Löschen"/>
                             </children>

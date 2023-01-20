@@ -88,7 +88,7 @@ public class PersonenListeController implements Initializable {
     }
 
     @FXML
-    public void andernButtonAction(ActionEvent event) {
+    public void onClickPersonAendernPersonenListe(ActionEvent event) {
         PersonenDetailsController.zurueckPersonenliste = true;
 
         if (!tablePersonenListe.getSelectionModel().isEmpty()) {
