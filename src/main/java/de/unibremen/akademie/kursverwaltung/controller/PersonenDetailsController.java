@@ -48,6 +48,7 @@ public class PersonenDetailsController {
     public TableView tableViewKurse;
     @FXML
     public TableColumn colKurseKursname;
+    @FXML
     public TableColumn colKurseStartDate;
     @FXML
     public TableView tableViewTeilnahmeKurse;
