@@ -145,8 +145,8 @@ public class PersonenDetailsController {
         boolean disable = tableViewTeilnahmeKurse.getItems().contains(selectedItem) || tableViewKurse.getItems().contains(selectedItem);
         if (selectedItem != null) {
             btnInteressentKursRein.setDisable(disable);
-            btnTeilnehmerKursRein.setDisable(disable);
         } else {
+            btnTeilnehmerKursRein.setDisable(true);
             btnInteressentKursRein.setDisable(true);
         }
     }
