@@ -36,38 +36,28 @@ public class KurseListeController {
     ObservableList<Kurs> list = FXCollections.observableArrayList();
 
     @FXML
-    private DatePicker abDatumDatePicker;
+    private DatePicker pickDatumAb;
 
     @FXML
-    private MenuButton alleMenuButton;
+    private MenuButton menuBtnAlleMenu;
 
     @FXML
-    private Button bearbeitenButton;
+    private Button btnBearbeiten;
 
     @FXML
-    private DatePicker bisDatumDatePicker;
+    private DatePicker pickDatumBis;
 
     @FXML
-    private DatePicker datePicker1;
-
+    private DatePicker pickDate;
     @FXML
-    private Button entfernenButton;
-
+    private Button btnEntfernen;
     @FXML
-    private Button hinzufugenButton;
-
+    private Button btnHinzufuegen;
     @FXML
     private TextField txInpSuche;
-
     @FXML
-    private Label lblAbDatum;
+    private Label lblDatumBis;
 
-
-    @FXML
-    private Label lblBisDatum;
-
-    @FXML
-    private Label lblTextField;
     private MainController main;
     private FilteredList<Kurs> filteredData;
 
@@ -111,7 +101,7 @@ public class KurseListeController {
 
         tableKurseListe.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Kurs> change) -> {
             list = tableKurseListe.getSelectionModel().getSelectedItems();
-            bearbeitenButton.setDisable(list != null && list.size() > 1);
+            btnBearbeiten.setDisable(list != null && list.size() > 1);
         });
 
 
@@ -160,7 +150,7 @@ public class KurseListeController {
     @FXML
     void abDatselectDate(ActionEvent event) {
 
-        lblBisDatum.setText(datePicker1.getValue().toString());
+        lblDatumBis.setText(pickDate.getValue().toString());
     }
 
     @FXML
@@ -218,8 +208,8 @@ public class KurseListeController {
     public void resetButtonAction(ActionEvent actionEvent) {
         txInpSuche.clear();
 
-        abDatumDatePicker.setValue(null);
-        bisDatumDatePicker.setValue(null);
+        pickDatumAb.setValue(null);
+        pickDatumBis.setValue(null);
 
         tableKurseListe.getItems();
     }
