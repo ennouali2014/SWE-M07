@@ -83,6 +83,7 @@ public class PersonenDetailsController {
 
 
     private MainController main;
+    private Object selektedItem;
 
     public void init(MainController mainController) {
         main = mainController;
@@ -115,10 +116,49 @@ public class PersonenDetailsController {
 
         kursZuInteressent.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         kursZuInteressent.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
-//        tableViewKurse.getSelectionModel().selectedItemProperty().addListener(
-//                (observable, oldValue, newValue) -> System.out.println(newValue));
 
+        tableViewKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursTeilnehmerButton());
+        tableViewKurse.itemsProperty().addListener((observable, oldValue, newValue) -> checkKursTeilnehmerButton());
 
+        tableViewTeilnehmerZu.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursAusTeilnehmerButton());
+        tableViewTeilnehmerZu.itemsProperty().addListener((observable, oldValue, newValue) -> {
+            checkKursAusTeilnehmerButton();
+            checkKursTeilnehmerButton();
+        });
+
+        tableViewInteressentenZu.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursInteressentenButton());
+        tableViewInteressentenZu.itemsProperty().addListener((observable, oldValue, newValue) -> checkKursInteressentenButton());
+    }
+
+    private void checkKursTeilnehmerButton() {
+        selektedItem = tableViewKurse.getSelectionModel().getSelectedItem();
+        boolean disable = tableViewTeilnehmerZu.getItems().contains(selektedItem) || tableViewInteressentenZu.getItems().contains(selektedItem);
+        if (selektedItem != null) {
+            kurs_teilnehmer.setDisable(disable);
+            kurs_interessent.setDisable(disable);
+        } else {
+            kurs_teilnehmer.setDisable(true);
+        }
+    }
+
+    private void checkKursAusTeilnehmerButton() {
+        selektedItem = tableViewTeilnehmerZu.getSelectionModel().getSelectedItem();
+        if (selektedItem != null) {
+            loeschVonTeilnehmer.setDisable(false);
+        } else {
+            loeschVonTeilnehmer.setDisable(true);
+        }
+    }
+
+    private void checkKursInteressentenButton() {
+        selektedItem = tableViewInteressentenZu.getSelectionModel().getSelectedItem();
+        boolean disable = tableViewTeilnehmerZu.getItems().contains(selektedItem) || tableViewKurse.getItems().contains(selektedItem);
+        if (selektedItem != null) {
+            kurs_interessent.setDisable(disable);
+            kurs_teilnehmer.setDisable(disable);
+        } else {
+            kurs_interessent.setDisable(true);
+        }
     }
 
     @FXML
@@ -216,44 +256,23 @@ public class PersonenDetailsController {
     }
 
     public void AusInteressentRaus(ActionEvent actionEvent) {
+        tableViewInteressentenZu.getItems().removeAll(tableViewTeilnehmerZu.getSelectionModel().getSelectedItem());
     }
 
     public void ausTeilnehmerRaus(ActionEvent actionEvent) {
         tableViewTeilnehmerZu.getItems().removeAll(tableViewTeilnehmerZu.getSelectionModel().getSelectedItem());
     }
 
-    /*
-        public void kursZuTeilnehmer(ActionEvent actionEvent) {
-
-            if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
-                return;
-            }
-
-            Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
-            KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
-            tableViewTeilnehmerZu.getItems().add(kurs);
-
-            System.out.println(KvModel.aktuellePerson);
-            System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
-
-
-        }
-    */
     public void kursZuTeilnehmer(ActionEvent actionEvent) {
-
         if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
         Boolean test_is_kurs = pkListe.addPersonInKursAlsTeilnehmer(KvModel.aktuellePerson,
                 (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
-
-        if (test_is_kurs) {
-            tableViewTeilnehmerZu.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
-            // FIXME: Falls schon in InteressentView ist, dort dann rausnehmen (AxF)
-        }
-
+        tableViewTeilnehmerZu.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
+        checkKursTeilnehmerButton();
+        // FIXME: Falls schon in InteressentView ist, dort dann rausnehmen (AxF)
     }
-
 
     public void kursZuInteressent(ActionEvent actionEvent) {
 
@@ -262,7 +281,6 @@ public class PersonenDetailsController {
         }
         Boolean test_is_kurs = pkListe.addPersonInKursAlsInteressent(KvModel.aktuellePerson,
                 (Kurs) tableViewKurse.getSelectionModel().getSelectedItem());
-
         if (test_is_kurs) {
             tableViewInteressentenZu.getItems().add(tableViewKurse.getSelectionModel().getSelectedItem());
             // FIXME: Falls schon in TeilnehmerView ist, dort dann rausnehmen (AxF)
