@@ -1,14 +1,14 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.Objects;
+
+import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
 public class Person implements Externalizable {
 
@@ -52,7 +52,7 @@ public class Person implements Externalizable {
         person.setOrt(ort);
         person.setEmail(email);
         person.setTelefon(telefon);
-        KvModel.personList.add(person);
+        kvModel.getPersonen().addPersonenZuListe(person);
         return person;
     }
 

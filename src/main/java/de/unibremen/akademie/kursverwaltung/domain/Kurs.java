@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
+
 public class Kurs implements Externalizable {
     private SimpleStringProperty name;
     private SimpleIntegerProperty anzahlTage;
@@ -75,8 +77,8 @@ public class Kurs implements Externalizable {
             throw new IllegalArgumentException("Leider sind alles Plätze belegt!");
         }
         kurs.setStatus(statusSTR);
-        KvModel.kursList.add(kurs);
-        System.out.println(KvModel.kursList);
+        kvModel.getKurse().addKursZuListe(kurs);
+
         return kurs;
     }
 

@@ -19,6 +19,8 @@ public class PersonKursListe {
             if (personKurs.getPerson().equals(person) && personKurs.getKurs().equals(kurs)) {
                 if (personKurs.isTeilnehmer() == alsTeilnehmer) {
                     return false;
+
+
                 } else {
                     personKurs.setTeilnehmer(alsTeilnehmer);
                     return true;
