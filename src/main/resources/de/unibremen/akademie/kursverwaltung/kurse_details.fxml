@@ -118,7 +118,7 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Status:" />
-                                                                <ComboBox fx:id="comobStatus"
+                                                                <ComboBox fx:id="comboStatus"
                                                                           promptText="- Status wählen-">
                                                                     <padding>
                                                                         <Insets left="12.0"/>
