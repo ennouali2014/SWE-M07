@@ -67,7 +67,7 @@ public class KurseDetailsController {
         mtwsEuro.clear();
         gebuehrNetto.clear();
         if (KvModel.aktuellerKurs != null) {
-            Tab plTab = main.fxmlKurseListeController.fxmlKurseListe;
+            Tab plTab = main.fxmlKurseListeController.tabKurseListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
         }
     }
@@ -149,8 +149,8 @@ public class KurseDetailsController {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
             }
-            main.fxmlKurseListeController.tableView.refresh();
-            main.fxmlPersonenDetailsController.tableViewKurse.refresh();
+            main.fxmlKurseListeController.tableKurseListe.refresh();
+            main.fxmlPersonenDetailsController.tableKurse.refresh();
 
         } else {
             int anzahl = 0, zykls = 0, minTn = 0, maxTn = 0;
