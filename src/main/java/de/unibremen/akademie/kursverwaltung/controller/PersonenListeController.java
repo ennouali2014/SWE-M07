@@ -67,12 +67,12 @@ public class PersonenListeController implements Initializable {
     private Button btnResetSuchfeld;
 
     private FilteredList<Person> filteredData;
+    private MainController main;
 
     @FXML
-    public void loeschButtonAction(ActionEvent event) {
-        ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
+
     public void onClickPersonAusListeLoeschen(ActionEvent event) {
-        ObservableList<Person> allPerson = KvModel.kvModel.personList;
+        ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
         List<Person> selectedPersonCopy = new ArrayList<>(tablePersonenListe.getSelectionModel().getSelectedItems());
         selectedPersonCopy.forEach(allPerson::remove);
     }
@@ -81,12 +81,12 @@ public class PersonenListeController implements Initializable {
     public void onClickPersonAnlegenPersonenListe(ActionEvent event) {
 
         AnwendungsModel.aktuellePerson = null;
+        AnwendungsModel.aktuellePerson = null;
         main.fxmlPersonenDetailsController.felderLeeren();
         PersonenDetailsController.zurueckPersonenliste = true;
         for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
             if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
                 tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
-
             }
         }
     }
@@ -127,7 +127,7 @@ public class PersonenListeController implements Initializable {
 
     }
 
-    private MainController main;
+
 
     @FXML
     void suchButtonAction(ActionEvent event) {
@@ -288,7 +288,7 @@ public class PersonenListeController implements Initializable {
         colPersonenListeInteressierteKurse.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsInteressent(person.getValue()).toString()));
 
 
-        tablePersonenListe.setItems(kvModel.getPersonen().getPersonenListe());
+        tablePersonenListe.setItems(KvModel.personList);
 
         TableView.TableViewSelectionModel<Person> selectionModel = tablePersonenListe.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
