@@ -150,7 +150,7 @@ public class KurseDetailsController {
                 return;
             }
             main.fxmlKurseListeController.tableView.refresh();
-            main.fxmlPersonenDetailsController.tableViewKurse.refresh();
+            main.fxmlPersonenDetailsController.tableKurse.refresh();
 
         } else {
             int anzahl = 0, zykls = 0, minTn = 0, maxTn = 0;

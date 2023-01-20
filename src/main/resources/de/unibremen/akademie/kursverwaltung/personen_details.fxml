@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <Tab xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" text="Personen-Details"
-     fx:id="fxmlTabPersonenDetails"
+     fx:id="tabPersonenDetails"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenDetailsController">
 
     <content>
@@ -42,7 +42,7 @@
                                                                 <Insets left="10.0"/>
                                                             </HBox.margin>
                                                         </Label>
-                                                        <ChoiceBox fx:id="cbAnrede" prefHeight="26.0" prefWidth="78.0">
+                                                        <ChoiceBox fx:id="choiceAnrede" prefHeight="26.0" prefWidth="78.0">
                                                             <tooltip>
                                                                 <Tooltip text="Frau, Herr, Divers oder Nix"/>
                                                             </tooltip>
@@ -219,7 +219,7 @@
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="323.0">
                                             <children>
                                                 <Label text="Kurse" styleClass="subheadline"/>
-                                                <TableView fx:id="tableViewKurse" prefHeight="264.0" prefWidth="252.0">
+                                                <TableView fx:id="tableKurse" prefHeight="264.0" prefWidth="252.0">
                                                     <columns>
                                                         <TableColumn fx:id="colKurseKursname" prefWidth="126.0"
                                                                      text="Kurs"/>
@@ -312,7 +312,7 @@
                                               spacing="20.0">
                                             <children>
                                                 <Label text="Teilnehmer" styleClass="subheadline"/>
-                                                <TableView fx:id="tableViewTeilnahmeKurse" prefHeight="200.0"
+                                                <TableView fx:id="tableTeilnahmeKurse" prefHeight="200.0"
                                                            prefWidth="200.0">
                                                     <columns>
                                                         <TableColumn fx:id="colTeilnahmeKurseKursname" prefWidth="126.0"
@@ -357,7 +357,7 @@
                                                     </children>
                                                 </HBox>
                                                 <Label text="Interessent" styleClass="subheadline"/>
-                                                <TableView fx:id="tableViewInteresseKurse" prefHeight="200.0"
+                                                <TableView fx:id="tableInteresseKurse" prefHeight="200.0"
                                                            prefWidth="200.0">
                                                     <columns>
                                                         <TableColumn fx:id="colInteresseKurseKursname" prefWidth="126.0"
