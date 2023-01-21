@@ -17,7 +17,10 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -140,6 +143,44 @@ public class KurseListeController {
                 return false;
             });
         });
+
+
+        pickDatumAb.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(kurs -> {
+                if (newValue == null || newValue.toString().isEmpty() || newValue.toString().isBlank()) {
+                    return true;
+                }
+                try {
+                    Date neuesDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
+                    if (kurs.getStartDatum().after(neuesDatum)) // && (kurs.getEndeDatum().before(kurslisteSucheDatum)))
+                    {
+                        return true;
+                    }
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                return false;
+            });
+        });
+
+        pickDatumBis.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(kurs -> {
+                if (newValue == null || newValue.toString().isEmpty() || newValue.toString().isBlank()) {
+                    return true;
+                }
+                try {
+                    Date neuesDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
+                    if (kurs.getStartDatum().before(neuesDatum)) // && (kurs.getEndeDatum().before(kurslisteSucheDatum)))
+                    {
+                        return true;
+                    }
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                return false;
+            });
+        });
+
 
         SortedList<Kurs> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tableKurseListe.comparatorProperty());
