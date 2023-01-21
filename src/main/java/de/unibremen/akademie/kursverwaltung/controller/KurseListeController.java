@@ -170,7 +170,7 @@ public class KurseListeController {
                 }
                 try {
                     Date neuesDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
-                    if (kurs.getStartDatum().before(neuesDatum)) // && (kurs.getEndeDatum().before(kurslisteSucheDatum)))
+                    if (kurs.getEndeDatum().before(neuesDatum)) // && (kurs.getEndeDatum().before(kurslisteSucheDatum)))
                     {
                         return true;
                     }
