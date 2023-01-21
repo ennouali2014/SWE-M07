@@ -36,12 +36,13 @@
                                                     <children>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="150.0" text="Kurs Name : ">
+                                                                <Label prefWidth="150.0" text="Kursname: ">
                                                                     <HBox.margin>
-                                                                        <Insets left="10.0" />
+                                                                        <Insets left="10.0"/>
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="txInpKursname"/>
+                                                                <TextField fx:id="txInpKursname"
+                                                                           promptText="z.B. Java Anfänger 2023"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -52,14 +53,14 @@
                                                                     </HBox.margin>
                                                                 </Label>
                                                                 <TextField fx:id="txInpAnzahlTage"
-                                                                           promptText="AnzahlTage"/>
+                                                                           promptText="z.B.  2"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="150.0" text="Start Datum: ">
+                                                                <Label prefWidth="150.0" text="Start-Datum: ">
                                                                     <HBox.margin>
-                                                                        <Insets left="10.0" />
+                                                                        <Insets left="10.0"/>
                                                                     </HBox.margin>
                                                                 </Label>
                                                                 <DatePicker fx:id="pickStartDatum"
@@ -69,43 +70,47 @@
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="150.0" text="Min TN: ">
+                                                                <Label prefWidth="150.0" text="Min. Teilnehmer: ">
                                                                     <HBox.margin>
-                                                                        <Insets left="10.0" />
+                                                                        <Insets left="10.0"/>
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="txInpMinTnZahl"/>
+                                                                <TextField fx:id="txInpMinTnZahl"
+                                                                           promptText="z.B.  5"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="150.0" text="Aktuelle TN-Zahl: ">
+                                                                <Label prefWidth="150.0" text="Akt. Teilnehmerzahl: ">
                                                                     <HBox.margin>
-                                                                        <Insets left="10.0" />
+                                                                        <Insets left="10.0"/>
                                                                     </HBox.margin>
                                                                 </Label>
                                                                 <TextField fx:id="txInpAktuelleTnZahl" disable="true"
-                                                                           editable="false"/>
+                                                                           editable="false"
+                                                                           promptText="automatisch berechnet"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="150.0" text="Gebühr brutto(€): ">
                                                                     <HBox.margin>
-                                                                        <Insets left="10.0" />
+                                                                        <Insets left="10.0"/>
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="txInpGebuehrBrutto"/>
+                                                                <TextField fx:id="txInpGebuehrBrutto"
+                                                                           promptText="z.B.  49.0"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="150.0" text="MWST (%):">
                                                                     <HBox.margin>
-                                                                        <Insets left="10.0" />
+                                                                        <Insets left="10.0"/>
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="txInpMwsProzent"/>
+                                                                <TextField fx:id="txInpMwsProzent"
+                                                                           promptText="z.B.  19.0"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -139,46 +144,51 @@
                                                                         <Insets />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="txInpZyklus" promptText="1-7"/>
+                                                                <TextField fx:id="txInpZyklus" promptText="z.B. 2"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="120.0" text="End Datum : " />
+                                                                <Label prefWidth="120.0" text="End-Datum: "/>
                                                                 <DatePicker fx:id="pickEndDatum" disable="true"
                                                                             editable="false" prefHeight="26.0"
-                                                                            prefWidth="163.0"/>
+                                                                            prefWidth="163.0"
+                                                                            promptText="automatisch berechnet"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
-                                                                <Label prefWidth="120.0" text="Max TN: ">
+                                                                <Label prefWidth="120.0" text="Max. Teilnehmer: ">
                                                                     <HBox.margin>
-                                                                        <Insets />
+                                                                        <Insets/>
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <TextField fx:id="txInpMaxTnZahl"/>
+                                                                <TextField fx:id="txInpMaxTnZahl"
+                                                                           promptText="z.B.  10"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Freie Plätze:" />
                                                                 <TextField fx:id="txInpFreiePlaetze" disable="true"
-                                                                           editable="false"/>
+                                                                           editable="false"
+                                                                           promptText="automatisch berechnet"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="Gebühr netto(€):" />
                                                                 <TextField fx:id="txInpGebuehrNetto" disable="true"
-                                                                           editable="false"/>
+                                                                           editable="false"
+                                                                           promptText="automatisch berechnet"/>
                                                             </children>
                                                         </HBox>
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="MWST (€):" />
                                                                 <TextField fx:id="txInpMwsEuro" disable="true"
-                                                                           editable="false"/>
+                                                                           editable="false"
+                                                                           promptText="automatisch berechnet"/>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -187,9 +197,10 @@
                                         </HBox>
                                         <VBox maxWidth="680.0">
                                             <children>
-                                                <Label text="Kursbeschreibung" />
+                                                <Label text="Kursbeschreibung:"/>
                                                 <TextArea fx:id="txtAreaKursBeschreibung" maxWidth="600.0"
-                                                          prefHeight="138.0" prefWidth="600.0">
+                                                          prefHeight="138.0" prefWidth="600.0"
+                                                          promptText="detailierte Infos zum Kurs">
                                                     <VBox.margin>
                                                         <Insets/>
                                                     </VBox.margin>

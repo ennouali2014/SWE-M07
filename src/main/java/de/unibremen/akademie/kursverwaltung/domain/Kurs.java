@@ -257,9 +257,9 @@ public class Kurs implements Externalizable {
 
     public void setGebuehrNetto() {
         if (this.gebuehrNetto == null) {
-            this.gebuehrNetto = new SimpleDoubleProperty(gebuehrBrutto.get() * ((100 - mwstProzent.get()) / 100));
+            this.gebuehrNetto = new SimpleDoubleProperty(Math.round((gebuehrBrutto.get() * ((100 - mwstProzent.get()) / 100)) * 100.0) / 100.0);
         } else {
-            this.gebuehrNetto.set(gebuehrBrutto.get() * ((100 - mwstProzent.get()) / 100));
+            this.gebuehrNetto.set(Math.round((gebuehrBrutto.get() * ((100 - mwstProzent.get()) / 100)) * 100.0) / 100.0);
         }
     }
 
@@ -273,11 +273,10 @@ public class Kurs implements Externalizable {
 
     public void setMwstEuro() {
         if (this.mwstEuro == null) {
-            this.mwstEuro = new SimpleDoubleProperty(gebuehrBrutto.get() * (mwstProzent.get() / 100));
+            this.mwstEuro = new SimpleDoubleProperty(Math.round((gebuehrBrutto.get() * (mwstProzent.get() / 100)) * 100.0) / 100.0);
         } else {
-            this.mwstEuro.set(gebuehrBrutto.get() * (mwstProzent.get() / 100));
+            this.mwstEuro.set(Math.round((gebuehrBrutto.get() * (mwstProzent.get() / 100)) * 100.0) / 100.0);
         }
-
     }
     public void setMwstEuro(double mwstEuro){
         this.mwstEuro=new SimpleDoubleProperty(mwstEuro);
