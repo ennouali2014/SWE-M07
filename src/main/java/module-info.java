@@ -2,6 +2,8 @@ module de.unibremen.akademie.kursverwaltung {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires kernel;
+    requires layout;
 
 
     opens de.unibremen.akademie.kursverwaltung to javafx.fxml;
