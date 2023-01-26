@@ -14,12 +14,12 @@ public class PersonKursListe {
 
 
     // TODO: wird jetzt nicht unbedingt nur geADDed, sondern ggf. geändert. Sollte das besser in einer anderen Methode gemacht werden? (AxF)
+    //TODO: personKurs.getKurs() ist manchmal null, Methode muss erneut instialisiert werden! Mohammed
     public Boolean addPersonInKurs(Person person, Kurs kurs, Boolean alsTeilnehmer) {
         for (PersonKurs personKurs : personKursList) {
             if (personKurs.getPerson().equals(person) && personKurs.getKurs().equals(kurs)) {
                 if (personKurs.isTeilnehmer() == alsTeilnehmer) {
                     return false;
-
 
                 } else {
                     personKurs.setTeilnehmer(alsTeilnehmer);

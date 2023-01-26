@@ -17,7 +17,10 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -32,6 +35,7 @@ public class KurseListeController {
     public TableColumn<Kurs, Integer> colAnzhl_Frei_plaetze;
     public TableColumn<Kurs, Integer> colAnzahl_Teilnehmer;
     public TableColumn<Kurs, String> colStatus;
+
     public TableView<Kurs> tableKurseListe;
     public Tab tabKurseListe;
     public Button btnResetAction;
@@ -40,8 +44,9 @@ public class KurseListeController {
     @FXML
     private DatePicker pickDatumAb;
 
+
     @FXML
-    private MenuButton menuBtnAlleMenu;
+    private ComboBox comboStatusKurseListeSuche;
 
     @FXML
     private Button btnBearbeiten;
@@ -108,6 +113,7 @@ public class KurseListeController {
 
 
         FilteredList<Kurs> filteredData = new FilteredList<>(kvModel.getKurse().getKursListe(), kurs -> true);
+
         txInpSuche.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(kurs -> {
 
@@ -117,16 +123,70 @@ public class KurseListeController {
                 String lowerCaseFilter = newValue.toLowerCase();
                 if (kurs.getName().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                } else if (kurs.getStatus().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
                 }
                 return false;
             });
         });
+
+
+        comboStatusKurseListeSuche.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(kurs -> {
+
+                if (newValue == null || newValue.toString().isEmpty() || newValue.toString().isBlank() || newValue.toString().equals("Alle")) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toString().toLowerCase();
+                if (kurs.getStatus().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+
+                return false;
+            });
+        });
+
+
+        pickDatumAb.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(kurs -> {
+                if (newValue == null || newValue.toString().isEmpty() || newValue.toString().isBlank()) {
+                    return true;
+                }
+                try {
+                    Date neuesDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
+                    if (kurs.getStartDatum().after(neuesDatum)) // && (kurs.getEndeDatum().before(kurslisteSucheDatum)))
+                    {
+                        return true;
+                    }
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                return false;
+            });
+        });
+
+        pickDatumBis.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(kurs -> {
+                if (newValue == null || newValue.toString().isEmpty() || newValue.toString().isBlank()) {
+                    return true;
+                }
+                try {
+                    Date neuesDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
+                    if (kurs.getEndeDatum().before(neuesDatum)) // && (kurs.getEndeDatum().before(kurslisteSucheDatum)))
+                    {
+                        return true;
+                    }
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                return false;
+            });
+        });
+
+
         SortedList<Kurs> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tableKurseListe.comparatorProperty());
         tableKurseListe.setItems(sortedData);
     }
+
 
     @FXML
 
@@ -152,8 +212,18 @@ public class KurseListeController {
 
     @FXML
     void abDatselectDate(ActionEvent event) {
+        pickDatumAb.getValue();
+    }
 
-        lblDatumBis.setText(pickDate.getValue().toString());
+
+    @FXML
+    void bisDatSelectDate(ActionEvent event) {
+        pickDatumBis.getValue();
+    }
+
+    @FXML
+    void onClickcomboStatusKurseListeSelect(ActionEvent event) {
+        comboStatusKurseListeSuche.getValue();
     }
 
     @FXML
@@ -171,10 +241,6 @@ public class KurseListeController {
     }
 
 
-    @FXML
-    void bisDatSelectDate(ActionEvent event) {
-
-    }
 
 
     public void searchButtonAction(ActionEvent actionEvent) {
@@ -210,11 +276,11 @@ public class KurseListeController {
 
     public void resetButtonAction(ActionEvent actionEvent) {
         txInpSuche.clear();
-
         pickDatumAb.setValue(null);
         pickDatumBis.setValue(null);
+        comboStatusKurseListeSuche.setValue("");
 
-        tableKurseListe.getItems();
+        // tableKurseListe.getItems();
     }
 }
 
