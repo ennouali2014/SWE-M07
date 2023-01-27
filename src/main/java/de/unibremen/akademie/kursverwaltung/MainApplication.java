@@ -1,5 +1,6 @@
 package de.unibremen.akademie.kursverwaltung;
 
+import de.unibremen.akademie.kursverwaltung.application.CreatePdf;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -49,7 +51,7 @@ public class MainApplication extends Application {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //model aus Datei laden
         kvModel.load();
 
@@ -58,6 +60,12 @@ public class MainApplication extends Application {
         //model beim Beenden in Datei speichern
         kvModel.save();
         kvModel.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + System.currentTimeMillis());
+
+        // PDF beim Beenden erzeugen
+        String DEST = "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/Personenliste.pdf";
+        File file = new File(DEST);
+        file.getParentFile().mkdirs();
+        new CreatePdf().createPdf(DEST);
 
     }
 }
