@@ -26,7 +26,7 @@ import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvMode
 import static de.unibremen.akademie.kursverwaltung.domain.KvModel.pkListe;
 
 public class PersonenListeController implements Initializable {
-
+    @FXML
     public Tab tabPersonenListe;
     @FXML
     public TableView<Person> tablePersonenListe;
@@ -57,9 +57,9 @@ public class PersonenListeController implements Initializable {
     @FXML
     private Button btnAendernAnzeigen;
     @FXML
-    private Button loeschButton;
+    private Button btnPersonAusListeLoeschen;
     @FXML
-    private Button personAnlegenButton;
+    private Button btnPersonAnlegenPersonenListe;
     @FXML
     private TextField txInpPersonSuche;
     private ObservableList<Person> list = FXCollections.observableArrayList();
@@ -67,29 +67,29 @@ public class PersonenListeController implements Initializable {
     private Button btnResetSuchfeld;
 
     private FilteredList<Person> filteredData;
+    private MainController main;
 
     @FXML
-    public void loeschButtonAction(ActionEvent event) {
+
+    public void onClickPersonAusListeLoeschen(ActionEvent event) {
         ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
         List<Person> selectedPersonCopy = new ArrayList<>(tablePersonenListe.getSelectionModel().getSelectedItems());
         selectedPersonCopy.forEach(allPerson::remove);
     }
 
     @FXML
-    public void personAnlegenButtonAction(ActionEvent event) {
+    public void onClickPersonAnlegenPersonenListe(ActionEvent event) {
 
+        AnwendungsModel.aktuellePerson = null;
         AnwendungsModel.aktuellePerson = null;
         main.fxmlPersonenDetailsController.felderLeeren();
         PersonenDetailsController.zurueckPersonenliste = true;
         for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
             if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
                 tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
-
             }
         }
     }
-
-    String searchpattern;
 
     @FXML
     public void onClickPersonAendernPersonenListe(ActionEvent event) {
@@ -127,7 +127,7 @@ public class PersonenListeController implements Initializable {
 
     }
 
-    private MainController main;
+
 
     @FXML
     void suchButtonAction(ActionEvent event) {
