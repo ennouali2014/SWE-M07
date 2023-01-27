@@ -17,7 +17,6 @@ import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvMode
 
 public class CreatePdf {
 
-    static Person person = new Person();
     public void createPdf(String dest) throws IOException {
         PdfWriter writer = new PdfWriter(dest);
         PdfDocument pdf = new PdfDocument(writer);
