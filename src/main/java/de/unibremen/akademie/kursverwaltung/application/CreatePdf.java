@@ -44,11 +44,12 @@ public class CreatePdf {
     int anzahlKurseJeSeite = 8;
 
 
+    // PDF für die Liste aller Personen
     public void createPersonenListePdf() throws IOException {
         String headline = "Liste aller gespeicherten Personen (Stand: " + aktuellesDatum +")";
         String metaSubject = "Personenliste";
         String tabsAbstand = "\t\t\t";
-        int seitenGesamt = (kvModel.getPersonen().getPersonenListe().size() + 9) / anzahlPersonenJeSeite;
+        int seitenGesamt = (kvModel.getPersonen().getPersonenListe().size() + anzahlPersonenJeSeite - 1) / anzahlPersonenJeSeite;
 
         PdfDocument pdf = new PdfDocument(
                 new PdfWriter(PERSONENLISTEPDF,
@@ -89,11 +90,12 @@ public class CreatePdf {
         personenListePdf.close();
     }
 
+    // PDF für die Liste aller Kurse
     public void createKurseListePdf() throws IOException {
         String headline = "Liste aller gespeicherten Kurse (Stand: " + aktuellesDatum +")";
         String metaSubject = "Kurseliste";
         String tabsAbstand = "\t\t\t\t";
-        int seitenGesamt = (kvModel.getKurse().getKursListe().size() + 7) / anzahlKurseJeSeite;
+        int seitenGesamt = (kvModel.getKurse().getKursListe().size() + anzahlKurseJeSeite - 1) / anzahlKurseJeSeite;
 
         PdfDocument pdf = new PdfDocument(
                 new PdfWriter(KURSELISTEPDF,
@@ -134,6 +136,7 @@ public class CreatePdf {
         kurseListePdf.close();
     }
 
+    // Daten für die Liste aller Personen holen und formatieren
     public String personToPDF (Person person) {
         return person.getAnrede() + " " +
                 person.getTitel() + " " +
@@ -146,6 +149,7 @@ public class CreatePdf {
                 person.getTelefon();
     }
 
+    // Daten für die Liste aller Kurse holen und formatieren
     public String kursToPDF (Kurs kurs) {
         return kurs.getName() + "\tStatus: " + kurs.getStatus() + "\n" +
                 "Start: " + dateOhneZeit.format(kurs.getStartDatum()) + "\t" +
@@ -159,6 +163,7 @@ public class CreatePdf {
                 "MwSt. (" + prozentWert.format(kurs.getMwstProzent()) + "%): " + geldBetrag.format(kurs.getMwstEuro());
     }
 
+    // Metadaten die in den PDF-Infos gespeichert werden
     private static void addMetaData(PdfDocumentInfo info, String subject) {
             info.setTitle("Kursverwaltung");
             info.setAuthor("SWE-M07 - DevelopmentGroup");
