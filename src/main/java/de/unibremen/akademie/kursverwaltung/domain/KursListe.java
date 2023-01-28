@@ -13,4 +13,8 @@ public class KursListe {
     public ObservableList getKursListe() {
         return kursListe;
     }
+
+    public Kurs getKursVonKursListe(int index) {
+        return kursListe.get(index);
+    }
 }

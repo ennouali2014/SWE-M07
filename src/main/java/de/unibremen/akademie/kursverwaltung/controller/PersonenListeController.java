@@ -1,6 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
+import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -23,7 +24,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
-import static de.unibremen.akademie.kursverwaltung.domain.KvModel.pkListe;
 
 public class PersonenListeController implements Initializable {
     @FXML
@@ -284,8 +284,8 @@ public class PersonenListeController implements Initializable {
                 }
         );
 
-        colPersonenListeTeilnahmeKurse.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsTeilnehmer(person.getValue()).toString()));
-        colPersonenListeInteressierteKurse.setCellValueFactory(person -> new ReadOnlyStringWrapper(pkListe.getKurseAlsInteressent(person.getValue()).toString()));
+        colPersonenListeTeilnahmeKurse.setCellValueFactory(person -> new ReadOnlyStringWrapper(kvModel.getPkListe().getKurseAlsTeilnehmer(person.getValue()).toString()));
+        colPersonenListeInteressierteKurse.setCellValueFactory(person -> new ReadOnlyStringWrapper(kvModel.getPkListe().getKurseAlsInteressent(person.getValue()).toString()));
 
 
         tablePersonenListe.setItems(kvModel.getPersonen().getPersonenListe());

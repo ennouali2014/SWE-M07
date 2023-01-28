@@ -10,8 +10,7 @@ import static de.unibremen.akademie.kursverwaltung.domain.Person.addNewPerson;
 public class KvModel {
     private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
 
-    static public PersonKursListe pkListe = new PersonKursListe();
-
+    private PersonKursListe pkListe = new PersonKursListe();
     private PersonenListe personen = new PersonenListe();
     private KursListe kurse = new KursListe();
 
@@ -27,6 +26,7 @@ public class KvModel {
         return kurse;
     }
 
+    public PersonKursListe getPkListe() { return pkListe; }
 
     public void load() {
         load(VERWALTUNGSDATEI);
@@ -102,9 +102,12 @@ public class KvModel {
             System.out.println("Kurs-Standarddaten wurde geladen!");
         }
         if (pkListe.personKursList.size() <= 0) {
-            //addPersonInKursAlsTeilnehmer(KvModel.personList.get(0), KvModel.kursList.get(0));
-            //addPersonInKursAlsTeilnehmer(KvModel.personList.get(1), KvModel.kursList.get(0));
-            //addPersonInKursAlsTeilnehmer(KvModel.personList.get(4), KvModel.kursList.get(0));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(0), kurse.getKursVonKursListe(0));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(0), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(0), kurse.getKursVonKursListe(2));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(1), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(2), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(3), kurse.getKursVonKursListe(1));
             System.out.println("PersonKursList-Standarddaten wurde geladen!");
         }
     }

@@ -13,4 +13,8 @@ public class PersonenListe {
     public ObservableList getPersonenListe() {
         return personenliste;
     }
+
+    public Person getPersonVonPersonenListe(int index) {
+        return personenliste.get(index);
+    }
 }

@@ -1,9 +1,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
-import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-import de.unibremen.akademie.kursverwaltung.domain.Meldung;
-import de.unibremen.akademie.kursverwaltung.domain.Person;
+import de.unibremen.akademie.kursverwaltung.domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
-import static de.unibremen.akademie.kursverwaltung.domain.KvModel.pkListe;
 
 public class PersonenDetailsController {
     @FXML
@@ -140,8 +136,8 @@ public class PersonenDetailsController {
             try {
                 AnwendungsModel.aktuellePerson.updatePerson(choiceAnrede.getValue().toString(), txInpTitel.getText(), txInpVorname.getText(),
                         txInpNachname.getText(), txInpStrasse.getText(), txInpPlz.getText(), txInpOrt.getText(), txInpEmail.getText(), txInpTelefon.getText());
-                pkListe.addKurseAlsTeilnehmer(AnwendungsModel.aktuellePerson, this.tableTeilnahmeKurse.getItems());
-                pkListe.addKurseAlsInteressent(AnwendungsModel.aktuellePerson, this.tableInteresseKurse.getItems());
+                kvModel.getPkListe().addKurseAlsTeilnehmer(AnwendungsModel.aktuellePerson, this.tableTeilnahmeKurse.getItems());
+                kvModel.getPkListe().addKurseAlsInteressent(AnwendungsModel.aktuellePerson, this.tableInteresseKurse.getItems());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -224,7 +220,7 @@ public class PersonenDetailsController {
         if (AnwendungsModel.aktuellePerson == null || tableTeilnahmeKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
-        Boolean test_is_kurs = pkListe.addPersonInKursAlsTeilnehmer(AnwendungsModel.aktuellePerson,
+        Boolean test_is_kurs = kvModel.getPkListe().addPersonInKursAlsTeilnehmer(AnwendungsModel.aktuellePerson,
                 (Kurs) tableKurse.getSelectionModel().getSelectedItem());
 
         if (test_is_kurs) {
@@ -240,7 +236,7 @@ public class PersonenDetailsController {
         if (AnwendungsModel.aktuellePerson == null || tableInteresseKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
-        Boolean test_is_kurs = pkListe.addPersonInKursAlsTeilnehmer(AnwendungsModel.aktuellePerson,
+        Boolean test_is_kurs = kvModel.getPkListe().addPersonInKursAlsTeilnehmer(AnwendungsModel.aktuellePerson,
                 (Kurs) tableKurse.getSelectionModel().getSelectedItem());
 
         if (test_is_kurs) {
@@ -281,7 +277,7 @@ public class PersonenDetailsController {
         if (AnwendungsModel.aktuellePerson == null || tableKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
-        Boolean test_is_kurs = pkListe.addPersonInKursAlsTeilnehmer(AnwendungsModel.aktuellePerson,
+        Boolean test_is_kurs = kvModel.getPkListe().addPersonInKursAlsTeilnehmer(AnwendungsModel.aktuellePerson,
                 (Kurs) tableKurse.getSelectionModel().getSelectedItem());
 
         if (test_is_kurs) {
@@ -297,7 +293,7 @@ public class PersonenDetailsController {
         if (AnwendungsModel.aktuellePerson == null || tableKurse.getSelectionModel().getSelectedItem() == null) {
             return;
         }
-        Boolean test_is_kurs = pkListe.addPersonInKursAlsInteressent(AnwendungsModel.aktuellePerson,
+        Boolean test_is_kurs = kvModel.getPkListe().addPersonInKursAlsInteressent(AnwendungsModel.aktuellePerson,
                 (Kurs) tableKurse.getSelectionModel().getSelectedItem());
 
         if (test_is_kurs) {
