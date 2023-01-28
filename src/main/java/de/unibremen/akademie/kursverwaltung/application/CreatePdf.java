@@ -83,7 +83,7 @@ public class CreatePdf {
             }
         } else {
             personenListePdf.add(new Paragraph(headline).setFontSize(18));
-            personenListePdf.add(new Paragraph("\nKeine sind keine Personen in der Kursverwaltung angelegt!").setFontSize(18));
+            personenListePdf.add(new Paragraph("\nEs sind keine Personen in der Kursverwaltung angelegt!").setFontSize(18));
         }
 
         seiteAktuell = 0; //reset
@@ -129,7 +129,7 @@ public class CreatePdf {
             }
         } else {
             kurseListePdf.add(new Paragraph(headline).setFontSize(18));
-            kurseListePdf.add(new Paragraph("\nKeine sind keine Kurse in der Kursverwaltung angelegt!").setFontSize(18));
+            kurseListePdf.add(new Paragraph("\nEs sind keine Kurse in der Kursverwaltung angelegt!").setFontSize(18));
         }
 
         seiteAktuell = 0; //reset
