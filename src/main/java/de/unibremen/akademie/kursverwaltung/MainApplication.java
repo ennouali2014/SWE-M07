@@ -61,11 +61,8 @@ public class MainApplication extends Application {
         kvModel.save();
         kvModel.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + System.currentTimeMillis());
 
-        // PDF beim Beenden erzeugen
-        String DEST = "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/Personenliste.pdf";
-        File file = new File(DEST);
-        file.getParentFile().mkdirs();
-        new CreatePdf().createPdf(DEST);
+        // PDFs beim Beenden erzeugen
+        new CreatePdf().createPersonenListePdf();
 
     }
 }

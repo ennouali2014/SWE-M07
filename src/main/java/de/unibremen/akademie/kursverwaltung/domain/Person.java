@@ -209,18 +209,6 @@ public class Person implements Externalizable {
                 '}';
     }
 
-    public String personToPDF () {
-        return getAnrede() + " " +
-                getTitel() + " " +
-                getVorname() + " " +
-                getNachname() + "\r" +
-                getPlz() + " " +
-                getOrt() + ", " +
-                getStrasse() + "\r" +
-                getEmail() + ", " +
-                getTelefon();
-    }
-
     @Override
     public void writeExternal(ObjectOutput stream) throws IOException {
         stream.writeUTF(getAnrede());
