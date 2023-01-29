@@ -38,6 +38,7 @@ public class MainApplication extends Application {
                 }
             }
         }
+
         stage.setOnCloseRequest(new CloseHandler());
         // GUI laden/starten
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main.fxml"));
@@ -47,8 +48,6 @@ public class MainApplication extends Application {
         stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
-
-
     }
 
     public static void main(String[] args) throws IOException {
@@ -57,6 +56,7 @@ public class MainApplication extends Application {
 
         //Application (GUI) starten
         launch();
+
         //model beim Beenden in Datei speichern
         kvModel.save();
         kvModel.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + System.currentTimeMillis());
@@ -65,6 +65,6 @@ public class MainApplication extends Application {
         new CreatePdf().createPersonenListePdf();
         new CreatePdf().createKurseListePdf();
         new CreatePdf().createAnwesenheitslistePdf("Angular FE", "27.02.2023");
-
+        new CreatePdf().createAnwesenheitslistePdf("PHP-Einsteiger", "03.03.2023");
     }
 }
