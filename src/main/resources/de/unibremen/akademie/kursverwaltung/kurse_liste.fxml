@@ -7,6 +7,7 @@
 <?import java.lang.String?>
 <Tab xmlns:fx="http://javafx.com/fxml/1" fx:id="tabKurseListe" text="Kurse-Liste" xmlns="http://javafx.com/javafx/16"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.KurseListeController">
+
     <content>
         <AnchorPane>
             <children>
@@ -129,4 +130,5 @@
             </children>
         </AnchorPane>
     </content>
+
 </Tab>

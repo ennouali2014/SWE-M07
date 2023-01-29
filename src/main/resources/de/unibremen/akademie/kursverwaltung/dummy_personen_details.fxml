@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@css/style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <Tab>
+
+        <!-- ANFANG Hier den zu ändernden Content hineinkopieren -->
+
+        <content>
+            <AnchorPane prefHeight="700.0" prefWidth="1200.0">
+                <children>
+                    <SplitPane dividerPositions="0.5" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0"
+                               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1200.0">
+                                <children>
+                                    <VBox>
+                                        <children>
+                                            <VBox>
+                                                <children>
+                                                    <Label text="Personen Details" styleClass="headline">
+                                                        <VBox.margin>
+                                                            <Insets left="10.0"/>
+                                                        </VBox.margin>
+                                                    </Label>
+                                                    <Label text="Personen anlegen, ändern und als Teilnehmer/Interessent einem Kurs zuweisen"
+                                                           styleClass="subheadline">
+                                                        <VBox.margin>
+                                                            <Insets left="10.0" bottom="10.0"/>
+                                                        </VBox.margin>
+                                                    </Label>
+                                                </children>
+                                            </VBox>
+                                            <VBox prefHeight="700.0" prefWidth="570.0" spacing="20.0">
+                                                <children>
+                                                    <HBox alignment="CENTER_LEFT">
+                                                        <children>
+                                                            <Label prefWidth="200.0" text="Anrede">
+                                                                <HBox.margin>
+                                                                    <Insets left="10.0"/>
+                                                                </HBox.margin>
+                                                            </Label>
+                                                            <ChoiceBox fx:id="choiceAnrede" prefHeight="26.0" prefWidth="78.0">
+                                                                <tooltip>
+                                                                    <Tooltip text="Frau, Herr, Divers oder Nix"/>
+                                                                </tooltip>
+                                                                <HBox.margin>
+                                                                    <Insets/>
+                                                                </HBox.margin>
+                                                            </ChoiceBox>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox alignment="CENTER_LEFT">
+                                                        <children>
+                                                            <Label prefWidth="200.0" text="Titel">
+                                                                <HBox.margin>
+                                                                    <Insets left="10.0"/>
+                                                                </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txInpTitel" prefHeight="30.0" prefWidth="250.0">
+                                                                <tooltip>
+                                                                    <Tooltip text="Dr. , Prof., Kaiserin, what ever"/>
+                                                                </tooltip>
+                                                                <HBox.margin>
+                                                                    <Insets/>
+                                                                </HBox.margin>
+                                                            </TextField>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox alignment="CENTER_LEFT">
+                                                        <children>
+                                                            <Label prefHeight="30.0" prefWidth="200.0" text="Vorname *">
+                                                                <HBox.margin>
+                                                                    <Insets left="10.0"/>
+                                                                </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txInpVorname" maxWidth="250.0" prefHeight="30.0"
+                                                                       prefWidth="300.0">
+                                                                <tooltip>
+                                                                    <Tooltip text="Bitte Vorname eingeben, Pflichtfeld!"/>
+                                                                </tooltip>
+                                                                <HBox.margin>
+                                                                    <Insets/>
+                                                                </HBox.margin>
+                                                            </TextField>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox alignment="CENTER_LEFT">
+                                                        <children>
+                                                            <Label prefHeight="30.0" prefWidth="200.0" text="Nachname *">
+                                                                <HBox.margin>
+                                                                    <Insets left="10.0"/>
+                                                                </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txInpNachname" maxWidth="250.0" prefHeight="30.0"
+                                                                       prefWidth="300.0">
+                                                                <tooltip>
+                                                                    <Tooltip text="Bitte Nachname eingeben, Pflichtfeld!"/>
+                                                                </tooltip>
+                                                            </TextField>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox>
+                                                        <children>
+                                                            <Label prefHeight="30.0" prefWidth="200.0" text="E-Mail *">
+                                                                <HBox.margin>
+                                                                    <Insets left="10.0"/>
+                                                                </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txInpEmail" maxWidth="250.0" prefHeight="30.0"
+                                                                       prefWidth="300.0">
+                                                                <tooltip>
+                                                                    <Tooltip text="Bitte Email-Adresse eingeben, Pflichtfeld!"/>
+                                                                </tooltip>
+                                                            </TextField>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox>
+                                                        <children>
+                                                            <Label prefHeight="30.0" prefWidth="200.0" text="Tel-Nr.">
+                                                                <HBox.margin>
+                                                                    <Insets left="10.0"/>
+                                                                </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txInpTelefon" maxWidth="250.0" prefHeight="30.0"
+                                                                       prefWidth="300.0">
+                                                                <tooltip>
+                                                                    <Tooltip text="Bitte Telefonnummer eingeben!"/>
+                                                                </tooltip>
+                                                            </TextField>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox>
+                                                        <children>
+                                                            <Label prefHeight="30.0" prefWidth="200.0" text="Strasse und Hausnummer">
+                                                                <HBox.margin>
+                                                                    <Insets left="10.0"/>
+                                                                </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txInpStrasse" maxWidth="250.0" prefHeight="30.0"
+                                                                       prefWidth="300.0">
+                                                                <tooltip>
+                                                                    <Tooltip text="Bitte Strasse mit Hausnummer eingeben!"/>
+                                                                </tooltip>
+                                                            </TextField>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox>
+                                                        <children>
+                                                            <Label prefHeight="30.0" prefWidth="200.0" text="PLZ">
+                                                                <HBox.margin>
+                                                                    <Insets left="10.0"/>
+                                                                </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txInpPlz" maxWidth="250.0" prefHeight="30.0"
+                                                                       prefWidth="300.0">
+                                                                <tooltip>
+                                                                    <Tooltip text="Bitte Postleitzahl eingeben!"/>
+                                                                </tooltip>
+                                                            </TextField>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox>
+                                                        <children>
+                                                            <Label prefHeight="30.0" prefWidth="200.0" text="Ort">
+                                                                <HBox.margin>
+                                                                    <Insets left="10.0"/>
+                                                                </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txInpOrt" maxWidth="250.0" prefHeight="30.0"
+                                                                       prefWidth="300.0">
+                                                                <tooltip>
+                                                                    <Tooltip text="Bitte einen Wohnort eingeben!"/>
+                                                                </tooltip>
+                                                            </TextField>
+                                                        </children>
+                                                    </HBox>
+                                                    <HBox alignment="CENTER" spacing="50.0">
+                                                        <children>
+                                                            <Button fx:id="btnSavePersonDetails" alignment="CENTER" mnemonicParsing="false"
+                                                                    onAction="#onClickSavePerson" prefHeight="30.0"
+                                                                    prefWidth="125.0" text="Speichern">
+                                                                <tooltip>
+                                                                    <Tooltip text="Daten speichern!"/>
+                                                                </tooltip>
+                                                            </Button>
+                                                            <Button fx:id="btnCancelPersonDetails" alignment="CENTER"
+                                                                    mnemonicParsing="false"
+                                                                    onAction="#onClickAbbrechenPerson" prefHeight="30.0"
+                                                                    prefWidth="125.0" text="Abbrechen">
+                                                                <tooltip>
+                                                                    <Tooltip text="Vorgang abbrechen und Felder leeren!"/>
+                                                                </tooltip>
+                                                            </Button>
+                                                        </children>
+                                                        <padding>
+                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                                        </padding>
+                                                    </HBox>
+                                                </children>
+                                                <VBox.margin>
+                                                    <Insets/>
+                                                </VBox.margin>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="317.0">
+                                <children>
+                                    <AnchorPane layoutX="-192.0" layoutY="-328.0" minHeight="0.0" minWidth="0.0"
+                                                prefHeight="160.0" prefWidth="100.0"/>
+                                    <HBox layoutX="-3.0" prefHeight="699.0" prefWidth="618.0" AnchorPane.bottomAnchor="5.0"
+                                          AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+                                          AnchorPane.topAnchor="5.0">
+                                        <children>
+                                            <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="323.0">
+                                                <children>
+                                                    <Label text="Kurse" styleClass="subheadline"/>
+                                                    <TableView fx:id="tableKurse" prefHeight="264.0" prefWidth="252.0">
+                                                        <columns>
+                                                            <TableColumn fx:id="colKurseKursname" prefWidth="126.0"
+                                                                         text="Kurs"/>
+                                                            <TableColumn fx:id="colKurseStartDate" prefWidth="126.0"
+                                                                         text="Beginnt am"/>
+                                                        </columns>
+                                                        <VBox.margin>
+                                                            <Insets left="5.0" right="5.0"/>
+                                                        </VBox.margin>
+                                                    </TableView>
+                                                </children>
+                                                <padding>
+                                                    <Insets top="150.0"/>
+                                                </padding>
+                                            </VBox>
+                                            <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="104.0">
+                                                <children>
+                                                    <Button fx:id="btnTeilnehmerKursRein" alignment="CENTER"
+                                                            contentDisplay="CENTER" mnemonicParsing="false"
+                                                            onAction="#onClickKursZuTeilnehmer" styleClass="pfeilbutton">
+                                                        <tooltip>
+                                                            <Tooltip text="Nimmt an Kurs teil" />
+                                                        </tooltip>
+                                                        <VBox.margin>
+                                                            <Insets bottom="20.0"/>
+                                                        </VBox.margin>
+                                                        <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                                <image>
+                                                                    <Image url="@images/pfeil-rechts.png"/>
+                                                                </image>
+                                                            </ImageView>
+                                                        </graphic>
+                                                    </Button>
+                                                    <Button fx:id="btnTeilnehmerKursRaus" alignment="CENTER"
+                                                            contentDisplay="CENTER" mnemonicParsing="false"
+                                                            onAction="#onClickKursRausAusTeilnehmer" styleClass="pfeilbutton">
+                                                        <tooltip>
+                                                            <Tooltip text="Nimmt nicht mehr an Kurs teil" />
+                                                        </tooltip>
+                                                        <VBox.margin>
+                                                            <Insets bottom="190.0"/>
+                                                        </VBox.margin>
+                                                        <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                                <image>
+                                                                    <Image url="@images/pfeil-links.png"/>
+                                                                </image>
+                                                            </ImageView>
+                                                        </graphic>
+                                                    </Button>
+                                                    <Button fx:id="btnInteressentKursRein" mnemonicParsing="false"
+                                                            onAction="#onClickKursZuInteressent">
+                                                        <tooltip>
+                                                            <Tooltip text="Interessiert sich für Kurs" />
+                                                        </tooltip>
+                                                        <VBox.margin>
+                                                            <Insets bottom="20.0"/>
+                                                        </VBox.margin>
+                                                        <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                                <image>
+                                                                    <Image url="@images/pfeil-rechts.png"/>
+                                                                </image>
+                                                            </ImageView>
+                                                        </graphic>
+                                                    </Button>
+                                                    <Button fx:id="btnInteressentKursRaus" mnemonicParsing="false"
+                                                            onAction="#onClickKursRausAusInteressent">
+                                                        <tooltip>
+                                                            <Tooltip text="Interessiert sich nicht mehr für Kurs" />
+                                                        </tooltip>
+                                                        <graphic>
+                                                            <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                                <image>
+                                                                    <Image url="@images/pfeil-links.png"/>
+                                                                </image>
+                                                            </ImageView>
+                                                        </graphic>
+                                                    </Button>
+                                                </children>
+                                                <HBox.margin>
+                                                    <Insets/>
+                                                </HBox.margin>
+                                                <padding>
+                                                    <Insets top="130.0"/>
+                                                </padding>
+                                            </VBox>
+                                            <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="229.0"
+                                                  spacing="20.0">
+                                                <children>
+                                                    <Label text="Teilnehmer" styleClass="subheadline"/>
+                                                    <TableView fx:id="tableTeilnahmeKurse" prefHeight="200.0"
+                                                               prefWidth="200.0">
+                                                        <columns>
+                                                            <TableColumn fx:id="colTeilnahmeKurseKursname" prefWidth="126.0"
+                                                                         text="Teilnahme an Kurs"/>
+                                                        </columns>
+                                                        <VBox.margin>
+                                                            <Insets left="5.0" right="5.0"/>
+                                                        </VBox.margin>
+                                                    </TableView>
+                                                    <HBox alignment="CENTER" prefHeight="51.0" prefWidth="230.0"
+                                                          spacing="20.0">
+                                                        <children>
+                                                            <Button fx:id="btnInteressentZuTeilnehmer" mnemonicParsing="false"
+                                                                    onAction="#onClickInteressentZuTeilnehmer">
+                                                                <tooltip>
+                                                                    <Tooltip text="Nimmt an Kurs teil" />
+                                                                </tooltip>
+                                                                <HBox.margin>
+                                                                    <Insets/>
+                                                                </HBox.margin>
+                                                                <graphic>
+                                                                    <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                                        <image>
+                                                                            <Image url="@images/pfeil-oben.png"/>
+                                                                        </image>
+                                                                    </ImageView>
+                                                                </graphic>
+                                                            </Button>
+                                                            <Button fx:id="btnTeilnehmerZuInteressent" mnemonicParsing="false"
+                                                                    onAction="#onClickTeilnehmerZuInteressent">
+                                                                <tooltip>
+                                                                    <Tooltip text="Nimmt nicht an Kurs teil, interessiert sich aber für Kurs" />
+                                                                </tooltip>
+                                                                <graphic>
+                                                                    <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                                        <image>
+                                                                            <Image url="@images/pfeil-unten.png"/>
+                                                                        </image>
+                                                                    </ImageView>
+                                                                </graphic>
+                                                            </Button>
+                                                        </children>
+                                                    </HBox>
+                                                    <Label text="Interessent" styleClass="subheadline"/>
+                                                    <TableView fx:id="tableInteresseKurse" prefHeight="200.0"
+                                                               prefWidth="200.0">
+                                                        <columns>
+                                                            <TableColumn fx:id="colInteresseKurseKursname" prefWidth="126.0"
+                                                                         text="Interesse an Kurs"/>
+                                                        </columns>
+                                                        <VBox.margin>
+                                                            <Insets left="5.0" right="5.0"/>
+                                                        </VBox.margin>
+                                                    </TableView>
+                                                </children>
+                                                <opaqueInsets>
+                                                    <Insets/>
+                                                </opaqueInsets>
+                                                <HBox.margin>
+                                                    <Insets/>
+                                                </HBox.margin>
+                                                <padding>
+                                                    <Insets top="10.0"/>
+                                                </padding>
+                                            </VBox>
+                                        </children>
+                                    </HBox>
+                                </children>
+                            </AnchorPane>
+                        </items>
+                    </SplitPane>
+                </children>
+            </AnchorPane>
+        </content>
+
+        <!-- ENDE zu bearbeitender Content-->
+    </Tab>
+</TabPane>
+

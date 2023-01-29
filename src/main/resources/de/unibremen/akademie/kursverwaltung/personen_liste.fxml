@@ -7,7 +7,7 @@
      xmlns="http://javafx.com/javafx/18"
      fx:controller="de.unibremen.akademie.kursverwaltung.controller.PersonenListeController">
 
-<content>
+    <content>
         <AnchorPane>
             <children>
                 <BorderPane AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
@@ -20,12 +20,12 @@
                             <children>
                                 <Label text="Personenliste" styleClass="headline">
                                     <VBox.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </VBox.margin>
                                 </Label>
                                 <Label text="Übersicht aller Personen" styleClass="subheadline">
                                     <VBox.margin>
-                                        <Insets bottom="10.0" left="10.0" />
+                                        <Insets bottom="10.0" left="10.0"/>
                                     </VBox.margin>
                                 </Label>
                                 <HBox alignment="CENTER_LEFT" spacing="20.0">
@@ -37,8 +37,8 @@
                                                 mnemonicParsing="false" onAction="#onClickResetSuchfeld"
                                                 text="Zurücksetzen">
                                             <tooltip>
-                                            <Tooltip text="Sucheingabe löschen" />
-                                        </tooltip>
+                                                <Tooltip text="Sucheingabe löschen"/>
+                                            </tooltip>
                                         </Button>
                                     </children>
                                 </HBox>
@@ -51,9 +51,11 @@
                                 <Button fx:id="btnPersonAnlegenPersonenListe" mnemonicParsing="false"
                                         onAction="#onClickPersonAnlegenPersonenListe" text="Person anlegen"/>
                                 <Button fx:id="btnAendernAnzeigen" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#onClickPersonAendernPersonenListe" text="Bearbeiten/Anzeigen"/>
+                                        mnemonicParsing="false" onAction="#onClickPersonAendernPersonenListe"
+                                        text="Bearbeiten/Anzeigen"/>
                                 <Button fx:id="btnPersonAusListeLoeschen" alignment="CENTER" contentDisplay="CENTER"
-                                        mnemonicParsing="false" onAction="#onClickPersonAusListeLoeschen" text="Löschen"/>
+                                        mnemonicParsing="false" onAction="#onClickPersonAusListeLoeschen"
+                                        text="Löschen"/>
                             </children>
                             <BorderPane.margin>
                                 <Insets bottom="20.0" top="20.0"/>
@@ -69,14 +71,18 @@
                                 <TableColumn fx:id="colPersonenListeAnrede" prefWidth="70.0" text="Anrede"/>
                                 <TableColumn fx:id="colPersonenListeTitel" prefWidth="70.0" text="Titel"/>
                                 <TableColumn fx:id="colPersonenListeVorname" prefWidth="110.0" text="Vorname"/>
-                                <TableColumn fx:id="colPersonenListeNachname" prefWidth="118.4000244140625" text="Nachname"/>
-                                <TableColumn fx:id="colPersonenListeStrasse" prefWidth="102.39996337890625" text="Strasse"/>
+                                <TableColumn fx:id="colPersonenListeNachname" prefWidth="118.4000244140625"
+                                             text="Nachname"/>
+                                <TableColumn fx:id="colPersonenListeStrasse" prefWidth="102.39996337890625"
+                                             text="Strasse"/>
                                 <TableColumn fx:id="colPersonenListePlz" prefWidth="100.0" text="Plz"/>
                                 <TableColumn fx:id="colPersonenListeOrt" prefWidth="110.0" text="Ort"/>
                                 <TableColumn fx:id="colPersonenListeEmail" prefWidth="120.0" text="Email"/>
                                 <TableColumn fx:id="colPersonenListeTelefon" prefWidth="120.0" text="Telefon"/>
-                                <TableColumn fx:id="colPersonenListeTeilnahmeKurse" prefWidth="120.0" text="Teilnehmer"/>
-                                <TableColumn fx:id="colPersonenListeInteressierteKurse" prefWidth="120.0" text="Interessenten"/>
+                                <TableColumn fx:id="colPersonenListeTeilnahmeKurse" prefWidth="120.0"
+                                             text="Teilnehmer"/>
+                                <TableColumn fx:id="colPersonenListeInteressierteKurse" prefWidth="120.0"
+                                             text="Interessenten"/>
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
