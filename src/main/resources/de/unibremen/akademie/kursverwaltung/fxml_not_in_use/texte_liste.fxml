@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <Tab xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" text="Texte-Liste"
      fx:id="fxmlTexteListe"
-     fx:controller="de.unibremen.akademie.kursverwaltung.controller.TexteListeController">
+     fx:controller="de.unibremen.akademie.kursverwaltung.controller.not_in_use.TexteListeController">
     <content>
         <AnchorPane>
             <children>

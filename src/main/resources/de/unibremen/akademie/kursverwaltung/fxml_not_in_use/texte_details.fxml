@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <Tab xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" text="Texte-Details"
      fx:id="fxmlTexteDetails"
-     fx:controller="de.unibremen.akademie.kursverwaltung.controller.TexteDetailsController">
+     fx:controller="de.unibremen.akademie.kursverwaltung.controller.not_in_use.TexteDetailsController">
     <content>
         <TitledPane>
             <content>
