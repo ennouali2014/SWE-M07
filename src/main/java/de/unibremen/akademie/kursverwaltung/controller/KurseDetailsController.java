@@ -6,17 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.util.Callback;
 import javafx.util.StringConverter;
 
-import java.io.IOException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.ResourceBundle;
 
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
@@ -63,75 +59,40 @@ public class KurseDetailsController {
     private MainController main;
 
     @FXML
-    public void initialize () {
-            // Anzeige im deutschen Format - special thanx to chatGPT ;)
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            pickAnwesenheitsDatum.setPromptText(formatter.toString());
-            pickAnwesenheitsDatum.setValue(LocalDate.now());
-            pickAnwesenheitsDatum.setConverter(new StringConverter<LocalDate>() {
-                @Override
-                public String toString(LocalDate date) {
-                    if (date != null) {
-                        return formatter.format(date);
-                    } else {
-                        return "";
-                    }
-                }
-                @Override
-                public LocalDate fromString(String string) {
-                    if (string != null && !string.isEmpty()) {
-                        return LocalDate.parse(string, formatter);
-                    } else {
-                        return null;
-                    }
-                }
-            });
-            // Auswahldatum auf die Dauer des Kurses einschränken - special thanx to chatGPT ;)
-        pickStartDatum.valueProperty().addListener((observable, oldValue, newValue) -> {
-            LocalDate earliestDate = newValue;
-            LocalDate latestDate = pickEndDatum.getValue();
+    public void initialize() {
+        // Anzeige im deutschen Format - special thanx to chatGPT ;)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        pickAnwesenheitsDatum.setPromptText(formatter.toString());
+        pickAnwesenheitsDatum.setValue(LocalDate.now());
+        pickAnwesenheitsDatum.setConverter(new StringConverter<LocalDate>() {
+            @Override
+            public String toString(LocalDate date) {
+                return date == null ? "" : formatter.format(date);
+            }
 
-            pickAnwesenheitsDatum.setDayCellFactory(new Callback<DatePicker, DateCell>() {
-                @Override
-                public DateCell call(final DatePicker datePicker) {
-                    return new DateCell() {
-                        @Override
-                        public void updateItem(LocalDate item, boolean empty) {
-                            super.updateItem(item, empty);
-
-                            if (item.isBefore(earliestDate) || item.isAfter(latestDate)) {
-                                setDisable(true);
-                                setStyle("-fx-background-color: #ffc0cb;");
-                            }
-                        }
-                    };
-                }
-            });
-            pickAnwesenheitsDatum.setValue(earliestDate);
+            @Override
+            public LocalDate fromString(String string) {
+                return string == null || string.isEmpty() ? null : LocalDate.parse(string, formatter);
+            }
         });
 
-        pickEndDatum.valueProperty().addListener((observable, oldValue, newValue) -> {
-            LocalDate earliestDate = pickStartDatum.getValue();
-            LocalDate latestDate = newValue;
+        // Auswahldatum auf die Dauer des Kurses einschränken - special thanx to chatGPT ;)
+        pickStartDatum.valueProperty().addListener((observable, oldValue, startDate) -> pickAnwesenheitsDatumSetzen(startDate, pickEndDatum.getValue()));
+        pickEndDatum.valueProperty().addListener((observable, oldValue, endDate) -> pickAnwesenheitsDatumSetzen(pickStartDatum.getValue(), endDate));
+    }
 
-            pickAnwesenheitsDatum.setDayCellFactory(new Callback<DatePicker, DateCell>() {
-                @Override
-                public DateCell call(final DatePicker datePicker) {
-                    return new DateCell() {
-                        @Override
-                        public void updateItem(LocalDate item, boolean empty) {
-                            super.updateItem(item, empty);
-
-                            if (item.isBefore(earliestDate) || item.isAfter(latestDate)) {
-                                setDisable(true);
-                                setStyle("-fx-background-color: #ffc0cb;");
-                            }
-                        }
-                    };
+    private void pickAnwesenheitsDatumSetzen(LocalDate startDate, LocalDate endDate) {
+        pickAnwesenheitsDatum.setDayCellFactory(datePicker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item.isBefore(startDate) || item.isAfter(endDate)) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;");
                 }
-            });
-            pickAnwesenheitsDatum.setValue(earliestDate);
+            }
         });
+        pickAnwesenheitsDatum.setValue(startDate);
     }
 
     public void onClickAbbrechenKurs(ActionEvent actionEvent) {
@@ -332,7 +293,7 @@ public class KurseDetailsController {
         }
     }
 
-    public boolean hatKursTeilnehmer () {
+    public boolean hatKursTeilnehmer() {
         int teilnehmendePersonen = 0;
         for (PersonKurs personKurs : kvModel.getPkListe().personKursList) {
             if (personKurs.getKurs().getName().equals(AnwendungsModel.aktuellerKurs.getName()) && personKurs.isTeilnehmer()) {
