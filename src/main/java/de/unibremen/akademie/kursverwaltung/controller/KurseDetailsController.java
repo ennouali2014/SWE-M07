@@ -1,9 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.application.CreatePdf;
-import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
-import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-import de.unibremen.akademie.kursverwaltung.domain.Meldung;
+import de.unibremen.akademie.kursverwaltung.domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -19,6 +17,8 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
 // TODO: Datumsänderung wird nicht aktualaiesiert.
 
@@ -64,7 +64,7 @@ public class KurseDetailsController {
 
     @FXML
     public void initialize () {
-            // special thanx to chatGPT ;)
+            // Anzeige im deutschen Format - special thanx to chatGPT ;)
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             pickAnwesenheitsDatum.setPromptText(formatter.toString());
             pickAnwesenheitsDatum.setValue(LocalDate.now());
@@ -86,7 +86,7 @@ public class KurseDetailsController {
                     }
                 }
             });
-            // Auswahldatum auf die Dauer des Kurses einschränken
+            // Auswahldatum auf die Dauer des Kurses einschränken - special thanx to chatGPT ;)
         pickStartDatum.valueProperty().addListener((observable, oldValue, newValue) -> {
             LocalDate earliestDate = newValue;
             LocalDate latestDate = pickEndDatum.getValue();
@@ -184,8 +184,9 @@ public class KurseDetailsController {
             txInpAktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
             txInpMwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
             txInpGebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
-
-            hbxPrintAnwesenheitsliste.setVisible(true);
+            if (hatKursTeilnehmer()) {
+                hbxPrintAnwesenheitsliste.setVisible(true);
+            }
         }
     }
 
@@ -327,8 +328,20 @@ public class KurseDetailsController {
                 //pb.start();
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
-                return;
             }
         }
     }
+
+    public boolean hatKursTeilnehmer () {
+        int teilnehmendePersonen = 0;
+        for (PersonKurs personKurs : kvModel.getPkListe().personKursList) {
+            if (personKurs.getKurs().getName().equals(AnwendungsModel.aktuellerKurs.getName()) && personKurs.isTeilnehmer()) {
+                Person person = personKurs.getPerson();
+                teilnehmendePersonen++;
+            }
+        }
+        // todo: Abgleich mit MindestTeilnehmerAnzahl ??
+        return teilnehmendePersonen > 0;
+    }
+
 }
