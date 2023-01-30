@@ -58,6 +58,7 @@ public class CreatePdf {
     private final int anzahlKurseJeSeite = 8; //gerade Zahl
     private final int anzahlTeilnehmerJeSeite = 20; //gerade Zahl
     private String trennZeichen = "/";
+    private final String neueZeile = "\r\n";
 
 
     // PDF für die Liste aller Personen
@@ -101,7 +102,7 @@ public class CreatePdf {
             personenListePdf.add(table);
         } else {
             personenListePdf.add(new Paragraph(headline).setFontSize(fontBig));
-            personenListePdf.add(new Paragraph("\r\nEs sind keine Personen in der Kursverwaltung angelegt!").setFontSize(fontBig));
+            personenListePdf.add(new Paragraph("neueZeileEs sind keine Personen in der Kursverwaltung angelegt!").setFontSize(fontBig));
         }
 
         seiteAktuell = 0; //reset
@@ -149,7 +150,7 @@ public class CreatePdf {
             kurseListePdf.add(table);
         } else {
             kurseListePdf.add(new Paragraph(headline).setFontSize(fontBig));
-            kurseListePdf.add(new Paragraph("\r\nEs sind keine Kurse in der Kursverwaltung angelegt!").setFontSize(fontBig));
+            kurseListePdf.add(new Paragraph("neueZeileEs sind keine Kurse in der Kursverwaltung angelegt!").setFontSize(fontBig));
         }
 
         seiteAktuell = 0; //reset
@@ -210,7 +211,7 @@ public class CreatePdf {
             anwesenheitslistePdf.add(table);
         } else {
             anwesenheitslistePdf.add(new Paragraph(headline).setFontSize(fontBig));
-            anwesenheitslistePdf.add(new Paragraph("\r\nEs gibt keine Teilnehmer für diesen Kurs!").setFontSize(fontBig));
+            anwesenheitslistePdf.add(new Paragraph("neueZeileEs gibt keine Teilnehmer für diesen Kurs!").setFontSize(fontBig));
         }
 
         seiteAktuell = 0; //reset
@@ -221,7 +222,7 @@ public class CreatePdf {
     public void tabellenHeader(Table table, String headline, int seitenGesamt) {
         String seitenAnzeige = seiteAktuell + trennZeichen + seitenGesamt;
         if (seitenGesamt == 1) {
-            seitenAnzeige = "\r\n";
+            seitenAnzeige = neueZeile;
         }
         table.addCell(new Cell(1, 3).add(new Paragraph(headline).setPadding(cellPadding).setFontSize(fontBig)));
         table.addCell(new Cell(1, 3).add(new Paragraph(" ").setFontSize(fontBig))
@@ -238,23 +239,23 @@ public class CreatePdf {
         return person.getAnrede() + " " +
                 person.getTitel() + " " +
                 person.getVorname() + " " +
-                person.getNachname() + "\r" +
+                person.getNachname() + neueZeile +
                 person.getPlz() + " " +
                 person.getOrt() + " " +
-                person.getStrasse() + "\r" +
+                person.getStrasse() + neueZeile +
                 person.getEmail() + " " +
                 person.getTelefon();
     }
 
     // Daten für die Liste aller Kurse holen und formatieren
     public String kursToPDF(Kurs kurs) {
-        return kurs.getName() + "\tStatus: " + kurs.getStatus() + "\r\n" +
+        return kurs.getName() + "\tStatus: " + kurs.getStatus() + neueZeile +
                 "Start: " + dateOhneZeit.format(kurs.getStartDatum()) + "\t" +
                 "Ende: " + dateOhneZeit.format(kurs.getEndeDatum()) + "\t" +
-                "Dauer: " + kurs.getAnzahlTage() + " Tage\r" +
+                "Dauer: " + kurs.getAnzahlTage() + " Tage" + neueZeile +
                 "Min. Teilnehmer: " + kurs.getMinTnZahl() + "\t" +
                 "Max. Teilnehmer: " + kurs.getMaxTnZahl() + "\t" +
-                "Freie Plätze: " + kurs.getFreiePlaetze() + "\r" +
+                "Freie Plätze: " + kurs.getFreiePlaetze() + neueZeile +
                 "Gebühr Brutto: " + geldBetrag.format(kurs.getGebuehrBrutto()) + "  \t" +
                 "Gebühr Netto: " + geldBetrag.format(kurs.getGebuehrNetto()) + "  + " +
                 "MwSt. (" + prozentWert.format(kurs.getMwstProzent()) + "%): " + geldBetrag.format(kurs.getMwstEuro());
@@ -265,7 +266,7 @@ public class CreatePdf {
         return person.getAnrede() + " " +
                 person.getTitel() + " " +
                 person.getVorname() + " " +
-                person.getNachname() + "\r";
+                person.getNachname() + neueZeile;
     }
 
     // Metadaten die in den PDF-Infos gespeichert werden
