@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
@@ -63,6 +64,7 @@ public class KurseDetailsController {
 
     @FXML
     public void initialize () {
+            // special thanx to chatGPT ;)
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             pickAnwesenheitsDatum.setPromptText(formatter.toString());
             pickAnwesenheitsDatum.setValue(LocalDate.now());
@@ -84,6 +86,52 @@ public class KurseDetailsController {
                     }
                 }
             });
+            // Auswahldatum auf die Dauer des Kurses einschränken
+        pickStartDatum.valueProperty().addListener((observable, oldValue, newValue) -> {
+            LocalDate earliestDate = newValue;
+            LocalDate latestDate = pickEndDatum.getValue();
+
+            pickAnwesenheitsDatum.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+                @Override
+                public DateCell call(final DatePicker datePicker) {
+                    return new DateCell() {
+                        @Override
+                        public void updateItem(LocalDate item, boolean empty) {
+                            super.updateItem(item, empty);
+
+                            if (item.isBefore(earliestDate) || item.isAfter(latestDate)) {
+                                setDisable(true);
+                                setStyle("-fx-background-color: #ffc0cb;");
+                            }
+                        }
+                    };
+                }
+            });
+            pickAnwesenheitsDatum.setValue(earliestDate);
+        });
+
+        pickEndDatum.valueProperty().addListener((observable, oldValue, newValue) -> {
+            LocalDate earliestDate = pickStartDatum.getValue();
+            LocalDate latestDate = newValue;
+
+            pickAnwesenheitsDatum.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+                @Override
+                public DateCell call(final DatePicker datePicker) {
+                    return new DateCell() {
+                        @Override
+                        public void updateItem(LocalDate item, boolean empty) {
+                            super.updateItem(item, empty);
+
+                            if (item.isBefore(earliestDate) || item.isAfter(latestDate)) {
+                                setDisable(true);
+                                setStyle("-fx-background-color: #ffc0cb;");
+                            }
+                        }
+                    };
+                }
+            });
+            pickAnwesenheitsDatum.setValue(earliestDate);
+        });
     }
 
     public void onClickAbbrechenKurs(ActionEvent actionEvent) {
