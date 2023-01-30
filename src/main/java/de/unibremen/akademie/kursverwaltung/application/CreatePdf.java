@@ -6,8 +6,10 @@ import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.kernel.pdf.canvas.draw.SolidLine;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.*;
-import com.itextpdf.layout.properties.AreaBreakType;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.LineSeparator;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
@@ -33,12 +35,11 @@ public class CreatePdf {
     private String ANWESENHEITSLISTEPDF = SPEICHERPFAD + "Anwesenheitsliste_";
 
     // Layout-Elemente
-    private final SolidLine linie = new SolidLine(1f);
-    private final LineSeparator trennLinie = new LineSeparator(linie);
+    private Color bgColor = LIGHT_GRAY;
     private final int fontSmall = 12;
     private final int fontBig = 16;
     private final int cellPadding = 5;
-    
+
 
     // aktuelles Datum
     private final SimpleDateFormat dateMitZeit = new SimpleDateFormat("dd.MM.yyyy HH:mm");
@@ -52,17 +53,16 @@ public class CreatePdf {
     // Seitenanzahl Berechnungsgrundlagen
     private int counterListenEintraege = 0;
     private int seiteAktuell = 1;
-    private final int anzahlPersonenJeSeite = 10;
-    private final int anzahlKurseJeSeite = 8;
-    private final int anzahlTeilnehmerJeSeite = 20;
+    private final int anzahlPersonenJeSeite = 10; //gerade Zahl
+    private final int anzahlKurseJeSeite = 8; //gerade Zahl
+    private final int anzahlTeilnehmerJeSeite = 20; //gerade Zahl
     private String trennZeichen = "/";
 
 
     // PDF für die Liste aller Personen
     public void createPersonenListePdf() throws IOException {
-        String headline = "Liste aller gespeicherten Personen";
+        String headline = "Liste aller gespeicherten Personen (Stand: " + aktuellesDatum + ")";
         String metaSubject = "Personenliste";
-        String tabsAbstand = "\t\t\t\t\t\t";
         int seitenGesamt = (kvModel.getPersonen().getPersonenListe().size() + anzahlPersonenJeSeite - 1) / anzahlPersonenJeSeite;
 
         PdfDocument pdf = new PdfDocument(
@@ -75,33 +75,29 @@ public class CreatePdf {
         Document personenListePdf = new Document(pdf, PageSize.A4);
 
         if (seitenGesamt > 0) {
-            personenListePdf.add(
-                    new Paragraph()
-                            .add(headline).setFontSize(fontBig)
-                            .add(new Text("\t\t(Stand: " + aktuellesDatum + ")" + tabsAbstand + seiteAktuell + trennZeichen + seitenGesamt).setFontSize(fontSmall)));
-            personenListePdf.add(trennLinie);
-            personenListePdf.add(new Paragraph("\r\n\r\n"));
+            Table table = new Table(3).setWidth(520f);
+            // Tabellenheader holen
+            tabellenHeader(table, headline, seitenGesamt);
+
             for (Object obj : kvModel.getPersonen().getPersonenListe()) {
                 Person person = (Person) obj;
                 counterListenEintraege++;
                 if (counterListenEintraege <= anzahlPersonenJeSeite) {
-                    personenListePdf.add(trennLinie);
-                    personenListePdf.add(new Paragraph(personToPDF(person)));
+                    if (counterListenEintraege % 2 != 0) {
+                        bgColor = LIGHT_GRAY;
+                    } else {
+                        bgColor = WHITE;
+                    }
+                    table.addCell(new Cell(1, 3).add(new Paragraph(personToPDF(person)).setPadding(cellPadding)).setBackgroundColor(bgColor));
                 } else {
-                    personenListePdf.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
                     seiteAktuell++;
-                    personenListePdf.add(
-                            new Paragraph()
-                                    .add(headline).setFontSize(fontBig)
-                                    .add(new Text("\t\t(Stand: " + aktuellesDatum + ")" + tabsAbstand + seiteAktuell + trennZeichen + seitenGesamt).setFontSize(fontSmall)));
-                    personenListePdf.add(trennLinie);
-                    personenListePdf.add(new Paragraph("\r\n\r\n"));
-                    personenListePdf.add(trennLinie);
-                    personenListePdf.add(new Paragraph(personToPDF(person)));
+                    // Tabellenheader holen
+                    tabellenHeader(table, headline, seitenGesamt);
+                    table.addCell(new Cell(1, 3).add(new Paragraph(personToPDF(person)).setPadding(cellPadding)).setBackgroundColor(LIGHT_GRAY));
                     counterListenEintraege = 1;
                 }
             }
-            personenListePdf.add(trennLinie);
+            personenListePdf.add(table);
         } else {
             personenListePdf.add(new Paragraph(headline).setFontSize(fontBig));
             personenListePdf.add(new Paragraph("\r\nEs sind keine Personen in der Kursverwaltung angelegt!").setFontSize(fontBig));
@@ -113,9 +109,8 @@ public class CreatePdf {
 
     // PDF für die Liste aller Kurse
     public void createKurseListePdf() throws IOException {
-        String headline = "Liste aller gespeicherten Kurse";
+        String headline = "Liste aller gespeicherten Kurse (Stand: " + aktuellesDatum + ")";
         String metaSubject = "Kurseliste";
-        String tabsAbstand = "\t\t\t\t\t\t\t\t";
         int seitenGesamt = (kvModel.getKurse().getKursListe().size() + anzahlKurseJeSeite - 1) / anzahlKurseJeSeite;
 
         PdfDocument pdf = new PdfDocument(
@@ -128,33 +123,29 @@ public class CreatePdf {
         Document kurseListePdf = new Document(pdf, PageSize.A4);
 
         if (seitenGesamt > 0) {
-            kurseListePdf.add(
-                    new Paragraph()
-                            .add(headline).setFontSize(fontBig)
-                            .add(new Text("\t\t(Stand: " + aktuellesDatum + ")" + tabsAbstand + seiteAktuell + trennZeichen + seitenGesamt).setFontSize(fontSmall)));
-            kurseListePdf.add(trennLinie);
-            kurseListePdf.add(new Paragraph("\r\n\r\n"));
+            Table table = new Table(3).setWidth(520f);
+            // Tabellenheader holen
+            tabellenHeader(table, headline, seitenGesamt);
+
             for (Object obj : kvModel.getKurse().getKursListe()) {
                 Kurs kurs = (Kurs) obj;
                 counterListenEintraege++;
                 if (counterListenEintraege <= anzahlKurseJeSeite) {
-                    kurseListePdf.add(trennLinie);
-                    kurseListePdf.add(new Paragraph(kursToPDF(kurs)));
+                    if (counterListenEintraege % 2 != 0) {
+                        bgColor = LIGHT_GRAY;
+                    } else {
+                        bgColor = WHITE;
+                    }
+                    table.addCell(new Cell(1, 3).add(new Paragraph(kursToPDF(kurs)).setPadding(cellPadding)).setBackgroundColor(bgColor));
                 } else {
-                    kurseListePdf.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
                     seiteAktuell++;
-                    kurseListePdf.add(
-                            new Paragraph()
-                                    .add(headline).setFontSize(fontBig)
-                                    .add(new Text("\t\t(Stand: " + aktuellesDatum + ")" + tabsAbstand + seiteAktuell + trennZeichen + seitenGesamt).setFontSize(fontSmall)));
-                    kurseListePdf.add(trennLinie);
-                    kurseListePdf.add(new Paragraph("\r\n\r\n"));
-                    kurseListePdf.add(trennLinie);
-                    kurseListePdf.add(new Paragraph(kursToPDF(kurs)));
+                    // Tabellenheader holen
+                    tabellenHeader(table, headline, seitenGesamt);
+                    table.addCell(new Cell(1, 3).add(new Paragraph(kursToPDF(kurs)).setPadding(cellPadding)).setBackgroundColor(LIGHT_GRAY));
                     counterListenEintraege = 1;
                 }
             }
-            kurseListePdf.add(trennLinie);
+            kurseListePdf.add(table);
         } else {
             kurseListePdf.add(new Paragraph(headline).setFontSize(fontBig));
             kurseListePdf.add(new Paragraph("\r\nEs sind keine Kurse in der Kursverwaltung angelegt!").setFontSize(fontBig));
@@ -168,7 +159,6 @@ public class CreatePdf {
     public void createAnwesenheitslistePdf(String kursName, String datum) throws IOException {
         String headline = "Anwesenheitsliste für den Kurs " + kursName + ", " + datum;
         String metaSubject = "Anwesenheitsliste";
-        Color bgColor = LIGHT_GRAY;
         String kursDatei = kursName.replace(" ", "_"); //Leerzeichen aus Dateinamen ersetzen
 
         // Anzahl der teilnehmenden Personen ermitteln
@@ -205,14 +195,13 @@ public class CreatePdf {
                             bgColor = WHITE;
                         }
                         table.addCell(new Cell().add(new Paragraph(teilnehmerPersonToPDF(person)).setPadding(cellPadding)).setBackgroundColor(bgColor));
-                        table.addCell(new Cell(1,2).add(new Paragraph("").setPadding(cellPadding)).setBackgroundColor(bgColor));
+                        table.addCell(new Cell(1, 2).add(new Paragraph("").setPadding(cellPadding)).setBackgroundColor(bgColor));
                     } else {
-                        //anwesenheitslistePdf.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
                         seiteAktuell++;
                         // Tabellenheader holen
                         tabellenHeader(table, headline, seitenGesamt);
                         table.addCell(new Cell().add(new Paragraph(teilnehmerPersonToPDF(person)).setPadding(cellPadding)).setBackgroundColor(LIGHT_GRAY));
-                        table.addCell(new Cell(1,2).add(new Paragraph("").setPadding(cellPadding)).setBackgroundColor(LIGHT_GRAY));
+                        table.addCell(new Cell(1, 2).add(new Paragraph("").setPadding(cellPadding)).setBackgroundColor(LIGHT_GRAY));
                         counterListenEintraege = 1;
                     }
                 }
@@ -229,15 +218,15 @@ public class CreatePdf {
 
     // Tabellenheader für die Listen erstellen
     public void tabellenHeader(Table table, String headline, int seitenGesamt) {
-        String seitenAnzeige = Integer.toString(seiteAktuell) + trennZeichen + Integer.toString(seitenGesamt);
-        if ( seitenGesamt == 1 ) {
+        String seitenAnzeige = seiteAktuell + trennZeichen + seitenGesamt;
+        if (seitenGesamt == 1) {
             seitenAnzeige = "\r\n";
         }
-        table.addCell(new Cell(1,3).add(new Paragraph(headline).setPadding(cellPadding).setFontSize(fontBig)));
-        table.addCell(new Cell(1,3).add(new Paragraph(" ").setFontSize(fontBig))
+        table.addCell(new Cell(1, 3).add(new Paragraph(headline).setPadding(cellPadding).setFontSize(fontBig)));
+        table.addCell(new Cell(1, 3).add(new Paragraph(" ").setFontSize(fontBig))
                 .add(new Paragraph(seitenAnzeige).setPadding(cellPadding).setFontSize(fontSmall))
                 .setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
-        if ( headline.contains("Anwesenheitsliste") ) {
+        if (headline.contains("Anwesenheitsliste")) {
             table.addCell(new Cell().setWidth(220f).add(new Paragraph("Teilnehmer:in").setPadding(cellPadding).setFontSize(fontBig)));
             table.addCell(new Cell(1, 2).add(new Paragraph("Unterschrift").setPadding(cellPadding).setFontSize(fontBig)));
         }
