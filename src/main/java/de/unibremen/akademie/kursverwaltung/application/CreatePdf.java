@@ -39,6 +39,7 @@ public class CreatePdf {
     private final int fontSmall = 12;
     private final int fontBig = 16;
     private final int cellPadding = 5;
+    private final float tblBreite = 520f;
 
 
     // aktuelles Datum
@@ -75,7 +76,7 @@ public class CreatePdf {
         Document personenListePdf = new Document(pdf, PageSize.A4);
 
         if (seitenGesamt > 0) {
-            Table table = new Table(3).setWidth(520f);
+            Table table = new Table(3).setWidth(tblBreite);
             // Tabellenheader holen
             tabellenHeader(table, headline, seitenGesamt);
 
@@ -123,7 +124,7 @@ public class CreatePdf {
         Document kurseListePdf = new Document(pdf, PageSize.A4);
 
         if (seitenGesamt > 0) {
-            Table table = new Table(3).setWidth(520f);
+            Table table = new Table(3).setWidth(tblBreite);
             // Tabellenheader holen
             tabellenHeader(table, headline, seitenGesamt);
 
@@ -180,7 +181,7 @@ public class CreatePdf {
         Document anwesenheitslistePdf = new Document(pdf, PageSize.A4);
 
         if (seitenGesamt > 0) {
-            Table table = new Table(3).setWidth(520f);
+            Table table = new Table(3).setWidth(tblBreite);
             // Tabellenheader holen
             tabellenHeader(table, headline, seitenGesamt);
 
