@@ -20,7 +20,6 @@ import java.util.Locale;
 
 import static com.itextpdf.kernel.colors.ColorConstants.LIGHT_GRAY;
 import static com.itextpdf.kernel.colors.ColorConstants.WHITE;
-import static com.itextpdf.layout.properties.TextAlignment.LEFT;
 import static com.itextpdf.layout.properties.TextAlignment.RIGHT;
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
@@ -169,7 +168,6 @@ public class CreatePdf {
     public void createAnwesenheitslistePdf(String kursName, String datum) throws IOException {
         String headline = "Anwesenheitsliste für den Kurs " + kursName + ", " + datum;
         String metaSubject = "Anwesenheitsliste";
-        String tabsAbstand = "\t\t\t";
         Color bgColor = LIGHT_GRAY;
         String kursDatei = kursName.replace(" ", "_"); //Leerzeichen aus Dateinamen ersetzen
 
@@ -177,7 +175,6 @@ public class CreatePdf {
         int teilnehmendePersonen = 0;
         for (PersonKurs personKurs : kvModel.getPkListe().personKursList) {
             if (personKurs.getKurs().getName().equals(kursName) && personKurs.isTeilnehmer()) {
-                Person person = personKurs.getPerson();
                 teilnehmendePersonen++;
             }
         }
@@ -194,9 +191,8 @@ public class CreatePdf {
 
         if (seitenGesamt > 0) {
             Table table = new Table(3).setWidth(520f);
-            // Tabellenheader Anfang
+            // Tabellenheader holen
             tabellenHeader(table, headline, seitenGesamt);
-            // Tabellenheader Ende
 
             for (PersonKurs personKurs : kvModel.getPkListe().personKursList) {
                 if (personKurs.getKurs().getName().equals(kursName) && personKurs.isTeilnehmer()) {
@@ -213,9 +209,8 @@ public class CreatePdf {
                     } else {
                         //anwesenheitslistePdf.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
                         seiteAktuell++;
-                        // Tabellenheader Anfang
+                        // Tabellenheader holen
                         tabellenHeader(table, headline, seitenGesamt);
-                        // Tabellenheader Ende
                         table.addCell(new Cell().add(new Paragraph(teilnehmerPersonToPDF(person)).setPadding(cellPadding)).setBackgroundColor(LIGHT_GRAY));
                         table.addCell(new Cell(1,2).add(new Paragraph("").setPadding(cellPadding)).setBackgroundColor(LIGHT_GRAY));
                         counterListenEintraege = 1;
@@ -232,13 +227,20 @@ public class CreatePdf {
         anwesenheitslistePdf.close();
     }
 
+    // Tabellenheader für die Listen erstellen
     public void tabellenHeader(Table table, String headline, int seitenGesamt) {
+        String seitenAnzeige = Integer.toString(seiteAktuell) + trennZeichen + Integer.toString(seitenGesamt);
+        if ( seitenGesamt == 1 ) {
+            seitenAnzeige = "\r\n";
+        }
         table.addCell(new Cell(1,3).add(new Paragraph(headline).setPadding(cellPadding).setFontSize(fontBig)));
         table.addCell(new Cell(1,3).add(new Paragraph(" ").setFontSize(fontBig))
-                .add(new Paragraph(seiteAktuell + trennZeichen + seitenGesamt).setPadding(cellPadding)
-                        .setFontSize(fontSmall)).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
-        table.addCell(new Cell().setWidth(220f).add(new Paragraph("Teilnehmer:in").setPadding(cellPadding).setFontSize(fontBig)));
-        table.addCell(new Cell(1,2).add(new Paragraph("Unterschrift").setPadding(cellPadding).setFontSize(fontBig)));
+                .add(new Paragraph(seitenAnzeige).setPadding(cellPadding).setFontSize(fontSmall))
+                .setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+        if ( headline.contains("Anwesenheitsliste") ) {
+            table.addCell(new Cell().setWidth(220f).add(new Paragraph("Teilnehmer:in").setPadding(cellPadding).setFontSize(fontBig)));
+            table.addCell(new Cell(1, 2).add(new Paragraph("Unterschrift").setPadding(cellPadding).setFontSize(fontBig)));
+        }
     }
 
     // Daten für die Liste aller Personen holen und formatieren
