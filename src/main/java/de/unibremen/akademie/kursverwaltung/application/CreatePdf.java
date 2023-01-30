@@ -3,11 +3,9 @@ package de.unibremen.akademie.kursverwaltung.application;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.*;
-import com.itextpdf.kernel.pdf.canvas.draw.SolidLine;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.LineSeparator;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
@@ -59,6 +57,7 @@ public class CreatePdf {
     private final int anzahlTeilnehmerJeSeite = 20; //gerade Zahl
     private String trennZeichen = "/";
     private final String neueZeile = "\r\n";
+    private final String tabulator = "\t";
 
 
     // PDF für die Liste aller Personen
@@ -243,18 +242,18 @@ public class CreatePdf {
                 person.getPlz() + " " +
                 person.getOrt() + " " +
                 person.getStrasse() + neueZeile +
-                person.getEmail() + " " +
+                person.getEmail() + tabulator +
                 person.getTelefon();
     }
 
     // Daten für die Liste aller Kurse holen und formatieren
     public String kursToPDF(Kurs kurs) {
         return kurs.getName() + "\tStatus: " + kurs.getStatus() + neueZeile +
-                "Start: " + dateOhneZeit.format(kurs.getStartDatum()) + "\t" +
-                "Ende: " + dateOhneZeit.format(kurs.getEndeDatum()) + "\t" +
+                "Start: " + dateOhneZeit.format(kurs.getStartDatum()) + tabulator +
+                "Ende: " + dateOhneZeit.format(kurs.getEndeDatum()) + tabulator +
                 "Dauer: " + kurs.getAnzahlTage() + " Tage" + neueZeile +
-                "Min. Teilnehmer: " + kurs.getMinTnZahl() + "\t" +
-                "Max. Teilnehmer: " + kurs.getMaxTnZahl() + "\t" +
+                "Min. Teilnehmer: " + kurs.getMinTnZahl() + tabulator +
+                "Max. Teilnehmer: " + kurs.getMaxTnZahl() + tabulator +
                 "Freie Plätze: " + kurs.getFreiePlaetze() + neueZeile +
                 "Gebühr Brutto: " + geldBetrag.format(kurs.getGebuehrBrutto()) + "  \t" +
                 "Gebühr Netto: " + geldBetrag.format(kurs.getGebuehrNetto()) + "  + " +
