@@ -255,7 +255,7 @@ public class CreatePdf {
                 "Min. Teilnehmer: " + kurs.getMinTnZahl() + tabulator +
                 "Max. Teilnehmer: " + kurs.getMaxTnZahl() + tabulator +
                 "Freie Plätze: " + kurs.getFreiePlaetze() + neueZeile +
-                "Gebühr Brutto: " + geldBetrag.format(kurs.getGebuehrBrutto()) + "  \t" +
+                "Gebühr Brutto: " + geldBetrag.format(kurs.getGebuehrBrutto()) + tabulator +
                 "Gebühr Netto: " + geldBetrag.format(kurs.getGebuehrNetto()) + "  + " +
                 "MwSt. (" + prozentWert.format(kurs.getMwstProzent()) + "%): " + geldBetrag.format(kurs.getMwstEuro());
     }
