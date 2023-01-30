@@ -1,16 +1,23 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
+import de.unibremen.akademie.kursverwaltung.application.CreatePdf;
 import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Meldung;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.util.StringConverter;
 
+import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 // TODO: Datumsänderung wird nicht aktualaiesiert.
 
@@ -18,6 +25,10 @@ public class KurseDetailsController {
 
     @FXML
     public TextField txInpMwsProzent;
+    @FXML
+    public DatePicker pickAnwesenheitsDatum;
+    @FXML
+    public HBox hbxPrintAnwesenheitsliste;
     @FXML
     private Tab tabKurseDetails;
     @FXML
@@ -50,6 +61,31 @@ public class KurseDetailsController {
     private ComboBox comboStatus;
     private MainController main;
 
+    @FXML
+    public void initialize () {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            pickAnwesenheitsDatum.setPromptText(formatter.toString());
+            pickAnwesenheitsDatum.setValue(LocalDate.now());
+            pickAnwesenheitsDatum.setConverter(new StringConverter<LocalDate>() {
+                @Override
+                public String toString(LocalDate date) {
+                    if (date != null) {
+                        return formatter.format(date);
+                    } else {
+                        return "";
+                    }
+                }
+                @Override
+                public LocalDate fromString(String string) {
+                    if (string != null && !string.isEmpty()) {
+                        return LocalDate.parse(string, formatter);
+                    } else {
+                        return null;
+                    }
+                }
+            });
+    }
+
     public void onClickAbbrechenKurs(ActionEvent actionEvent) {
         txInpKursname.clear();
         comboStatus.setValue(comboStatus.getPromptText());
@@ -66,6 +102,7 @@ public class KurseDetailsController {
         txInpAktuelleTnZahl.clear();
         txInpMwsEuro.clear();
         txInpGebuehrNetto.clear();
+        hbxPrintAnwesenheitsliste.setVisible(false);
         if (AnwendungsModel.aktuellerKurs != null) {
             Tab plTab = main.fxmlKurseListeController.tabKurseListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
@@ -100,7 +137,7 @@ public class KurseDetailsController {
             txInpMwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
             txInpGebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
 
-
+            hbxPrintAnwesenheitsliste.setVisible(true);
         }
     }
 
@@ -144,11 +181,11 @@ public class KurseDetailsController {
                 AnwendungsModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(AnwendungsModel.aktuellerKurs.getStartDatum()));
                 AnwendungsModel.aktuellerKurs.setDisplayEndeDate(dateFormat.format(AnwendungsModel.aktuellerKurs.getEndeDatum()));
 
-
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
             }
+            hbxPrintAnwesenheitsliste.setVisible(false);
             main.fxmlKurseListeController.tableKurseListe.refresh();
             main.fxmlPersonenDetailsController.tableKurse.refresh();
 
@@ -231,4 +268,19 @@ public class KurseDetailsController {
         return wert.matches("^\s*((?:20)\\d{2})\\-(1[012]|0?[1-9])\\-(3[01]|[12][0-9]|0?[1-9])\s*$");
     }
 
+    public void onClickPrintAnwesenheitsliste(ActionEvent actionEvent) {
+        if (AnwendungsModel.aktuellerKurs != null) {
+            try {
+                LocalDate localDate = pickAnwesenheitsDatum.getValue();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                String datumAnwesenheitsliste = localDate.format(formatter);
+                new CreatePdf().createAnwesenheitslistePdf(AnwendungsModel.aktuellerKurs.getName(), datumAnwesenheitsliste);
+                //ProcessBuilder pb = new ProcessBuilder("C:/Program Files/PDF24/pdf24-Reader.exe", "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/Anwesenheitsliste_Angular_FE_27.02.2023.pdf");
+                //pb.start();
+            } catch (Exception e) {
+                Meldung.eingabeFehler(e.getMessage());
+                return;
+            }
+        }
+    }
 }

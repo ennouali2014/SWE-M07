@@ -64,7 +64,6 @@ public class MainApplication extends Application {
         // PDFs beim Beenden erzeugen
         new CreatePdf().createPersonenListePdf();
         new CreatePdf().createKurseListePdf();
-        new CreatePdf().createAnwesenheitslistePdf("Angular FE", "27.02.2023");
-        new CreatePdf().createAnwesenheitslistePdf("PHP-Einsteiger", "03.03.2023");
+
     }
 }

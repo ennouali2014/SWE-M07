@@ -46,6 +46,7 @@ public class CreatePdf {
     int seiteAktuell = 1;
     int anzahlPersonenJeSeite = 10;
     int anzahlKurseJeSeite = 8;
+    int anzahlTeilnehmerJeSeite = 24;
 
 
     // PDF für die Liste aller Personen
@@ -150,12 +151,12 @@ public class CreatePdf {
         // Anzahl der teilnehmenden Personen ermitteln
         int teilnehmendePersonen = 0;
         for (PersonKurs personKurs : kvModel.getPkListe().personKursList) {
-            if (personKurs.getKurs().getName().equals(kursName)) {
+            if (personKurs.getKurs().getName().equals(kursName) && personKurs.isTeilnehmer()) {
                 Person person = personKurs.getPerson();
                 teilnehmendePersonen++;
             }
         }
-        int seitenGesamt = (kvModel.getKurse().getKursListe().size() + anzahlKurseJeSeite - 1) / anzahlKurseJeSeite;
+        int seitenGesamt = (teilnehmendePersonen + anzahlTeilnehmerJeSeite - 1) / anzahlTeilnehmerJeSeite;
 
         PdfDocument pdf = new PdfDocument(
                 new PdfWriter(ANWESENHEITSLISTEPDF + kursDatei + "_" + datum + ".pdf",
@@ -172,11 +173,10 @@ public class CreatePdf {
             anwesenheitslistePdf.add(new Paragraph("\n\n"));
 
             for (PersonKurs personKurs : kvModel.getPkListe().personKursList) {
-                if (personKurs.getKurs().getName().equals(kursName)) {
-                    if (personKurs.isTeilnehmer()) {
+                if (personKurs.getKurs().getName().equals(kursName) && personKurs.isTeilnehmer()) {
                         Person person = personKurs.getPerson();
                         counterListenEintraege++;
-                        if (counterListenEintraege <= anzahlKurseJeSeite) {
+                        if (counterListenEintraege <= anzahlTeilnehmerJeSeite) {
                             anwesenheitslistePdf.add(new Paragraph(teilnehmerPersonToPDF(person)));
                             anwesenheitslistePdf.add(trennLinie);
                         } else {
@@ -189,8 +189,6 @@ public class CreatePdf {
                             anwesenheitslistePdf.add(trennLinie);
                             counterListenEintraege = 1;
                         }
-
-                    }
                 }
             }
         } else {
