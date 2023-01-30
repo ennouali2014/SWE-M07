@@ -61,7 +61,7 @@
                                                                         <Insets left="10.0" />
                                                                     </HBox.margin>
                                                                 </Label>
-                                                                <DatePicker fx:id="pickStartDatum" onAction="#onDatePickerAction" prefWidth="163.0" promptText="dd.MM.yyyy" />
+                                                                <DatePicker fx:id="pickStartDatum" onAction="#onDatePickerAction" prefWidth="163.0" promptText="01.01.1970" />
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -140,7 +140,7 @@
                                                         <HBox>
                                                             <children>
                                                                 <Label prefWidth="120.0" text="End-Datum: " />
-                                                                <DatePicker fx:id="pickEndDatum" disable="true" editable="false" prefHeight="26.0" prefWidth="163.0" promptText="automatisch berechnet" />
+                                                                <DatePicker fx:id="pickEndDatum" disable="true" editable="false" prefHeight="26.0" prefWidth="163.0" promptText="Wird kalkuliert!" />
                                                             </children>
                                                         </HBox>
                                                         <HBox>
@@ -190,7 +190,7 @@
                                         </VBox>
                                         <HBox alignment="CENTER" spacing="50.0">
                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#onClickSaveKurs" prefHeight="30.0" prefWidth="125.0" text="Speichern" />
+                                                <Button fx:id="btnKursSpeichern" mnemonicParsing="false" onAction="#onClickSaveKurs" prefHeight="30.0" prefWidth="125.0" text="Speichern" />
                                                 <Button mnemonicParsing="false" onAction="#onClickAbbrechenKurs" prefHeight="30.0" prefWidth="125.0" text="Abbrechen" />
                                             </children>
                                             <padding>

@@ -1,6 +1,7 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.application.CreatePdf;
+import de.unibremen.akademie.kursverwaltung.application.DatumFormatieren;
 import de.unibremen.akademie.kursverwaltung.domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +27,8 @@ public class KurseDetailsController {
     public DatePicker pickAnwesenheitsDatum;
     @FXML
     public HBox hbxPrintAnwesenheitsliste;
+    @FXML
+    public Button btnKursSpeichern;
     @FXML
     private Tab tabKurseDetails;
     @FXML
@@ -60,39 +63,32 @@ public class KurseDetailsController {
 
     @FXML
     public void initialize() {
-        // Anzeige im deutschen Format - special thanx to chatGPT ;)
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        pickAnwesenheitsDatum.setPromptText(formatter.toString());
-        pickAnwesenheitsDatum.setValue(LocalDate.now());
-        pickAnwesenheitsDatum.setConverter(new StringConverter<LocalDate>() {
-            @Override
-            public String toString(LocalDate date) {
-                return date == null ? "" : formatter.format(date);
-            }
-
-            @Override
-            public LocalDate fromString(String string) {
-                return string == null || string.isEmpty() ? null : LocalDate.parse(string, formatter);
-            }
-        });
-
-        // Auswahldatum auf die Dauer des Kurses einschränken - special thanx to chatGPT ;)
-        pickStartDatum.valueProperty().addListener((observable, oldValue, startDate) -> pickAnwesenheitsDatumSetzen(startDate, pickEndDatum.getValue()));
-        pickEndDatum.valueProperty().addListener((observable, oldValue, endDate) -> pickAnwesenheitsDatumSetzen(pickStartDatum.getValue(), endDate));
+        // Anzeige im deutschen Format
+        DatumFormatieren.datumFormatieren(pickAnwesenheitsDatum);
+        DatumFormatieren.datumFormatieren(pickStartDatum);
+        DatumFormatieren.datumFormatieren(pickEndDatum);
+        pickStartDatum.setPromptText("01.01.1970");
+        pickEndDatum.setPromptText("Wird kalkuliert!");
     }
 
-    private void pickAnwesenheitsDatumSetzen(LocalDate startDate, LocalDate endDate) {
+     // special thanx to chatGPT ;)
+    private void pickAnwesenheitsDatumSetzen(LocalDate startDatum, LocalDate endDatum) {
+        LocalDate aktuellesDatum = LocalDate.now();
+        LocalDate value = startDatum;
+        if (aktuellesDatum.isAfter(startDatum)) {
+            value = aktuellesDatum;
+        }
         pickAnwesenheitsDatum.setDayCellFactory(datePicker -> new DateCell() {
             @Override
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
-                if (item.isBefore(startDate) || item.isAfter(endDate)) {
+                if (item.isBefore(startDatum) || item.isAfter(endDatum)) {
                     setDisable(true);
                     setStyle("-fx-background-color: #ffc0cb;");
                 }
             }
         });
-        pickAnwesenheitsDatum.setValue(startDate);
+        pickAnwesenheitsDatum.setValue(value);
     }
 
     public void onClickAbbrechenKurs(ActionEvent actionEvent) {
@@ -112,6 +108,7 @@ public class KurseDetailsController {
         txInpMwsEuro.clear();
         txInpGebuehrNetto.clear();
         hbxPrintAnwesenheitsliste.setVisible(false);
+        btnKursSpeichern.setText("Speichern");
         if (AnwendungsModel.aktuellerKurs != null) {
             Tab plTab = main.fxmlKurseListeController.tabKurseListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
@@ -145,7 +142,10 @@ public class KurseDetailsController {
             txInpAktuelleTnZahl.setText(String.valueOf(kurs.getAktuelleTnZahl()));
             txInpMwsEuro.setText(String.valueOf(kurs.getMwstEuro()));
             txInpGebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
+            btnKursSpeichern.setText("Update");
             if (hatKursTeilnehmer()) {
+                // Auswahldatum auf die Dauer des Kurses einschränken
+                pickAnwesenheitsDatumSetzen(pickStartDatum.getValue(), pickEndDatum.getValue());
                 hbxPrintAnwesenheitsliste.setVisible(true);
             }
         }
@@ -195,6 +195,7 @@ public class KurseDetailsController {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
             }
+            btnKursSpeichern.setText("Speichern");
             hbxPrintAnwesenheitsliste.setVisible(false);
             main.fxmlKurseListeController.tableKurseListe.refresh();
             main.fxmlPersonenDetailsController.tableKurse.refresh();

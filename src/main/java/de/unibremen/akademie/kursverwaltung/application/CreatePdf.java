@@ -2,7 +2,6 @@ package de.unibremen.akademie.kursverwaltung.application;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.properties.AreaBreakType;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 import com.itextpdf.kernel.pdf.*;
