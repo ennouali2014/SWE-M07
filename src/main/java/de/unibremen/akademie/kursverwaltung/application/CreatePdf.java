@@ -1,15 +1,15 @@
 package de.unibremen.akademie.kursverwaltung.application;
-import com.itextpdf.layout.element.AreaBreak;
+
+import com.itextpdf.kernel.colors.Color;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.*;
+import com.itextpdf.kernel.pdf.canvas.draw.SolidLine;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.AreaBreakType;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
-import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
-import com.itextpdf.kernel.pdf.*;
-import com.itextpdf.layout.Document;
-import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.pdf.canvas.draw.SolidLine;
-import com.itextpdf.layout.element.LineSeparator;
-import com.itextpdf.layout.element.Paragraph;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 
 import java.io.IOException;
@@ -18,41 +18,52 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import static com.itextpdf.kernel.colors.ColorConstants.LIGHT_GRAY;
+import static com.itextpdf.kernel.colors.ColorConstants.WHITE;
+import static com.itextpdf.layout.properties.TextAlignment.LEFT;
+import static com.itextpdf.layout.properties.TextAlignment.RIGHT;
+import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
+
 
 public class CreatePdf {
 
     // Zu erzeugende Dateien
-    String SPEICHERPFAD = "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/";
-    String PERSONENLISTEPDF = SPEICHERPFAD + "Personenliste.pdf";
-    String KURSELISTEPDF = SPEICHERPFAD + "Kurseliste.pdf";
-    String ANWESENHEITSLISTEPDF = SPEICHERPFAD + "Anwesenheitsliste_";
+    private final String SPEICHERPFAD = "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/";
+    private final String PERSONENLISTEPDF = SPEICHERPFAD + "Personenliste.pdf";
+    private final String KURSELISTEPDF = SPEICHERPFAD + "Kurseliste.pdf";
+    private String ANWESENHEITSLISTEPDF = SPEICHERPFAD + "Anwesenheitsliste_";
 
     // Layout-Elemente
-    public SolidLine linie = new SolidLine(1f);
-    public LineSeparator trennLinie = new LineSeparator(linie);
+    private final SolidLine linie = new SolidLine(1f);
+    private final LineSeparator trennLinie = new LineSeparator(linie);
+    private final int fontSmall = 12;
+    private final int fontBig = 16;
+    private final int cellPadding = 5;
+    
 
     // aktuelles Datum
-    SimpleDateFormat dateMitZeit = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-    SimpleDateFormat dateOhneZeit = new SimpleDateFormat("dd.MM.yyyy");
-    String aktuellesDatum = dateMitZeit.format(new Date());
+    private final SimpleDateFormat dateMitZeit = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+    private final SimpleDateFormat dateOhneZeit = new SimpleDateFormat("dd.MM.yyyy");
+    private final String aktuellesDatum = dateMitZeit.format(new Date());
 
     // Format für die Dezimalstellen der Beträge
-    NumberFormat geldBetrag = NumberFormat.getCurrencyInstance(Locale.GERMANY);
-    NumberFormat prozentWert = NumberFormat.getNumberInstance(Locale.GERMANY);
+    private final NumberFormat geldBetrag = NumberFormat.getCurrencyInstance(Locale.GERMANY);
+    private final NumberFormat prozentWert = NumberFormat.getNumberInstance(Locale.GERMANY);
 
     // Seitenanzahl Berechnungsgrundlagen
-    int counterListenEintraege = 0;
-    int seiteAktuell = 1;
-    int anzahlPersonenJeSeite = 10;
-    int anzahlKurseJeSeite = 8;
-    int anzahlTeilnehmerJeSeite = 24;
+    private int counterListenEintraege = 0;
+    private int seiteAktuell = 1;
+    private final int anzahlPersonenJeSeite = 10;
+    private final int anzahlKurseJeSeite = 8;
+    private final int anzahlTeilnehmerJeSeite = 20;
+    private String trennZeichen = "/";
 
 
     // PDF für die Liste aller Personen
     public void createPersonenListePdf() throws IOException {
-        String headline = "Liste aller gespeicherten Personen (Stand: " + aktuellesDatum +")";
+        String headline = "Liste aller gespeicherten Personen";
         String metaSubject = "Personenliste";
-        String tabsAbstand = "\t\t\t";
+        String tabsAbstand = "\t\t\t\t\t\t";
         int seitenGesamt = (kvModel.getPersonen().getPersonenListe().size() + anzahlPersonenJeSeite - 1) / anzahlPersonenJeSeite;
 
         PdfDocument pdf = new PdfDocument(
@@ -65,29 +76,36 @@ public class CreatePdf {
         Document personenListePdf = new Document(pdf, PageSize.A4);
 
         if (seitenGesamt > 0) {
-            personenListePdf.add(new Paragraph(headline + tabsAbstand + seiteAktuell + "/" + seitenGesamt).setFontSize(16));
+            personenListePdf.add(
+                    new Paragraph()
+                            .add(headline).setFontSize(fontBig)
+                            .add(new Text("\t\t(Stand: " + aktuellesDatum + ")" + tabsAbstand + seiteAktuell + trennZeichen + seitenGesamt).setFontSize(fontSmall)));
             personenListePdf.add(trennLinie);
-            personenListePdf.add(new Paragraph("\n\n"));
+            personenListePdf.add(new Paragraph("\r\n\r\n"));
             for (Object obj : kvModel.getPersonen().getPersonenListe()) {
                 Person person = (Person) obj;
                 counterListenEintraege++;
                 if (counterListenEintraege <= anzahlPersonenJeSeite) {
-                    personenListePdf.add(new Paragraph(personToPDF(person)));
                     personenListePdf.add(trennLinie);
+                    personenListePdf.add(new Paragraph(personToPDF(person)));
                 } else {
                     personenListePdf.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
                     seiteAktuell++;
-                    personenListePdf.add(new Paragraph(headline + tabsAbstand + seiteAktuell + "/" + seitenGesamt).setFontSize(16));
+                    personenListePdf.add(
+                            new Paragraph()
+                                    .add(headline).setFontSize(fontBig)
+                                    .add(new Text("\t\t(Stand: " + aktuellesDatum + ")" + tabsAbstand + seiteAktuell + trennZeichen + seitenGesamt).setFontSize(fontSmall)));
                     personenListePdf.add(trennLinie);
-                    personenListePdf.add(new Paragraph("\n\n"));
+                    personenListePdf.add(new Paragraph("\r\n\r\n"));
+                    personenListePdf.add(trennLinie);
                     personenListePdf.add(new Paragraph(personToPDF(person)));
-                    personenListePdf.add(trennLinie);
                     counterListenEintraege = 1;
                 }
             }
+            personenListePdf.add(trennLinie);
         } else {
-            personenListePdf.add(new Paragraph(headline).setFontSize(18));
-            personenListePdf.add(new Paragraph("\nEs sind keine Personen in der Kursverwaltung angelegt!").setFontSize(18));
+            personenListePdf.add(new Paragraph(headline).setFontSize(fontBig));
+            personenListePdf.add(new Paragraph("\r\nEs sind keine Personen in der Kursverwaltung angelegt!").setFontSize(fontBig));
         }
 
         seiteAktuell = 0; //reset
@@ -96,9 +114,9 @@ public class CreatePdf {
 
     // PDF für die Liste aller Kurse
     public void createKurseListePdf() throws IOException {
-        String headline = "Liste aller gespeicherten Kurse (Stand: " + aktuellesDatum +")";
+        String headline = "Liste aller gespeicherten Kurse";
         String metaSubject = "Kurseliste";
-        String tabsAbstand = "\t\t\t\t";
+        String tabsAbstand = "\t\t\t\t\t\t\t\t";
         int seitenGesamt = (kvModel.getKurse().getKursListe().size() + anzahlKurseJeSeite - 1) / anzahlKurseJeSeite;
 
         PdfDocument pdf = new PdfDocument(
@@ -111,29 +129,36 @@ public class CreatePdf {
         Document kurseListePdf = new Document(pdf, PageSize.A4);
 
         if (seitenGesamt > 0) {
-            kurseListePdf.add(new Paragraph(headline + tabsAbstand + seiteAktuell + "/" + seitenGesamt).setFontSize(16));
+            kurseListePdf.add(
+                    new Paragraph()
+                            .add(headline).setFontSize(fontBig)
+                            .add(new Text("\t\t(Stand: " + aktuellesDatum + ")" + tabsAbstand + seiteAktuell + trennZeichen + seitenGesamt).setFontSize(fontSmall)));
             kurseListePdf.add(trennLinie);
-            kurseListePdf.add(new Paragraph("\n\n"));
+            kurseListePdf.add(new Paragraph("\r\n\r\n"));
             for (Object obj : kvModel.getKurse().getKursListe()) {
                 Kurs kurs = (Kurs) obj;
                 counterListenEintraege++;
                 if (counterListenEintraege <= anzahlKurseJeSeite) {
-                    kurseListePdf.add(new Paragraph(kursToPDF(kurs)));
                     kurseListePdf.add(trennLinie);
+                    kurseListePdf.add(new Paragraph(kursToPDF(kurs)));
                 } else {
                     kurseListePdf.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
                     seiteAktuell++;
-                    kurseListePdf.add(new Paragraph(headline + tabsAbstand + seiteAktuell + "/" + seitenGesamt).setFontSize(16));
+                    kurseListePdf.add(
+                            new Paragraph()
+                                    .add(headline).setFontSize(fontBig)
+                                    .add(new Text("\t\t(Stand: " + aktuellesDatum + ")" + tabsAbstand + seiteAktuell + trennZeichen + seitenGesamt).setFontSize(fontSmall)));
                     kurseListePdf.add(trennLinie);
-                    kurseListePdf.add(new Paragraph("\n\n"));
+                    kurseListePdf.add(new Paragraph("\r\n\r\n"));
+                    kurseListePdf.add(trennLinie);
                     kurseListePdf.add(new Paragraph(kursToPDF(kurs)));
-                    kurseListePdf.add(trennLinie);
                     counterListenEintraege = 1;
                 }
             }
+            kurseListePdf.add(trennLinie);
         } else {
-            kurseListePdf.add(new Paragraph(headline).setFontSize(18));
-            kurseListePdf.add(new Paragraph("\nEs sind keine Kurse in der Kursverwaltung angelegt!").setFontSize(18));
+            kurseListePdf.add(new Paragraph(headline).setFontSize(fontBig));
+            kurseListePdf.add(new Paragraph("\r\nEs sind keine Kurse in der Kursverwaltung angelegt!").setFontSize(fontBig));
         }
 
         seiteAktuell = 0; //reset
@@ -144,8 +169,9 @@ public class CreatePdf {
     public void createAnwesenheitslistePdf(String kursName, String datum) throws IOException {
         String headline = "Anwesenheitsliste für den Kurs " + kursName + ", " + datum;
         String metaSubject = "Anwesenheitsliste";
-        String tabsAbstand = "\t\t\t\t";
-        String kursDatei = kursName.replace(" ","_"); //Leerzeichen aus Dateinamen ersetzen
+        String tabsAbstand = "\t\t\t";
+        Color bgColor = LIGHT_GRAY;
+        String kursDatei = kursName.replace(" ", "_"); //Leerzeichen aus Dateinamen ersetzen
 
         // Anzahl der teilnehmenden Personen ermitteln
         int teilnehmendePersonen = 0;
@@ -167,40 +193,56 @@ public class CreatePdf {
         Document anwesenheitslistePdf = new Document(pdf, PageSize.A4);
 
         if (seitenGesamt > 0) {
-            anwesenheitslistePdf.add(new Paragraph(headline + tabsAbstand + seiteAktuell + "/" + seitenGesamt).setFontSize(16));
-            anwesenheitslistePdf.add(trennLinie);
-            anwesenheitslistePdf.add(new Paragraph("\n\n"));
+            Table table = new Table(3).setWidth(520f);
+            // Tabellenheader Anfang
+            tabellenHeader(table, headline, seitenGesamt);
+            // Tabellenheader Ende
 
             for (PersonKurs personKurs : kvModel.getPkListe().personKursList) {
                 if (personKurs.getKurs().getName().equals(kursName) && personKurs.isTeilnehmer()) {
-                        Person person = personKurs.getPerson();
-                        counterListenEintraege++;
-                        if (counterListenEintraege <= anzahlTeilnehmerJeSeite) {
-                            anwesenheitslistePdf.add(new Paragraph(teilnehmerPersonToPDF(person)));
-                            anwesenheitslistePdf.add(trennLinie);
+                    Person person = personKurs.getPerson();
+                    counterListenEintraege++;
+                    if (counterListenEintraege <= anzahlTeilnehmerJeSeite) {
+                        if (counterListenEintraege % 2 != 0) {
+                            bgColor = LIGHT_GRAY;
                         } else {
-                            anwesenheitslistePdf.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-                            seiteAktuell++;
-                            anwesenheitslistePdf.add(new Paragraph(headline + tabsAbstand + seiteAktuell + "/" + seitenGesamt).setFontSize(16));
-                            anwesenheitslistePdf.add(trennLinie);
-                            anwesenheitslistePdf.add(new Paragraph("\n\n"));
-                            anwesenheitslistePdf.add(new Paragraph(teilnehmerPersonToPDF(person)));
-                            anwesenheitslistePdf.add(trennLinie);
-                            counterListenEintraege = 1;
+                            bgColor = WHITE;
                         }
+                        table.addCell(new Cell().add(new Paragraph(teilnehmerPersonToPDF(person)).setPadding(cellPadding)).setBackgroundColor(bgColor));
+                        table.addCell(new Cell(1,2).add(new Paragraph("").setPadding(cellPadding)).setBackgroundColor(bgColor));
+                    } else {
+                        //anwesenheitslistePdf.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+                        seiteAktuell++;
+                        // Tabellenheader Anfang
+                        tabellenHeader(table, headline, seitenGesamt);
+                        // Tabellenheader Ende
+                        table.addCell(new Cell().add(new Paragraph(teilnehmerPersonToPDF(person)).setPadding(cellPadding)).setBackgroundColor(LIGHT_GRAY));
+                        table.addCell(new Cell(1,2).add(new Paragraph("").setPadding(cellPadding)).setBackgroundColor(LIGHT_GRAY));
+                        counterListenEintraege = 1;
+                    }
                 }
             }
+            anwesenheitslistePdf.add(table);
         } else {
-            anwesenheitslistePdf.add(new Paragraph(headline).setFontSize(18));
-            anwesenheitslistePdf.add(new Paragraph("\nEs gibt keine Teilnehmer für diesen Kurs!").setFontSize(18));
+            anwesenheitslistePdf.add(new Paragraph(headline).setFontSize(fontBig));
+            anwesenheitslistePdf.add(new Paragraph("\r\nEs gibt keine Teilnehmer für diesen Kurs!").setFontSize(fontBig));
         }
 
         seiteAktuell = 0; //reset
         anwesenheitslistePdf.close();
     }
 
+    public void tabellenHeader(Table table, String headline, int seitenGesamt) {
+        table.addCell(new Cell(1,3).add(new Paragraph(headline).setPadding(cellPadding).setFontSize(fontBig)));
+        table.addCell(new Cell(1,3).add(new Paragraph(" ").setFontSize(fontBig))
+                .add(new Paragraph(seiteAktuell + trennZeichen + seitenGesamt).setPadding(cellPadding)
+                        .setFontSize(fontSmall)).setBorder(Border.NO_BORDER).setTextAlignment(RIGHT));
+        table.addCell(new Cell().setWidth(220f).add(new Paragraph("Teilnehmer:in").setPadding(cellPadding).setFontSize(fontBig)));
+        table.addCell(new Cell(1,2).add(new Paragraph("Unterschrift").setPadding(cellPadding).setFontSize(fontBig)));
+    }
+
     // Daten für die Liste aller Personen holen und formatieren
-    public String personToPDF (Person person) {
+    public String personToPDF(Person person) {
         return person.getAnrede() + " " +
                 person.getTitel() + " " +
                 person.getVorname() + " " +
@@ -213,8 +255,8 @@ public class CreatePdf {
     }
 
     // Daten für die Liste aller Kurse holen und formatieren
-    public String kursToPDF (Kurs kurs) {
-        return kurs.getName() + "\tStatus: " + kurs.getStatus() + "\n" +
+    public String kursToPDF(Kurs kurs) {
+        return kurs.getName() + "\tStatus: " + kurs.getStatus() + "\r\n" +
                 "Start: " + dateOhneZeit.format(kurs.getStartDatum()) + "\t" +
                 "Ende: " + dateOhneZeit.format(kurs.getEndeDatum()) + "\t" +
                 "Dauer: " + kurs.getAnzahlTage() + " Tage\r" +
@@ -227,7 +269,7 @@ public class CreatePdf {
     }
 
     // Personen-Daten für die Anwesenheitsliste holen und formatieren
-    public String teilnehmerPersonToPDF (Person person) {
+    public String teilnehmerPersonToPDF(Person person) {
         return person.getAnrede() + " " +
                 person.getTitel() + " " +
                 person.getVorname() + " " +
@@ -236,10 +278,10 @@ public class CreatePdf {
 
     // Metadaten die in den PDF-Infos gespeichert werden
     private static void addMetaData(PdfDocumentInfo info, String subject) {
-            info.setTitle("Kursverwaltung");
-            info.setAuthor("SWE-M07 - DevelopmentGroup");
-            info.setSubject(subject);
-            info.setKeywords("M. Dbour | F. Ennouali | A. Förster | T. Haberland | Y. Hanna | A. Karaköse | R. Lukas | M. Pawel | O. Thiel | T. Tomy");
-            info.setCreator("SWE 2022/2023 - Kursverwaltung v1.0");
+        info.setTitle("Kursverwaltung");
+        info.setAuthor("SWE-M07 - DevelopmentGroup");
+        info.setSubject(subject);
+        info.setKeywords("M. Dbour | F. Ennouali | A. Förster | T. Haberland | Y. Hanna | A. Karaköse | R. Lukas | M. Pawel | O. Thiel | T. Tomy");
+        info.setCreator("SWE 2022/2023 - Kursverwaltung v1.0");
     }
 }

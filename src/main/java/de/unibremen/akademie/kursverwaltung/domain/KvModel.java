@@ -87,6 +87,26 @@ public class KvModel {
             person.addNewPerson("Divers", "", "Cosma", "Shiva", "Aurenallee 666", "21165", "Hamburg", "cosma_shiva@in-den-wolken.business", "040 666666666");
             person.addNewPerson("", "", "Manfred", "Schneider", "Kohlweg 17", "10978", "Berlin", "ms@hotmail.com", "+49 162 7898 56 45");
             person.addNewPerson("Frau", "Freifrau", "Julia", "von Bayern", "Wiesnplatz 96f", "84569", "München", "freifrau_jvb@brauhaus.bayern", "00 170 235 45 81");
+            /*person.addNewPerson("Frau", "Prof. Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
+            person.addNewPerson("Herr", "Baron", "Konrad", "Mumpitz", "Sachsenstr. 9a", "D-34589", "Hannover", "baron-k-m@mail.de", "0511 7863548");
+            person.addNewPerson("Divers", "", "Cosma", "Shiva", "Aurenallee 666", "21165", "Hamburg", "cosma_shiva@in-den-wolken.business", "040 666666666");
+            person.addNewPerson("", "", "Manfred", "Schneider", "Kohlweg 17", "10978", "Berlin", "ms@hotmail.com", "+49 162 7898 56 45");
+            person.addNewPerson("Frau", "Freifrau", "Julia", "von Bayern", "Wiesnplatz 96f", "84569", "München", "freifrau_jvb@brauhaus.bayern", "00 170 235 45 81");
+            person.addNewPerson("Frau", "Prof. Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
+            person.addNewPerson("Herr", "Baron", "Konrad", "Mumpitz", "Sachsenstr. 9a", "D-34589", "Hannover", "baron-k-m@mail.de", "0511 7863548");
+            person.addNewPerson("Divers", "", "Cosma", "Shiva", "Aurenallee 666", "21165", "Hamburg", "cosma_shiva@in-den-wolken.business", "040 666666666");
+            person.addNewPerson("", "", "Manfred", "Schneider", "Kohlweg 17", "10978", "Berlin", "ms@hotmail.com", "+49 162 7898 56 45");
+            person.addNewPerson("Frau", "Freifrau", "Julia", "von Bayern", "Wiesnplatz 96f", "84569", "München", "freifrau_jvb@brauhaus.bayern", "00 170 235 45 81");
+            person.addNewPerson("Frau", "Prof. Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
+            person.addNewPerson("Herr", "Baron", "Konrad", "Mumpitz", "Sachsenstr. 9a", "D-34589", "Hannover", "baron-k-m@mail.de", "0511 7863548");
+            person.addNewPerson("Divers", "", "Cosma", "Shiva", "Aurenallee 666", "21165", "Hamburg", "cosma_shiva@in-den-wolken.business", "040 666666666");
+            person.addNewPerson("", "", "Manfred", "Schneider", "Kohlweg 17", "10978", "Berlin", "ms@hotmail.com", "+49 162 7898 56 45");
+            person.addNewPerson("Frau", "Freifrau", "Julia", "von Bayern", "Wiesnplatz 96f", "84569", "München", "freifrau_jvb@brauhaus.bayern", "00 170 235 45 81");
+            person.addNewPerson("Frau", "Prof. Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
+            person.addNewPerson("Herr", "Baron", "Konrad", "Mumpitz", "Sachsenstr. 9a", "D-34589", "Hannover", "baron-k-m@mail.de", "0511 7863548");
+            person.addNewPerson("Divers", "", "Cosma", "Shiva", "Aurenallee 666", "21165", "Hamburg", "cosma_shiva@in-den-wolken.business", "040 666666666");
+            person.addNewPerson("", "", "Manfred", "Schneider", "Kohlweg 17", "10978", "Berlin", "ms@hotmail.com", "+49 162 7898 56 45");
+            person.addNewPerson("Frau", "Freifrau", "Julia", "von Bayern", "Wiesnplatz 96f", "84569", "München", "freifrau_jvb@brauhaus.bayern", "00 170 235 45 81");*/
             System.out.println("Person-Standarddaten wurde geladen!");
         }
         if (kurse.getKursListe().size() <= 0) {
@@ -107,6 +127,27 @@ public class KvModel {
             pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(1), kurse.getKursVonKursListe(1));
             pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(2), kurse.getKursVonKursListe(1));
             pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(3), kurse.getKursVonKursListe(1));
+            /*pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(4), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(5), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(6), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(7), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(8), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(9), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(10), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(11), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(12), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(13), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(14), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(15), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(16), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(17), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(18), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(19), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(20), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(21), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(22), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(23), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(24), kurse.getKursVonKursListe(1));*/
             System.out.println("PersonKursList-Standarddaten wurde geladen!");
         }
     }

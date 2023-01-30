@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.util.StringConverter;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -71,7 +70,7 @@ public class KurseDetailsController {
         pickEndDatum.setPromptText("Wird kalkuliert!");
     }
 
-     // special thanx to chatGPT ;)
+    // special thanx to chatGPT ;)
     private void pickAnwesenheitsDatumSetzen(LocalDate startDatum, LocalDate endDatum) {
         LocalDate aktuellesDatum = LocalDate.now();
         LocalDate value = startDatum;
@@ -288,6 +287,8 @@ public class KurseDetailsController {
                 new CreatePdf().createAnwesenheitslistePdf(AnwendungsModel.aktuellerKurs.getName(), datumAnwesenheitsliste);
                 //ProcessBuilder pb = new ProcessBuilder("C:/Program Files/PDF24/pdf24-Reader.exe", "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/Anwesenheitsliste_Angular_FE_27.02.2023.pdf");
                 //pb.start();
+                Tab plTab = main.fxmlKurseListeController.tabKurseListe;
+                plTab.getTabPane().getSelectionModel().select(plTab);
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
             }
