@@ -30,7 +30,7 @@ public class CreatePdf {
     private final String SPEICHERPFAD = "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/";
     private final String PERSONENLISTEPDF = SPEICHERPFAD + "Personenliste.pdf";
     private final String KURSELISTEPDF = SPEICHERPFAD + "Kurseliste.pdf";
-    private String ANWESENHEITSLISTEPDF = SPEICHERPFAD + "Anwesenheitsliste_";
+    private final String ANWESENHEITSLISTEPDF = SPEICHERPFAD + "Anwesenheitsliste_";
 
     // Layout-Elemente
     private Color bgColor = LIGHT_GRAY;

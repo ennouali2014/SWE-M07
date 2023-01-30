@@ -20,6 +20,9 @@ import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvMode
 
 public class KurseDetailsController {
 
+    private final String pdfReader = "C:/Program Files/PDF24/pdf24-Reader.exe"; // Anpassen an den jeweiligen PC !!
+    private final String pdfSpeicherPfad = "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/";
+
     @FXML
     public TextField txInpMwsProzent;
     @FXML
@@ -285,8 +288,10 @@ public class KurseDetailsController {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
                 String datumAnwesenheitsliste = localDate.format(formatter);
                 new CreatePdf().createAnwesenheitslistePdf(AnwendungsModel.aktuellerKurs.getName(), datumAnwesenheitsliste);
-                //ProcessBuilder pb = new ProcessBuilder("C:/Program Files/PDF24/pdf24-Reader.exe", "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/Anwesenheitsliste_Angular_FE_27.02.2023.pdf");
-                //pb.start();
+                String erstelltesPdf = "Anwesenheitsliste_" + AnwendungsModel.aktuellerKurs.getName().replace(" ", "_") + "_" + datumAnwesenheitsliste + ".pdf";
+                ProcessBuilder pb = new ProcessBuilder(pdfReader, pdfSpeicherPfad + erstelltesPdf);
+                Thread.sleep(500); // 1,5 Sekunden warten
+                pb.start();
                 Tab plTab = main.fxmlKurseListeController.tabKurseListe;
                 plTab.getTabPane().getSelectionModel().select(plTab);
             } catch (Exception e) {
