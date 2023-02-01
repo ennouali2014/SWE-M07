@@ -10,7 +10,8 @@ public class KursListe {
         kursListe.add(kurs);
     }
 
-    public ObservableList getKursListe() {
+    //  should be list of courses rather than raw list type
+    public ObservableList<Kurs> getKursListe() {
         return kursListe;
     }
 
