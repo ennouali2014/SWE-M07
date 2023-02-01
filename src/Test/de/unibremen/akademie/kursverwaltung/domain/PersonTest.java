@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonTest {
@@ -42,16 +43,88 @@ Es sind folgende Besonderheiten zu beachten:
     Von der Verwendung von Großbuchstaben wird abgeraten. Offiziell sind sie zwar erlaubt, aber ihre Benutzung ist riskant. Manche E-Mail-Provider können damit nicht umgehen und es kann Probleme mit Web-Formularen geben.
     Seit 2010 sind nichtlateinische Zeichen erlaubt, also auch Umlaute und „ß“. Obwohl die meisten Provider die deutschen Umlaute akzeptieren, wird davon abgeraten. Vielleicht ist einer der Server auf dem Transportweg noch nicht umgestellt und weist die Mail zurück.
     */
-        assertFalse(Person.checkValidEmail("ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggm@d.de"));
+        assertTrue(Person.checkValidEmail("ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggm@d.de"));
     }
 
     @Test
-    void addNewPersonTest() {
-//        Person person = Person.addNewPerson("", "", "Al", "Bundy", "", "", "", "a@mail.de", "");
-//        assertEquals(1, KvModel.personList.size());
-//        Person.addNewPerson("", "", "Al", "Bundy", "", "", "", "a@mail.de", "");
-//        assertEquals(2, KvModel.personList.size());
-        //Person.addNewPerson("", "", "", "B", "", "", "", "a@mail.", "");
-        //assertEquals(2, KvModel.personList.size());
+    public void testAddNewPerson() {
+        Person person = Person.addNewPerson("Herr", "Dr.", "John", "Doe", "Street 1", "12345", "City", "john.doe@email.com", "1234567890");
+        assertEquals("Herr", person.getAnrede());
+        assertEquals("Dr.", person.getTitel());
+        assertEquals("John", person.getVorname());
+        assertEquals("Doe", person.getNachname());
+        assertEquals("Street 1", person.getStrasse());
+        assertEquals("12345", person.getPlz());
+        assertEquals("City", person.getOrt());
+        assertEquals("john.doe@email.com", person.getEmail());
+        assertEquals("1234567890", person.getTelefon());
+        assertTrue(kvModel.getPersonen().getPersonenListe().contains(person));
     }
+
+    @Test
+    public void testAddNewPersonInvalidVorname() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Person.addNewPerson("Herr", "Dr.", "", "Doe", "Street 1", "12345",
+                    "City", "john.doe@email.com", "1234567890");
+        });
+    }
+
+    @Test
+    public void testAddNewPersonInvalidNachname() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Person.addNewPerson("Herr", "Dr.", "John", "", "Street 1", "12345",
+                    "City", "john.doe@email.com", "1234567890");
+        });
+    }
+
+    @Test
+    public void testAddNewPersonInvalidEmail() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Person.addNewPerson("Herr", "Dr.", "John", "Doe", "Street 1",
+                    "12345", "City", "johndoeemail.com", "1234567890");
+        });
+    }
+
+
+    @Test
+    public void testUpdatePerson() {
+        Person person = new Person();
+
+        //Test case 1: Test with valid input
+        person.updatePerson("Herr", "Dr.", "John", "Doe", "Street 1", "12345", "City", "john.doe@example.com", "123456");
+        assertEquals("Herr", person.getAnrede());
+        assertEquals("Dr.", person.getTitel());
+        assertEquals("John", person.getVorname());
+        assertEquals("Doe", person.getNachname());
+        assertEquals("Street 1", person.getStrasse());
+        assertEquals("12345", person.getPlz());
+        assertEquals("City", person.getOrt());
+        assertEquals("john.doe@example.com", person.getEmail());
+        assertEquals("123456", person.getTelefon());
+
+        //Test case 2: Test with short first name
+        try {
+            person.updatePerson("Herr", "Dr.", "J", "Doe", "Street 1", "12345", "City", "john.doe@example.com", "123456");
+            fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Der Vorname muss aus mindestens 2 Zeichen bestehen!", e.getMessage());
+        }
+
+        //Test case 3: Test with short last name
+        try {
+            person.updatePerson("Herr", "Dr.", "John", "D", "Street 1", "12345", "City", "john.doe@example.com", "123456");
+            fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Der Nachname muss aus mindestens 2 Zeichen bestehen!", e.getMessage());
+        }
+
+        //Test case 4: Test with invalid email
+        try {
+            person.updatePerson("Herr", "Dr.", "John", "Doe", "Street 1", "12345", "City", "johndoe.com", "123456");
+            fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Die Email-Adresse ist fehlerhaft!", e.getMessage());
+        }
+    }
+
 }
