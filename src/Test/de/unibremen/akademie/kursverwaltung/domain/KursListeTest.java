@@ -21,19 +21,24 @@ public class KursListeTest {
         a.setName(name);
         testList.addKursZuListe(a);
         assertFalse(testList.getKursListe().isEmpty());
+        assertEquals(1, testList.getKursListe().size());
         assertEquals(a, testList.getKursListe().get(0));
         assertEquals(name, testList.getKursListe().get(0).getName());
     }
 
     @Test
-    void getKursVonKursListe(){
-        KursListe testIndex= new KursListe();
+    void getKursVonKursListe() {
+        KursListe testIndex = new KursListe();
         Kurs b = new Kurs();
         Kurs c = new Kurs();
         Kurs d = new Kurs();
         Kurs e = new Kurs();
         Kurs f = new Kurs();
-        assertEquals(b,c);
+        testIndex.addKursZuListe(b);
+        testIndex.addKursZuListe(c);
+        assertEquals(b, testIndex.getKursVonKursListe(0));
+        assertEquals(c, testIndex.getKursVonKursListe(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> testIndex.getKursVonKursListe(2));
 
     }
 
