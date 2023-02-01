@@ -20,6 +20,7 @@ import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvMode
 
 public class KurseDetailsController {
 
+    // Zeile 293 ist auskommentiert, jetzt muss erstmal der Pfad nicht angepasst werden
     private final String pdfReader = "C:/Program Files/PDF24/pdf24-Reader.exe"; // Anpassen an den jeweiligen PC !!
     private final String pdfSpeicherPfad = "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/";
 
@@ -289,9 +290,9 @@ public class KurseDetailsController {
                 String datumAnwesenheitsliste = localDate.format(formatter);
                 new CreatePdf().createAnwesenheitslistePdf(AnwendungsModel.aktuellerKurs.getName(), datumAnwesenheitsliste);
                 String erstelltesPdf = "Anwesenheitsliste_" + AnwendungsModel.aktuellerKurs.getName().replace(" ", "_") + "_" + datumAnwesenheitsliste + ".pdf";
-                ProcessBuilder pb = new ProcessBuilder(pdfReader, pdfSpeicherPfad + erstelltesPdf);
+                /*ProcessBuilder pb = new ProcessBuilder(pdfReader, pdfSpeicherPfad + erstelltesPdf);
                 Thread.sleep(500); // 1,5 Sekunden warten
-                pb.start();
+                pb.start();*/
                 Tab plTab = main.fxmlKurseListeController.tabKurseListe;
                 plTab.getTabPane().getSelectionModel().select(plTab);
             } catch (Exception e) {
