@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DatumFormatieren {
 
-    //  Datum für SatePicker formatieren - special thanx to chatGPT ;)
+    //  Datum für DatePicker formatieren - special thanx to chatGPT ;)
     public static void datumFormatieren(DatePicker datum) {
         DateTimeFormatter datumsFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         datum.setPromptText(datumsFormat.toString());
