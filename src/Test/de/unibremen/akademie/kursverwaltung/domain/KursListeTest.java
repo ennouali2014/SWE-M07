@@ -35,6 +35,7 @@ public class KursListeTest {
         Kurs f = new Kurs();
         assertEquals(b,c);
 
+
     }
 
 }
