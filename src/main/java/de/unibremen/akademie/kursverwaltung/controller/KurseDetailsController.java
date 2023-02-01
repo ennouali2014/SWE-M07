@@ -312,4 +312,8 @@ public class KurseDetailsController {
         return teilnehmendePersonen > 0;
     }
 
+    // for test only
+    MainController getMain() {
+        return main;
+    }
 }
