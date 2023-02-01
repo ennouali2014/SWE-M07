@@ -66,7 +66,7 @@ public class KurseDetailsController {
 
     @FXML
     public void initialize() {
-        // Anzeige im deutschen Format
+        // Anzeige im deutschen Format, nutzt Klasse DatumFormatieren im Application-Ordner
         DatumFormatieren.datumFormatieren(pickAnwesenheitsDatum);
         DatumFormatieren.datumFormatieren(pickStartDatum);
         DatumFormatieren.datumFormatieren(pickEndDatum);
