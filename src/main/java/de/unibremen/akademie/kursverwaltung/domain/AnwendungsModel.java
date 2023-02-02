@@ -1,7 +1,8 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
 public class AnwendungsModel extends KvModel {
-    private final String VERWALTUNGSDATEI = "target/storage/gespeicherteObjekte";
+    private final String SPEICHERPFAD = "target/storage/";
+    private final String VERWALTUNGSDATEI = "gespeicherteObjekte";
     public static final AnwendungsModel kvModel = new AnwendungsModel();
     public Kurs aktuellerKurs;
     public Person aktuellePerson;
@@ -11,11 +12,11 @@ public class AnwendungsModel extends KvModel {
     }
 
     public void load() {
-        load(VERWALTUNGSDATEI);
+        load(SPEICHERPFAD, VERWALTUNGSDATEI);
     }
 
     public void save() {
-        save(VERWALTUNGSDATEI);
+        save(SPEICHERPFAD, VERWALTUNGSDATEI);
     }
 
 

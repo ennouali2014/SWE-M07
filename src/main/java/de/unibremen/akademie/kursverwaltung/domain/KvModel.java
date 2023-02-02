@@ -27,9 +27,9 @@ public class KvModel {
     public PersonKursListe getPkListe() { return pkListe; }
 
 
-    public void load(String speicherPfad) {
+    public void load(String speicherPfad, String speicherDatei) {
         try {
-            FileInputStream infile = new FileInputStream(speicherPfad);
+            FileInputStream infile = new FileInputStream(speicherPfad + speicherDatei);
             ObjectInputStream input = new ObjectInputStream(infile);
             // ObservableList is not Serializable. We have to work around
             personen.getPersonenListe().addAll((ArrayList<Person>) input.readObject());
@@ -53,9 +53,13 @@ public class KvModel {
     }
 
 
-    public void save(String speicherPfad) {
+    public void save(String speicherPfad, String speicherDatei) {
         try {
-            FileOutputStream outfile = new FileOutputStream(speicherPfad);
+            File directory = new File(speicherPfad);
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+            FileOutputStream outfile = new FileOutputStream(speicherPfad + speicherDatei);
             ObjectOutputStream output = new ObjectOutputStream(outfile);
             // ObservableList is not Serializable. We have to work around
             output.writeObject(new ArrayList<Person>(personen.getPersonenListe()));
