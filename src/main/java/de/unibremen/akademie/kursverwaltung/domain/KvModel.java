@@ -3,6 +3,7 @@ package de.unibremen.akademie.kursverwaltung.domain;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
@@ -114,7 +115,7 @@ public class KvModel {
             throw new RuntimeException("Person ist noch Teilnehmer");
         }
         if (!pkListe.getKurseAlsInteressent(p).isEmpty()) {
-            pkListe.removeAllKurseAlsInteressent(p);
+            pkListe.removeAllKurseAlsInteressent(p, (List<Kurs>) pkListe); //TODO Mohammed
         }
         personen.getPersonenListe().remove(p);
     }

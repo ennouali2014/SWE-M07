@@ -89,20 +89,23 @@ public class PersonenDetailsController {
         colKurseStartDate.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
         colKurseStartDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
-
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableKurse.getSelectionModel();
+        selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
 
-        selectionModel.setSelectionMode(SelectionMode.SINGLE);
-
+        // TODO Kurs vom Teilnehmer in TeilnahmeKurse anzeigen!!
         colTeilnahmeKurseKursname.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         colTeilnahmeKurseKursname.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
+        // TODO Kurs vom Interessenter in InteresseKurse anzeigen!!
         colInteresseKurseKursname.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         colInteresseKurseKursname.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
 
+
         tableKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursTeilnehmerButton());
         tableTeilnahmeKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursAusTeilnehmerButton());
+
+
         tableInteresseKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursInteressentenButton());
 
         tableKurse.setItems(kvModel.getKurse().getKursListe());
@@ -138,6 +141,10 @@ public class PersonenDetailsController {
             try {
                 kvModel.aktuellePerson.updatePerson(choiceAnrede.getValue().toString(), txInpTitel.getText(), txInpVorname.getText(),
                         txInpNachname.getText(), txInpStrasse.getText(), txInpPlz.getText(), txInpOrt.getText(), txInpEmail.getText(), txInpTelefon.getText());
+
+                kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson, this.tableTeilnahmeKurse.getItems());
+                kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson, this.tableInteresseKurse.getItems());
+
                 kvModel.getPkListe().addKurseAlsTeilnehmer(kvModel.aktuellePerson, this.tableTeilnahmeKurse.getItems());
                 kvModel.getPkListe().addKurseAlsInteressent(kvModel.aktuellePerson, this.tableInteresseKurse.getItems());
             } catch (Exception e) {
@@ -167,7 +174,6 @@ public class PersonenDetailsController {
 
         if (PersonenDetailsController.zurueckPersonenliste) {
             plTab.getTabPane().getSelectionModel().select(plTab);
-
             main.fxmlPersonenListeController.tablePersonenListe.getSelectionModel().clearSelection();
             main.fxmlPersonenListeController.tablePersonenListe.getSelectionModel().select(person);
         }
@@ -189,14 +195,17 @@ public class PersonenDetailsController {
             this.txInpOrt.setText(person.getOrt());
             this.txInpEmail.setText(person.getEmail());
             this.txInpTelefon.setText(person.getTelefon());
+            tableTeilnahmeKurse.getItems().clear();
+            tableTeilnahmeKurse.getItems().addAll(kvModel.getPkListe().getKurse(person, true));
+            tableInteresseKurse.getItems().clear();
+            tableInteresseKurse.getItems().addAll(kvModel.getPkListe().getKurse(person, false));
+
         }
     }
     @FXML
     public void onClickAbbrechenPerson(ActionEvent event) {
         felderLeeren();
-
         if (zurueckPersonenliste) {
-            //System.out.println(zurueckPersonenliste);
             Tab plTab = main.fxmlPersonenListeController.tabPersonenListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
             zurueckPersonenliste = false;
@@ -233,7 +242,6 @@ public class PersonenDetailsController {
         }
     }
 
-    //TODO Implementierung ist noch nicht fertig!
     public void onClickInteressentZuTeilnehmer(ActionEvent actionEvent) {
         if (kvModel.aktuellePerson == null || tableInteresseKurse.getSelectionModel().getSelectedItem() == null) {
             return;

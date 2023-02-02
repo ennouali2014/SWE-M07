@@ -14,7 +14,7 @@ public class PersonKursListe {
 
 
     // TODO: wird jetzt nicht unbedingt nur geADDed, sondern ggf. geändert. Sollte das besser in einer anderen Methode gemacht werden? (AxF)
-    //TODO: personKurs.getKurs() ist manchmal null, Methode muss erneut instialisiert werden! Mohammed
+
     public Boolean addPersonInKurs(Person person, Kurs kurs, Boolean alsTeilnehmer) {
         for (PersonKurs personKurs : personKursList) {
             if (personKurs.getPerson().equals(person) && personKurs.getKurs().equals(kurs)) {
@@ -34,6 +34,13 @@ public class PersonKursListe {
         personKursList.add(personKurs);
         return true;
     }
+
+    /*public Boolean updatePersonInKurs(Person person, Kurs kurs, Boolean alsTeilnehmer){
+        if(person.equals(personKursList)){
+
+        }
+        return true;
+    }*/
 
     public Boolean addPersonInKursAlsInteressent(Person person, Kurs kurs) {
         return addPersonInKurs(person, kurs, false);
@@ -115,12 +122,12 @@ public class PersonKursListe {
         addKurse(person, interessentenliste, false);
     }
 
-    public void removeAllKurseAlsInteressent(Person p) {
-        removeAllKurse(p, false);
+    public void removeAllKurseAlsInteressent(Person aktuellePerson, List<Kurs> interessentenliste) {
+        removeAllKurse(aktuellePerson, false);
     }
 
-    public void removeAllKurseAlsTeilnehmer(Person p) {
-        removeAllKurse(p, true);
+    public void removeAllKurseAlsTeilnehmer(Person aktuellePerson, List<Kurs> teilnnehmerliste) {
+        removeAllKurse(aktuellePerson, true);
     }
 
     public void removeAllKurse(Person p, boolean alsTeilnehmer) {
@@ -128,5 +135,17 @@ public class PersonKursListe {
         for (PersonKurs k : list) {
             personKursList.remove(k);
         }
+    }
+
+    public int size() {
+        if (personKursList == null) {
+            throw new NullPointerException("List is null");
+        }
+        int size = 0;
+        for (PersonKurs element : personKursList) {
+            size++;
+        }
+        return size;
+
     }
 }
