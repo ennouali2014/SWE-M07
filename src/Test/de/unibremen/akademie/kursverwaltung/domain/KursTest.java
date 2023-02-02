@@ -93,20 +93,20 @@ class KursTest {
 
     @Test
     void setFreiePlaetze() {
-//        kurs1.setTeilnehmerListe(tn1);
-//        kurs1.setTeilnehmerListe(tn2);
-//        kurs1.setTeilnehmerListe(tn3);
-//
-//        kurs1.setAktuelleTnZahl();
-//
-//        kurs1.setMaxTnZahl(2);
-//        assertFalse(kurs1.setFreiePlaetze());
-//
-//
-//        kurs1.setMaxTnZahl(10);
-//        kurs1.setAktuelleTnZahl();
-//        kurs1.setFreiePlaetze();
-//        assertEquals(7, kurs1.getFreiePlaetze());
+        kurs1.setTeilnehmerListe(tn1);
+        kurs1.setTeilnehmerListe(tn2);
+        kurs1.setTeilnehmerListe(tn3);
+
+        kurs1.setAktuelleTnZahl();
+        kurs1.setMinTnZahl(1);
+        kurs1.setMaxTnZahl(2);
+        assertFalse(kurs1.setFreiePlaetze());
+
+
+        kurs1.setMaxTnZahl(10);
+        kurs1.setAktuelleTnZahl();
+        kurs1.setFreiePlaetze();
+        assertEquals(7, kurs1.getFreiePlaetze());
     }
 
     @Test
@@ -116,6 +116,15 @@ class KursTest {
         assertFalse(kurs1.setGebuehrBrutto(-0.01));
     }
 
+    @Test
+    void setGebuehrNetto() {
+
+    }
+
+    @Test
+    void setMwstEuro() {
+
+    }
 
     @Test
     void setMwstProzent() {
@@ -123,6 +132,7 @@ class KursTest {
         assertTrue(kurs1.setMwstProzent(0.0));
         assertFalse(kurs1.setMwstProzent(-0.01));
     }
+
 
     @Test
     void setKursBeschreibung() {
