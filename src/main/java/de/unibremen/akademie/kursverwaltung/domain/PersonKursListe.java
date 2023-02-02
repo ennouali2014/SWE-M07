@@ -43,8 +43,11 @@ public class PersonKursListe {
         return addPersonInKurs(person, kurs, true);
     }
 
-    /* TODO: hier ist 3 mal der gleiche code. das muss vereinfacht werden! */
     public List<String> getKurseNames(Person person, boolean alsTeilnehmer) {
+        // TODO: Ist kürzer, aber auch besser?
+        return getPersonKurse(person, alsTeilnehmer).stream().map(c -> c.getKurs().getName()).toList();
+        // Alter code ...
+        /*
         List<String> listkurs = new ArrayList<>();
 
         for (PersonKurs personKurs : personKursList) {
@@ -53,9 +56,14 @@ public class PersonKursListe {
             }
         }
         return listkurs;
+        */
     }
 
     public List<Kurs> getKurse(Person person, boolean alsTeilnehmer) {
+        // TODO: Ist kürzer, aber auch besser?
+        return getPersonKurse(person, alsTeilnehmer).stream().map(PersonKurs::getKurs).toList();
+        // Alter code ...
+        /*
         List<Kurs> listkurs = new ArrayList<>();
 
         for (PersonKurs personKurs : personKursList) {
@@ -64,6 +72,7 @@ public class PersonKursListe {
             }
         }
         return listkurs;
+        */
     }
 
     public List<PersonKurs> getPersonKurse(Person person, boolean alsTeilnehmer) {
