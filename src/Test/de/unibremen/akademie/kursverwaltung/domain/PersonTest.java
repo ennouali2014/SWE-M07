@@ -1,11 +1,18 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonTest {
+    KvModel testModel;
+
+    @BeforeEach
+    void beforeEach() {
+        testModel = new KvModel();
+    }
 
     @Test
     void testCheckIsEmpty() {
@@ -48,7 +55,7 @@ Es sind folgende Besonderheiten zu beachten:
 
     @Test
     public void testAddNewPerson() {
-        Person person = Person.addNewPerson("Herr", "Dr.", "John", "Doe", "Street 1", "12345", "City", "john.doe@email.com", "1234567890");
+        Person person = testModel.getPersonen().addNewPerson("Herr", "Dr.", "John", "Doe", "Street 1", "12345", "City", "john.doe@email.com", "1234567890");
         assertEquals("Herr", person.getAnrede());
         assertEquals("Dr.", person.getTitel());
         assertEquals("John", person.getVorname());
@@ -64,7 +71,11 @@ Es sind folgende Besonderheiten zu beachten:
     @Test
     public void testAddNewPersonInvalidVorname() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Person.addNewPerson("Herr", "Dr.", "", "Doe", "Street 1", "12345",
+            testModel.getPersonen().addNewPerson("Herr", "Dr.", "", "Doe", "Street 1", "12345",
+                    "City", "john.doe@email.com", "1234567890");
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            testModel.getPersonen().addNewPerson("Frau", "Dr.", "  ", "Jones", "Street 1", "12345",
                     "City", "john.doe@email.com", "1234567890");
         });
     }
@@ -72,7 +83,7 @@ Es sind folgende Besonderheiten zu beachten:
     @Test
     public void testAddNewPersonInvalidNachname() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Person.addNewPerson("Herr", "Dr.", "John", "", "Street 1", "12345",
+            testModel.getPersonen().addNewPerson("Herr", "Dr.", "John", "", "Street 1", "12345",
                     "City", "john.doe@email.com", "1234567890");
         });
     }
@@ -80,8 +91,12 @@ Es sind folgende Besonderheiten zu beachten:
     @Test
     public void testAddNewPersonInvalidEmail() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Person.addNewPerson("Herr", "Dr.", "John", "Doe", "Street 1",
+            testModel.getPersonen().addNewPerson("Herr", "Dr.", "John", "Doe", "Street 1",
                     "12345", "City", "johndoeemail.com", "1234567890");
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            testModel.getPersonen().addNewPerson("Frau", "Dr.", "John", "Jones", "Street 1",
+                    "12345", "City", " @ .com", "1234567890");
         });
     }
 
@@ -140,16 +155,16 @@ Es sind folgende Besonderheiten zu beachten:
     @Test
     public void testEquals() {
         //  Test case 1: Test with equal input
-        Person person1 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
-        Person person2 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+        Person person1 = testModel.getPersonen().addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+        Person person2 = testModel.getPersonen().addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
 
         //assertTrue((person1.getVorname().equals(person2.getVorname())));
         assertEquals(person1, person2);
         //assertTrue((person1.getEmail().equals(person2.getEmail())));
 
         //  Test case 2: Test with different input
-        Person person3 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
-        Person person4 = Person.addNewPerson("Frau", " ", "Renate", "Tillmann", "Street 1", "12345", "City", "tillmann@web.com", "0152-20142");
+        Person person3 = testModel.getPersonen().addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+        Person person4 = testModel.getPersonen().addNewPerson("Frau", " ", "Renate", "Tillmann", "Street 1", "12345", "City", "tillmann@web.com", "0152-20142");
         //assertFalse((person3.getVorname().equals(person4.getVorname())));
         assertNotEquals(person3, person4);
         //assertNotEquals(person3.getEmail(), person4.getEmail());
@@ -158,13 +173,16 @@ Es sind folgende Besonderheiten zu beachten:
 
     @Test
     public void testHashCode() {
-        Person person1 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
-        Person person2 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
-        Person person3 = Person.addNewPerson("Frau", " ", "susane", "Bauer", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+        Person person1 = testModel.getPersonen().addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+        Person person2 = testModel.getPersonen().addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+        Person person3 = testModel.getPersonen().addNewPerson("Frau", " ", "Susane", "Bauer", "Street 1", "12345", "City", "till@web.com", "0152-20142");
 
-        assertEquals(person1.getVorname().hashCode(), person2.getVorname().hashCode());
-        assertNotEquals(person1.getVorname().hashCode(), person3.getVorname().hashCode());
+        assertEquals(person1.hashCode(), person2.hashCode());
+        assertNotEquals(person1.hashCode(), person3.hashCode());
     }
 
 
+    public KvModel getTestModel() {
+        return testModel;
+    }
 }

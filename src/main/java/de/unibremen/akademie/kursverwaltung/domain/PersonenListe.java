@@ -17,4 +17,11 @@ public class PersonenListe {
     public Person getPersonVonPersonenListe(int index) {
         return personenliste.get(index);
     }
+
+    public Person addNewPerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
+        Person person = new Person(anrede, titel, vorname, nachname, strasse, plz, ort, email, telefon);
+        addPersonenZuListe(person);
+        return person;
+    }
+
 }

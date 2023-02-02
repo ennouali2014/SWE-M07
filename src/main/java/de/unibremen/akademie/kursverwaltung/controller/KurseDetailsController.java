@@ -247,7 +247,7 @@ public class KurseDetailsController {
             }
 
             try {
-                kurs = Kurs.addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch, statusSTR);
+                kurs = kvModel.getKurse().addNewKurs(name, anzahl, zykls, startDate, minTn, maxTn, gebuhrB, mwstPro, kursBesch, statusSTR);
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;

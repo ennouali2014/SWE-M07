@@ -1,6 +1,9 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.*;
+import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
+import de.unibremen.akademie.kursverwaltung.domain.Kurs;
+import de.unibremen.akademie.kursverwaltung.domain.Meldung;
+import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -148,7 +151,7 @@ public class PersonenDetailsController {
             // Neue Person hinzufuegen
             int aktuelleAnzPersonen = kvModel.getPersonen().getPersonenListe().size();
             try {
-                person = Person.addNewPerson(choiceAnrede.getValue().toString(), txInpTitel.getText(), txInpVorname.getText(),
+                person = kvModel.getPersonen().addNewPerson(choiceAnrede.getValue().toString(), txInpTitel.getText(), txInpVorname.getText(),
                         txInpNachname.getText(), txInpStrasse.getText(), txInpPlz.getText(), txInpOrt.getText(), txInpEmail.getText(), txInpTelefon.getText());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());

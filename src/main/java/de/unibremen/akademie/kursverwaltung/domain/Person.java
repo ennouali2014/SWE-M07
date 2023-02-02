@@ -8,8 +8,6 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.Objects;
 
-import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
-
 public class Person implements Externalizable {
 
     //static final long serialVersionUID = 3619323214958673905L;
@@ -28,12 +26,10 @@ public class Person implements Externalizable {
     //private ObservableList<Kurs> kursInteressiert = FXCollections.observableArrayList();
     //private ObservableList<Kurs> kursTeilnahme = FXCollections.observableArrayList();
 
-
     public Person() {
     }
 
-    public static Person addNewPerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
-        Person person = new Person();
+    public Person(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
         if (!checkIsEmpty(vorname)) {
             throw new IllegalArgumentException("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
         }
@@ -43,17 +39,15 @@ public class Person implements Externalizable {
         if (!checkValidEmail(email)) {
             throw new IllegalArgumentException("Die Email-Adresse ist fehlerhaft!");
         }
-        person.setAnrede(anrede);
-        person.setTitel(titel);
-        person.setVorname(vorname);
-        person.setNachname(nachname);
-        person.setStrasse(strasse);
-        person.setPlz(plz);
-        person.setOrt(ort);
-        person.setEmail(email);
-        person.setTelefon(telefon);
-        kvModel.getPersonen().addPersonenZuListe(person);
-        return person;
+        setAnrede(anrede);
+        setTitel(titel);
+        setVorname(vorname);
+        setNachname(nachname);
+        setStrasse(strasse);
+        setPlz(plz);
+        setOrt(ort);
+        setEmail(email);
+        setTelefon(telefon);
     }
 
     public void updatePerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
@@ -193,7 +187,7 @@ public class Person implements Externalizable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(vorname, nachname, email);
+        return Objects.hash(vorname.getValue(), nachname.getValue(), email.getValue());
     }
 
     @Override

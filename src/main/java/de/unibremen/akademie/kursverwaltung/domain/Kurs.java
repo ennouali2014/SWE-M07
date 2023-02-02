@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
-
 public class Kurs implements Externalizable {
     private SimpleStringProperty name;
     private SimpleIntegerProperty anzahlTage;
@@ -36,54 +34,50 @@ public class Kurs implements Externalizable {
     private SimpleStringProperty displaystartDate;
     private SimpleStringProperty displayEndeDate;
 
+    public Kurs() {
+        this.name = new SimpleStringProperty();
+    }
 
-    public static Kurs addNewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
-                                  double gebuehrBrutto, double mwstProzent, String kursBeschreibung,String statusSTR) {
-        Kurs kurs = new Kurs();
-        if (!kurs.setName(name)) {
+    public Kurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
+                double gebuehrBrutto, double mwstProzent, String kursBeschreibung, String statusSTR) {
+        this.name = new SimpleStringProperty();
+        if (!setName(name)) {
             throw new IllegalArgumentException("Der Kurs-Name ist leer!");
         }
-                if (!kurs.setAnzahlTage(anzahlTage)) {
+        if (!setAnzahlTage(anzahlTage)) {
             throw new IllegalArgumentException("Der Kurs muss mindestens 1 Tag dauern!");
         }
-                if (!kurs.setZyklus(zyklus)) {
+        if (!setZyklus(zyklus)) {
             throw new IllegalArgumentException("Bitte einen Zyklus angeben!");
         }
-        if (!kurs.setStartDatum(startDatum)) {
+        if (!setStartDatum(startDatum)) {
             throw new IllegalArgumentException("Wann soll der Kurs starten?");
         }
-        if (!kurs.setMinTnZahl(minTnZahl)) {
+        if (!setMinTnZahl(minTnZahl)) {
             throw new IllegalArgumentException("Mindestens 1 Teilnehmer sollte schon sein!");
         }
-        if (!kurs.setMaxTnZahl(maxTnZahl)) {
+        if (!setMaxTnZahl(maxTnZahl)) {
             throw new IllegalArgumentException("Die maximale Anzahl der Teilnehmer muss mindestens so gross sein \nwie die minimale Anzahl der Teilnehmer!");
         }
-        if (!kurs.setGebuehrBrutto(gebuehrBrutto)) {
+        if (!setGebuehrBrutto(gebuehrBrutto)) {
             throw new IllegalArgumentException("Die Gebühr sollte mindestens 1,- symbolischen Euro betragen!");
         }
-        if (!kurs.setMwstProzent(mwstProzent)) {
+        if (!setMwstProzent(mwstProzent)) {
             throw new IllegalArgumentException("Bitte einen MwSt-Satz angeben!");
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        kurs.setDisplaystartDate(dateFormat.format(startDatum));
-        kurs.setKursBeschreibung(kursBeschreibung);
-        kurs.setEndeDatum();
-        kurs.setDisplayEndeDate(dateFormat.format(kurs.getEndeDatum()));
-        kurs.setGebuehrNetto();
-        kurs.setMwstEuro();
-        kurs.setAktuelleTnZahl();
-        if (!kurs.setFreiePlaetze()) {
+        setDisplaystartDate(dateFormat.format(startDatum));
+        setKursBeschreibung(kursBeschreibung);
+        setEndeDatum();
+        setDisplayEndeDate(dateFormat.format(getEndeDatum()));
+        setGebuehrNetto();
+        setMwstEuro();
+        setAktuelleTnZahl();
+        if (!setFreiePlaetze()) {
             throw new IllegalArgumentException("Leider sind alles Plätze belegt!");
         }
-        kurs.setStatus(statusSTR);
-        kvModel.getKurse().addKursZuListe(kurs);
-
-        return kurs;
-    }
-
-    public Kurs() {
-        this.name = new SimpleStringProperty();
+        setStatus(statusSTR);
     }
 
     public String getName() {
