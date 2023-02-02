@@ -76,7 +76,8 @@ public class PersonenListeController implements Initializable {
     public void onClickPersonAusListeLoeschen(ActionEvent event) {
         //ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
         List<Person> selectedPersonCopy = new ArrayList<>(tablePersonenListe.getSelectionModel().getSelectedItems());
-        selectedPersonCopy.forEach(kvModel::removePerson);
+        selectedPersonCopy.forEach(kvModel::removePerson); // ist das Gleiche wie die folgende Zeile
+        // for (Person p : selectedPersonCopy) { kvModel.removePerson(p);}
     }
 
     @FXML

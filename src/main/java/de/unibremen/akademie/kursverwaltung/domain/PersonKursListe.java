@@ -45,7 +45,8 @@ public class PersonKursListe {
 
     public List<String> getKurseNames(Person person, boolean alsTeilnehmer) {
         // TODO: Ist kürzer, aber auch besser?
-        return getPersonKurse(person, alsTeilnehmer).stream().map(c -> c.getKurs().getName()).toList();
+        return getKurse(person, alsTeilnehmer).stream()
+                .map(c -> c.getName()).toList();
         // Alter code ...
         /*
         List<String> listkurs = new ArrayList<>();
@@ -61,7 +62,10 @@ public class PersonKursListe {
 
     public List<Kurs> getKurse(Person person, boolean alsTeilnehmer) {
         // TODO: Ist kürzer, aber auch besser?
-        return getPersonKurse(person, alsTeilnehmer).stream().map(PersonKurs::getKurs).toList();
+        return getPersonKurse(person, alsTeilnehmer)
+                .stream()
+                .map(PersonKurs::getKurs)
+                .toList();
         // Alter code ...
         /*
         List<Kurs> listkurs = new ArrayList<>();
@@ -76,6 +80,8 @@ public class PersonKursListe {
     }
 
     public List<PersonKurs> getPersonKurse(Person person, boolean alsTeilnehmer) {
+        // Geht auch einfach aber ungewöhnlich
+        // return personKursList.stream().filter(pk -> pk.getPerson().equals(person) && pk.isTeilnehmer() == alsTeilnehmer).toList();
         List<PersonKurs> listkurs = new ArrayList<>();
 
         for (PersonKurs personKurs : personKursList) {

@@ -14,6 +14,8 @@ import java.util.Date;
 import java.util.List;
 
 public class Kurs implements Externalizable {
+    private final List<Person> interessentenListe = new ArrayList<>();
+    private final List<Person> teilnehmerListe = new ArrayList<>();
     private SimpleStringProperty name;
     private SimpleIntegerProperty anzahlTage;
     private SimpleIntegerProperty zyklus;
@@ -29,8 +31,6 @@ public class Kurs implements Externalizable {
     private SimpleDoubleProperty mwstProzent;
     private SimpleStringProperty kursBeschreibung;
     private SimpleStringProperty status;
-    private final List<Person> interessentenListe = new ArrayList<>();
-    private final List<Person> teilnehmerListe = new ArrayList<>();
     private SimpleStringProperty displaystartDate;
     private SimpleStringProperty displayEndeDate;
 
@@ -145,17 +145,22 @@ public class Kurs implements Externalizable {
         return endeDatum;
     }
 
+    public void setEndeDatum(Date endeDatum) {
+        this.endeDatum = endeDatum;
+    }
+
     public void setEndeDatum() {
         long dat = startDatum.getTime() + ((Math.round((float) anzahlTage.get() / zyklus.get())) * 7 * 86400000L);
         this.endeDatum = new Date(dat);
 
     }
-    public void setEndeDatum(Date endeDatum){
-        this.endeDatum=endeDatum;
-    }
 
     public int getAktuelleTnZahl() {
         return aktuelleTnZahl.get();
+    }
+
+    public void setAktuelleTnZahl(int aktuelleTnZahl) {
+        this.aktuelleTnZahl = new SimpleIntegerProperty(aktuelleTnZahl);
     }
 
     public void setAktuelleTnZahl() {
@@ -165,9 +170,6 @@ public class Kurs implements Externalizable {
             this.aktuelleTnZahl.set(this.teilnehmerListe.size());
         }
 
-    }
-    public void setAktuelleTnZahl(int aktuelleTnZahl){
-        this.aktuelleTnZahl=new SimpleIntegerProperty(aktuelleTnZahl);
     }
 
     public int getMinTnZahl() {
@@ -211,20 +213,21 @@ public class Kurs implements Externalizable {
         return freiePlaetze.get();
     }
 
-    public boolean setFreiePlaetze() {
-        if (this.maxTnZahl.get() - this.aktuelleTnZahl.get() > 0) {
-            if (this.freiePlaetze == null) {
-                this.freiePlaetze = new SimpleIntegerProperty(this.maxTnZahl.get() - this.aktuelleTnZahl.get());
-            } else {
-                this.freiePlaetze.set(this.maxTnZahl.get() - this.aktuelleTnZahl.get());
-            }
-
-            return true;
-        }
-        return false;
+    public void setFreiePlaetze(int freiePlaetze) {
+        this.freiePlaetze = new SimpleIntegerProperty(freiePlaetze);
     }
-    public void setFreiePlaetze(int freiePlaetze){
-        this.freiePlaetze=new SimpleIntegerProperty(freiePlaetze);
+
+    public boolean setFreiePlaetze() {
+        int nichtBelegtePlaetze = maxTnZahl.get() - aktuelleTnZahl.get();
+        if (nichtBelegtePlaetze <= 0) {
+            return false;
+        }
+        if (freiePlaetze == null) {
+            freiePlaetze = new SimpleIntegerProperty(nichtBelegtePlaetze);
+        } else {
+            freiePlaetze.set(nichtBelegtePlaetze);
+        }
+        return true;
     }
 
     public double getGebuehrBrutto() {
@@ -249,6 +252,10 @@ public class Kurs implements Externalizable {
         return gebuehrNetto.get();
     }
 
+    public void setGebuehrNetto(double gebuehrNetto) {
+        this.gebuehrNetto = new SimpleDoubleProperty(gebuehrNetto);
+    }
+
     public void setGebuehrNetto() {
         if (this.gebuehrNetto == null) {
             this.gebuehrNetto = new SimpleDoubleProperty(Math.round((gebuehrBrutto.get() * ((100 - mwstProzent.get()) / 100)) * 100.0) / 100.0);
@@ -257,12 +264,12 @@ public class Kurs implements Externalizable {
         }
     }
 
-    public void setGebuehrNetto(double gebuehrNetto){
-        this.gebuehrNetto=new SimpleDoubleProperty(gebuehrNetto);
-    }
-
     public double getMwstEuro() {
         return mwstEuro.get();
+    }
+
+    public void setMwstEuro(double mwstEuro) {
+        this.mwstEuro = new SimpleDoubleProperty(mwstEuro);
     }
 
     public void setMwstEuro() {
@@ -271,9 +278,6 @@ public class Kurs implements Externalizable {
         } else {
             this.mwstEuro.set(Math.round((gebuehrBrutto.get() * (mwstProzent.get() / 100)) * 100.0) / 100.0);
         }
-    }
-    public void setMwstEuro(double mwstEuro){
-        this.mwstEuro=new SimpleDoubleProperty(mwstEuro);
     }
 
     public double getMwstProzent() {
@@ -388,6 +392,7 @@ public class Kurs implements Externalizable {
 
         //System.out.println(this);
     }
+
     @Override
     public String toString() {
         return "Kurs{" +
