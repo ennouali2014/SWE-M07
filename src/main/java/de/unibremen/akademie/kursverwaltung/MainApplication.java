@@ -59,7 +59,7 @@ public class MainApplication extends Application {
 
         //model beim Beenden in Datei speichern
         kvModel.save();
-        kvModel.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + System.currentTimeMillis());
+        //kvModel.save("src/main/resources/de/unibremen/akademie/kursverwaltung/backupsaveddata/" + System.currentTimeMillis());
 
         // PDFs beim Beenden erzeugen
         new CreatePdf().createPersonenListePdf();
