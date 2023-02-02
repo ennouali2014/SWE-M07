@@ -43,7 +43,8 @@ public class PersonKursListe {
         return addPersonInKurs(person, kurs, true);
     }
 
-    public List<String> getKurse(Person person, boolean alsTeilnehmer) {
+    /* TODO: hier ist 3 mal der gleiche code. das muss vereinfacht werden! */
+    public List<String> getKurseNames(Person person, boolean alsTeilnehmer) {
         List<String> listkurs = new ArrayList<>();
 
         for (PersonKurs personKurs : personKursList) {
@@ -54,12 +55,34 @@ public class PersonKursListe {
         return listkurs;
     }
 
+    public List<Kurs> getKurse(Person person, boolean alsTeilnehmer) {
+        List<Kurs> listkurs = new ArrayList<>();
+
+        for (PersonKurs personKurs : personKursList) {
+            if (personKurs.getPerson().equals(person) && personKurs.isTeilnehmer() == alsTeilnehmer) {
+                listkurs.add(personKurs.getKurs());
+            }
+        }
+        return listkurs;
+    }
+
+    public List<PersonKurs> getPersonKurse(Person person, boolean alsTeilnehmer) {
+        List<PersonKurs> listkurs = new ArrayList<>();
+
+        for (PersonKurs personKurs : personKursList) {
+            if (personKurs.getPerson().equals(person) && personKurs.isTeilnehmer() == alsTeilnehmer) {
+                listkurs.add(personKurs);
+            }
+        }
+        return listkurs;
+    }
+
     public List<String> getKurseAlsTeilnehmer(Person person) {
-        return getKurse(person, true);
+        return getKurseNames(person, true);
     }
 
     public List<String> getKurseAlsInteressent(Person person) {
-        return getKurse(person, false);
+        return getKurseNames(person, false);
     }
 
 
@@ -75,5 +98,20 @@ public class PersonKursListe {
 
     public void addKurseAlsInteressent(Person person, List<Kurs> interessentenliste) {
         addKurse(person, interessentenliste, false);
+    }
+
+    public void removeAllKurseAlsInteressent(Person p) {
+        removeAllKurse(p, false);
+    }
+
+    public void removeAllKurseAlsTeilnehmer(Person p) {
+        removeAllKurse(p, true);
+    }
+
+    public void removeAllKurse(Person p, boolean alsTeilnehmer) {
+        List<PersonKurs> list = getPersonKurse(p, alsTeilnehmer);
+        for (PersonKurs k : list) {
+            personKursList.remove(k);
+        }
     }
 }

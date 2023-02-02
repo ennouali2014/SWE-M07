@@ -3,7 +3,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 
-import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -191,7 +190,7 @@ public class KurseListeController {
     @FXML
 
     void onClickHinzufügenButton(ActionEvent event) {
-        AnwendungsModel.aktuellerKurs = null;
+        kvModel.aktuellerKurs = null;
         main.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
         for (Tab tabPaneKursAnlegen : tabKurseListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
@@ -230,10 +229,10 @@ public class KurseListeController {
     void onClickBearbeitenButton(ActionEvent event) {
         tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         if (!tableKurseListe.getSelectionModel().isEmpty() && tableKurseListe.getSelectionModel().getSelectedItems().size() < 2) {
-            AnwendungsModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
+            kvModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
             //KvModel.aktuellerKurs = tableView.getSelectionModel().;
 
-            main.fxmlKurseDetailsController.anzeigeZumAendernKurs(AnwendungsModel.aktuellerKurs);
+            main.fxmlKurseDetailsController.anzeigeZumAendernKurs(kvModel.aktuellerKurs);
             main.fxmlKurseDetailsController.show();
 
 

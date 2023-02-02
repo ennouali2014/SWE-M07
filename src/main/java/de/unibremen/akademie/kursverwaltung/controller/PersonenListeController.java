@@ -1,7 +1,5 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
-import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
-import de.unibremen.akademie.kursverwaltung.domain.KvModel;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -71,17 +69,21 @@ public class PersonenListeController implements Initializable {
 
     @FXML
 
+    /* TODO: Nur nach nachfrage löschen!
+       TODO: Runtime exception abfangen!
+       TODO: bei mehreren zu löschenden Personen einzeln nachfragen
+    */
     public void onClickPersonAusListeLoeschen(ActionEvent event) {
-        ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
+        //ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
         List<Person> selectedPersonCopy = new ArrayList<>(tablePersonenListe.getSelectionModel().getSelectedItems());
-        selectedPersonCopy.forEach(allPerson::remove);
+        selectedPersonCopy.forEach(kvModel::removePerson);
     }
 
     @FXML
     public void onClickPersonAnlegenPersonenListe(ActionEvent event) {
 
-        AnwendungsModel.aktuellePerson = null;
-        AnwendungsModel.aktuellePerson = null;
+        kvModel.aktuellePerson = null;
+        kvModel.aktuellePerson = null;
         main.fxmlPersonenDetailsController.felderLeeren();
         PersonenDetailsController.zurueckPersonenliste = true;
         for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
@@ -98,9 +100,9 @@ public class PersonenListeController implements Initializable {
         if (!tablePersonenListe.getSelectionModel().isEmpty()) {
             main.fxmlPersonenDetailsController.btnSavePersonDetails.setText("Update");
 
-            AnwendungsModel.aktuellePerson = tablePersonenListe.getSelectionModel().getSelectedItem();
+            kvModel.aktuellePerson = tablePersonenListe.getSelectionModel().getSelectedItem();
 
-            main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(AnwendungsModel.aktuellePerson);
+            main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(kvModel.aktuellePerson);
 
             for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {

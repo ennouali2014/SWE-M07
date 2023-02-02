@@ -7,11 +7,10 @@ import java.util.Date;
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
 public class KvModel {
-    private final String VERWALTUNGSDATEI = "src/main/resources/de/unibremen/akademie/kursverwaltung/storage/gespeicherteObjekte";
 
-    private PersonKursListe pkListe = new PersonKursListe();
-    private PersonenListe personen = new PersonenListe();
-    private KursListe kurse = new KursListe();
+    private final PersonKursListe pkListe = new PersonKursListe();
+    private final PersonenListe personen = new PersonenListe();
+    private final KursListe kurse = new KursListe();
 
 
     public KvModel() {
@@ -26,10 +25,6 @@ public class KvModel {
     }
 
     public PersonKursListe getPkListe() { return pkListe; }
-
-    public void load() {
-        load(VERWALTUNGSDATEI);
-    }
 
 
     public void load(String speicherPfad) {
@@ -58,9 +53,6 @@ public class KvModel {
     }
 
 
-    public void save() {
-        save(VERWALTUNGSDATEI);
-    }
     public void save(String speicherPfad) {
         try {
             FileOutputStream outfile = new FileOutputStream(speicherPfad);
@@ -150,5 +142,15 @@ public class KvModel {
             kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(24), kvModel.getKurse().getKursVonKursListe(1));*/
             System.out.println("PersonKursList-Standarddaten wurde geladen!");
         }
+    }
+
+    public void removePerson(Person p) {
+        if (!pkListe.getKurseAlsTeilnehmer(p).isEmpty()) {
+            throw new RuntimeException("Person ist noch Teilnehmer");
+        }
+        if (!pkListe.getKurseAlsInteressent(p).isEmpty()) {
+            pkListe.removeAllKurseAlsInteressent(p);
+        }
+        personen.getPersonenListe().remove(p);
     }
 }

@@ -23,5 +23,4 @@ public class PersonenListe {
         addPersonenZuListe(person);
         return person;
     }
-
 }
