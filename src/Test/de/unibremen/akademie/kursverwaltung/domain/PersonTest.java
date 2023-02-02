@@ -127,4 +127,44 @@ Es sind folgende Besonderheiten zu beachten:
         }
     }
 
+//    @Test
+//    public void testSetVorname() {
+//        Person person = new Person();
+//        String vorname = "Ali";
+//        person.setVorname(vorname);
+//        String actualResult = person.getVorname();
+//        String expectedResult = vorname;
+//        assertEquals(expectedResult, actualResult);
+//    }
+
+    @Test
+    public void testEquals() {
+        //  Test case 1: Test with equal input
+        Person person1 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+        Person person2 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+
+        assertTrue((person1.getVorname().equals(person2.getVorname())));
+        assertEquals(person1.getNachname(), person2.getNachname());
+        assertTrue((person1.getEmail().equals(person2.getEmail())));
+
+        //  Test case 2: Test with different input
+        Person person3 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+        Person person4 = Person.addNewPerson("Frau", " ", "Renate", "Tillmann", "Street 1", "12345", "City", "tillmann@web.com", "0152-20142");
+        assertFalse((person3.getVorname().equals(person4.getVorname())));
+        assertNotEquals(person3.getNachname(), person4.getNachname());
+        assertNotEquals(person3.getEmail(), person4.getEmail());
+
+    }
+
+    @Test
+    public void testHashCode() {
+        Person person1 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+        Person person2 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+        Person person3 = Person.addNewPerson("Frau", " ", "susane", "Bauer", "Street 1", "12345", "City", "till@web.com", "0152-20142");
+
+        assertEquals(person1.getVorname().hashCode(), person2.getVorname().hashCode());
+        assertNotEquals(person1.getVorname().hashCode(), person3.getVorname().hashCode());
+    }
+
+
 }
