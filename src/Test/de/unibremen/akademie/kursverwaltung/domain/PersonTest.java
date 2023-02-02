@@ -143,16 +143,16 @@ Es sind folgende Besonderheiten zu beachten:
         Person person1 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
         Person person2 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
 
-        assertTrue((person1.getVorname().equals(person2.getVorname())));
-        assertEquals(person1.getNachname(), person2.getNachname());
-        assertTrue((person1.getEmail().equals(person2.getEmail())));
+        //assertTrue((person1.getVorname().equals(person2.getVorname())));
+        assertEquals(person1, person2);
+        //assertTrue((person1.getEmail().equals(person2.getEmail())));
 
         //  Test case 2: Test with different input
         Person person3 = Person.addNewPerson("Frau", " ", "Regina", "Till", "Street 1", "12345", "City", "till@web.com", "0152-20142");
         Person person4 = Person.addNewPerson("Frau", " ", "Renate", "Tillmann", "Street 1", "12345", "City", "tillmann@web.com", "0152-20142");
-        assertFalse((person3.getVorname().equals(person4.getVorname())));
-        assertNotEquals(person3.getNachname(), person4.getNachname());
-        assertNotEquals(person3.getEmail(), person4.getEmail());
+        //assertFalse((person3.getVorname().equals(person4.getVorname())));
+        assertNotEquals(person3, person4);
+        //assertNotEquals(person3.getEmail(), person4.getEmail());
 
     }
 

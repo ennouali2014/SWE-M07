@@ -186,7 +186,9 @@ public class Person implements Externalizable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(vorname, person.vorname) && Objects.equals(nachname, person.nachname) && Objects.equals(email, person.email);
+        return Objects.equals(vorname.getValue(), person.vorname.getValue())
+                && Objects.equals(nachname.getValue(), person.nachname.getValue())
+                && Objects.equals(email.getValue(), person.email.getValue());
     }
 
     @Override
