@@ -84,26 +84,7 @@ public class KvModel {
             personen.addNewPerson("Divers", "", "Cosma", "Shiva", "Aurenallee 666", "21165", "Hamburg", "cosma_shiva@in-den-wolken.business", "040 666666666");
             personen.addNewPerson("", "", "Manfred", "Schneider", "Kohlweg 17", "10978", "Berlin", "ms@hotmail.com", "+49 162 7898 56 45");
             personen.addNewPerson("Frau", "Freifrau", "Julia", "von Bayern", "Wiesnplatz 96f", "84569", "München", "freifrau_jvb@brauhaus.bayern", "00 170 235 45 81");
-            /*person.addNewPerson("Frau", "Prof. Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
-            Person.addNewPerson("Herr", "Baron", "Konrad", "Mumpitz", "Sachsenstr. 9a", "D-34589", "Hannover", "baron-k-m@mail.de", "0511 7863548");
-            Person.addNewPerson("Divers", "", "Cosma", "Shiva", "Aurenallee 666", "21165", "Hamburg", "cosma_shiva@in-den-wolken.business", "040 666666666");
-            Person.addNewPerson("", "", "Manfred", "Schneider", "Kohlweg 17", "10978", "Berlin", "ms@hotmail.com", "+49 162 7898 56 45");
-            Person.addNewPerson("Frau", "Freifrau", "Julia", "von Bayern", "Wiesnplatz 96f", "84569", "München", "freifrau_jvb@brauhaus.bayern", "00 170 235 45 81");
-            Person.addNewPerson("Frau", "Prof. Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
-            Person.addNewPerson("Herr", "Baron", "Konrad", "Mumpitz", "Sachsenstr. 9a", "D-34589", "Hannover", "baron-k-m@mail.de", "0511 7863548");
-            Person.addNewPerson("Divers", "", "Cosma", "Shiva", "Aurenallee 666", "21165", "Hamburg", "cosma_shiva@in-den-wolken.business", "040 666666666");
-            Person.addNewPerson("", "", "Manfred", "Schneider", "Kohlweg 17", "10978", "Berlin", "ms@hotmail.com", "+49 162 7898 56 45");
-            Person.addNewPerson("Frau", "Freifrau", "Julia", "von Bayern", "Wiesnplatz 96f", "84569", "München", "freifrau_jvb@brauhaus.bayern", "00 170 235 45 81");
-            Person.addNewPerson("Frau", "Prof. Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
-            Person.addNewPerson("Herr", "Baron", "Konrad", "Mumpitz", "Sachsenstr. 9a", "D-34589", "Hannover", "baron-k-m@mail.de", "0511 7863548");
-            Person.addNewPerson("Divers", "", "Cosma", "Shiva", "Aurenallee 666", "21165", "Hamburg", "cosma_shiva@in-den-wolken.business", "040 666666666");
-            Person.addNewPerson("", "", "Manfred", "Schneider", "Kohlweg 17", "10978", "Berlin", "ms@hotmail.com", "+49 162 7898 56 45");
-            Person.addNewPerson("Frau", "Freifrau", "Julia", "von Bayern", "Wiesnplatz 96f", "84569", "München", "freifrau_jvb@brauhaus.bayern", "00 170 235 45 81");
-            Person.addNewPerson("Frau", "Prof. Dr.", "Hanna", "Müller", "Kohlweg 17", "28195", "Bremen", "hm@mail.com", "0421 978 98 45");
-            Person.addNewPerson("Herr", "Baron", "Konrad", "Mumpitz", "Sachsenstr. 9a", "D-34589", "Hannover", "baron-k-m@mail.de", "0511 7863548");
-            Person.addNewPerson("Divers", "", "Cosma", "Shiva", "Aurenallee 666", "21165", "Hamburg", "cosma_shiva@in-den-wolken.business", "040 666666666");
-            Person.addNewPerson("", "", "Manfred", "Schneider", "Kohlweg 17", "10978", "Berlin", "ms@hotmail.com", "+49 162 7898 56 45");
-            Person.addNewPerson("Frau", "Freifrau", "Julia", "von Bayern", "Wiesnplatz 96f", "84569", "München", "freifrau_jvb@brauhaus.bayern", "00 170 235 45 81");*/
+
             System.out.println("Person-Standarddaten wurde geladen!");
         }
         if (kurse.getKursListe().size() <= 0) {
@@ -113,7 +94,7 @@ public class KvModel {
             kurse.addNewKurs("Deep S9", 32, 4, new Date(1911772800000L), 8, 9, 1275.00, 19.0, "Deep learning mit Python", "Abgesagt");
             kurse.addNewKurs("Web-Start", 7, 3, new Date(1920240000000L), 12, 15, 249.00, 19.0, "HTML und CSS zum Frühstück", "Aktiv");
             // startdatum 31.01.2023
-            // kurs.addNewKurs("Web-Profi", 21, 3, new Date(1675123200000L), 1, 10, 299.00, 19.0, "HTML und CSS wie im Schlaf", "Aktiv");
+            // kurse.addNewKurs("Web-Profi", 21, 3, new Date(1675123200000L), 1, 10, 299.00, 19.0, "HTML und CSS wie im Schlaf", "Aktiv");
             System.out.println("Kurs-Standarddaten wurde geladen!");
         }
         if (pkListe.personKursList.size() <= 0) {
@@ -123,27 +104,7 @@ public class KvModel {
             pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(1), kvModel.getKurse().getKursVonKursListe(1));
             pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(2), kvModel.getKurse().getKursVonKursListe(1));
             pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(3), kvModel.getKurse().getKursVonKursListe(1));
-            /*kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(4), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(5), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(6), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(7), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(8), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(9), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(10), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(11), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(12), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(13), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(14), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(15), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(16), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(17), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(18), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(19), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(20), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(21), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(22), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(23), kvModel.getKurse().getKursVonKursListe(1));
-            kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(24), kvModel.getKurse().getKursVonKursListe(1));*/
+
             System.out.println("PersonKursList-Standarddaten wurde geladen!");
         }
     }
