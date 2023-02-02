@@ -23,7 +23,7 @@ class KvModelTest {
         kvModel.getPersonen().getPersonenListe().clear();
         kvModel.load(VERWALTUNGSDATEITEST);
         assertEquals(kvModel.getPersonen().getPersonenListe().toString(), "[Person{anrede='StringProperty [value: Herr]'titel='StringProperty [value: Dr. rer. nat.]'vorname='StringProperty [value: Alexander]', nachname='StringProperty [value: Förster]', strasse='StringProperty [value: Feldweg 17]', plz='StringProperty [value: 28195]', ort='StringProperty [value: Bremen]', email='StringProperty [value: axf@uni-bremen.de]', telefon='StringProperty [value: +49 162 175 978 23]'}]");
-        assertEquals(kvModel.getKurse().getKursListe().toString(), "[Kurs{name=php, anzahlTage=12, zyklus=3, startDatum=1898553600000, minTnZahl=1, maxTnZahl=10, gebuehrBrutto=150.0, mwstProzent=19.0, kursBeschreibung=php backend, endeDatum=1900972800000, status=Aktiv, gebuehrNetto=121.50000000000001, mwstEuro=28.5, freiePlaetze=10, aktuelleTnZahl=0}]");
+        assertEquals(kvModel.getKurse().getKursListe().toString(), "[Kurs{name=php, anzahlTage=12, zyklus=3, startDatum=1898553600000, minTnZahl=1, maxTnZahl=10, gebuehrBrutto=150.0, mwstProzent=19.0, kursBeschreibung=php backend, endeDatum=1900972800000, status=Aktiv, gebuehrNetto=126.05, mwstEuro=23,95, freiePlaetze=10, aktuelleTnZahl=0}]");
     }
 
 }
