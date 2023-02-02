@@ -55,18 +55,19 @@ public class KvModel {
 
     public void save(String speicherPfad, String speicherDatei) {
         try {
-            File directory = new File(speicherPfad);
-            if (!directory.exists()) {
-                directory.mkdir();
+            File ordner = new File(speicherPfad);
+            if (!ordner.exists()) {
+                ordner.mkdir();
             }
             FileOutputStream outfile = new FileOutputStream(speicherPfad + speicherDatei);
             ObjectOutputStream output = new ObjectOutputStream(outfile);
             // ObservableList is not Serializable. We have to work around
-            output.writeObject(new ArrayList<Person>(personen.getPersonenListe()));
-            output.writeObject(new ArrayList<Kurs>(kurse.getKursListe()));
-            output.writeObject(new ArrayList<PersonKurs>(pkListe.personKursList));
+            output.writeObject(new ArrayList<>(personen.getPersonenListe()));
+            output.writeObject(new ArrayList<>(kurse.getKursListe()));
+            output.writeObject(new ArrayList<>(pkListe.personKursList));
 
             output.close();
+            System.out.println("Alle Daten-Objekte wurden gespeichert! [" + speicherPfad + speicherDatei + "]");
         } catch (FileNotFoundException e) {
             System.err.print("Die Datei zum Schreiben der Daten kann nicht erstellt werden! Fehlermeldung: ");
             System.err.println(e.getMessage());
