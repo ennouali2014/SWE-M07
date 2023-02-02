@@ -2,7 +2,10 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.application.CreatePdf;
 import de.unibremen.akademie.kursverwaltung.application.DatumFormatieren;
-import de.unibremen.akademie.kursverwaltung.domain.*;
+import de.unibremen.akademie.kursverwaltung.domain.Kurs;
+import de.unibremen.akademie.kursverwaltung.domain.Meldung;
+import de.unibremen.akademie.kursverwaltung.domain.Person;
+import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -112,7 +115,7 @@ public class KurseDetailsController {
         txInpGebuehrNetto.clear();
         hbxPrintAnwesenheitsliste.setVisible(false);
         btnKursSpeichern.setText("Speichern");
-        if (AnwendungsModel.aktuellerKurs != null) {
+        if (kvModel.aktuellerKurs != null) {
             Tab plTab = main.fxmlKurseListeController.tabKurseListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
         }
@@ -170,29 +173,29 @@ public class KurseDetailsController {
 
     // FIXME: status leer gibt keinen Fehlermeldung
     public void onClickSaveKurs(ActionEvent actionEvent) {
-        if (AnwendungsModel.aktuellerKurs != null) {
+        if (kvModel.aktuellerKurs != null) {
             // Bestehenden Kurs aendern
             try {
-                AnwendungsModel.aktuellerKurs.setName(txInpKursname.getText());
-                AnwendungsModel.aktuellerKurs.setAnzahlTage((Integer.parseInt(txInpAnzahlTage.getText())));
-                AnwendungsModel.aktuellerKurs.setZyklus((Integer.parseInt(txInpZyklus.getText())));
+                kvModel.aktuellerKurs.setName(txInpKursname.getText());
+                kvModel.aktuellerKurs.setAnzahlTage((Integer.parseInt(txInpAnzahlTage.getText())));
+                kvModel.aktuellerKurs.setZyklus((Integer.parseInt(txInpZyklus.getText())));
                 LocalDate localDate = pickStartDatum.getValue();
-                AnwendungsModel.aktuellerKurs.setStartDatum(Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant()));
-                AnwendungsModel.aktuellerKurs.setMinTnZahl((Integer.parseInt(txInpMinTnZahl.getText())));
-                AnwendungsModel.aktuellerKurs.setMaxTnZahl((Integer.parseInt(txInpMaxTnZahl.getText())));
-                AnwendungsModel.aktuellerKurs.setGebuehrBrutto((Double.parseDouble(txInpGebuehrBrutto.getText())));
-                AnwendungsModel.aktuellerKurs.setMwstProzent((Double.parseDouble(txInpMwsProzent.getText())));
-                AnwendungsModel.aktuellerKurs.setKursBeschreibung(txtAreaKursBeschreibung.getText());
-                AnwendungsModel.aktuellerKurs.setEndeDatum();
-                AnwendungsModel.aktuellerKurs.setGebuehrNetto();
-                AnwendungsModel.aktuellerKurs.setFreiePlaetze();
-                AnwendungsModel.aktuellerKurs.setMwstEuro();
-                AnwendungsModel.aktuellerKurs.setAktuelleTnZahl();
-                AnwendungsModel.aktuellerKurs.setStatus(comboStatus.getValue().toString());
+                kvModel.aktuellerKurs.setStartDatum(Date.from(localDate.atStartOfDay(ZoneId.of("CET")).toInstant()));
+                kvModel.aktuellerKurs.setMinTnZahl((Integer.parseInt(txInpMinTnZahl.getText())));
+                kvModel.aktuellerKurs.setMaxTnZahl((Integer.parseInt(txInpMaxTnZahl.getText())));
+                kvModel.aktuellerKurs.setGebuehrBrutto((Double.parseDouble(txInpGebuehrBrutto.getText())));
+                kvModel.aktuellerKurs.setMwstProzent((Double.parseDouble(txInpMwsProzent.getText())));
+                kvModel.aktuellerKurs.setKursBeschreibung(txtAreaKursBeschreibung.getText());
+                kvModel.aktuellerKurs.setEndeDatum();
+                kvModel.aktuellerKurs.setGebuehrNetto();
+                kvModel.aktuellerKurs.setFreiePlaetze();
+                kvModel.aktuellerKurs.setMwstEuro();
+                kvModel.aktuellerKurs.setAktuelleTnZahl();
+                kvModel.aktuellerKurs.setStatus(comboStatus.getValue().toString());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-                AnwendungsModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(AnwendungsModel.aktuellerKurs.getStartDatum()));
-                AnwendungsModel.aktuellerKurs.setDisplayEndeDate(dateFormat.format(AnwendungsModel.aktuellerKurs.getEndeDatum()));
+                kvModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(kvModel.aktuellerKurs.getStartDatum()));
+                kvModel.aktuellerKurs.setDisplayEndeDate(dateFormat.format(kvModel.aktuellerKurs.getEndeDatum()));
 
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
@@ -214,6 +217,18 @@ public class KurseDetailsController {
             String name = txInpKursname.getText();
             String kursBesch = txtAreaKursBeschreibung.getText();
             String statusSTR = comboStatus.getSelectionModel().getSelectedItem().toString();
+
+            try {
+                if (comboStatus.getSelectionModel().getSelectedIndex() == -1) {
+                    throw new IllegalArgumentException("Bitte einen Kurs-Status eingeben");
+                } else {
+                    statusSTR = comboStatus.getSelectionModel().getSelectedItem().toString();
+                }
+            } catch (Exception e) {
+                Meldung.eingabeFehler(e.getMessage());
+                return;
+            }
+
             try {
                 if (!checkIsInt(txInpAnzahlTage.getText()) ||
                         !checkIsInt(txInpZyklus.getText()) ||
@@ -261,6 +276,8 @@ public class KurseDetailsController {
             txInpGebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
 
         }
+
+
         for (Tab tabPaneKursListe : tabKurseDetails.getTabPane().getTabs()) {
             if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
                 tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
@@ -283,13 +300,13 @@ public class KurseDetailsController {
     }
 
     public void onClickPrintAnwesenheitsliste(ActionEvent actionEvent) {
-        if (AnwendungsModel.aktuellerKurs != null) {
+        if (kvModel.aktuellerKurs != null) {
             try {
                 LocalDate localDate = pickAnwesenheitsDatum.getValue();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
                 String datumAnwesenheitsliste = localDate.format(formatter);
-                new CreatePdf().createAnwesenheitslistePdf(AnwendungsModel.aktuellerKurs.getName(), datumAnwesenheitsliste);
-                String erstelltesPdf = "Anwesenheitsliste_" + AnwendungsModel.aktuellerKurs.getName().replace(" ", "_") + "_" + datumAnwesenheitsliste + ".pdf";
+                new CreatePdf().createAnwesenheitslistePdf(kvModel.aktuellerKurs.getName(), datumAnwesenheitsliste);
+                String erstelltesPdf = "Anwesenheitsliste_" + kvModel.aktuellerKurs.getName().replace(" ", "_") + "_" + datumAnwesenheitsliste + ".pdf";
                 /*ProcessBuilder pb = new ProcessBuilder(pdfReader, pdfSpeicherPfad + erstelltesPdf);
                 Thread.sleep(500); // 1,5 Sekunden warten
                 pb.start();*/
@@ -304,7 +321,7 @@ public class KurseDetailsController {
     public boolean hatKursTeilnehmer() {
         int teilnehmendePersonen = 0;
         for (PersonKurs personKurs : kvModel.getPkListe().personKursList) {
-            if (personKurs.getKurs().getName().equals(AnwendungsModel.aktuellerKurs.getName()) && personKurs.isTeilnehmer()) {
+            if (personKurs.getKurs().getName().equals(kvModel.aktuellerKurs.getName()) && personKurs.isTeilnehmer()) {
                 Person person = personKurs.getPerson();
                 teilnehmendePersonen++;
             }
