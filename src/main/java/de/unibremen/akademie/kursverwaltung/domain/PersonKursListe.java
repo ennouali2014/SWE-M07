@@ -94,6 +94,27 @@ public class PersonKursListe {
                 .toList();
     }
 
+    public List<Person> getPersonen(Kurs kurs, boolean alsTeilnehmer) {
+        // TODO: Ist kürzer, aber auch besser?
+        return getKursPersonen(kurs, alsTeilnehmer)
+                .stream()
+                .map(PersonKurs::getPerson)
+                .toList();
+
+
+    }
+    public List<PersonKurs> getKursPersonen(Kurs kurs, boolean alsTeilnehmer) {
+        // Geht auch einfach aber ungewöhnlich
+        // return personKursList.stream().filter(pk -> pk.getPerson().equals(person) && pk.isTeilnehmer() == alsTeilnehmer).toList();
+        List<PersonKurs> listperson = new ArrayList<>();
+
+        for (PersonKurs personKurs : personKursList) {
+            if (personKurs.getKurs().equals(kurs) && personKurs.isTeilnehmer() == alsTeilnehmer) {
+                listperson.add(personKurs);
+            }
+        }
+        return listperson;
+    }
     public List<PersonKurs> getPersonKurse(Person person, boolean alsTeilnehmer) {
         // Geht auch einfach aber ungewöhnlich
         // return personKursList.stream().filter(pk -> pk.getPerson().equals(person) && pk.isTeilnehmer() == alsTeilnehmer).toList();
