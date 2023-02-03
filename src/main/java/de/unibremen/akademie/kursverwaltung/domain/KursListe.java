@@ -21,7 +21,6 @@ public class KursListe {
         return kursListe.get(index);
     }
 
-
     public Kurs addNewKurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
                            double gebuehrBrutto, double mwstProzent, String kursBeschreibung, String statusSTR) {
         Kurs kurs = new Kurs(name, anzahlTage, zyklus, startDatum, minTnZahl, maxTnZahl,
