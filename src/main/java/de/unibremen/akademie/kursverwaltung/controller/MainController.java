@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 
 public class MainController {
-    public TabPane fxmlMain;
+    public TabPane mainTabPane;
 
     @FXML
     PersonenDetailsController fxmlPersonenDetailsController;
