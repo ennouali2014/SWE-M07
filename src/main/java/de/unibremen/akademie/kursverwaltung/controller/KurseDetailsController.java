@@ -102,11 +102,17 @@ public class KurseDetailsController {
         pickStartDatum.setPromptText("01.01.1970");
         pickEndDatum.setPromptText("Wird kalkuliert!");
 
-        personName.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
-        personName.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
-        personNachName.setCellValueFactory(new PropertyValueFactory<Person, String>("displaystartDate"));
-        personNachName.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+        personName.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
+        personName.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
+
+        personNachName.setCellValueFactory(new PropertyValueFactory<Person, String>("nachname"));
+        personNachName.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+
+       /* tablePerson.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursTeilnehmerButton());
+        tableTeilnehmerPerson.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursAusTeilnehmerButton());
+        tableInteressentenPerson.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursInteressentenButton());
+*/
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tablePerson.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
@@ -126,7 +132,7 @@ public class KurseDetailsController {
 
         tableInteresseKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursInteressentenButton());
 */
-        tablePerson.setItems(kvModel.getKurse().getKursListe());
+        tablePerson.setItems(kvModel.getPersonen().getPersonenListe());
 
 
     }
