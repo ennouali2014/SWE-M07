@@ -122,11 +122,11 @@ public class PersonKursListe {
         addKurse(person, interessentenliste, false);
     }
 
-    public void removeAllKurseAlsInteressent(Person aktuellePerson, List<Kurs> interessentenliste) {
+    public void removeAllKurseAlsInteressent(Person aktuellePerson) {
         removeAllKurse(aktuellePerson, false);
     }
 
-    public void removeAllKurseAlsTeilnehmer(Person aktuellePerson, List<Kurs> teilnnehmerliste) {
+    public void removeAllKurseAlsTeilnehmer(Person aktuellePerson) {
         removeAllKurse(aktuellePerson, true);
     }
 
