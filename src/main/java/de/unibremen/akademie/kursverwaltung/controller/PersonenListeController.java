@@ -65,7 +65,7 @@ public class PersonenListeController implements Initializable {
     private Button btnResetSuchfeld;
 
     private FilteredList<Person> filteredData;
-    private MainController main;
+    private MainController mainCtrl;
 
     @FXML
 
@@ -85,7 +85,7 @@ public class PersonenListeController implements Initializable {
 
         kvModel.aktuellePerson = null;
         kvModel.aktuellePerson = null;
-        main.fxmlPersonenDetailsController.felderLeeren();
+        mainCtrl.fxmlPersonenDetailsController.felderLeeren();
         PersonenDetailsController.zurueckPersonenliste = true;
         for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
             if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
@@ -99,11 +99,11 @@ public class PersonenListeController implements Initializable {
         PersonenDetailsController.zurueckPersonenliste = true;
 
         if (!tablePersonenListe.getSelectionModel().isEmpty()) {
-            main.fxmlPersonenDetailsController.btnSavePersonDetails.setText("Update");
+            mainCtrl.fxmlPersonenDetailsController.btnSavePersonDetails.setText("Update");
 
             kvModel.aktuellePerson = tablePersonenListe.getSelectionModel().getSelectedItem();
 
-            main.fxmlPersonenDetailsController.updateEintraegePersonUndListen(kvModel.aktuellePerson);
+            mainCtrl.fxmlPersonenDetailsController.updateEintraegePersonUndListen(kvModel.aktuellePerson);
 
             for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
@@ -350,7 +350,7 @@ public class PersonenListeController implements Initializable {
     }
 
     public void init(MainController mainController) {
-        main = mainController;
+        mainCtrl = mainController;
     }
 
 

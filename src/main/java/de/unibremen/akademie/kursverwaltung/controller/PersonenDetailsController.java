@@ -70,11 +70,11 @@ public class PersonenDetailsController {
     @FXML
     public Button btnTeilnehmerKursRein;
 
-    private MainController main;
+    private MainController mainCtrl;
     private Object selectedItem;
 
     public void init(MainController mainController) {
-        main = mainController;
+        mainCtrl = mainController;
     }
 
     public void initialize() {
@@ -170,14 +170,14 @@ public class PersonenDetailsController {
             }
         }
         kvModel.aktuellePerson = null;
-        Tab plTab = main.fxmlPersonenListeController.tabPersonenListe;
+        Tab plTab = mainCtrl.fxmlPersonenListeController.tabPersonenListe;
         //plTab.getTabPane().getSelectionModel().select(plTab);
-        main.fxmlPersonenListeController.tablePersonenListe.refresh();
+        mainCtrl.fxmlPersonenListeController.tablePersonenListe.refresh();
 
         if (PersonenDetailsController.zurueckPersonenliste) {
             plTab.getTabPane().getSelectionModel().select(plTab);
-            main.fxmlPersonenListeController.tablePersonenListe.getSelectionModel().clearSelection();
-            main.fxmlPersonenListeController.tablePersonenListe.getSelectionModel().select(person);
+            mainCtrl.fxmlPersonenListeController.tablePersonenListe.getSelectionModel().clearSelection();
+            mainCtrl.fxmlPersonenListeController.tablePersonenListe.getSelectionModel().select(person);
         }
     }
 
@@ -210,7 +210,7 @@ public class PersonenDetailsController {
     public void onClickAbbrechenPerson(ActionEvent event) {
         felderLeeren();
         if (zurueckPersonenliste) {
-            Tab plTab = main.fxmlPersonenListeController.tabPersonenListe;
+            Tab plTab = mainCtrl.fxmlPersonenListeController.tabPersonenListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
             zurueckPersonenliste = false;
         }

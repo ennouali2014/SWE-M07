@@ -89,7 +89,7 @@ public class KurseDetailsController {
     private TextArea txtAreaKursBeschreibung;
     @FXML
     private ComboBox comboStatus;
-    private MainController main;
+    private MainController mainCtrl;
 
 
 
@@ -170,7 +170,7 @@ public class KurseDetailsController {
         hbxPrintAnwesenheitsliste.setVisible(false);
         btnKursSpeichern.setText("Speichern");
         if (kvModel.aktuellerKurs != null) {
-            Tab plTab = main.fxmlKurseListeController.tabKurseListe;
+            Tab plTab = mainCtrl.fxmlKurseListeController.tabKurseListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
         }
     }
@@ -226,7 +226,7 @@ public class KurseDetailsController {
     }
 
     public void init(MainController mainController) {
-        main = mainController;
+        mainCtrl = mainController;
     }
 
     // FIXME: status leer gibt keinen Fehlermeldung
@@ -261,8 +261,8 @@ public class KurseDetailsController {
             }
             btnKursSpeichern.setText("Speichern");
             hbxPrintAnwesenheitsliste.setVisible(false);
-            main.fxmlKurseListeController.tableKurseListe.refresh();
-            main.fxmlPersonenDetailsController.tableKurse.refresh();
+            mainCtrl.fxmlKurseListeController.tableKurseListe.refresh();
+            mainCtrl.fxmlPersonenDetailsController.tableKurse.refresh();
 
         } else {
             int anzahl = 0, zykls = 0, minTn = 0, maxTn = 0;
@@ -368,7 +368,7 @@ public class KurseDetailsController {
                 /*ProcessBuilder pb = new ProcessBuilder(pdfReader, pdfSpeicherPfad + erstelltesPdf);
                 Thread.sleep(500); // 1,5 Sekunden warten
                 pb.start();*/
-                Tab plTab = main.fxmlKurseListeController.tabKurseListe;
+                Tab plTab = mainCtrl.fxmlKurseListeController.tabKurseListe;
                 plTab.getTabPane().getSelectionModel().select(plTab);
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
@@ -390,7 +390,7 @@ public class KurseDetailsController {
 
 
     // for test only
-    MainController getMain() {
-        return main;
+    MainController getMainCtrl() {
+        return mainCtrl;
     }
 }
