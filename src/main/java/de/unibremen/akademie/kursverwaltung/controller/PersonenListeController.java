@@ -108,17 +108,10 @@ public class PersonenListeController implements Initializable {
             for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {
                     tabPanePersonAnlegen.getTabPane().getSelectionModel().select(tabPanePersonAnlegen);
-
                 }
             }
-            //TODO Mohammed
 
-//            for (PersonKurs personKurs : pkListe.personKursList) {
-//                if (personKurs.getKurs().equals("kurs")) {
-//                    personKurs.getKurs().getTeilnehmerListe();
-//                }
-//            }
-            //TODO
+
         }
     }
 

@@ -142,9 +142,8 @@ public class PersonenDetailsController {
             try {
                 kvModel.aktuellePerson.updatePerson(choiceAnrede.getValue().toString(), txInpTitel.getText(), txInpVorname.getText(),
                         txInpNachname.getText(), txInpStrasse.getText(), txInpPlz.getText(), txInpOrt.getText(), txInpEmail.getText(), txInpTelefon.getText());
-
-//                kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);
-//                kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson);
+                kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);
+                kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson);
 
                 kvModel.getPkListe().addKurseAlsTeilnehmer(kvModel.aktuellePerson, this.tableTeilnahmeKurse.getItems());
                 kvModel.getPkListe().addKurseAlsInteressent(kvModel.aktuellePerson, this.tableInteresseKurse.getItems());
@@ -160,8 +159,8 @@ public class PersonenDetailsController {
             try {
                 person = kvModel.getPersonen().addNewPerson(choiceAnrede.getValue().toString(), txInpTitel.getText(), txInpVorname.getText(),
                         txInpNachname.getText(), txInpStrasse.getText(), txInpPlz.getText(), txInpOrt.getText(), txInpEmail.getText(), txInpTelefon.getText());
-//                kvModel.getPkListe().addKurseAlsTeilnehmer(kvModel.aktuellePerson, this.tableTeilnahmeKurse.getItems());
-//                kvModel.getPkListe().addKurseAlsInteressent(kvModel.aktuellePerson, this.tableInteresseKurse.getItems());
+                kvModel.getPkListe().addKurseAlsTeilnehmer(person, this.tableTeilnahmeKurse.getItems());
+                kvModel.getPkListe().addKurseAlsInteressent(person, this.tableInteresseKurse.getItems());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
