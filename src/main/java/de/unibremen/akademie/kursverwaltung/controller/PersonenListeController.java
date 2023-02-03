@@ -103,7 +103,7 @@ public class PersonenListeController implements Initializable {
 
             kvModel.aktuellePerson = tablePersonenListe.getSelectionModel().getSelectedItem();
 
-            main.fxmlPersonenDetailsController.onClickAnzeigeAendernPerson(kvModel.aktuellePerson);
+            main.fxmlPersonenDetailsController.updateEintraegePersonUndListen(kvModel.aktuellePerson);
 
             for (Tab tabPanePersonAnlegen : tabPersonenListe.getTabPane().getTabs()) {
                 if (tabPanePersonAnlegen.getText().equals("Personen-Details")) {

@@ -182,7 +182,7 @@ public class PersonenDetailsController {
     }
 
     @FXML
-    public void onClickAnzeigeAendernPerson(Person person) {
+    public void updateEintraegePersonUndListen(Person person) {
         if (person != null) {
             String anrede = person.getAnrede();
             for (int i = 0; i < choiceListAnrede.size(); i++) {
