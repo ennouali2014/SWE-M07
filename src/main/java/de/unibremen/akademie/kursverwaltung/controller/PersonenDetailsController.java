@@ -238,6 +238,7 @@ public class PersonenDetailsController {
             System.out.println("Teilnehmer zu Interessent!");
             tableInteresseKurse.getItems().add(tableTeilnahmeKurse.getSelectionModel().getSelectedItem());
             tableTeilnahmeKurse.getItems().removeAll(tableTeilnahmeKurse.getSelectionModel().getSelectedItems());
+            kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);   //  TODO 03.02
             // checkKursTeilnehmerButton();
         }
     }
@@ -253,13 +254,13 @@ public class PersonenDetailsController {
             System.out.println("Interessent zu Teilnehmer!");
             tableTeilnahmeKurse.getItems().add(tableInteresseKurse.getSelectionModel().getSelectedItem());
             tableInteresseKurse.getItems().removeAll(tableInteresseKurse.getSelectionModel().getSelectedItems());
+            kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson); //   TODO 03.02
             // checkKursTeilnehmerButton();
         }
     }
 
     public void onClickKursRausAusInteressent(ActionEvent actionEvent) {
         tableInteresseKurse.getItems().removeAll(tableInteresseKurse.getSelectionModel().getSelectedItem());
-
         kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson);  //  TODO 03.02
     }
 
@@ -268,23 +269,6 @@ public class PersonenDetailsController {
         kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);   //  TODO 03.02
     }
 
-    /*
-        public void kursZuTeilnehmer(ActionEvent actionEvent) {
-
-            if (KvModel.aktuellePerson == null || tableViewKurse.getSelectionModel().getSelectedItem() == null) {
-                return;
-            }
-
-            Kurs kurs = (Kurs) tableViewKurse.getSelectionModel().getSelectedItem();
-            KvModel.aktuellePerson.addKursTeilnehmer(kurs); //
-            tableViewTeilnehmerZu.getItems().add(kurs);
-
-            System.out.println(KvModel.aktuellePerson);
-            System.out.println(tableViewKurse.getSelectionModel().getSelectedItem());
-
-
-        }
-    */
 
     public void onClickKursZuTeilnehmer(ActionEvent actionEvent) {
         if (kvModel.aktuellePerson == null || tableKurse.getSelectionModel().getSelectedItem() == null) {
