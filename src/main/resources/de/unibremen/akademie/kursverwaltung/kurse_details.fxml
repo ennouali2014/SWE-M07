@@ -241,7 +241,8 @@
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="104.0">
                                             <children>
                                                 <Button fx:id="btnPersonAlsTeilnehmer" alignment="CENTER"
-                                                        contentDisplay="CENTER" mnemonicParsing="false">
+                                                        contentDisplay="CENTER" mnemonicParsing="false"
+                                                        onAction="#onClickPersonZuTeilnehmer">
                                                     <VBox.margin>
                                                         <Insets bottom="20.0"/>
                                                     </VBox.margin>
@@ -254,7 +255,8 @@
                                                     </graphic>
                                                 </Button>
                                                 <Button fx:id="btnTeilnehmerZuPerson" alignment="CENTER"
-                                                        contentDisplay="CENTER" mnemonicParsing="false">
+                                                        contentDisplay="CENTER" mnemonicParsing="false"
+                                                        onAction="#onClickPersonRausAusTeilnehmer">
                                                     <VBox.margin>
                                                         <Insets bottom="190.0"/>
                                                     </VBox.margin>
@@ -266,7 +268,8 @@
                                                         </ImageView>
                                                     </graphic>
                                                 </Button>
-                                                <Button fx:id="btnPersonAlsInteressent" mnemonicParsing="false">
+                                                <Button fx:id="btnPersonAlsInteressent" mnemonicParsing="false"
+                                                        onAction="#onClickPersonZuInteressent">
                                                     <VBox.margin>
                                                         <Insets bottom="20.0"/>
                                                     </VBox.margin>
@@ -278,7 +281,8 @@
                                                         </ImageView>
                                                     </graphic>
                                                 </Button>
-                                                <Button fx:id="btnInteressentenZuPerson" mnemonicParsing="false">
+                                                <Button fx:id="btnInteressentenZuPerson" mnemonicParsing="false"
+                                                        onAction="#onClickPersonRausAusInteressent">
                                                     <graphic>
                                                         <ImageView fitHeight="20.0" fitWidth="20.0">
                                                             <image>
@@ -301,7 +305,8 @@
                                                 <TableView fx:id="tableTeilnehmerPerson" prefHeight="200.0"
                                                            prefWidth="200.0">
                                                     <columns>
-                                                        <TableColumn fx:id="kursZuTeilnehmer" prefWidth="126.0"
+                                                        <TableColumn fx:id="colTeilnahmeKursePersonName"
+                                                                     prefWidth="126.0"
                                                                      text="Person Name Nachname"/>
                                                     </columns>
                                                     <VBox.margin>
@@ -312,7 +317,8 @@
                                                       spacing="20.0">
                                                     <children>
                                                         <Button fx:id="btnInteressentZuTeilnehmer"
-                                                                mnemonicParsing="false">
+                                                                mnemonicParsing="false"
+                                                                onAction="#onClickInteressentZuTeilnehmer">
                                                             <HBox.margin>
                                                                 <Insets/>
                                                             </HBox.margin>
@@ -325,7 +331,8 @@
                                                             </graphic>
                                                         </Button>
                                                         <Button fx:id="btnTeilnehmerZuInteressent"
-                                                                mnemonicParsing="false">
+                                                                mnemonicParsing="false"
+                                                                onAction="#onClickTeilnehmerZuInteressent">
                                                             <graphic>
                                                                 <ImageView fitHeight="20.0" fitWidth="20.0">
                                                                     <image>
@@ -340,7 +347,8 @@
                                                 <TableView fx:id="tableInteressentenPerson" prefHeight="200.0"
                                                            prefWidth="200.0">
                                                     <columns>
-                                                        <TableColumn fx:id="kursZuInteressent" prefWidth="126.0"
+                                                        <TableColumn fx:id="colInteresseKursePersonName"
+                                                                     prefWidth="126.0"
                                                                      text="Person Name Nachname"/>
                                                     </columns>
                                                     <VBox.margin>
