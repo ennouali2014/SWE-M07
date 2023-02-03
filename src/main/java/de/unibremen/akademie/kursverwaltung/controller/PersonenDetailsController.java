@@ -259,10 +259,13 @@ public class PersonenDetailsController {
 
     public void onClickKursRausAusInteressent(ActionEvent actionEvent) {
         tableInteresseKurse.getItems().removeAll(tableInteresseKurse.getSelectionModel().getSelectedItem());
+
+        kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson);  //  TODO 03.02
     }
 
     public void onClickKursRausAusTeilnehmer(ActionEvent actionEvent) {
         tableTeilnahmeKurse.getItems().remove(tableTeilnahmeKurse.getSelectionModel().getSelectedItem());
+        kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);   //  TODO 03.02
     }
 
     /*
