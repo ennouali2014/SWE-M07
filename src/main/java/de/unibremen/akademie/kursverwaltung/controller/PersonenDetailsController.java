@@ -142,8 +142,8 @@ public class PersonenDetailsController {
                 kvModel.aktuellePerson.updatePerson(choiceAnrede.getValue().toString(), txInpTitel.getText(), txInpVorname.getText(),
                         txInpNachname.getText(), txInpStrasse.getText(), txInpPlz.getText(), txInpOrt.getText(), txInpEmail.getText(), txInpTelefon.getText());
 
-                kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson, this.tableTeilnahmeKurse.getItems());
-                kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson, this.tableInteresseKurse.getItems());
+                kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);
+                kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson);
 
                 kvModel.getPkListe().addKurseAlsTeilnehmer(kvModel.aktuellePerson, this.tableTeilnahmeKurse.getItems());
                 kvModel.getPkListe().addKurseAlsInteressent(kvModel.aktuellePerson, this.tableInteresseKurse.getItems());
