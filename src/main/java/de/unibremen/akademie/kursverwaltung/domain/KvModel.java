@@ -24,7 +24,9 @@ public class KvModel {
         return kurse;
     }
 
-    public PersonKursListe getPkListe() { return pkListe; }
+    public PersonKursListe getPkListe() {
+        return pkListe;
+    }
 
 
     public void load(String speicherPfad, String speicherDatei) {
@@ -111,9 +113,16 @@ public class KvModel {
     }
 
     public void removePerson(Person p) {
-        if (!pkListe.getKurseAlsTeilnehmer(p).isEmpty()) {
-            throw new RuntimeException("Person ist noch Teilnehmer");
+
+        try {
+            if (!pkListe.getKurseAlsTeilnehmer(p).isEmpty()) {
+                throw new RuntimeException("Teilnehmer kann nicht gelöscht werden!\n Er ist in einem Kurs");
+            }
+        } catch (Exception e) {
+            Meldung.loeschFehler(e.getMessage());
+            return;
         }
+
         if (!pkListe.getKurseAlsInteressent(p).isEmpty()) {
             pkListe.removeAllKurseAlsInteressent(p);
         }
