@@ -86,6 +86,14 @@ public class PersonKursListe {
         */
     }
 
+    public List<Person> getPerson(Kurs kurs, boolean alsTeilnehmer) {
+        // TODO: Ist kürzer, aber auch besser?
+        return getKursePerson(kurs, alsTeilnehmer)
+                .stream()
+                .map(PersonKurs::getPerson)
+                .toList();
+    }
+
     public List<PersonKurs> getPersonKurse(Person person, boolean alsTeilnehmer) {
         // Geht auch einfach aber ungewöhnlich
         // return personKursList.stream().filter(pk -> pk.getPerson().equals(person) && pk.isTeilnehmer() == alsTeilnehmer).toList();
@@ -99,12 +107,33 @@ public class PersonKursListe {
         return listkurs;
     }
 
+    public List<PersonKurs> getKursePerson(Kurs kurs, boolean alsTeilnehmer) {
+        // Geht auch einfach aber ungewöhnlich
+        // return personKursList.stream().filter(pk -> pk.getPerson().equals(person) && pk.isTeilnehmer() == alsTeilnehmer).toList();
+        List<PersonKurs> listkurs = new ArrayList<>();
+
+        for (PersonKurs personKurs : personKursList) {
+            if (personKurs.getKurs().equals(kurs) && personKurs.isTeilnehmer() == alsTeilnehmer) {
+                listkurs.add(personKurs);
+            }
+        }
+        return listkurs;
+    }
+
     public List<String> getKurseAlsTeilnehmer(Person person) {
         return getKurseNames(person, true);
     }
 
     public List<String> getKurseAlsInteressent(Person person) {
         return getKurseNames(person, false);
+    }
+
+    public List<Person> getPersonAlsTeilnehmer(Kurs kurs) {
+        return getPerson(kurs, true);
+    }
+
+    public List<Person> getPersonAlsInteressent(Kurs kurs) {
+        return getPerson(kurs, false);
     }
 
 
@@ -136,6 +165,18 @@ public class PersonKursListe {
             personKursList.remove(k);
         }
     }
+
+    public void removeAll(Kurs kurs) {
+        List<PersonKurs> listTeilnehmer = getKursePerson(kurs, true);
+        List<PersonKurs> listInteressenter = getKursePerson(kurs, false);
+        for (PersonKurs k : listTeilnehmer) {
+            personKursList.remove(k);
+        }
+        for (PersonKurs k : listInteressenter) {
+            personKursList.remove(k);
+        }
+    }
+
 
     public int size() {
         if (personKursList == null) {

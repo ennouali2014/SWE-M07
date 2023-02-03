@@ -28,6 +28,7 @@ import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvMode
 
 public class KurseListeController {
 
+
     public TableColumn<Kurs, String> colKursname;
     public TableColumn<Kurs, String> colStart_Datum;
     public TableColumn<Kurs, String> colEnd_Datum;
@@ -98,7 +99,7 @@ public class KurseListeController {
         colEnd_Datum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displayEndeDate"));
         colEnd_Datum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
 
-        tableKurseListe.setItems(AnwendungsModel.kvModel.getPersonen().getPersonenListe());
+        tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableKurseListe.getSelectionModel();
         selectionModel.setSelectionMode(
@@ -111,7 +112,7 @@ public class KurseListeController {
         });
 
 
-        FilteredList<Kurs> filteredData = new FilteredList<>(AnwendungsModel.kvModel.getKurse().getKursListe(), kurs -> true);
+        FilteredList<Kurs> filteredData = new FilteredList<>(kvModel.getKurse().getKursListe(), kurs -> true);
 
         txInpSuche.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(kurs -> {
@@ -188,6 +189,7 @@ public class KurseListeController {
 
 
     @FXML
+
     void onClickHinzufügenButton(ActionEvent event) {
         kvModel.aktuellerKurs = null;
         mainCtrl.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
@@ -202,11 +204,16 @@ public class KurseListeController {
 
     @FXML
     void onClickEntfernenButton(ActionEvent event) {
-        tableKurseListe.setItems(AnwendungsModel.kvModel.getKurse().getKursListe());
+        //ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
+        List<Kurs> selectedKursCopy = new ArrayList<>(tableKurseListe.getSelectionModel().getSelectedItems());
+        selectedKursCopy.forEach(kvModel::removeKurse); // ist das Gleiche wie die folgende Zeile
+        // for (Person p : selectedPersonCopy) { kvModel.removePerson(p);}
+    }
+       /* tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         ObservableList<Kurs> kurse = tableKurseListe.getItems();
         List<Kurs> selectedCoursesCopy = new ArrayList<>(tableKurseListe.getSelectionModel().getSelectedItems());
-        selectedCoursesCopy.forEach(kurse::remove);
-    }
+        selectedCoursesCopy.forEach(kurse::remove);*/
+
 
     @FXML
     void abDatselectDate(ActionEvent event) {
@@ -226,7 +233,7 @@ public class KurseListeController {
 
     @FXML
     void onClickBearbeitenButton(ActionEvent event) {
-        tableKurseListe.setItems(AnwendungsModel.kvModel.getKurse().getKursListe());
+        tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         if (!tableKurseListe.getSelectionModel().isEmpty() && tableKurseListe.getSelectionModel().getSelectedItems().size() < 2) {
             kvModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
             //KvModel.aktuellerKurs = tableView.getSelectionModel().;

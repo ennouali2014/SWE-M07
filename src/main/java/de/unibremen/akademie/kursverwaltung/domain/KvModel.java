@@ -128,4 +128,25 @@ public class KvModel {
         }
         personen.getPersonenListe().remove(p);
     }
+
+    public void removeKurse(Kurs kurs) {
+        Date heute = new Date();
+        if (kurs.getEndeDatum().before(heute)) {
+            kurse.getKursListe().remove(kurs);
+            pkListe.removeAll(kurs);
+        } else if (kurs.getStartDatum().after(heute)) {
+            if (!pkListe.getKursePerson(kurs, true).isEmpty()) {
+                Meldung.eingabeFehler(kurs.getName() + " enthält noch teilnehmer bitte die Personen Informieren ");
+                kurse.getKursListe().remove(kurs);
+                pkListe.removeAll(kurs);
+
+            } else {
+                kurse.getKursListe().remove(kurs);
+                pkListe.removeAll(kurs);
+
+            }
+
+        } else Meldung.eingabeFehler(kurs.getName() + " darf nicht gelöscht werden");
+    }
+
 }

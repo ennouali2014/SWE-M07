@@ -85,7 +85,8 @@ public class Kurs implements Externalizable {
     }
 
     public boolean setName(String name) {
-        if (name != null && name.length() > 0) {
+
+        if (name != null && !name.isBlank()) {
             if (this.name == null) {
                 this.name = new SimpleStringProperty(name);
             } else {
@@ -302,7 +303,7 @@ public class Kurs implements Externalizable {
     }
 
     public boolean setKursBeschreibung(String kursBeschreibung) {
-        if (kursBeschreibung != null) {
+        if (kursBeschreibung != null && !kursBeschreibung.isBlank()) {
             if (this.kursBeschreibung == null) {
                 this.kursBeschreibung = new SimpleStringProperty(kursBeschreibung);
             } else {
