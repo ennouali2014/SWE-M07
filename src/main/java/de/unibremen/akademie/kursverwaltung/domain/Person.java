@@ -216,7 +216,6 @@ public class Person implements Externalizable {
         stream.writeUTF(getOrt());
         stream.writeUTF(getEmail());
         stream.writeUTF(getTelefon());
-        //System.out.println(this);
     }
 
     @Override

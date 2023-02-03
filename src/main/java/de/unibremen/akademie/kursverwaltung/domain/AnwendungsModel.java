@@ -19,5 +19,4 @@ public class AnwendungsModel extends KvModel {
         save(SPEICHERPFAD, VERWALTUNGSDATEI);
     }
 
-
 }

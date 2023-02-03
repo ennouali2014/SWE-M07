@@ -12,6 +12,7 @@ import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.Person;
 import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -27,7 +28,7 @@ import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvMode
 public class CreatePdf {
 
     // Zu erzeugende Dateien
-    private final String SPEICHERPFAD = "src/main/resources/de/unibremen/akademie/kursverwaltung/pdf/";
+    private final String SPEICHERPFAD = "target/pdf/";
     private final String PERSONENLISTEPDF = SPEICHERPFAD + "Personenliste.pdf";
     private final String KURSELISTEPDF = SPEICHERPFAD + "Kurseliste.pdf";
     private final String ANWESENHEITSLISTEPDF = SPEICHERPFAD + "Anwesenheitsliste_";
@@ -65,6 +66,10 @@ public class CreatePdf {
         String headline = "Liste aller gespeicherten Personen (Stand: " + aktuellesDatum + ")";
         String metaSubject = "Personenliste";
         int seitenGesamt = (kvModel.getPersonen().getPersonenListe().size() + anzahlPersonenJeSeite - 1) / anzahlPersonenJeSeite;
+        File ordner = new File(SPEICHERPFAD);
+        if (!ordner.exists()) {
+            ordner.mkdir();
+        }
 
         PdfDocument pdf = new PdfDocument(
                 new PdfWriter(PERSONENLISTEPDF,
@@ -114,6 +119,11 @@ public class CreatePdf {
         String metaSubject = "Kurseliste";
         int seitenGesamt = (kvModel.getKurse().getKursListe().size() + anzahlKurseJeSeite - 1) / anzahlKurseJeSeite;
 
+        File ordner = new File(SPEICHERPFAD);
+        if (!ordner.exists()) {
+            ordner.mkdir();
+        }
+
         PdfDocument pdf = new PdfDocument(
                 new PdfWriter(KURSELISTEPDF,
                         new WriterProperties()
@@ -161,6 +171,11 @@ public class CreatePdf {
         String headline = "Anwesenheitsliste für den Kurs " + kursName + ", " + datum;
         String metaSubject = "Anwesenheitsliste";
         String kursDatei = kursName.replace(" ", "_"); //Leerzeichen aus Dateinamen ersetzen
+
+        File ordner = new File(SPEICHERPFAD);
+        if (!ordner.exists()) {
+            ordner.mkdir();
+        }
 
         // Anzahl der teilnehmenden Personen ermitteln
         int teilnehmendePersonen = 0;

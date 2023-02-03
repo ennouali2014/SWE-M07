@@ -36,6 +36,28 @@ public class KurseDetailsController {
     @FXML
     public Button btnKursSpeichern;
     @FXML
+    public Button btnPersonAlsTeilnehmer;
+    @FXML
+    public Button btnTeilnehmerZuPerson;
+    @FXML
+    public Button btnPersonAlsInteressent;
+    @FXML
+    public Button btnInteressentenZuPerson;
+    @FXML
+    public Button btnInteressentZuTeilnehmer;
+    @FXML
+    public Button btnTeilnehmerZuInteressent;
+    @FXML
+    public TableView tablePerson;
+    @FXML
+    public TableView tableTeilnehmerPerson;
+    @FXML
+    public TableView tableInteressentenPerson;
+    @FXML
+    public TableColumn personName;
+    @FXML
+    public TableColumn personNachName;
+    @FXML
     private Tab tabKurseDetails;
     @FXML
     private TextField txInpKursname;
