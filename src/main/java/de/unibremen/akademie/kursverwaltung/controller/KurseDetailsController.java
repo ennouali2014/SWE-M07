@@ -388,6 +388,8 @@ public class KurseDetailsController {
         return teilnehmendePersonen > 0;
     }
 
+    public void onClickCsvTeilnehmerliste(ActionEvent actionEvent) {
+    }
 
     // for test only
     MainController getMainCtrl() {

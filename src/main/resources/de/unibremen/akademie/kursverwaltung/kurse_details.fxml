@@ -178,7 +178,7 @@
                                         <VBox maxWidth="680.0">
                                             <children>
                                                 <Label text="Kursbeschreibung:" />
-                                                <TextArea fx:id="txtAreaKursBeschreibung" maxWidth="600.0" prefHeight="138.0" prefWidth="600.0" promptText="detailierte Infos zum Kurs">
+                                                <TextArea fx:id="txtAreaKursBeschreibung" maxWidth="600.0" prefHeight="80.0" prefWidth="600.0" promptText="detailierte Infos zum Kurs">
                                                     <VBox.margin>
                                                         <Insets />
                                                     </VBox.margin>
@@ -199,10 +199,18 @@
                                         </HBox>
                                     </children>
                                 </VBox>
-                                <HBox fx:id="hbxPrintAnwesenheitsliste" layoutX="8.0" layoutY="602.0" prefHeight="54.0" prefWidth="606.0" visible="false">
+                                <HBox fx:id="hbxCsvTeilnehmerliste" layoutX="8.0" layoutY="542.0" prefHeight="54.0" prefWidth="606.0" visible="true">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#onClickPrintAnwesenheitsliste" prefHeight="30.0" prefWidth="250.0" text="Anwesenheitsliste drucken zum:" />
-                                        <DatePicker fx:id="pickAnwesenheitsDatum">
+                                        <Button mnemonicParsing="false" onAction="#onClickCsvTeilnehmerliste" prefHeight="30.0" prefWidth="265.0" text="Teilnehmer als CSV-Datei speichern" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox fx:id="hbxPrintAnwesenheitsliste1" layoutX="8.0" layoutY="612.0" prefHeight="54.0" prefWidth="606.0" visible="false">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#onClickPrintAnwesenheitsliste" prefHeight="30.0" prefWidth="265.0" text="Anwesenheitsliste drucken zum:" />
+                                        <DatePicker fx:id="pickAnwesenheitsDatum1">
                                             <HBox.margin>
                                                 <Insets left="25.0" top="5.0" />
                                             </HBox.margin>
@@ -221,16 +229,13 @@
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="252.0">
                                             <children>
                                                 <Label styleClass="subheadline" text="Person" />
-                                                <TableView fx:id="tablePerson" prefHeight="264.0" prefWidth="252.0">
+                                                <TableView fx:id="tableViewKurse" prefHeight="264.0" prefWidth="252.0">
                                                     <columns>
-                                                        <TableColumn fx:id="personName" prefWidth="93.59991437196732"
-                                                                     text="Person Name"/>
-                                                        <TableColumn fx:id="personNachName"
-                                                                     prefWidth="159.20005798339844"
-                                                                     text="Person Nachname"/>
+                                                        <TableColumn fx:id="personname" prefWidth="93.59991437196732" text="Person Name" />
+                                                        <TableColumn fx:id="startDate" prefWidth="159.20005798339844" text="Person Nachname" />
                                                     </columns>
                                                     <VBox.margin>
-                                                        <Insets left="5.0" right="5.0"/>
+                                                        <Insets left="5.0" right="5.0" />
                                                     </VBox.margin>
                                                 </TableView>
                                             </children>
@@ -240,49 +245,47 @@
                                         </VBox>
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="104.0">
                                             <children>
-                                                <Button fx:id="btnPersonAlsTeilnehmer" alignment="CENTER"
-                                                        contentDisplay="CENTER" mnemonicParsing="false">
+                                                <Button fx:id="kurs_teilnehmer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false">
                                                     <VBox.margin>
-                                                        <Insets bottom="20.0"/>
+                                                        <Insets bottom="20.0" />
                                                     </VBox.margin>
                                                     <graphic>
                                                         <ImageView fitHeight="20.0" fitWidth="20.0">
                                                             <image>
-                                                                <Image url="@images/pfeil-rechts.png"/>
+                                                                <Image url="@images/pfeil-links.png" />
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </Button>
-                                                <Button fx:id="btnTeilnehmerZuPerson" alignment="CENTER"
-                                                        contentDisplay="CENTER" mnemonicParsing="false">
+                                                <Button fx:id="loeschVonTeilnehmer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false">
                                                     <VBox.margin>
-                                                        <Insets bottom="190.0"/>
+                                                        <Insets bottom="190.0" />
                                                     </VBox.margin>
                                                     <graphic>
                                                         <ImageView fitHeight="20.0" fitWidth="20.0">
                                                             <image>
-                                                                <Image url="@images/pfeil-links.png"/>
+                                                                <Image url="@images/pfeil-rechts.png" />
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </Button>
-                                                <Button fx:id="btnPersonAlsInteressent" mnemonicParsing="false">
+                                                <Button fx:id="kurs_interessent" mnemonicParsing="false">
                                                     <VBox.margin>
-                                                        <Insets bottom="20.0"/>
+                                                        <Insets bottom="20.0" />
                                                     </VBox.margin>
                                                     <graphic>
                                                         <ImageView fitHeight="20.0" fitWidth="20.0">
                                                             <image>
-                                                                <Image url="@images/pfeil-rechts.png"/>
+                                                                <Image url="@images/pfeil-rechts.png" />
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
                                                 </Button>
-                                                <Button fx:id="btnInteressentenZuPerson" mnemonicParsing="false">
+                                                <Button fx:id="loeschVonInteressenten" mnemonicParsing="false">
                                                     <graphic>
                                                         <ImageView fitHeight="20.0" fitWidth="20.0">
                                                             <image>
-                                                                <Image url="@images/pfeil-links.png"/>
+                                                                <Image url="@images/pfeil-links.png" />
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
@@ -297,54 +300,47 @@
                                         </VBox>
                                         <VBox alignment="TOP_CENTER" prefHeight="690.0" prefWidth="229.0" spacing="20.0">
                                             <children>
-                                                <Label styleClass="subheadline" text="Teilnehmer"/>
-                                                <TableView fx:id="tableTeilnehmerPerson" prefHeight="200.0"
-                                                           prefWidth="200.0">
+                                                <Label styleClass="subheadline" text="Teilnehmer" />
+                                                <TableView fx:id="tableViewTeilnehmerZu" prefHeight="200.0" prefWidth="200.0">
                                                     <columns>
-                                                        <TableColumn fx:id="kursZuTeilnehmer" prefWidth="126.0"
-                                                                     text="Person Name Nachname"/>
+                                                        <TableColumn fx:id="kursZuTeilnehmer" prefWidth="126.0" text="Person Name Nachname" />
                                                     </columns>
                                                     <VBox.margin>
-                                                        <Insets left="5.0" right="5.0"/>
+                                                        <Insets left="5.0" right="5.0" />
                                                     </VBox.margin>
                                                 </TableView>
-                                                <HBox alignment="CENTER" prefHeight="51.0" prefWidth="230.0"
-                                                      spacing="20.0">
+                                                <HBox alignment="CENTER" prefHeight="51.0" prefWidth="230.0" spacing="20.0">
                                                     <children>
-                                                        <Button fx:id="btnInteressentZuTeilnehmer"
-                                                                mnemonicParsing="false">
+                                                        <Button fx:id="zuTeilnehmer" mnemonicParsing="false">
                                                             <HBox.margin>
-                                                                <Insets/>
+                                                                <Insets />
                                                             </HBox.margin>
                                                             <graphic>
                                                                 <ImageView fitHeight="20.0" fitWidth="20.0">
                                                                     <image>
-                                                                        <Image url="@images/pfeil-oben.png"/>
+                                                                        <Image url="@images/pfeil-oben.png" />
                                                                     </image>
                                                                 </ImageView>
                                                             </graphic>
                                                         </Button>
-                                                        <Button fx:id="btnTeilnehmerZuInteressent"
-                                                                mnemonicParsing="false">
+                                                        <Button fx:id="zuInteressent" mnemonicParsing="false">
                                                             <graphic>
                                                                 <ImageView fitHeight="20.0" fitWidth="20.0">
                                                                     <image>
-                                                                        <Image url="@images/pfeil-unten.png"/>
+                                                                        <Image url="@images/pfeil-unten.png" />
                                                                     </image>
                                                                 </ImageView>
                                                             </graphic>
                                                         </Button>
                                                     </children>
                                                 </HBox>
-                                                <Label styleClass="subheadline" text="Interessenten"/>
-                                                <TableView fx:id="tableInteressentenPerson" prefHeight="200.0"
-                                                           prefWidth="200.0">
+                                                <Label styleClass="subheadline" text="Interessenten" />
+                                                <TableView fx:id="tableViewInteressentenZu" prefHeight="200.0" prefWidth="200.0">
                                                     <columns>
-                                                        <TableColumn fx:id="kursZuInteressent" prefWidth="126.0"
-                                                                     text="Person Name Nachname"/>
+                                                        <TableColumn fx:id="kursZuInteressent" prefWidth="126.0" text="Person Name Nachname" />
                                                     </columns>
                                                     <VBox.margin>
-                                                        <Insets left="5.0" right="5.0"/>
+                                                        <Insets left="5.0" right="5.0" />
                                                     </VBox.margin>
                                                 </TableView>
                                             </children>
