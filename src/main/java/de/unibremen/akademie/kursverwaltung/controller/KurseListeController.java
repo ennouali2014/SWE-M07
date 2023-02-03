@@ -203,11 +203,16 @@ public class KurseListeController {
 
     @FXML
     void onClickEntfernenButton(ActionEvent event) {
-        tableKurseListe.setItems(kvModel.getKurse().getKursListe());
+        //ObservableList<Person> allPerson = kvModel.getPersonen().getPersonenListe();
+        List<Kurs> selectedKursCopy = new ArrayList<>(tableKurseListe.getSelectionModel().getSelectedItems());
+        selectedKursCopy.forEach(kvModel::removeKurse); // ist das Gleiche wie die folgende Zeile
+        // for (Person p : selectedPersonCopy) { kvModel.removePerson(p);}
+    }
+       /* tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         ObservableList<Kurs> kurse = tableKurseListe.getItems();
         List<Kurs> selectedCoursesCopy = new ArrayList<>(tableKurseListe.getSelectionModel().getSelectedItems());
-        selectedCoursesCopy.forEach(kurse::remove);
-    }
+        selectedCoursesCopy.forEach(kurse::remove);*/
+
 
     @FXML
     void abDatselectDate(ActionEvent event) {
