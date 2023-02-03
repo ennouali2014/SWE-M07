@@ -64,7 +64,7 @@ public class KurseListeController {
     @FXML
     private Label lblDatumBis;
 
-    private MainController main;
+    private MainController mainCtrl;
     private FilteredList<Kurs> filteredData;
 
     public TableView<Kurs> getTableKurseListe() {
@@ -190,7 +190,7 @@ public class KurseListeController {
     @FXML
     void onClickHinzufügenButton(ActionEvent event) {
         kvModel.aktuellerKurs = null;
-        main.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
+        mainCtrl.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
         for (Tab tabPaneKursAnlegen : tabKurseListe.getTabPane().getTabs()) {
             if (tabPaneKursAnlegen.getText().equals("Kurse-Details")) {
                 tabPaneKursAnlegen.getTabPane().getSelectionModel().select(tabPaneKursAnlegen);
@@ -231,8 +231,8 @@ public class KurseListeController {
             kvModel.aktuellerKurs = tableKurseListe.getSelectionModel().getSelectedItem();
             //KvModel.aktuellerKurs = tableView.getSelectionModel().;
 
-            main.fxmlKurseDetailsController.anzeigeZumAendernKurs(kvModel.aktuellerKurs);
-            main.fxmlKurseDetailsController.show();
+            mainCtrl.fxmlKurseDetailsController.anzeigeZumAendernKurs(kvModel.aktuellerKurs);
+            mainCtrl.fxmlKurseDetailsController.show();
 
 
         }
@@ -268,7 +268,7 @@ public class KurseListeController {
     }
 
     public void init(MainController mainController) {
-        main = mainController;
+        mainCtrl = mainController;
     }
 
 
