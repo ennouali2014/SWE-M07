@@ -133,6 +133,7 @@ public class PersonenDetailsController {
         btnInteressentKursRaus.setDisable(selectedItem == null);
 
     }
+
     @FXML
     public void onClickSavePerson() {
         Person person = null;
@@ -142,8 +143,8 @@ public class PersonenDetailsController {
                 kvModel.aktuellePerson.updatePerson(choiceAnrede.getValue().toString(), txInpTitel.getText(), txInpVorname.getText(),
                         txInpNachname.getText(), txInpStrasse.getText(), txInpPlz.getText(), txInpOrt.getText(), txInpEmail.getText(), txInpTelefon.getText());
 
-                kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);
-                kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson);
+//                kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);
+//                kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson);
 
                 kvModel.getPkListe().addKurseAlsTeilnehmer(kvModel.aktuellePerson, this.tableTeilnahmeKurse.getItems());
                 kvModel.getPkListe().addKurseAlsInteressent(kvModel.aktuellePerson, this.tableInteresseKurse.getItems());
@@ -159,6 +160,8 @@ public class PersonenDetailsController {
             try {
                 person = kvModel.getPersonen().addNewPerson(choiceAnrede.getValue().toString(), txInpTitel.getText(), txInpVorname.getText(),
                         txInpNachname.getText(), txInpStrasse.getText(), txInpPlz.getText(), txInpOrt.getText(), txInpEmail.getText(), txInpTelefon.getText());
+//                kvModel.getPkListe().addKurseAlsTeilnehmer(kvModel.aktuellePerson, this.tableTeilnahmeKurse.getItems());
+//                kvModel.getPkListe().addKurseAlsInteressent(kvModel.aktuellePerson, this.tableInteresseKurse.getItems());
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -178,6 +181,7 @@ public class PersonenDetailsController {
             main.fxmlPersonenListeController.tablePersonenListe.getSelectionModel().select(person);
         }
     }
+
     @FXML
     public void onClickAnzeigeAendernPerson(Person person) {
         if (person != null) {
@@ -202,6 +206,7 @@ public class PersonenDetailsController {
 
         }
     }
+
     @FXML
     public void onClickAbbrechenPerson(ActionEvent event) {
         felderLeeren();
@@ -228,76 +233,39 @@ public class PersonenDetailsController {
     }
 
     public void onClickTeilnehmerZuInteressent(ActionEvent actionEvent) {
-        if (kvModel.aktuellePerson == null || tableTeilnahmeKurse.getSelectionModel().getSelectedItem() == null) {
-            return;
-        }
-        Boolean test_is_kurs = kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.aktuellePerson,
-                (Kurs) tableKurse.getSelectionModel().getSelectedItem());
 
-        if (test_is_kurs) {
-            System.out.println("Teilnehmer zu Interessent!");
-            tableInteresseKurse.getItems().add(tableTeilnahmeKurse.getSelectionModel().getSelectedItem());
-            tableTeilnahmeKurse.getItems().removeAll(tableTeilnahmeKurse.getSelectionModel().getSelectedItems());
-            kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);   //  TODO 03.02
-            // checkKursTeilnehmerButton();
-        }
+        System.out.println("Teilnehmer zu Interessent!");
+        tableInteresseKurse.getItems().add(tableTeilnahmeKurse.getSelectionModel().getSelectedItem());
+        tableTeilnahmeKurse.getItems().removeAll(tableTeilnahmeKurse.getSelectionModel().getSelectedItems());
+
     }
 
     public void onClickInteressentZuTeilnehmer(ActionEvent actionEvent) {
-        if (kvModel.aktuellePerson == null || tableInteresseKurse.getSelectionModel().getSelectedItem() == null) {
-            return;
-        }
-        Boolean test_is_kurs = kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.aktuellePerson,
-                (Kurs) tableKurse.getSelectionModel().getSelectedItem());
 
-        if (test_is_kurs) {
-            System.out.println("Interessent zu Teilnehmer!");
-            tableTeilnahmeKurse.getItems().add(tableInteresseKurse.getSelectionModel().getSelectedItem());
-            tableInteresseKurse.getItems().removeAll(tableInteresseKurse.getSelectionModel().getSelectedItems());
-            kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson); //   TODO 03.02
-            // checkKursTeilnehmerButton();
-        }
+        tableTeilnahmeKurse.getItems().add(tableInteresseKurse.getSelectionModel().getSelectedItem());
+        tableInteresseKurse.getItems().removeAll(tableInteresseKurse.getSelectionModel().getSelectedItems());
+
     }
 
     public void onClickKursRausAusInteressent(ActionEvent actionEvent) {
         tableInteresseKurse.getItems().removeAll(tableInteresseKurse.getSelectionModel().getSelectedItem());
-        kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson);  //  TODO 03.02
+
     }
 
     public void onClickKursRausAusTeilnehmer(ActionEvent actionEvent) {
         tableTeilnahmeKurse.getItems().remove(tableTeilnahmeKurse.getSelectionModel().getSelectedItem());
-        kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);   //  TODO 03.02
     }
 
-
     public void onClickKursZuTeilnehmer(ActionEvent actionEvent) {
-        if (kvModel.aktuellePerson == null || tableKurse.getSelectionModel().getSelectedItem() == null) {
-            return;
-        }
-        Boolean test_is_kurs = kvModel.getPkListe().addPersonInKursAlsTeilnehmer(kvModel.aktuellePerson,
-                (Kurs) tableKurse.getSelectionModel().getSelectedItem());
 
-        if (test_is_kurs) {
-            tableTeilnahmeKurse.getItems().add(tableKurse.getSelectionModel().getSelectedItem());
-            tableKurse.getSelectionModel().clearSelection();
-            //        checkKursTeilnehmerButton();
-            // FIXME: Falls schon in InteressentView ist, dort dann rausnehmen (AxF)
-        }
+        tableTeilnahmeKurse.getItems().add(tableKurse.getSelectionModel().getSelectedItem());
+        tableKurse.getSelectionModel().clearSelection();
     }
 
     public void onClickKursZuInteressent(ActionEvent actionEvent) {
 
-        if (kvModel.aktuellePerson == null || tableKurse.getSelectionModel().getSelectedItem() == null) {
-            return;
-        }
-        Boolean test_is_kurs = kvModel.getPkListe().addPersonInKursAlsInteressent(kvModel.aktuellePerson,
-                (Kurs) tableKurse.getSelectionModel().getSelectedItem());
+        tableInteresseKurse.getItems().add(tableKurse.getSelectionModel().getSelectedItem());
+        tableKurse.getSelectionModel().clearSelection();
 
-        if (test_is_kurs) {
-            tableInteresseKurse.getItems().add(tableKurse.getSelectionModel().getSelectedItem());
-            tableKurse.getSelectionModel().clearSelection();
-            //        checkKursInteressentenButton();
-            // FIXME: Falls schon in TeilnehmerView ist, dort dann rausnehmen (AxF)
-        }
     }
 }
