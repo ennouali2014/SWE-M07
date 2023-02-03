@@ -41,7 +41,7 @@ class KurseDetailsControllerTest {
         MainController mainController = new MainController();
         kurseDetailsController.init(mainController);
 
-        assertEquals(mainController, kurseDetailsController.getMain());
+        assertEquals(mainController, kurseDetailsController.getMainCtrl());
     }
 
     @Test
