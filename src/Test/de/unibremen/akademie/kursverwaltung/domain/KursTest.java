@@ -17,7 +17,7 @@ class KursTest {
     Date date1 = new Date(1672963200000L); // 06.01.23
     Date date2 = new Date(1669852800000L); // 01.12.22
 
-    @Test
+    /*@Test
     void addNewKursTest() {
 //        Kurs kurs = Kurs.addNewKurs("php", 12, 3, new Date(1672963200000L), 2, 8, 150, 19, "php backend");
 //        Kurs.addNewKurs("php", 12, 3, new Date(1672963200000L), 12, 2, 150, 19, "php backend");
@@ -25,7 +25,7 @@ class KursTest {
 //        assertEquals(1, kvModel.kursList.size());
 //        Kurs.addNewKurs("php", 12, 3, new Date(1672963200000L), 2, 8, 150, 19, "php backend");
 //        assertEquals(2, KvModel.kursList.size());
-    }
+    }*/
 
     @Test
     void setName() {

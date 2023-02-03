@@ -86,13 +86,7 @@ public class PersonKursListe {
         */
     }
 
-    public List<Person> getPerson(Kurs kurs, boolean alsTeilnehmer) {
-        // TODO: Ist kürzer, aber auch besser?
-        return getKursePerson(kurs, alsTeilnehmer)
-                .stream()
-                .map(PersonKurs::getPerson)
-                .toList();
-    }
+
 
     public List<Person> getPersonen(Kurs kurs, boolean alsTeilnehmer) {
         // TODO: Ist kürzer, aber auch besser?
@@ -150,11 +144,11 @@ public class PersonKursListe {
     }
 
     public List<Person> getPersonAlsTeilnehmer(Kurs kurs) {
-        return getPerson(kurs, true);
+        return getPersonen(kurs, true);
     }
 
     public List<Person> getPersonAlsInteressent(Kurs kurs) {
-        return getPerson(kurs, false);
+        return getPersonen(kurs, false);
     }
 
 

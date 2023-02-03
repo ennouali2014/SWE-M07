@@ -142,6 +142,10 @@ public class Kurs implements Externalizable {
         return true;
     }
 
+    public void setStartdatumFuerLoad(Date startdatum) {
+        this.startDatum = startdatum;
+    }
+
     public Date getEndeDatum() {
         return endeDatum;
     }
@@ -376,7 +380,7 @@ public class Kurs implements Externalizable {
         setName(in.readUTF());
         setAnzahlTage(in.readInt());
         setZyklus(in.readInt());
-        setStartDatum((Date) in.readObject());
+        setStartdatumFuerLoad((Date) in.readObject());
         setMinTnZahl(in.readInt());
         setMaxTnZahl(in.readInt());
         setGebuehrBrutto(in.readDouble());

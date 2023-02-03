@@ -3,6 +3,7 @@ package de.unibremen.akademie.kursverwaltung.domain;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
@@ -136,7 +137,15 @@ public class KvModel {
             pkListe.removeAll(kurs);
         } else if (kurs.getStartDatum().after(heute)) {
             if (!pkListe.getKursePerson(kurs, true).isEmpty()) {
-                Meldung.eingabeFehler(kurs.getName() + " enthält noch teilnehmer bitte die Personen Informieren ");
+                List<Person> list = new ArrayList<>();
+                list = pkListe.getPersonen(kurs, true);
+                String details = "";
+                for (Person person : list) {
+                    details = details + person.getNachname() + " " + person.getVorname() + " " + person.getEmail() + '\n';
+
+                }
+
+                Meldung.eingabeFehler(kurs.getName() + " enthält noch teilnehmer bitte die Personen Informieren " + '\n' + details);
                 kurse.getKursListe().remove(kurs);
                 pkListe.removeAll(kurs);
 
