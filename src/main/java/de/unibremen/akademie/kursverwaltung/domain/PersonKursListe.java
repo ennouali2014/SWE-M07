@@ -88,15 +88,16 @@ public class PersonKursListe {
 
 
 
-   /* public List<Person> getPersonen(Kurs kurs, boolean alsTeilnehmer) {
-        // TODO: Ist kürzer, aber auch besser?
-        return getKursPersonen(kurs, alsTeilnehmer)
-                .stream()
-                .map(PersonKurs::getPerson)
-                .toList();
+   public List<Person> getPersonen(Kurs kurs, boolean alsTeilnehmer) {
+       // TODO: Ist kürzer, aber auch besser?
+       return getKursPersonen(kurs, alsTeilnehmer)
+               .stream()
+               .map(PersonKurs::getPerson)
+               .toList();
 
 
-    }*/
+   }
+
     public List<PersonKurs> getKursPersonen(Kurs kurs, boolean alsTeilnehmer) {
         // Geht auch einfach aber ungewöhnlich
         // return personKursList.stream().filter(pk -> pk.getPerson().equals(person) && pk.isTeilnehmer() == alsTeilnehmer).toList();

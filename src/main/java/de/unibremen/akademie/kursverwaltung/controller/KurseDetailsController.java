@@ -220,9 +220,9 @@ public class KurseDetailsController {
                 hbxPrintAnwesenheitsliste.setVisible(true);
             }
             tableTeilnehmerPerson.getItems().clear();
-            tableTeilnehmerPerson.getItems().addAll(kvModel.getPkListe().getPerson(kurs, true));
+            tableTeilnehmerPerson.getItems().addAll(kvModel.getPkListe().getPersonen(kurs, true));
             tableInteressentenPerson.getItems().clear();
-            tableInteressentenPerson.getItems().addAll(kvModel.getPkListe().getPerson(kurs, false));
+            tableInteressentenPerson.getItems().addAll(kvModel.getPkListe().getPersonen(kurs, false));
         }
     }
 
