@@ -10,4 +10,11 @@ public class Meldung {
         alert.showAndWait();
     }
 
+    public static void loeschFehler(String meldung) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+        alert.setTitle("Fehler beim Löschen!");
+        alert.setHeaderText("Löschwarnung!!!");
+        alert.setContentText(meldung);
+        alert.showAndWait();
+    }
 }

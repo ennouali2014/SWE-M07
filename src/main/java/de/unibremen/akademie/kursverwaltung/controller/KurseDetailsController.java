@@ -9,6 +9,8 @@ import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 
 import java.text.SimpleDateFormat;
@@ -35,6 +37,28 @@ public class KurseDetailsController {
     public HBox hbxPrintAnwesenheitsliste;
     @FXML
     public Button btnKursSpeichern;
+    @FXML
+    public Button btnPersonAlsTeilnehmer;
+    @FXML
+    public Button btnTeilnehmerZuPerson;
+    @FXML
+    public Button btnPersonAlsInteressent;
+    @FXML
+    public Button btnInteressentenZuPerson;
+    @FXML
+    public Button btnInteressentZuTeilnehmer;
+    @FXML
+    public Button btnTeilnehmerZuInteressent;
+    @FXML
+    public TableView tablePerson;
+    @FXML
+    public TableView tableTeilnehmerPerson;
+    @FXML
+    public TableView tableInteressentenPerson;
+    @FXML
+    public TableColumn personName;
+    @FXML
+    public TableColumn personNachName;
     @FXML
     private Tab tabKurseDetails;
     @FXML
@@ -67,6 +91,8 @@ public class KurseDetailsController {
     private ComboBox comboStatus;
     private MainController main;
 
+
+
     @FXML
     public void initialize() {
         // Anzeige im deutschen Format, nutzt Klasse DatumFormatieren im Application-Ordner
@@ -75,6 +101,34 @@ public class KurseDetailsController {
         DatumFormatieren.datumFormatieren(pickEndDatum);
         pickStartDatum.setPromptText("01.01.1970");
         pickEndDatum.setPromptText("Wird kalkuliert!");
+
+        personName.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+        personName.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+        personNachName.setCellValueFactory(new PropertyValueFactory<Person, String>("displaystartDate"));
+        personNachName.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+
+        TableView.TableViewSelectionModel<Kurs> selectionModel =
+                tablePerson.getSelectionModel();
+        selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
+        /*
+        // TODO Kurs vom Teilnehmer in TeilnahmeKurse anzeigen!!
+        colTeilnahmeKurseKursname.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
+        colTeilnahmeKurseKursname.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+
+        // TODO Kurs vom Interessenter in InteresseKurse anzeigen!!
+        colInteresseKurseKursname.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
+        colInteresseKurseKursname.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+
+
+        tableKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursTeilnehmerButton());
+        tableTeilnahmeKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursAusTeilnehmerButton());
+
+
+        tableInteresseKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursInteressentenButton());
+*/
+        tablePerson.setItems(kvModel.getKurse().getKursListe());
+
+
     }
 
     // special thanx to chatGPT ;)
@@ -154,6 +208,10 @@ public class KurseDetailsController {
                 pickAnwesenheitsDatumSetzen(pickStartDatum.getValue(), pickEndDatum.getValue());
                 hbxPrintAnwesenheitsliste.setVisible(true);
             }
+            tableTeilnehmerPerson.getItems().clear();
+            tableTeilnehmerPerson.getItems().addAll(kvModel.getPkListe().getPersonen(kurs, true));
+            tableInteressentenPerson.getItems().clear();
+            tableInteressentenPerson.getItems().addAll(kvModel.getPkListe().getPersonen(kurs, false));
         }
     }
 
@@ -329,6 +387,7 @@ public class KurseDetailsController {
         // todo: Abgleich mit MindestTeilnehmerAnzahl ??
         return teilnehmendePersonen > 0;
     }
+
 
     // for test only
     MainController getMain() {

@@ -3,6 +3,7 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 
+import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
