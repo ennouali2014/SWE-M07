@@ -84,14 +84,16 @@
                     <center>
                         <TableView fx:id="tableKurseListe" BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn fx:id="colKursname" prefWidth="109.60003662109375" text="Kursname"/>
-                                <TableColumn fx:id="colStart_Datum" prefWidth="134.3999481201172" text="Start_Datum"/>
-                                <TableColumn fx:id="colEnd_Datum" prefWidth="125.60006713867188" text="End_Datum"/>
-                                <TableColumn fx:id="colAnzhl_Frei_plaetze" prefWidth="179.20001220703125"
+                                <TableColumn fx:id="colKursname" prefWidth="100" text="Kursname"/>
+                                <TableColumn fx:id="colStart_Datum" prefWidth="100" text="Start_Datum"/>
+                                <TableColumn fx:id="colEnd_Datum" prefWidth="100" text="End_Datum"/>
+                                <TableColumn fx:id="colAnzhl_Frei_plaetze" prefWidth="100"
                                              text="Anzahl_Frei_plätze"/>
-                                <TableColumn fx:id="colAnzahl_Teilnehmer" prefWidth="170.39996337890625"
+                                <TableColumn fx:id="colAnzahl_Teilnehmer" prefWidth="100"
                                              text="Anzahl_Teilnehmer"/>
-                                <TableColumn fx:id="colStatus" prefWidth="144.7999267578125" text="Status"/>
+                                <TableColumn fx:id="colStatus" prefWidth="100" text="Status"/>
+                                <TableColumn fx:id="colTeilnehmer" prefWidth="144.7999267578125" text="Teilnehmer"/>
+                                <TableColumn fx:id="colInteressent" prefWidth="144.7999267578125" text="Interessent"/>
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
