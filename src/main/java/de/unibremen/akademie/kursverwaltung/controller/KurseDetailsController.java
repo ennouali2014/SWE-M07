@@ -63,7 +63,11 @@ public class KurseDetailsController {
     @FXML
     public TableColumn colTeilnahmeKursePersonName;
     @FXML
+    public TableColumn colTeilnahmeKursePersonNachName;
+    @FXML
     public TableColumn colInteresseKursePersonName;
+    @FXML
+    public TableColumn colInteresseKursePersonNachName;
     @FXML
     private Tab tabKurseDetails;
     @FXML
@@ -95,8 +99,7 @@ public class KurseDetailsController {
     @FXML
     private ComboBox comboStatus;
     private MainController mainCtrl;
-
-
+    private Object selectedItem;
 
     @FXML
     public void initialize() {
@@ -110,35 +113,52 @@ public class KurseDetailsController {
         personName.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
         personName.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
-
         personNachName.setCellValueFactory(new PropertyValueFactory<Person, String>("nachname"));
         personNachName.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
-       /* tablePerson.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursTeilnehmerButton());
-        tableTeilnehmerPerson.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursAusTeilnehmerButton());
-        tableInteressentenPerson.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursInteressentenButton());
-*/
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tablePerson.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
 
         // TODO Kurs vom Teilnehmer in TeilnahmeKurse anzeigen!!
-        colTeilnahmeKursePersonName.setCellValueFactory(new PropertyValueFactory<Person, String>("nachname"));
+        colTeilnahmeKursePersonName.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
         colTeilnahmeKursePersonName.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        colTeilnahmeKursePersonNachName.setCellValueFactory(new PropertyValueFactory<Person, String>("nachname"));
+        colTeilnahmeKursePersonNachName.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
-        // TODO Kurs vom Interessenter in InteresseKurse anzeigen!!
-        colInteresseKursePersonName.setCellValueFactory(new PropertyValueFactory<Person, String>("nachname"));
+        // TODO Kurs vom Interessenten in InteresseKurse anzeigen!!
+        colInteresseKursePersonName.setCellValueFactory(new PropertyValueFactory<Person, String>("vorname"));
         colInteresseKursePersonName.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
+        colInteresseKursePersonNachName.setCellValueFactory(new PropertyValueFactory<Person, String>("nachname"));
+        colInteresseKursePersonNachName.setCellFactory(TextFieldTableCell.<Person>forTableColumn());
 
-/*
-        tableKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursTeilnehmerButton());
-        tableTeilnahmeKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursAusTeilnehmerButton());
+        tablePerson.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkPersonTeilnehmerButton());
+        tableTeilnehmerPerson.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkPersonAusTeilnehmerButton());
+        tableInteressentenPerson.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkPersonInteressentenButton());
 
-
-        tableInteresseKurse.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkKursInteressentenButton());
-*/
         tablePerson.setItems(kvModel.getPersonen().getPersonenListe());
+        checkPersonTeilnehmerButton();
+        checkPersonAusTeilnehmerButton();
+        checkPersonInteressentenButton();
 
+    }
+    private void checkPersonTeilnehmerButton() {
+        selectedItem = tablePerson.getSelectionModel().getSelectedItem();
+        boolean disable = tableTeilnehmerPerson.getItems().contains(selectedItem) || tableInteressentenPerson.getItems().contains(selectedItem);
+        btnPersonAlsTeilnehmer.setDisable(selectedItem == null || disable);
+        btnPersonAlsInteressent.setDisable(selectedItem == null || disable);
+    }
+
+    private void checkPersonAusTeilnehmerButton() {
+        selectedItem = tableTeilnehmerPerson.getSelectionModel().getSelectedItem();
+        btnTeilnehmerZuPerson.setDisable(selectedItem == null);
+        btnTeilnehmerZuInteressent.setDisable(selectedItem == null);
+    }
+
+    private void checkPersonInteressentenButton() {
+        selectedItem = tableInteressentenPerson.getSelectionModel().getSelectedItem();
+        btnInteressentZuTeilnehmer.setDisable(selectedItem == null);
+        btnInteressentenZuPerson.setDisable(selectedItem == null);
 
     }
 
@@ -219,6 +239,7 @@ public class KurseDetailsController {
                 pickAnwesenheitsDatumSetzen(pickStartDatum.getValue(), pickEndDatum.getValue());
                 hbxPrintAnwesenheitsliste.setVisible(true);
             }
+
             tableTeilnehmerPerson.getItems().clear();
             tableTeilnehmerPerson.getItems().addAll(kvModel.getPkListe().getPersonen(kurs, true));
             tableInteressentenPerson.getItems().clear();
@@ -408,7 +429,6 @@ public class KurseDetailsController {
     }
 
     public void onClickPersonZuTeilnehmer(ActionEvent actionEvent) {
-
         tableTeilnehmerPerson.getItems().add(tablePerson.getSelectionModel().getSelectedItem());
         tablePerson.getSelectionModel().clearSelection();
     }
@@ -421,17 +441,15 @@ public class KurseDetailsController {
     }
 
     public void onClickTeilnehmerZuInteressent(ActionEvent actionEvent) {
-
-        System.out.println("Teilnehmer zu Interessent!");
+        //System.out.println("Teilnehmer zu Interessent!");
         tableInteressentenPerson.getItems().add(tableTeilnehmerPerson.getSelectionModel().getSelectedItem());
         tableTeilnehmerPerson.getItems().removeAll(tableTeilnehmerPerson.getSelectionModel().getSelectedItems());
 
     }
 
     public void onClickInteressentZuTeilnehmer(ActionEvent actionEvent) {
-
         tableTeilnehmerPerson.getItems().add(tableInteressentenPerson.getSelectionModel().getSelectedItem());
-        tableInteressentenPerson.getItems().removeAll(tableTeilnehmerPerson.getSelectionModel().getSelectedItems());
+        tableInteressentenPerson.getItems().removeAll(tableInteressentenPerson.getSelectionModel().getSelectedItems());
 
     }
 

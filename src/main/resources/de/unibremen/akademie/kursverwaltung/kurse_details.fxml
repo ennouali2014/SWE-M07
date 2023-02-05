@@ -308,6 +308,9 @@
                                                         <TableColumn fx:id="colTeilnahmeKursePersonName"
                                                                      prefWidth="126.0"
                                                                      text="Person Name Nachname"/>
+                                                        <TableColumn fx:id="colTeilnahmeKursePersonNachName"
+                                                                     prefWidth="126.0"
+                                                                     text="Person Name Nachname"/>
                                                     </columns>
                                                     <VBox.margin>
                                                         <Insets left="5.0" right="5.0"/>
@@ -348,6 +351,9 @@
                                                            prefWidth="200.0">
                                                     <columns>
                                                         <TableColumn fx:id="colInteresseKursePersonName"
+                                                                     prefWidth="126.0"
+                                                                     text="Person Name Nachname"/>
+                                                        <TableColumn fx:id="colInteresseKursePersonNachName"
                                                                      prefWidth="126.0"
                                                                      text="Person Name Nachname"/>
                                                     </columns>
