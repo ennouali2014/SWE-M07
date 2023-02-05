@@ -193,15 +193,15 @@ public class Person implements Externalizable {
     @Override
     public String toString() {
         return "Person{" +
-                "anrede='" + anrede + '\'' +
-                "titel='" + titel + '\'' +
+                //"anrede='" + anrede + '\'' +
+                // "titel='" + titel + '\'' +
                 "vorname='" + vorname + '\'' +
                 ", nachname='" + nachname + '\'' +
-                ", strasse='" + strasse + '\'' +
-                ", plz='" + plz + '\'' +
-                ", ort='" + ort + '\'' +
-                ", email='" + email + '\'' +
-                ", telefon='" + telefon + '\'' +
+                // ", strasse='" + strasse + '\'' +
+                //", plz='" + plz + '\'' +
+                //", ort='" + ort + '\'' +
+                // ", email='" + email + '\'' +
+                // ", telefon='" + telefon + '\'' +
                 '}';
     }
 

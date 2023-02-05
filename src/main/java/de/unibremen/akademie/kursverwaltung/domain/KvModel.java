@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
-
 public class KvModel {
 
     private final PersonKursListe pkListe = new PersonKursListe();
@@ -101,7 +99,7 @@ public class KvModel {
             // kurse.addNewKurs("Web-Profi", 21, 3, new Date(1675123200000L), 1, 10, 299.00, 19.0, "HTML und CSS wie im Schlaf", "Aktiv");
             System.out.println("Kurs-Standarddaten wurde geladen!");
         }
-        if (pkListe.personKursList.size() <= 0) {
+        /*if (pkListe.personKursList.size() <= 0) {
             pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(0), kvModel.getKurse().getKursVonKursListe(0));
             pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(0), kvModel.getKurse().getKursVonKursListe(1));
             pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(0), kvModel.getKurse().getKursVonKursListe(2));
@@ -110,7 +108,7 @@ public class KvModel {
             pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(3), kvModel.getKurse().getKursVonKursListe(1));
 
             System.out.println("PersonKursList-Standarddaten wurde geladen!");
-        }
+        }*/
     }
 
     public void removePerson(Person p) {

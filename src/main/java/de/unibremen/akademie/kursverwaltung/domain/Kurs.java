@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Kurs implements Externalizable {
     private final List<Person> interessentenListe = new ArrayList<>();
@@ -36,11 +37,13 @@ public class Kurs implements Externalizable {
 
     public Kurs() {
         this.name = new SimpleStringProperty();
+        this.aktuelleTnZahl = new SimpleIntegerProperty(0);
     }
 
     public Kurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
                 double gebuehrBrutto, double mwstProzent, String kursBeschreibung, String statusSTR) {
         this.name = new SimpleStringProperty();
+        this.aktuelleTnZahl = new SimpleIntegerProperty(0);
         if (!setName(name)) {
             throw new IllegalArgumentException("Der Kurs-Name ist leer!");
         }
@@ -73,7 +76,8 @@ public class Kurs implements Externalizable {
         setDisplayEndeDate(dateFormat.format(getEndeDatum()));
         setGebuehrNetto();
         setMwstEuro();
-        setAktuelleTnZahl();
+        //setAktuelleTnZahl(getAktuelleTnZahl());
+
         if (!setFreiePlaetze()) {
             throw new IllegalArgumentException("Leider sind alles Plätze belegt!");
         }
@@ -165,17 +169,21 @@ public class Kurs implements Externalizable {
     }
 
     public void setAktuelleTnZahl(int aktuelleTnZahl) {
-        this.aktuelleTnZahl = new SimpleIntegerProperty(aktuelleTnZahl);
+
+        this.aktuelleTnZahl.set(aktuelleTnZahl);
+
+
+        //this.aktuelleTnZahl = new SimpleIntegerProperty(aktuelleTnZahl);
     }
 
-    public void setAktuelleTnZahl() {
+   /* public void setAktuelleTnZahl() {
         if (this.aktuelleTnZahl == null) {
             this.aktuelleTnZahl = new SimpleIntegerProperty(this.teilnehmerListe.size());
         } else {
             this.aktuelleTnZahl.set(this.teilnehmerListe.size());
         }
 
-    }
+    }*/
 
     public int getMinTnZahl() {
         if (minTnZahl != null) {
@@ -402,20 +410,20 @@ public class Kurs implements Externalizable {
     public String toString() {
         return "Kurs{" +
                 "name=" + name.get() +
-                ", anzahlTage=" + anzahlTage.get() +
-                ", zyklus=" + zyklus.get() +
-                ", startDatum=" + startDatum.getTime() +
-                ", minTnZahl=" + minTnZahl.get() +
-                ", maxTnZahl=" + maxTnZahl.get() +
-                ", gebuehrBrutto=" + gebuehrBrutto.get() +
-                ", mwstProzent=" + mwstProzent.get() +
-                ", kursBeschreibung=" + kursBeschreibung.get() +
-                ", endeDatum=" + endeDatum.getTime() +
-                ", status=" + status.get() +
-                ", gebuehrNetto=" + gebuehrNetto.get() +
-                ", mwstEuro=" + mwstEuro.get() +
-                ", freiePlaetze=" + freiePlaetze.get() +
-                ", aktuelleTnZahl=" + aktuelleTnZahl.get() +
+                // ", anzahlTage=" + anzahlTage.get() +
+                // ", zyklus=" + zyklus.get() +
+                //", startDatum=" + startDatum.getTime() +
+                //", minTnZahl=" + minTnZahl.get() +
+                //", maxTnZahl=" + maxTnZahl.get() +
+                //", gebuehrBrutto=" + gebuehrBrutto.get() +
+                //", mwstProzent=" + mwstProzent.get() +
+                //", kursBeschreibung=" + kursBeschreibung.get() +
+                //", endeDatum=" + endeDatum.getTime() +
+                //", status=" + status.get() +
+                //", gebuehrNetto=" + gebuehrNetto.get() +
+                //", mwstEuro=" + mwstEuro.get() +
+                //", freiePlaetze=" + freiePlaetze.get() +
+                // ", aktuelleTnZahl=" + aktuelleTnZahl.get() +
 
                 '}';
     }
@@ -436,4 +444,16 @@ public class Kurs implements Externalizable {
         displayEndeDate = new SimpleStringProperty(date);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Kurs kurs = (Kurs) o;
+        return Objects.equals(name, kurs.name) && Objects.equals(anzahlTage, kurs.anzahlTage) && Objects.equals(zyklus, kurs.zyklus) && Objects.equals(startDatum, kurs.startDatum) && Objects.equals(endeDatum, kurs.endeDatum) && Objects.equals(minTnZahl, kurs.minTnZahl) && Objects.equals(maxTnZahl, kurs.maxTnZahl) && Objects.equals(gebuehrBrutto, kurs.gebuehrBrutto) && Objects.equals(gebuehrNetto, kurs.gebuehrNetto) && Objects.equals(mwstEuro, kurs.mwstEuro) && Objects.equals(mwstProzent, kurs.mwstProzent) && Objects.equals(kursBeschreibung, kurs.kursBeschreibung) && Objects.equals(displaystartDate, kurs.displaystartDate) && Objects.equals(displayEndeDate, kurs.displayEndeDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, anzahlTage, zyklus, startDatum, endeDatum, minTnZahl, maxTnZahl, gebuehrBrutto, gebuehrNetto, mwstEuro, mwstProzent, kursBeschreibung, displaystartDate, displayEndeDate);
+    }
 }

@@ -67,7 +67,7 @@ class KursTest {
         kurs1.setTeilnehmerListe(tn1);
         kurs1.setTeilnehmerListe(tn2);
         kurs1.setTeilnehmerListe(tn3);
-        kurs1.setAktuelleTnZahl();
+        //kurs1.setAktuelleTnZahl();
         assertEquals(4, kurs1.getAktuelleTnZahl());
     }
 
@@ -97,14 +97,14 @@ class KursTest {
         kurs1.setTeilnehmerListe(tn2);
         kurs1.setTeilnehmerListe(tn3);
 
-        kurs1.setAktuelleTnZahl();
+        // kurs1.setAktuelleTnZahl();
         kurs1.setMinTnZahl(1);
         kurs1.setMaxTnZahl(2);
         assertFalse(kurs1.setFreiePlaetze());
 
 
         kurs1.setMaxTnZahl(10);
-        kurs1.setAktuelleTnZahl();
+        // kurs1.setAktuelleTnZahl();
         kurs1.setFreiePlaetze();
         assertEquals(7, kurs1.getFreiePlaetze());
     }

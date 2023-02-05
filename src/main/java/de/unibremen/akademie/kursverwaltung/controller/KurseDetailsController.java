@@ -259,7 +259,7 @@ public class KurseDetailsController {
                 kvModel.aktuellerKurs.setGebuehrNetto();
                 kvModel.aktuellerKurs.setFreiePlaetze();
                 kvModel.aktuellerKurs.setMwstEuro();
-                kvModel.aktuellerKurs.setAktuelleTnZahl();
+                kvModel.aktuellerKurs.setAktuelleTnZahl(kvModel.aktuellerKurs.getAktuelleTnZahl());
                 kvModel.aktuellerKurs.setStatus(comboStatus.getValue().toString());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 

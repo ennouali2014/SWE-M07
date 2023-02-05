@@ -17,10 +17,21 @@ public class PersonKursListe {
 
     public Boolean addPersonInKurs(Person person, Kurs kurs, Boolean alsTeilnehmer) {
         for (PersonKurs personKurs : personKursList) {
+
             if (personKurs.getPerson().equals(person) && personKurs.getKurs().equals(kurs)) {
                 if (personKurs.isTeilnehmer() == alsTeilnehmer) {
                     return false;
+
                 } else {
+
+                    if (alsTeilnehmer) {
+                        kurs.setAktuelleTnZahl(kurs.getAktuelleTnZahl() + 1);
+                        kurs.setFreiePlaetze();
+                    } else {
+                        kurs.setAktuelleTnZahl(kurs.getAktuelleTnZahl() - 1);
+                        kurs.setFreiePlaetze();
+
+                    }
                     personKurs.setTeilnehmer(alsTeilnehmer);
                     return true;
                 }
@@ -30,6 +41,11 @@ public class PersonKursListe {
         personKurs.setPerson(person);
         personKurs.setKurs(kurs);
         personKurs.setTeilnehmer(alsTeilnehmer);
+        if (alsTeilnehmer) {
+            personKurs.getKurs().setAktuelleTnZahl(kurs.getAktuelleTnZahl() + 1);
+            personKurs.getKurs().setFreiePlaetze();
+
+        }
 
         personKursList.add(personKurs);
         return true;
@@ -159,8 +175,22 @@ public class PersonKursListe {
         }
     }
 
-    public void addKurseAlsTeilnehmer(Person person, List<Kurs> teilnnehmerliste) {
-        addKurse(person, teilnnehmerliste, true);
+    public void addKurseAlsTeilnehmer(Person person, List<Kurs> teilnehmerliste) {
+        List<PersonKurs> list = getPersonKurse(person, true);
+        for (PersonKurs k : list) {
+            if (!teilnehmerliste.contains(k.getKurs())) {
+                removeKurse(person, k.getKurs(), true);
+                k.getKurs().setAktuelleTnZahl(k.getKurs().getAktuelleTnZahl() - 1);
+                k.getKurs().setFreiePlaetze();
+            }
+        }
+
+
+        if (teilnehmerliste == null) {
+            removeAllKurseAlsTeilnehmer(person);
+        }
+
+        addKurse(person, teilnehmerliste, true);
     }
 
     public void addKurseAlsInteressent(Person person, List<Kurs> interessentenliste) {
@@ -180,6 +210,19 @@ public class PersonKursListe {
         for (PersonKurs k : list) {
             personKursList.remove(k);
         }
+    }
+
+    public void removeKurse(Person p, Kurs kurs, boolean alsTeilnehmer) {
+        List<PersonKurs> list = getPersonKurse(p, alsTeilnehmer);
+        for (PersonKurs k : list) {
+            if (k.getKurs().equals(kurs)) {
+                personKursList.remove(k);
+
+            }
+
+        }
+
+
     }
 
     public void removeAll(Kurs kurs) {
@@ -204,5 +247,12 @@ public class PersonKursListe {
         }
         return size;
 
+    }
+
+    @Override
+    public String toString() {
+        return "PersonKursListe{" +
+                "personKursList=" + personKursList +
+                '}';
     }
 }

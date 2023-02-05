@@ -1,7 +1,5 @@
 package de.unibremen.akademie.kursverwaltung.domain;
 
-import javafx.beans.property.SimpleBooleanProperty;
-
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -56,4 +54,12 @@ public class PersonKurs implements Externalizable {
         setTeilnehmer(Boolean.parseBoolean(in.readUTF()));
     }
 
+    @Override
+    public String toString() {
+        return "PersonKurs{" +
+                "person=" + person +
+                ", kurs=" + kurs +
+                ", teilnehmer=" + teilnehmer +
+                '}';
+    }
 }
