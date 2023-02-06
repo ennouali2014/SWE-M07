@@ -378,4 +378,3 @@ public class KurseListeController {
         // tableKurseListe.getItems();
     }
 }
-
