@@ -224,10 +224,10 @@
                                                 <TableView fx:id="tablePerson" prefHeight="264.0" prefWidth="252.0">
                                                     <columns>
                                                         <TableColumn fx:id="personName" prefWidth="93.59991437196732"
-                                                                     text="Person Name"/>
+                                                                     text="Vorame"/>
                                                         <TableColumn fx:id="personNachName"
                                                                      prefWidth="159.20005798339844"
-                                                                     text="Person Nachname"/>
+                                                                     text="Nachname"/>
                                                     </columns>
                                                     <VBox.margin>
                                                         <Insets left="5.0" right="5.0"/>
@@ -307,10 +307,10 @@
                                                     <columns>
                                                         <TableColumn fx:id="colTeilnahmeKursePersonName"
                                                                      prefWidth="126.0"
-                                                                     text="Person Name Nachname"/>
+                                                                     text="Vorname"/>
                                                         <TableColumn fx:id="colTeilnahmeKursePersonNachName"
                                                                      prefWidth="126.0"
-                                                                     text="Person Name Nachname"/>
+                                                                     text="Nachname"/>
                                                     </columns>
                                                     <VBox.margin>
                                                         <Insets left="5.0" right="5.0"/>
@@ -352,10 +352,10 @@
                                                     <columns>
                                                         <TableColumn fx:id="colInteresseKursePersonName"
                                                                      prefWidth="126.0"
-                                                                     text="Person Name Nachname"/>
+                                                                     text="Vorname"/>
                                                         <TableColumn fx:id="colInteresseKursePersonNachName"
                                                                      prefWidth="126.0"
-                                                                     text="Person Name Nachname"/>
+                                                                     text="Nachname"/>
                                                     </columns>
                                                     <VBox.margin>
                                                         <Insets left="5.0" right="5.0"/>
