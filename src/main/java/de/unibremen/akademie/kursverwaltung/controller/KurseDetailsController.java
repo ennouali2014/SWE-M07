@@ -2,7 +2,10 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.application.CreatePdf;
 import de.unibremen.akademie.kursverwaltung.application.DatumFormatieren;
-import de.unibremen.akademie.kursverwaltung.domain.*;
+import de.unibremen.akademie.kursverwaltung.domain.Kurs;
+import de.unibremen.akademie.kursverwaltung.domain.Meldung;
+import de.unibremen.akademie.kursverwaltung.domain.Person;
+import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -145,6 +148,7 @@ public class KurseDetailsController {
         checkPersonInteressentenButton();
 
     }
+
     private void checkPersonTeilnehmerButton() {
         selectedItem = tablePerson.getSelectionModel().getSelectedItem();
         boolean disable = tableTeilnehmerPerson.getItems().contains(selectedItem) || tableInteressentenPerson.getItems().contains(selectedItem);
@@ -202,6 +206,7 @@ public class KurseDetailsController {
         txInpMwsEuro.clear();
         txInpGebuehrNetto.clear();
         hbxPrintAnwesenheitsliste.setVisible(false);
+        hbxCsvTeilnehmerliste.setVisible(false);
         btnKursSpeichern.setText("Speichern");
         if (kvModel.aktuellerKurs != null) {
             Tab plTab = mainCtrl.fxmlKurseListeController.tabKurseListe;
@@ -241,6 +246,10 @@ public class KurseDetailsController {
                 // Auswahldatum auf die Dauer des Kurses einschränken
                 pickAnwesenheitsDatumSetzen(pickStartDatum.getValue(), pickEndDatum.getValue());
                 hbxPrintAnwesenheitsliste.setVisible(true);
+                hbxCsvTeilnehmerliste.setVisible(true);
+            } else {
+                hbxPrintAnwesenheitsliste.setVisible(false);
+                hbxCsvTeilnehmerliste.setVisible(false);
             }
 
             tableTeilnehmerPerson.getItems().clear();
@@ -439,35 +448,36 @@ public class KurseDetailsController {
     public void onClickCsvTeilnehmerliste(ActionEvent actionEvent) {
         if (hatKursTeilnehmer()) {
             hbxCsvTeilnehmerliste.setVisible(true);
-        }
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Speichern unter");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV-Datei (*.csv)", "*.csv"));
-        File file = fileChooser.showSaveDialog(mainCtrl.mainStage);
-        List<Person>  pkListe = kvModel.getPkListe().getPersonAlsTeilnehmer(kvModel.aktuellerKurs);
-        if (file != null) {
-            try {
-                FileWriter writer = new FileWriter(file);
-                String csvTrenner = pkListe.get(0).getCSVTRENNER();
-                writer.append("Anrede" + csvTrenner +
-                        "Titel" + csvTrenner +
-                        "Vorname" + csvTrenner +
-                        "Nachname" + csvTrenner +
-                        "Strasse" + csvTrenner +
-                        "PLZ" + csvTrenner +
-                        "Ort" + csvTrenner +
-                        "E-Mail" + csvTrenner +
-                        "telefon" + csvTrenner +
-                        '\n');
-                for (Person p : pkListe) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Speichern unter");
+            fileChooser.setInitialFileName(kvModel.aktuellerKurs.getName().replace(" ","_"));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV-Datei (*.csv)", "*.csv"));
+            File file = fileChooser.showSaveDialog(mainCtrl.mainStage);
+            List<Person> pkListe = kvModel.getPkListe().getPersonAlsTeilnehmer(kvModel.aktuellerKurs);
+            if (file != null) {
+                try {
+                    FileWriter writer = new FileWriter(file);
+                    String csvTrenner = pkListe.get(0).getCSVTRENNER();
+                    writer.append("Anrede" + csvTrenner +
+                            "Titel" + csvTrenner +
+                            "Vorname" + csvTrenner +
+                            "Nachname" + csvTrenner +
+                            "Strasse" + csvTrenner +
+                            "PLZ" + csvTrenner +
+                            "Ort" + csvTrenner +
+                            "E-Mail" + csvTrenner +
+                            "telefon" + csvTrenner +
+                            '\n');
+                    for (Person p : pkListe) {
                         writer.append(p.toCsv());
-                    writer.append('\n');
+                        writer.append('\n');
+                    }
+                    writer.flush();
+                    writer.close();
+                    System.out.println("CSV-Datei wurde erfolgreich gespeichert.");
+                } catch (Exception e) {
+                    Meldung.eingabeFehler(("Fehler beim Speichern der CSV-Datei: " + e.getMessage()));
                 }
-                writer.flush();
-                writer.close();
-                System.out.println("CSV-Datei wurde erfolgreich gespeichert.");
-            } catch (Exception e) {
-                System.out.println("Fehler beim Speichern der CSV-Datei: " + e.getMessage());
             }
         }
     }
