@@ -2,22 +2,23 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import de.unibremen.akademie.kursverwaltung.application.CreatePdf;
 import de.unibremen.akademie.kursverwaltung.application.DatumFormatieren;
-import de.unibremen.akademie.kursverwaltung.domain.Kurs;
-import de.unibremen.akademie.kursverwaltung.domain.Meldung;
-import de.unibremen.akademie.kursverwaltung.domain.Person;
-import de.unibremen.akademie.kursverwaltung.domain.PersonKurs;
+import de.unibremen.akademie.kursverwaltung.domain.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
@@ -35,6 +36,8 @@ public class KurseDetailsController {
     public DatePicker pickAnwesenheitsDatum;
     @FXML
     public HBox hbxPrintAnwesenheitsliste;
+    @FXML
+    public HBox hbxCsvTeilnehmerliste;
     @FXML
     public Button btnKursSpeichern;
     @FXML
@@ -412,6 +415,7 @@ public class KurseDetailsController {
                 /*ProcessBuilder pb = new ProcessBuilder(pdfReader, pdfSpeicherPfad + erstelltesPdf);
                 Thread.sleep(500); // 1,5 Sekunden warten
                 pb.start();*/
+                // Nach Druck zurück zur Liste
                 Tab plTab = mainCtrl.fxmlKurseListeController.tabKurseListe;
                 plTab.getTabPane().getSelectionModel().select(plTab);
             } catch (Exception e) {
@@ -433,6 +437,39 @@ public class KurseDetailsController {
     }
 
     public void onClickCsvTeilnehmerliste(ActionEvent actionEvent) {
+        if (hatKursTeilnehmer()) {
+            hbxCsvTeilnehmerliste.setVisible(true);
+        }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Speichern unter");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV-Datei (*.csv)", "*.csv"));
+        File file = fileChooser.showSaveDialog(mainCtrl.mainStage);
+        List<Person>  pkListe = kvModel.getPkListe().getPersonAlsTeilnehmer(kvModel.aktuellerKurs);
+        if (file != null) {
+            try {
+                FileWriter writer = new FileWriter(file);
+                String csvTrenner = pkListe.get(0).getCSVTRENNER();
+                writer.append("Anrede" + csvTrenner +
+                        "Titel" + csvTrenner +
+                        "Vorname" + csvTrenner +
+                        "Nachname" + csvTrenner +
+                        "Strasse" + csvTrenner +
+                        "PLZ" + csvTrenner +
+                        "Ort" + csvTrenner +
+                        "E-Mail" + csvTrenner +
+                        "telefon" + csvTrenner +
+                        '\n');
+                for (Person p : pkListe) {
+                        writer.append(p.toCsv());
+                    writer.append('\n');
+                }
+                writer.flush();
+                writer.close();
+                System.out.println("CSV-Datei wurde erfolgreich gespeichert.");
+            } catch (Exception e) {
+                System.out.println("Fehler beim Speichern der CSV-Datei: " + e.getMessage());
+            }
+        }
     }
 
     // for test only

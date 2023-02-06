@@ -18,9 +18,12 @@ import java.util.Optional;
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
 public class MainApplication extends Application {
+
+    public Stage mainStage;
     //KvModel model;
     @Override
     public void start(Stage stage) throws IOException {
+        this.mainStage = stage;
         // Alert-Window beim Schliessen der Anwendung
         class CloseHandler implements EventHandler<WindowEvent> {
             @Override

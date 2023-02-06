@@ -21,9 +21,12 @@ public class Person implements Externalizable {
     private SimpleStringProperty ort;
     private SimpleStringProperty email;
     private SimpleStringProperty telefon;
+    private String CSVTRENNER = ";";
 
-
-    //private ObservableList<Kurs> kursInteressiert = FXCollections.observableArrayList();
+    public String getCSVTRENNER() {
+        return CSVTRENNER;
+    }
+//private ObservableList<Kurs> kursInteressiert = FXCollections.observableArrayList();
     //private ObservableList<Kurs> kursTeilnahme = FXCollections.observableArrayList();
 
     public Person() {
@@ -203,6 +206,18 @@ public class Person implements Externalizable {
                 // ", email='" + email + '\'' +
                 // ", telefon='" + telefon + '\'' +
                 '}';
+    }
+
+    public String toCsv() {
+        return anrede.getValue() + CSVTRENNER +
+                titel.getValue() + CSVTRENNER +
+                vorname.getValue() + CSVTRENNER +
+                nachname.getValue() + CSVTRENNER +
+                strasse.getValue() + CSVTRENNER +
+                plz.getValue() + CSVTRENNER +
+                ort.getValue() + CSVTRENNER +
+                email.getValue() + CSVTRENNER +
+                telefon.getValue();
     }
 
     @Override
