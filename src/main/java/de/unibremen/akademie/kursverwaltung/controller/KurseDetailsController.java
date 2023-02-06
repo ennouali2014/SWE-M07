@@ -287,6 +287,16 @@ public class KurseDetailsController {
                 kvModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(kvModel.aktuellerKurs.getStartDatum()));
                 kvModel.aktuellerKurs.setDisplayEndeDate(dateFormat.format(kvModel.aktuellerKurs.getEndeDatum()));
 
+                // TODO Mohammed 04.02
+
+//                kvModel.getPkListe().removeAllKurseAlsTeilnehmer(kvModel.aktuellePerson);
+//                kvModel.getPkListe().removeAllKurseAlsInteressent(kvModel.aktuellePerson);
+//
+//                kvModel.getPkListe().addTeilnehmerInKurs(kvModel.aktuellePerson, this.tableViewTeilnehmerZu.getItems());
+//                kvModel.getPkListe().addInteressentInKurs(kvModel.aktuellePerson, this.tableViewInteressentenZu.getItems());
+
+                //  TODO 04.02
+
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;
@@ -366,14 +376,16 @@ public class KurseDetailsController {
             txInpGebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
 
         }
+//    @FXML
+//    private TableView tableViewTeilnehmerZu;
 
-
-        for (Tab tabPaneKursListe : tabKurseDetails.getTabPane().getTabs()) {
-            if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
-                tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
-            }
-        }
-        onClickAbbrechenKurs(actionEvent);
+//    private TableView tableViewInteressentenZu;
+//        for (Tab tabPaneKursListe : tabKurseDetails.getTabPane().getTabs()) {
+//            if (tabPaneKursListe.getText().equals("Kurse-Liste")) {
+//                tabPaneKursListe.getTabPane().getSelectionModel().select(tabPaneKursListe);
+//            }
+//        }
+//        onClickAbbrechenKurs(actionEvent);
     }
 
     // checks fuer die Umwandlungen beim Auslesen und Zuweisen der GUI-Felder
