@@ -170,7 +170,7 @@ public class KurseListeController {
                 }
                 try {
                     Date neuesDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
-                    if (kurs.getEndeDatum().before(neuesDatum)) // && (kurs.getEndeDatum().before(kurslisteSucheDatum)))
+                    if (kurs.getStartDatum().before(neuesDatum)) // && (kurs.getEndeDatum().before(kurslisteSucheDatum)))
                     {
                         return true;
                     }
@@ -180,8 +180,6 @@ public class KurseListeController {
                 return false;
             });
         });
-
-
         SortedList<Kurs> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tableKurseListe.comparatorProperty());
         tableKurseListe.setItems(sortedData);
