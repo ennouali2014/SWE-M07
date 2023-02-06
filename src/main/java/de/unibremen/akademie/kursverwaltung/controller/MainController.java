@@ -2,6 +2,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
+import javafx.stage.Stage;
 
 public class MainController {
     public TabPane mainTabPane;
@@ -14,6 +15,8 @@ public class MainController {
     KurseDetailsController fxmlKurseDetailsController;
     @FXML
     KurseListeController fxmlKurseListeController;
+    @FXML
+    Stage mainStage;
 
     @FXML
     public void initialize() {

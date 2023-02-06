@@ -136,7 +136,6 @@ public class Kurs implements Externalizable {
     }
 
     public boolean setStartDatum(Date startDatum) {
-        //DatePicker date=new DatePicker();
         Date date = new Date();
         if (startDatum.before(date)) {
             return false;
