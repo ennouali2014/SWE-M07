@@ -230,7 +230,7 @@ public class Kurs implements Externalizable {
 
     public boolean setFreiePlaetze() {
         int nichtBelegtePlaetze = maxTnZahl.get() - aktuelleTnZahl.get();
-        if (nichtBelegtePlaetze <= 0) {
+        if (nichtBelegtePlaetze < 0) {
             return false;
         }
         if (freiePlaetze == null) {

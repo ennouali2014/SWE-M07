@@ -16,7 +16,6 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -294,7 +293,7 @@ public class KurseDetailsController {
                 kvModel.aktuellerKurs.setMwstEuro();
                 kvModel.aktuellerKurs.setAktuelleTnZahl(kvModel.aktuellerKurs.getAktuelleTnZahl());
                 kvModel.aktuellerKurs.setStatus(comboStatus.getValue().toString());
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                //SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
                 //kvModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(kvModel.aktuellerKurs.getStartDatum()));
                 //kvModel.aktuellerKurs.setDisplayEndeDate(dateFormat.format(kvModel.aktuellerKurs.getEndeDatum()));
