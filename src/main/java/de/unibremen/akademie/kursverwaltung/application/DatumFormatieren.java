@@ -23,5 +23,6 @@ public class DatumFormatieren {
                 return string == null || string.isEmpty() ? null : LocalDate.parse(string, datumsFormat);
             }
         });
+
     }
 }

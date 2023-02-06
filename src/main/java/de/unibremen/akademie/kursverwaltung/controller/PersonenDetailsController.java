@@ -11,6 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel.kvModel;
 
 public class PersonenDetailsController {
@@ -86,8 +89,25 @@ public class PersonenDetailsController {
         choiceAnrede.getSelectionModel().selectFirst();
         colKurseKursname.setCellValueFactory(new PropertyValueFactory<Kurs, String>("name"));
         colKurseKursname.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
-        colKurseStartDate.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
-        colKurseStartDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+        colKurseStartDate.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("startDatum"));
+        //colKurseStartDate.setCellFactory(TextFieldTableCell.<Kurs>forTableColumn());
+        colKurseStartDate.setCellFactory(column -> {
+            TableCell<Kurs, Date> cell = new TableCell<Kurs, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setText(null);
+                    } else {
+                        setText(format.format(item));
+                    }
+                }
+            };
+
+            return cell;
+        });
 
         TableView.TableViewSelectionModel<Kurs> selectionModel =
                 tableKurse.getSelectionModel();

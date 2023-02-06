@@ -8,7 +8,6 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,8 +31,7 @@ public class Kurs implements Externalizable {
     private SimpleDoubleProperty mwstProzent;
     private SimpleStringProperty kursBeschreibung;
     private SimpleStringProperty status;
-    private SimpleStringProperty displaystartDate;
-    private SimpleStringProperty displayEndeDate;
+
 
     public Kurs() {
         this.name = new SimpleStringProperty();
@@ -68,12 +66,12 @@ public class Kurs implements Externalizable {
         if (!setMwstProzent(mwstProzent)) {
             throw new IllegalArgumentException("Bitte einen MwSt-Satz angeben!");
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
-        setDisplaystartDate(dateFormat.format(startDatum));
+        //setDisplaystartDate(dateFormat.format(startDatum));
         setKursBeschreibung(kursBeschreibung);
         setEndeDatum();
-        setDisplayEndeDate(dateFormat.format(getEndeDatum()));
+        //setDisplayEndeDate(dateFormat.format(getEndeDatum()));
         setGebuehrNetto();
         setMwstEuro();
         //setAktuelleTnZahl(getAktuelleTnZahl());
@@ -376,8 +374,8 @@ public class Kurs implements Externalizable {
         out.writeDouble(getMwstEuro());
         out.writeInt(getFreiePlaetze());
         out.writeInt(getAktuelleTnZahl());
-        out.writeUTF(getDisplaystartDate());
-        out.writeUTF(getDisplayEndeDate());
+        //out.writeUTF(getDisplaystartDate());
+        //out.writeUTF(getDisplayEndeDate());
         //System.out.println(this);
     }
 
@@ -400,8 +398,8 @@ public class Kurs implements Externalizable {
         setMwstEuro(in.readDouble());
         setFreiePlaetze(in.readInt());
         setAktuelleTnZahl(in.readInt());
-        setDisplaystartDate(in.readUTF());
-        setDisplayEndeDate(in.readUTF());
+        //setDisplaystartDate(in.readUTF());
+        //setDisplayEndeDate(in.readUTF());
 
         //System.out.println(this);
     }
@@ -428,32 +426,22 @@ public class Kurs implements Externalizable {
                 '}';
     }
 
-    public String getDisplaystartDate() {
-        return displaystartDate.get();
-    }
-
-    public void setDisplaystartDate(String date) {
-        displaystartDate = new SimpleStringProperty(date);
-    }
-
-    public String getDisplayEndeDate() {
-        return displayEndeDate.get();
-    }
-
-    public void setDisplayEndeDate(String date) {
-        displayEndeDate = new SimpleStringProperty(date);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Kurs kurs = (Kurs) o;
-        return Objects.equals(name, kurs.name) && Objects.equals(anzahlTage, kurs.anzahlTage) && Objects.equals(zyklus, kurs.zyklus) && Objects.equals(startDatum, kurs.startDatum) && Objects.equals(endeDatum, kurs.endeDatum) && Objects.equals(minTnZahl, kurs.minTnZahl) && Objects.equals(maxTnZahl, kurs.maxTnZahl) && Objects.equals(gebuehrBrutto, kurs.gebuehrBrutto) && Objects.equals(gebuehrNetto, kurs.gebuehrNetto) && Objects.equals(mwstEuro, kurs.mwstEuro) && Objects.equals(mwstProzent, kurs.mwstProzent) && Objects.equals(kursBeschreibung, kurs.kursBeschreibung) && Objects.equals(displaystartDate, kurs.displaystartDate) && Objects.equals(displayEndeDate, kurs.displayEndeDate);
+        return Objects.equals(name, kurs.name) && Objects.equals(anzahlTage, kurs.anzahlTage) && Objects.equals(zyklus, kurs.zyklus) && Objects.equals(startDatum, kurs.startDatum) && Objects.equals(endeDatum, kurs.endeDatum) && Objects.equals(minTnZahl, kurs.minTnZahl) && Objects.equals(maxTnZahl, kurs.maxTnZahl) && Objects.equals(gebuehrBrutto, kurs.gebuehrBrutto) && Objects.equals(gebuehrNetto, kurs.gebuehrNetto) && Objects.equals(mwstEuro, kurs.mwstEuro) && Objects.equals(mwstProzent, kurs.mwstProzent) && Objects.equals(kursBeschreibung, kurs.kursBeschreibung) && Objects.equals(status, kurs.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, anzahlTage, zyklus, startDatum, endeDatum, minTnZahl, maxTnZahl, gebuehrBrutto, gebuehrNetto, mwstEuro, mwstProzent, kursBeschreibung, displaystartDate, displayEndeDate);
+        return Objects.hash(name, anzahlTage, zyklus, startDatum, endeDatum, minTnZahl, maxTnZahl, gebuehrBrutto, gebuehrNetto, mwstEuro, mwstProzent, kursBeschreibung, status);
     }
 }
+
+
+
+
+
+
