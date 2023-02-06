@@ -17,4 +17,12 @@ public class Meldung {
         alert.setContentText(meldung);
         alert.showAndWait();
     }
+
+    public static void teilnehmerVoll(String meldung) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+        alert.setTitle("Fehler beim Teilnehmer hinzufügen");
+        alert.setHeaderText("Kurs ist schon voll besetzt!");
+        alert.setContentText(meldung);
+        alert.showAndWait();
+    }
 }
