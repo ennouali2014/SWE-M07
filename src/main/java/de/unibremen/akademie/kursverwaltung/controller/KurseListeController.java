@@ -3,7 +3,6 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 
-import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -30,8 +29,8 @@ public class KurseListeController {
 
 
     public TableColumn<Kurs, String> colKursname;
-    public TableColumn<Kurs, String> colStart_Datum;
-    public TableColumn<Kurs, String> colEnd_Datum;
+    public TableColumn<Kurs, Date> colStart_Datum;
+    public TableColumn<Kurs, Date> colEnd_Datum;
     public TableColumn<Kurs, Integer> colAnzhl_Frei_plaetze;
     public TableColumn<Kurs, Integer> colAnzahl_Teilnehmer;
     public TableColumn<Kurs, String> colStatus;
@@ -93,11 +92,45 @@ public class KurseListeController {
         colAnzahl_Teilnehmer.setCellFactory(ComboBoxTableCell.<Kurs, Integer>forTableColumn());
 
 
-        colStart_Datum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displaystartDate"));
-        colStart_Datum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
+        colStart_Datum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("startDatum"));
+        //colStart_Datum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
+        colStart_Datum.setCellFactory(column -> {
+            TableCell<Kurs, Date> cell = new TableCell<Kurs, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
-        colEnd_Datum.setCellValueFactory(new PropertyValueFactory<Kurs, String>("displayEndeDate"));
-        colEnd_Datum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setText(null);
+                    } else {
+                        setText(format.format(item));
+                    }
+                }
+            };
+
+            return cell;
+        });
+
+        colEnd_Datum.setCellValueFactory(new PropertyValueFactory<Kurs, Date>("endeDatum"));
+        //colEnd_Datum.setCellFactory(ComboBoxTableCell.<Kurs, String>forTableColumn());
+        colEnd_Datum.setCellFactory(column -> {
+            TableCell<Kurs, Date> cell = new TableCell<Kurs, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setText(null);
+                    } else {
+                        setText(format.format(item));
+                    }
+                }
+            };
+
+            return cell;
+        });
 
         tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         TableView.TableViewSelectionModel<Kurs> selectionModel =

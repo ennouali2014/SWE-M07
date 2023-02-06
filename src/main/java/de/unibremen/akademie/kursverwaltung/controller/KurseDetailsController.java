@@ -284,8 +284,8 @@ public class KurseDetailsController {
                 kvModel.aktuellerKurs.setStatus(comboStatus.getValue().toString());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-                kvModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(kvModel.aktuellerKurs.getStartDatum()));
-                kvModel.aktuellerKurs.setDisplayEndeDate(dateFormat.format(kvModel.aktuellerKurs.getEndeDatum()));
+                //kvModel.aktuellerKurs.setDisplaystartDate(dateFormat.format(kvModel.aktuellerKurs.getStartDatum()));
+                //kvModel.aktuellerKurs.setDisplayEndeDate(dateFormat.format(kvModel.aktuellerKurs.getEndeDatum()));
 
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
