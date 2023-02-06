@@ -20,6 +20,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
@@ -168,8 +169,11 @@ public class KurseListeController {
                     }
                 }
 
+
+
                 if (bisDatum != null) {
                     if (kurs.getStartDatum().after(vonDatum) && kurs.getStartDatum().before(bisDatum)) {
+
                         return true;
                     }
                 } else {
@@ -194,6 +198,7 @@ public class KurseListeController {
                     } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }
+
                 }
 
                 Date bisDatum = null;
@@ -202,8 +207,14 @@ public class KurseListeController {
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(bisDatum);
+                calendar.add(Calendar.DATE, 1);
+                bisDatum = calendar.getTime();
+
 
                 if (vonDatum != null) {
+
                     if (kurs.getStartDatum().after(vonDatum) && kurs.getStartDatum().before(bisDatum)) {
                         return true;
                     }
