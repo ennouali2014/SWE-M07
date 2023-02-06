@@ -15,10 +15,17 @@ Eingabe von Wörtern/ Strings bei numerischen Feldern funktioniert
 
 Start-Datum eintippen: funktioniert
 
-Start-Datum auch in Ferien: funktioniert nicht (?) = geändert 
+Start-Datum auch in Ferien: funktioniert nicht (?) = geändert
 
 Button-Abbrechen: zurück zur Kursliste oder Löschen und auf Kurse-Details bleiben
 
+stand 06.02.2023
+
+bugs:
+kursdetails, nach neuen kurs speichern kein reset mehr, kurs kann mehrfach angelegt werden
+kursdetails, nach speichern keine weiterleitung zur liste mehr
+
+kurse löschen methoden bezeichner irritierend
 
 
 
