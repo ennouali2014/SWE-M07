@@ -25,6 +25,11 @@ public class PersonKursListe {
                 } else {
 
                     if (alsTeilnehmer) {
+                        if (kurs.getFreiePlaetze() == 0) {
+                            Meldung.teilnehmerVoll("keine frei Plätze mehr für " + kurs.getName());
+                            return false;
+                        }
+
                         kurs.setAktuelleTnZahl(kurs.getAktuelleTnZahl() + 1);
                         kurs.setFreiePlaetze();
                     } else {
@@ -42,6 +47,10 @@ public class PersonKursListe {
         personKurs.setKurs(kurs);
         personKurs.setTeilnehmer(alsTeilnehmer);
         if (alsTeilnehmer) {
+            if (kurs.getFreiePlaetze() == 0) {
+                Meldung.teilnehmerVoll("keine frei Plätze mehr für " + kurs.getName());
+                return false;
+            }
             personKurs.getKurs().setAktuelleTnZahl(kurs.getAktuelleTnZahl() + 1);
             personKurs.getKurs().setFreiePlaetze();
 
