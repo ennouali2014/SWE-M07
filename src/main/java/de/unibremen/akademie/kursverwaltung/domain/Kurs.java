@@ -68,7 +68,7 @@ public class Kurs implements Externalizable {
         if (!setMwstProzent(mwstProzent)) {
             throw new IllegalArgumentException("Bitte einen MwSt-Satz angeben!");
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
         setDisplaystartDate(dateFormat.format(startDatum));
         setKursBeschreibung(kursBeschreibung);

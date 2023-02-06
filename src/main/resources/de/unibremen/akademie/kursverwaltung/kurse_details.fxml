@@ -199,6 +199,14 @@
                                         </HBox>
                                     </children>
                                 </VBox>
+                                <HBox fx:id="hbxCsvTeilnehmerliste" layoutX="8.0" layoutY="576.0" prefHeight="54.0" prefWidth="606.0" visible="true">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#onClickCsvTeilnehmerliste" prefHeight="30.0" prefWidth="250.0" text="Teilnehmerliste als CSV speichern" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+                                    </padding>
+                                </HBox>
                                 <HBox fx:id="hbxPrintAnwesenheitsliste" layoutX="8.0" layoutY="602.0" prefHeight="54.0" prefWidth="606.0" visible="false">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#onClickPrintAnwesenheitsliste" prefHeight="30.0" prefWidth="250.0" text="Anwesenheitsliste drucken zum:" />
