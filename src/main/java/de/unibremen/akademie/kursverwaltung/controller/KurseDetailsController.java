@@ -314,6 +314,8 @@ public class KurseDetailsController {
 
                 //  TODO 04.02
 
+                kvModel.getPkListe().addPersonAlsTeilNehmer(kvModel.aktuellerKurs, this.tableTeilnehmerPerson.getItems());
+
             } catch (Exception e) {
                 Meldung.eingabeFehler(e.getMessage());
                 return;

@@ -36,6 +36,10 @@ public class KurseListeController {
     public TableColumn<Kurs, Integer> colAnzhl_Frei_plaetze;
     public TableColumn<Kurs, Integer> colAnzahl_Teilnehmer;
     public TableColumn<Kurs, String> colStatus;
+    @FXML
+    public TableColumn<Kurs, String> colKursListTeilnehmerAnKurs;
+    @FXML
+    public TableColumn<Kurs, String> colKursListInteressentenAnKurs;
 
     public TableView<Kurs> tableKurseListe;
     public Tab tabKurseListe;
@@ -136,6 +140,9 @@ public class KurseListeController {
 
             return cell;
         });
+
+        colKursListTeilnehmerAnKurs.setCellValueFactory(kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonNameAlsTeilnehmer(kurs.getValue()).toString()));
+        colKursListInteressentenAnKurs.setCellValueFactory(kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonAlsInteressent(kurs.getValue()).toString()));
 
         tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         TableView.TableViewSelectionModel<Kurs> selectionModel =
@@ -267,19 +274,18 @@ public class KurseListeController {
         sortedData.comparatorProperty().bind(tableKurseListe.comparatorProperty());
         tableKurseListe.setItems(sortedData);
 
-        // TODO //////////////////////////////////////////////////////////////////////////////////////
+     /*   // TODO //////////////////////////////////////////////////////////////////////////////////////
 
         colInteressent.setCellValueFactory
                 (kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonen(new Kurs(), false).toString()));
         colTeilnehmer.setCellValueFactory
                 (kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonen(new Kurs(), true).toString()));
 
-        // TODO ////////////////////////////////////////////////////////////////////////////////////
+        // TODO ////////////////////////////////////////////////////////////////////////////////////*/
     }
 
 
     @FXML
-
     void onClickHinzufügenButton(ActionEvent event) {
         kvModel.aktuellerKurs = null;
         mainCtrl.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
@@ -334,8 +340,6 @@ public class KurseListeController {
 
         }
     }
-
-
 
 
     public void searchButtonAction(ActionEvent actionEvent) {
