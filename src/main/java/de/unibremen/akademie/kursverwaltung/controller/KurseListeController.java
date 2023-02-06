@@ -4,6 +4,7 @@ package de.unibremen.akademie.kursverwaltung.controller;
 
 
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
+import de.unibremen.akademie.kursverwaltung.domain.KursListe;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -17,10 +18,8 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
@@ -188,85 +187,18 @@ public class KurseListeController {
                 return false;
             });
         });
+//////////////////////////////////////////// TODO //////////////////////////////////////////
+        KursListe dateFilter = new KursListe();
 
         pickDatumAb.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(kurs -> {
-                if (newValue == null || newValue.toString().isEmpty() || newValue.toString().isBlank()) {
-                    return true;
-                }
-                Date vonDatum = null;
-                try {
-                    vonDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-
-                Date bisDatum = null;
-                if (pickDatumBis.getValue() != null) {
-                    try {
-                        bisDatum = new SimpleDateFormat("yyyy-MM-dd").parse(pickDatumBis.getValue().toString());
-                    } catch (ParseException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-
-
-
-                if (bisDatum != null) {
-                    if (kurs.getStartDatum().after(vonDatum) && kurs.getStartDatum().before(bisDatum)) {
-
-                        return true;
-                    }
-                } else {
-                    if (kurs.getStartDatum().after(vonDatum)) {
-                        return true;
-                    }
-                }
-
-                return false;
-            });
+            dateFilter.setVonDatum(newValue);
+            filteredData.setPredicate(kurs -> dateFilter.isBetween(kurs.getStartDatum()));
         });
 
         pickDatumBis.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(kurs -> {
-                if (newValue == null || newValue.toString().isEmpty() || newValue.toString().isBlank()) {
-                    return true;
-                }
-                Date vonDatum = null;
-                if (pickDatumAb.getValue() != null) {
-                    try {
-                        vonDatum = new SimpleDateFormat("yyyy-MM-dd").parse(pickDatumAb.getValue().toString());
-                    } catch (ParseException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                }
-
-                Date bisDatum = null;
-                try {
-                    bisDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(bisDatum);
-                calendar.add(Calendar.DATE, 1);
-                bisDatum = calendar.getTime();
-
-
-                if (vonDatum != null) {
-
-                    if (kurs.getStartDatum().after(vonDatum) && kurs.getStartDatum().before(bisDatum)) {
-                        return true;
-                    }
-                } else {
-                    if (kurs.getStartDatum().before(bisDatum)) {
-                        return true;
-                    }
-                }
-
-                return false;
-            });
+            dateFilter.setBisDatum(newValue);
+            dateFilter.alertDatum(dateFilter.getVonDatum(), dateFilter.getBisDatum());
+            filteredData.setPredicate(kurs -> dateFilter.isBetween(kurs.getStartDatum()));
         });
 
 
@@ -274,16 +206,7 @@ public class KurseListeController {
         sortedData.comparatorProperty().bind(tableKurseListe.comparatorProperty());
         tableKurseListe.setItems(sortedData);
 
-     /*   // TODO //////////////////////////////////////////////////////////////////////////////////////
-
-        colInteressent.setCellValueFactory
-                (kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonen(new Kurs(), false).toString()));
-        colTeilnehmer.setCellValueFactory
-                (kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonen(new Kurs(), true).toString()));
-
-        // TODO ////////////////////////////////////////////////////////////////////////////////////*/
     }
-
 
     @FXML
     void onClickHinzufügenButton(ActionEvent event) {
