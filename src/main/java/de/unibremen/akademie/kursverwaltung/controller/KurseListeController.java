@@ -140,8 +140,8 @@ public class KurseListeController {
             return cell;
         });
 
-        colKursListTeilnehmerAnKurs.setCellValueFactory(kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonAlsTeilnehmer(kurs.getValue()).toString()));
-        colKursListInteressentenAnKurs.setCellValueFactory(kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonAlsInteressent(kurs.getValue()).toString()));
+        colKursListTeilnehmerAnKurs.setCellValueFactory(kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonNameAlsTeilnehmer(kurs.getValue()).toString()));
+        colKursListInteressentenAnKurs.setCellValueFactory(kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonNameAlsInteressent(kurs.getValue()).toString()));
 
         tableKurseListe.setItems(kvModel.getKurse().getKursListe());
         TableView.TableViewSelectionModel<Kurs> selectionModel =
