@@ -209,6 +209,27 @@ public class PersonKursListe {
         addPerson(kurs, teilnehmerliste, true);
     }
 
+    public void addPerson(Kurs kurs, List<Person> liste, boolean alsTeilnehmer) {
+        for (var person : liste) {
+            addPersonInKurs(person, kurs, alsTeilnehmer);
+        }
+    }
+
+    public void addPersonAlsTeilNehmer(Kurs kurs, List<Person> teilnehmerliste) {
+        List<PersonKurs> list = getKursePerson(kurs, true);
+        for (PersonKurs k : list) {
+            if (!teilnehmerliste.contains(k.getPerson())) {
+                removePerson(k.getPerson(), kurs, true);
+                kurs.setAktuelleTnZahl(kurs.getAktuelleTnZahl() - 1);
+                kurs.setFreiePlaetze();
+            }
+        }
+        if (teilnehmerliste == null) {
+            removeAllPersonenAlsTeilnehmer(kurs);
+        }
+        addPerson(kurs, teilnehmerliste, true);
+    }
+
     public void addKurseAlsTeilnehmer(Person person, List<Kurs> teilnehmerliste) {
         List<PersonKurs> list = getPersonKurse(person, true);
         for (PersonKurs k : list) {

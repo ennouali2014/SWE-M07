@@ -274,18 +274,19 @@ public class KurseListeController {
         sortedData.comparatorProperty().bind(tableKurseListe.comparatorProperty());
         tableKurseListe.setItems(sortedData);
 
-     /*   // TODO //////////////////////////////////////////////////////////////////////////////////////
+        // TODO //////////////////////////////////////////////////////////////////////////////////////
 
         colInteressent.setCellValueFactory
                 (kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonen(new Kurs(), false).toString()));
         colTeilnehmer.setCellValueFactory
                 (kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonen(new Kurs(), true).toString()));
 
-        // TODO ////////////////////////////////////////////////////////////////////////////////////*/
+        // TODO ////////////////////////////////////////////////////////////////////////////////////
     }
 
 
     @FXML
+
     void onClickHinzufügenButton(ActionEvent event) {
         kvModel.aktuellerKurs = null;
         mainCtrl.fxmlKurseDetailsController.onClickAbbrechenKurs(event);
@@ -340,6 +341,8 @@ public class KurseListeController {
 
         }
     }
+
+
 
 
     public void searchButtonAction(ActionEvent actionEvent) {
