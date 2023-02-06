@@ -3,8 +3,8 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 
-import de.unibremen.akademie.kursverwaltung.domain.AnwendungsModel;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -43,7 +43,10 @@ public class KurseListeController {
 
     @FXML
     private DatePicker pickDatumAb;
-
+    @FXML
+    private TableColumn colTeilnehmer;
+    @FXML
+    private TableColumn colInteressent;
 
     @FXML
     private ComboBox comboStatusKurseListeSuche;
@@ -144,21 +147,37 @@ public class KurseListeController {
             });
         });
 
-
         pickDatumAb.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(kurs -> {
                 if (newValue == null || newValue.toString().isEmpty() || newValue.toString().isBlank()) {
                     return true;
                 }
+                Date vonDatum = null;
                 try {
-                    Date neuesDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
-                    if (kurs.getStartDatum().after(neuesDatum)) // && (kurs.getEndeDatum().before(kurslisteSucheDatum)))
-                    {
-                        return true;
-                    }
+                    vonDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
+
+                Date bisDatum = null;
+                if (pickDatumBis.getValue() != null) {
+                    try {
+                        bisDatum = new SimpleDateFormat("yyyy-MM-dd").parse(pickDatumBis.getValue().toString());
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                if (bisDatum != null) {
+                    if (kurs.getStartDatum().after(vonDatum) && kurs.getStartDatum().before(bisDatum)) {
+                        return true;
+                    }
+                } else {
+                    if (kurs.getStartDatum().after(vonDatum)) {
+                        return true;
+                    }
+                }
+
                 return false;
             });
         });
@@ -168,15 +187,32 @@ public class KurseListeController {
                 if (newValue == null || newValue.toString().isEmpty() || newValue.toString().isBlank()) {
                     return true;
                 }
-                try {
-                    Date neuesDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
-                    if (kurs.getEndeDatum().before(neuesDatum)) // && (kurs.getEndeDatum().before(kurslisteSucheDatum)))
-                    {
-                        return true;
+                Date vonDatum = null;
+                if (pickDatumAb.getValue() != null) {
+                    try {
+                        vonDatum = new SimpleDateFormat("yyyy-MM-dd").parse(pickDatumAb.getValue().toString());
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
                     }
+                }
+
+                Date bisDatum = null;
+                try {
+                    bisDatum = new SimpleDateFormat("yyyy-MM-dd").parse(newValue.toString());
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
+
+                if (vonDatum != null) {
+                    if (kurs.getStartDatum().after(vonDatum) && kurs.getStartDatum().before(bisDatum)) {
+                        return true;
+                    }
+                } else {
+                    if (kurs.getStartDatum().before(bisDatum)) {
+                        return true;
+                    }
+                }
+
                 return false;
             });
         });
@@ -185,6 +221,15 @@ public class KurseListeController {
         SortedList<Kurs> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tableKurseListe.comparatorProperty());
         tableKurseListe.setItems(sortedData);
+
+        // TODO //////////////////////////////////////////////////////////////////////////////////////
+
+        colInteressent.setCellValueFactory
+                (kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonen(new Kurs(), false).toString()));
+        colTeilnehmer.setCellValueFactory
+                (kurs -> new ReadOnlyStringWrapper(kvModel.getPkListe().getPersonen(new Kurs(), true).toString()));
+
+        // TODO ////////////////////////////////////////////////////////////////////////////////////
     }
 
 
