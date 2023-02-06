@@ -210,11 +210,16 @@ public class PersonenDetailsController {
     @FXML
     public void onClickAbbrechenPerson(ActionEvent event) {
         felderLeeren();
+        /////////// TODO MD
+        kvModel.aktuellePerson = null;
+
         if (zurueckPersonenliste) {
             Tab plTab = mainCtrl.fxmlPersonenListeController.tabPersonenListe;
             plTab.getTabPane().getSelectionModel().select(plTab);
             zurueckPersonenliste = false;
+
         }
+
     }
 
     public void felderLeeren() {
