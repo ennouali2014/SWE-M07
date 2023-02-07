@@ -18,3 +18,9 @@ resetButton funktion ist behoben
 
 suchButton ist raus
 
+Stand: 07.02.2023
+
+1. Sortieren nach Status funktioniert nicht!
+2. Sortieren mit bisdatum alleine funktioniert nicht!
+3. 
+

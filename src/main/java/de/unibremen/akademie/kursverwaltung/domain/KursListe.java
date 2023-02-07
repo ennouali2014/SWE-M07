@@ -71,7 +71,7 @@ public class KursListe {
 
     public void alertDatum(Date ab, Date bis) {
         if (ab.after(bis)) {
-            Meldung.eingabeFehler("bisDatum muss großer als abDatum!!!");
+            Meldung.eingabeFehler("bis-Datum muss größer als ab-Datum!!!");
             return;
         }
     }
