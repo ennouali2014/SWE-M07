@@ -134,6 +134,19 @@ public class PersonKursListe {
         return listperson;
     }
 
+    public List<PersonKurs> getKursePerson(Kurs kurs, boolean alsTeilnehmer) {
+        // Geht auch einfach aber ungewöhnlich
+        // return personKursList.stream().filter(pk -> pk.getPerson().equals(person) && pk.isTeilnehmer() == alsTeilnehmer).toList();
+        List<PersonKurs> listkurs = new ArrayList<>();
+
+        for (PersonKurs personKurs : personKursList) {
+            if (personKurs.getKurs().equals(kurs) && personKurs.isTeilnehmer() == alsTeilnehmer) {
+                listkurs.add(personKurs);
+            }
+        }
+        return listkurs;
+    }
+
     public List<PersonKurs> getPersonKurse(Person person, boolean alsTeilnehmer) {
         // Geht auch einfach aber ungewöhnlich
         // return personKursList.stream().filter(pk -> pk.getPerson().equals(person) && pk.isTeilnehmer() == alsTeilnehmer).toList();
@@ -147,18 +160,7 @@ public class PersonKursListe {
         return listkurs;
     }
 
-    public List<PersonKurs> getKursePerson(Kurs kurs, boolean alsTeilnehmer) {
-        // Geht auch einfach aber ungewöhnlich
-        // return personKursList.stream().filter(pk -> pk.getPerson().equals(person) && pk.isTeilnehmer() == alsTeilnehmer).toList();
-        List<PersonKurs> listkurs = new ArrayList<>();
 
-        for (PersonKurs personKurs : personKursList) {
-            if (personKurs.getKurs().equals(kurs) && personKurs.isTeilnehmer() == alsTeilnehmer) {
-                listkurs.add(personKurs);
-            }
-        }
-        return listkurs;
-    }
 
     public List<String> getKurseAlsTeilnehmer(Person person) {
         return getKurseNames(person, true);
