@@ -24,7 +24,7 @@ public class PersonKursListe {
 
                     if (alsTeilnehmer) {
                         if (kurs.getFreiePlaetze() == 0) {
-                            Meldung.teilnehmerVoll("keine frei Plätze mehr für " + kurs.getName());
+                            Meldung.teilnehmerVoll("Keine freien Plätze mehr für " + kurs.getName());
                             return false;
                         }
 
@@ -46,7 +46,7 @@ public class PersonKursListe {
         personKurs.setTeilnehmer(alsTeilnehmer);
         if (alsTeilnehmer) {
             if (kurs.getFreiePlaetze() == 0) {
-                Meldung.teilnehmerVoll("keine frei Plätze mehr für " + kurs.getName());
+                Meldung.teilnehmerVoll("Keine freien Plätze mehr für " + kurs.getName());
                 return false;
             }
             personKurs.getKurs().setAktuelleTnZahl(kurs.getAktuelleTnZahl() + 1);
