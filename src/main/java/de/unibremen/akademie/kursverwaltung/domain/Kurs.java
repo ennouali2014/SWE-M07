@@ -35,7 +35,7 @@ public class Kurs implements Externalizable {
 
     public Kurs() {
         this.name = new SimpleStringProperty();
-        this.aktuelleTnZahl = new SimpleIntegerProperty(0);
+        this.aktuelleTnZahl = new SimpleIntegerProperty();
     }
 
     public Kurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,

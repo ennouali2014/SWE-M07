@@ -274,6 +274,7 @@ public class KurseDetailsController {
 
     // FIXME: status leer gibt keinen Fehlermeldung
     public void onClickSaveKurs(ActionEvent actionEvent) {
+        Kurs kurs = null;
         if (kvModel.aktuellerKurs != null) {
             // Bestehenden Kurs aendern
             try {
@@ -329,7 +330,7 @@ public class KurseDetailsController {
             LocalDate localDate;
             Date startDate = null;
 
-            Kurs kurs;
+            // Kurs kurs;
 
             String name = txInpKursname.getText();
             String kursBesch = txtAreaKursBeschreibung.getText();
@@ -393,6 +394,18 @@ public class KurseDetailsController {
             txInpGebuehrNetto.setText(String.valueOf(kurs.getGebuehrNetto()));
 
         }
+        kvModel.aktuellerKurs = null;
+
+        Tab klTab = mainCtrl.fxmlKurseListeController.tabKurseListe;
+
+        mainCtrl.fxmlKurseListeController.tableKurseListe.refresh();
+        mainCtrl.fxmlPersonenListeController.tablePersonenListe.refresh();
+
+
+        klTab.getTabPane().getSelectionModel().select(klTab);
+        mainCtrl.fxmlKurseListeController.tableKurseListe.getSelectionModel().clearSelection();
+        mainCtrl.fxmlKurseListeController.tableKurseListe.getSelectionModel().select(kurs);
+
 //    @FXML
 //    private TableView tableViewTeilnehmerZu;
 
