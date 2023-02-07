@@ -4,6 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class PersonenListe {
+    /**
+     * ObservableList hat eine Objekt von Person
+     * diese liste ist initialized mit ein instance of "FXCollections.observableArrayList()"
+     * es ist erst mal leer gesetz,
+     */
     private ObservableList<Person> personenliste = FXCollections.observableArrayList();
 
     public void addPersonenZuListe(Person person) {
