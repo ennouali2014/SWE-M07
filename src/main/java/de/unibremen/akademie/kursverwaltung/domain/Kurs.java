@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-
+/** Dokumentation der Klasse Kurs.
+        *  Die Klasse Kurs dient zum Verwalten von Daten über den Kurs in der Kursverwaltung
+        *
+        */
 public class Kurs implements Externalizable {
     private final List<Person> interessentenListe = new ArrayList<>();
     private final List<Person> teilnehmerListe = new ArrayList<>();
@@ -33,11 +36,25 @@ public class Kurs implements Externalizable {
     private SimpleStringProperty status;
 
 
-    public Kurs() {
+    /**
+     * Dieser Konstruktor hat keine Eingabeparameter, weil wir auf die Daten über Getter- und Setter-Methoden zugreifen.
+     * Es wird lediglich ein Name und die aktuelleInZahl als SimplyProperty gesetzt.
+     */public Kurs()
+    {
         this.name = new SimpleStringProperty();
         this.aktuelleTnZahl = new SimpleIntegerProperty();
     }
 
+    /**
+     * Der Konstruktor zum Kurs hat zehn Parameter.
+     * Bei 9 Attribute werden korrekte Eingaben überprüft. Es gibt u.a. über folgende Tests:
+     * - die Felder dürfen nicht leer sein
+     * - Kurs sollte mindestens einen Tag dauern
+     * - Datum sollte als ein Datum eingegeben
+     * Beim Test wird der Rückgabewert der Setter-Methode in einer If-Abfrage geprüft und ggf. eine Illegal Exception geworfen.
+     * Vier Attributen werden nicht vom User, sondern vom System berechnet.
+     * Einzig das Atrribut kursBeschreibung ist kein Pflichtfeld.
+     */
     public Kurs(String name, int anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl,
                 double gebuehrBrutto, double mwstProzent, String kursBeschreibung, String statusSTR) {
         this.name = new SimpleStringProperty();
@@ -86,8 +103,14 @@ public class Kurs implements Externalizable {
         return name.get();
     }
 
+    /**
+     * Die Methode wird verwendet für NeuAnlegen und Update
+     * @param name bedeutet Name eines Kurses
+     * @return
+     * In diesem Setter wird zuerst gerüft, ob der Name existiert und nicht leer ist.
+     * Ansonsten wird neuangelegt oder überschrieben.
+     */
     public boolean setName(String name) {
-
         if (name != null && !name.isBlank()) {
             if (this.name == null) {
                 this.name = new SimpleStringProperty(name);
@@ -102,7 +125,13 @@ public class Kurs implements Externalizable {
     public int getAnzahlTage() {
         return anzahlTage.get();
     }
-
+    /**
+     * Die Methode wird verwendet für NeuAnlegen und Update
+     * @param anzahlTage bedeutet die Anzahl der gesamten Unterrichtstage für einen Kurs
+     * @return
+     * In diesem Setter wird zuerst geprüft, ob die AnzahlTage mindestens 1 ist.
+     * Daraus ergibt sich die 2. Prüfung auf Existenz, ggf neuAnlegen und überschreiben
+     */
     public boolean setAnzahlTage(int anzahlTage) {
         if (anzahlTage > 0) {
             if (this.anzahlTage == null) {
@@ -119,6 +148,13 @@ public class Kurs implements Externalizable {
         return zyklus.get();
     }
 
+    /**
+     * Die Methode wird verwendet für NeuAnlegen und Update
+     * @param zyklus, bedeutet die Anzahl der Unterrichtstage pro Woche
+     * @return
+     * In diesem Setter wird zuerst geprüft, ob der Zyklus im Bereich einer Woche liegt
+     * Daraus ergibt sich die 2. Prüfung auf Existenz, ggf neuAnlegen und überschreiben
+     */
     public boolean setZyklus(int zyklus) {
         if (zyklus > 0 && zyklus < 8) {
             if (this.zyklus == null) {
@@ -135,6 +171,13 @@ public class Kurs implements Externalizable {
         return startDatum;
     }
 
+    /**
+     * Die Methode wird verwendet für NeuAnlegen und Update
+     * @param startDatum, bedeutet den Beginn des Kurses
+     * @return
+     * In diesem Setter wird zuerst geprüft, ob das Startdatum nach dem heutigen Tag liegt, d.h. in der Zukunft
+     * Es kann kein KUrs in der Vergangenheit bzw. heute eingegeben
+     */
     public boolean setStartDatum(Date startDatum) {
         Date date = new Date();
         if (startDatum.before(date)) {
@@ -156,6 +199,11 @@ public class Kurs implements Externalizable {
         this.endeDatum = endeDatum;
     }
 
+    /**
+     * Die Methode wird verwendet für NeuAnlegen und Update
+     * In diesem Setter wird das EndDatum automatish berechnet. Dabei wird mit Long gearbeitet und gerundet.
+     * Long hat Auswirkung auf Test, muss umgerechnet werden.
+     */
     public void setEndeDatum() {
         long dat = startDatum.getTime() + ((Math.round((float) anzahlTage.get() / zyklus.get())) * 7 * 86400000L);
         this.endeDatum = new Date(dat);
@@ -183,6 +231,10 @@ public class Kurs implements Externalizable {
 
     }*/
 
+    /**
+     * @return int
+     * in dem Getter wird die MinTNZahl auf Existenz geprüft und ggf. angelegt oder mit Wert 0 zurückgegeben.
+     */
     public int getMinTnZahl() {
         if (minTnZahl != null) {
             return minTnZahl.get();
@@ -198,7 +250,6 @@ public class Kurs implements Externalizable {
             } else {
                 this.minTnZahl.set(minTnZahl);
             }
-
             return true;
         }
         return false;
