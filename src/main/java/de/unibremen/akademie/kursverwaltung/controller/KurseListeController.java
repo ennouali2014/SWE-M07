@@ -3,6 +3,7 @@
 package de.unibremen.akademie.kursverwaltung.controller;
 
 
+import de.unibremen.akademie.kursverwaltung.application.DatumFormatieren;
 import de.unibremen.akademie.kursverwaltung.domain.Kurs;
 import de.unibremen.akademie.kursverwaltung.domain.KursListe;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -80,6 +81,10 @@ public class KurseListeController {
     }
 
     public void initialize() {
+        DatumFormatieren.datumFormatieren(pickDatumAb);
+        DatumFormatieren.datumFormatieren(pickDatumBis);
+        pickDatumAb.setPromptText("Startdatum eingeben");
+        pickDatumBis.setPromptText("Enddatum eingeben");
 
 
         tableKurseListe.setEditable(false);

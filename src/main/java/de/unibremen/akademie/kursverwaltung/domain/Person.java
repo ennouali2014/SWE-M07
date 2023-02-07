@@ -8,7 +8,31 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.Objects;
 
+
 public class Person implements Externalizable {
+    /**
+     * Person Klasse implement Externalizable weil ....
+     * Dieser Code ist ein Konstruktor für eine Klasse mit dem Namen Person.
+     * Der Konstruktor hat neun Parameter, die jeweils den
+     * @param Anrede
+     * @param Titel
+     * @param Vornamen
+     * @param Nachnamen
+     * @param Straße
+     * @param PLZ
+     * @param Ort
+     * @param E-Mail-Adresse
+     * @param Telefonnummer
+     *
+     * einer Person darstellen.
+     * es gibt hier eine default Konstruktur für den Test
+     * Der Konstruktor überprüft zunächst die Gültigkeit der Argumente, die an ihn übergeben werden.
+     * Dies geschieht durch den Aufruf von zwei Methoden checkIsEmpty(vorname) und checkIsEmpty(nachname).
+     * Wenn die Rückgabewerte dieser Methoden false sind, werden Fehler ausgelöst, die besagen, dass der Vorname bzw.
+     * Nachname mindestens 2 Zeichen enthalten müssen.
+     * Analog dazu überprüft die Methode checkValidEmail(email) die Gültigkeit der übergebenen E-Mail-Adresse.
+     */
+
 
     //static final long serialVersionUID = 3619323214958673905L;
 
@@ -26,8 +50,6 @@ public class Person implements Externalizable {
     public String getCSVTRENNER() {
         return CSVTRENNER;
     }
-//private ObservableList<Kurs> kursInteressiert = FXCollections.observableArrayList();
-    //private ObservableList<Kurs> kursTeilnahme = FXCollections.observableArrayList();
 
     public Person() {
     }
@@ -53,37 +75,30 @@ public class Person implements Externalizable {
         setTelefon(telefon);
     }
 
-    public void updatePerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
-
-        if (!checkIsEmpty(vorname)) {
-            throw new IllegalArgumentException("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
-            //vorname = getVorname();
-        }
-        if (!checkIsEmpty(nachname)) {
-            throw new IllegalArgumentException("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
-            //nachname = getNachname();
-        }
-        if (!checkValidEmail(email)) {
-            throw new IllegalArgumentException("Die Email-Adresse ist fehlerhaft!");
-            //email = getEmail();
-        }
-        this.setAnrede(anrede);
-        this.setTitel(titel);
-        this.setVorname(vorname);
-        this.setNachname(nachname);
-        this.setStrasse(strasse);
-        this.setPlz(plz);
-        this.setOrt(ort);
-        this.setEmail(email);
-        this.setTelefon(telefon);
+    /**
+     * @param wert
+     * @return Diese Methode prüft den in eine Eingabe eingegebenen Wert,
+     * der eine bestimmte Länge haben muss (Pflichtfelder).
+     */
+    public static boolean checkIsEmpty(String wert) {
+        return wert != null && wert.length() >= 2;
     }
 
     public String getAnrede() {
         return anrede.get();
     }
 
-    public void setAnrede(String anrede) {
-        this.anrede = new SimpleStringProperty(anrede);
+    /**
+     * @param email
+     * @return
+     *
+     * Diese Methode prüft, ob die eingefügte Email eines Specials einem bestimmten Muster entspricht.
+     */
+    public static boolean checkValidEmail(String email) {
+        String pattern = ("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
     }
 
     public String getTitel() {
@@ -151,23 +166,56 @@ public class Person implements Externalizable {
     }
 
 
-
     public void setTelefon(String telefon) {
         this.telefon = new SimpleStringProperty(telefon);
     }
 
+    /**
+     * @param anrede
+     * @param titel
+     * @param vorname
+     * @param nachname
+     * @param strasse
+     * @param plz
+     * @param ort
+     * @param email
+     * @param telefon
+     *
+     * Diese Methode wird verwendet, wenn wir eine Person bearbeiten wollen.
+     *                 Zunächst wird sichergestellt, dass einige Eingaben (Vorname, Nachname, E-Mail)
+     *                 Pflichtfelder sind, die eingefügt werden müssen.
+     *                 dann werden Werte für die restlichen Eingaben festgelegt.
+     */
+    public void updatePerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
 
-
-
-    public static boolean checkIsEmpty(String wert) {
-        return wert != null && wert.length() >= 2;
+        if (!checkIsEmpty(vorname)) {
+            throw new IllegalArgumentException("Der Vorname muss aus mindestens 2 Zeichen bestehen!");
+            //vorname = getVorname();
+        }
+        if (!checkIsEmpty(nachname)) {
+            throw new IllegalArgumentException("Der Nachname muss aus mindestens 2 Zeichen bestehen!");
+            //nachname = getNachname();
+        }
+        if (!checkValidEmail(email)) {
+            throw new IllegalArgumentException("Die Email-Adresse ist fehlerhaft!");
+            //email = getEmail();
+        }
+        this.setAnrede(anrede);
+        this.setTitel(titel);
+        this.setVorname(vorname);
+        this.setNachname(nachname);
+        this.setStrasse(strasse);
+        this.setPlz(plz);
+        this.setOrt(ort);
+        this.setEmail(email);
+        this.setTelefon(telefon);
     }
 
-    public static boolean checkValidEmail(String email) {
-        String pattern = ("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
+    /**
+     * @param anrede
+     */
+    public void setAnrede(String anrede) {
+        this.anrede = new SimpleStringProperty(anrede);
     }
 
     public void setNachname(String nachname) {
@@ -178,6 +226,13 @@ public class Person implements Externalizable {
         }
     }
 
+    /**
+     * public boolean equals methode wird von der Klasse Object geerbt und vergleicht zwei Objekte.
+     * Prüft ob sie gleich sind oder nicht.
+     * @return
+     *
+     * vergleich die Vorname, die Nachname, der mail von Personen mit getter
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -186,7 +241,7 @@ public class Person implements Externalizable {
         return Objects.equals(vorname.getValue(), person.vorname.getValue())
                 && Objects.equals(nachname.getValue(), person.nachname.getValue())
                 && Objects.equals(email.getValue(), person.email.getValue());
-    }
+    }//.getValue for stringProperty
 
     @Override
     public int hashCode() {
@@ -208,6 +263,11 @@ public class Person implements Externalizable {
                 '}';
     }
 
+    /**
+     * nimmt einzelne namen und trennt das als Csvtrenner (delimiter)
+     * @return
+     */
+
     public String toCsv() {
         return anrede.getValue() + CSVTRENNER +
                 titel.getValue() + CSVTRENNER +
@@ -220,6 +280,13 @@ public class Person implements Externalizable {
                 telefon.getValue();
     }
 
+
+    /**
+     * writeExternal methode ist Externalizable - Interface
+     * Methode schreibt die Werte von Anrede, etc... in den Datenstrom stream mithilfe der writeUTF-Methode
+     * @param stream the stream to write the object to
+     * @throws IOException
+     */
     @Override
     public void writeExternal(ObjectOutput stream) throws IOException {
         stream.writeUTF(getAnrede());
@@ -233,6 +300,15 @@ public class Person implements Externalizable {
         stream.writeUTF(getTelefon());
     }
 
+    /**
+     * @param in the stream to read data from in order to restore the object
+     * @throws IOException
+     * @throws ClassNotFoundException
+     *
+     * Diese Methode wurde geschrieben, weil die Klasse Person Externalizable implementiert,
+     *                                und diese weil sie SimpleStringProperty hat.
+     *                                Es liest String-Werte aus dem Eingabeobjekt und setzt diese Werte in Felder der Klasse
+     */
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         setAnrede(in.readUTF());
