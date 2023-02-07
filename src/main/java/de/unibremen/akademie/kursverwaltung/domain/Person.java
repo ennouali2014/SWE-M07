@@ -9,29 +9,10 @@ import java.io.ObjectOutput;
 import java.util.Objects;
 
 
+/**
+ * Person Klasse implement Externalizable weil ....
+ */
 public class Person implements Externalizable {
-    /**
-     * Person Klasse implement Externalizable weil ....
-     * Dieser Code ist ein Konstruktor für eine Klasse mit dem Namen Person.
-     * Der Konstruktor hat neun Parameter, die jeweils den
-     * @param Anrede
-     * @param Titel
-     * @param Vornamen
-     * @param Nachnamen
-     * @param Straße
-     * @param PLZ
-     * @param Ort
-     * @param E-Mail-Adresse
-     * @param Telefonnummer
-     *
-     * einer Person darstellen.
-     * es gibt hier eine default Konstruktur für den Test
-     * Der Konstruktor überprüft zunächst die Gültigkeit der Argumente, die an ihn übergeben werden.
-     * Dies geschieht durch den Aufruf von zwei Methoden checkIsEmpty(vorname) und checkIsEmpty(nachname).
-     * Wenn die Rückgabewerte dieser Methoden false sind, werden Fehler ausgelöst, die besagen, dass der Vorname bzw.
-     * Nachname mindestens 2 Zeichen enthalten müssen.
-     * Analog dazu überprüft die Methode checkValidEmail(email) die Gültigkeit der übergebenen E-Mail-Adresse.
-     */
 
 
     //static final long serialVersionUID = 3619323214958673905L;
@@ -51,9 +32,22 @@ public class Person implements Externalizable {
         return CSVTRENNER;
     }
 
+
     public Person() {
     }
 
+    /**
+     * Dieser Code ist ein Konstruktor für eine Klasse mit dem Namen Person.
+     * Der Konstruktor hat neun Parameter, die jeweils den
+     * <p/>
+     * einer Person darstellen.
+     * es gibt hier eine default Konstruktur für den Test
+     * Der Konstruktor überprüft zunächst die Gültigkeit der Argumente, die an ihn übergeben werden.
+     * Dies geschieht durch den Aufruf von zwei Methoden checkIsEmpty(vorname) und checkIsEmpty(nachname).
+     * Wenn die Rückgabewerte dieser Methoden false sind, werden Fehler ausgelöst, die besagen, dass der Vorname bzw.
+     * Nachname mindestens 2 Zeichen enthalten müssen.
+     * Analog dazu überprüft die Methode checkValidEmail(email) die Gültigkeit der übergebenen E-Mail-Adresse.
+     */
     public Person(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
         if (!checkIsEmpty(vorname)) {
             throw new IllegalArgumentException("Der Vorname muss aus mindestens 2 Zeichen bestehen!");

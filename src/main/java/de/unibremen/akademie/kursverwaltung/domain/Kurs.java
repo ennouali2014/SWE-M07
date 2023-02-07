@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-/** Dokumentation der Klasse Kurs.
-        *  Die Klasse Kurs dient zum Verwalten von Daten über den Kurs in der Kursverwaltung
-        *
-        */
+
+/**
+ * Die Klasse Kurs dient zum Verwalten von Daten über den Kurs in der Kursverwaltung
+ */
 public class Kurs implements Externalizable {
     private final List<Person> interessentenListe = new ArrayList<>();
     private final List<Person> teilnehmerListe = new ArrayList<>();
@@ -106,7 +106,8 @@ public class Kurs implements Externalizable {
     /**
      * Die Methode wird verwendet für NeuAnlegen und Update
      * @param name bedeutet Name eines Kurses
-     * @return
+     * @return Name ist gültig oder nicht
+     *
      * In diesem Setter wird zuerst gerüft, ob der Name existiert und nicht leer ist.
      * Ansonsten wird neuangelegt oder überschrieben.
      */
