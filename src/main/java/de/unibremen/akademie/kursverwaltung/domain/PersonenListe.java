@@ -32,7 +32,9 @@ public class PersonenListe {
      * @param plz
      * @param ort
      * @param email
-     * @param telefon  wir verwenden diese Methode, um eine neue Person in die Observable Liste der Personen aufzusetzen.
+     * @param telefon
+     *
+     * wir verwenden diese Methode, um eine neue Person in die Observable Liste der Personen aufzusetzen.
      */
 
     public Person addNewPerson(String anrede, String titel, String vorname, String nachname, String strasse, String plz, String ort, String email, String telefon) {
