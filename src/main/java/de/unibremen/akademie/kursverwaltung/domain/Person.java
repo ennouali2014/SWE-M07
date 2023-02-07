@@ -22,7 +22,9 @@ public class Person implements Externalizable {
      * @param PLZ
      * @param Ort
      * @param E-Mail-Adresse
-     * @param Telefonnummer einer Person darstellen.
+     * @param Telefonnummer
+     *
+     * einer Person darstellen.
      * es gibt hier eine default Konstruktur für den Test
      * Der Konstruktor überprüft zunächst die Gültigkeit der Argumente, die an ihn übergeben werden.
      * Dies geschieht durch den Aufruf von zwei Methoden checkIsEmpty(vorname) und checkIsEmpty(nachname).
@@ -88,7 +90,9 @@ public class Person implements Externalizable {
 
     /**
      * @param email
-     * @return Diese Methode prüft, ob die eingefügte Email eines Specials einem bestimmten Muster entspricht.
+     * @return
+     *
+     * Diese Methode prüft, ob die eingefügte Email eines Specials einem bestimmten Muster entspricht.
      */
     public static boolean checkValidEmail(String email) {
         String pattern = ("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
@@ -175,7 +179,9 @@ public class Person implements Externalizable {
      * @param plz
      * @param ort
      * @param email
-     * @param telefon  Diese Methode wird verwendet, wenn wir eine Person bearbeiten wollen.
+     * @param telefon
+     *
+     * Diese Methode wird verwendet, wenn wir eine Person bearbeiten wollen.
      *                 Zunächst wird sichergestellt, dass einige Eingaben (Vorname, Nachname, E-Mail)
      *                 Pflichtfelder sind, die eingefügt werden müssen.
      *                 dann werden Werte für die restlichen Eingaben festgelegt.
@@ -223,7 +229,9 @@ public class Person implements Externalizable {
     /**
      * public boolean equals methode wird von der Klasse Object geerbt und vergleicht zwei Objekte.
      * Prüft ob sie gleich sind oder nicht.
-     * @return   vergleich die Vorname, die Nachname, der mail von Personen mit getter
+     * @return
+     *
+     * vergleich die Vorname, die Nachname, der mail von Personen mit getter
      */
     @Override
     public boolean equals(Object o) {
@@ -295,7 +303,9 @@ public class Person implements Externalizable {
     /**
      * @param in the stream to read data from in order to restore the object
      * @throws IOException
-     * @throws ClassNotFoundException Diese Methode wurde geschrieben, weil die Klasse Person Externalizable implementiert,
+     * @throws ClassNotFoundException
+     *
+     * Diese Methode wurde geschrieben, weil die Klasse Person Externalizable implementiert,
      *                                und diese weil sie SimpleStringProperty hat.
      *                                Es liest String-Werte aus dem Eingabeobjekt und setzt diese Werte in Felder der Klasse
      */
