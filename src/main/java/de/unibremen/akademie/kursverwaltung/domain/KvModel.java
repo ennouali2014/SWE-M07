@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The type Kv model.
+ */
 public class KvModel {
 
     private final PersonKursListe pkListe = new PersonKursListe();
@@ -12,22 +15,46 @@ public class KvModel {
     private final KursListe kurse = new KursListe();
 
 
+    /**
+     * Instantiates a new Kv model.
+     */
     public KvModel() {
     }
 
+    /**
+     * Gets personen.
+     *
+     * @return the personen
+     */
     public PersonenListe getPersonen() {
         return personen;
     }
 
+    /**
+     * Gets kurse.
+     *
+     * @return the kurse
+     */
     public KursListe getKurse() {
         return kurse;
     }
 
+    /**
+     * Gets pk liste.
+     *
+     * @return the pk liste
+     */
     public PersonKursListe getPkListe() {
         return pkListe;
     }
 
 
+    /**
+     * Load.
+     *
+     * @param speicherPfad  the speicher pfad
+     * @param speicherDatei the speicher datei
+     */
     public void load(String speicherPfad, String speicherDatei) {
         try {
             FileInputStream infile = new FileInputStream(speicherPfad + speicherDatei);
@@ -54,6 +81,12 @@ public class KvModel {
     }
 
 
+    /**
+     * Save.
+     *
+     * @param speicherPfad  the speicher pfad
+     * @param speicherDatei the speicher datei
+     */
     public void save(String speicherPfad, String speicherDatei) {
         try {
             File ordner = new File(speicherPfad);
@@ -99,18 +132,23 @@ public class KvModel {
             // kurse.addNewKurs("Web-Profi", 21, 3, new Date(1675123200000L), 1, 10, 299.00, 19.0, "HTML und CSS wie im Schlaf", "Aktiv");
             System.out.println("Kurs-Standarddaten wurde geladen!");
         }
-        /*if (pkListe.personKursList.size() <= 0) {
-            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(0), kvModel.getKurse().getKursVonKursListe(0));
-            pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(0), kvModel.getKurse().getKursVonKursListe(1));
-            pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(0), kvModel.getKurse().getKursVonKursListe(2));
-            pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(1), kvModel.getKurse().getKursVonKursListe(1));
-            pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(2), kvModel.getKurse().getKursVonKursListe(1));
-            pkListe.addPersonInKursAlsTeilnehmer(kvModel.getPersonen().getPersonVonPersonenListe(3), kvModel.getKurse().getKursVonKursListe(1));
+        if (pkListe.personKursList.size() <= 0) {
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(0), kurse.getKursVonKursListe(0));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(0), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(0), kurse.getKursVonKursListe(2));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(1), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(2), kurse.getKursVonKursListe(1));
+            pkListe.addPersonInKursAlsTeilnehmer(personen.getPersonVonPersonenListe(3), kurse.getKursVonKursListe(1));
 
             System.out.println("PersonKursList-Standarddaten wurde geladen!");
-        }*/
+        }
     }
 
+    /**
+     * Remove person.
+     *
+     * @param p the p
+     */
     public void removePerson(Person p) {
 
         try {
@@ -128,6 +166,11 @@ public class KvModel {
         personen.getPersonenListe().remove(p);
     }
 
+    /**
+     * Remove kurse.
+     *
+     * @param kurs the kurs
+     */
     public void removeKurse(Kurs kurs) {
         Date heute = new Date();
         if (kurs.getEndeDatum().before(heute)) {
